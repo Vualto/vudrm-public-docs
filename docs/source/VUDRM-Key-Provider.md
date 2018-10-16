@@ -1,29 +1,15 @@
-<!-- 
-    NOTE: The generated css for the TOC doesn't have a
-    scrollbar so it is added into the base.css file AFTER
-    mkDocs Build runs. This stops the TOC running off the 
-    end of the page:
-    
-    .bs-sidebar.well {
-    padding: 0;
-    max-height:85vh;
-    overflow-y: auto;
-    }
--->
-
-
 # Key Provider Integration
 
 
 
-# 1. Overview
+## 1. Overview
 
 The purpose of this document is to outline the work required to integrate the vudrm key provider solution into the client’s DRM workflow. The key provider
 service can be used to integrate either an encoder or streaming server to use vudrm. 
 
 It provides a secure REST API allowing you to get content encryption keys for all DRM types in order to encrypt your content. 
 
-# 2. Key Provider Response
+## 2. Key Provider Response
 
 The key provider service will provide all the information required in order to encrypt various types of content. In order to be as flexible as possible we will return
 encryption keys in Base16 and Base64 as some systems require different values. 
@@ -31,7 +17,7 @@ encryption keys in Base16 and Base64 as some systems require different values.
 Our Keyprovider response will contain (dependant on the DRM options specified) : 
 
 
-## 2.1 Microsoft Playready
+### 2.1 Microsoft Playready
 
 **Example Resonse:**
 
@@ -66,7 +52,7 @@ Our Keyprovider response will contain (dependant on the DRM options specified) :
 ```service_id``` : Uniqiue Vualto DRM Service ID.
 
 
-## 2.2 Adobe Primetime (nee Access)
+### 2.2 Adobe Primetime (nee Access)
 
 **Example Response:**
 
@@ -83,7 +69,7 @@ Our Keyprovider response will contain (dependant on the DRM options specified) :
 
 ```drm_specific_data``` : This is the DRM ‘blob’ that contains all the relevant DRM data for the Adobe Primetime encryption process. 
 
-## 2.3 Google Widevine 
+### 2.3 Google Widevine 
 
 **Example Response:** 
 
@@ -110,7 +96,7 @@ Our Keyprovider response will contain (dependant on the DRM options specified) :
  ```drm_specific_dataa``` This is the Widevine PSSH box that contains all the relevant DRM data for widevine encryption. 
 
 
-## 2.4 CENC (Common Encryption) 
+### 2.4 CENC (Common Encryption) 
 
 **Example Response :**
 
@@ -139,7 +125,7 @@ Our Keyprovider response will contain (dependant on the DRM options specified) :
 ```widevine_drm_specific_data``` : This is the Widevine PSSH box that contains all the relevant DRM data for widevine encryption. 
 
 
-## 2.4 AES
+### 2.4 AES
 
 **Example Response:**
 
@@ -157,7 +143,7 @@ Our Keyprovider response will contain (dependant on the DRM options specified) :
 ```key_url``` : AES Key URL : URL to the AES Key Server 
 
 
-# 3. Key Provider API
+## 3. Key Provider API
 
 
 The Key Provider is a very simple REST API that will return all the different DRM key information. In order to provide this securely we require that your unique
@@ -208,7 +194,7 @@ curl -X "GET" "https://key-provider.drm.technology/cenc/vualto/test" -H "API-KEY
 
 
 
-# Appendix A
+## Appendix A
 
 The following PHP code snippets provides information to decrypt the Key provider Response – the ClientID and Shared Secret values can be found in the DRM Admin System at ```http://admin.drm.technology``` in the configuration section. 
 
@@ -220,7 +206,7 @@ request.php
 This is only meant as a simple example. 
 
 
-## Crypto.php
+### Crypto.php
 
 ```PHP
 <?php
@@ -271,7 +257,7 @@ This is only meant as a simple example.
 ?> 
 ```
 
-## index.php
+### index.php
 
 ```PHP
 
@@ -304,7 +290,7 @@ This is only meant as a simple example.
 
 ```
 
-## request.php
+### request.php
 
 ```PHP
 

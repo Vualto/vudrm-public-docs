@@ -1,6 +1,6 @@
 # Token Integration 
 
-# 1. Summary
+## 1. Summary
 
 The purpose of this document is to outline the work required to integrate the vudrm token solution into the client’s DRM workflow. This document replaces previous versions and instead of providing integration instructions for each individual DRM provider, now allows a common set of parameters to be used across multiple DRM platforms. This new common layer supports the following DRM technologies: 
 
@@ -12,7 +12,7 @@ The purpose of this document is to outline the work required to integrate the vu
 
 There are some settings that do now apply to every DRM. These have been indicated. 
 
-# 2. Token Overview
+## 2. Token Overview
 
 In order to authenticate a request for playback, a system of signed tokens is used.  
  
@@ -29,7 +29,7 @@ In order to authenticate a request for playback, a system of signed tokens is us
 (For Adobe Primetime only, we also support ‘pre-defined’ DRM policies files.) 
 
 
-## 2.1 Token Format for On-the-fly Policies
+### 2.1 Token Format for On-the-fly Policies
 
 The Signed tokens contain:
 
@@ -50,7 +50,7 @@ Each component is separated with a vertical bar character (ASCII code 124).
 The JSON is encrypted using AES (rijndael 128) so should anyone intercept the request the DRM policy token information is secure. 
 
 
-## 2.2 Token Format for Pre-Defined Policy (Primetime Only) 
+### 2.2 Token Format for Pre-Defined Policy (Primetime Only) 
 
 If the policy is to be ‘burnt’ into the content, then instead of specifying the Policy JSON, a policy name is specified. 
 
@@ -73,7 +73,7 @@ The JSON is encrypted using AES (rijndael 128) so should any one intercept the r
  
 
 
-## 2.3 JSON Parameters for DRM Policies
+### 2.3 JSON Parameters for DRM Policies
 
 The following parameters are the most commonly used to specify DRM policies. It is not an exhaustive list but covers off most common scenarios.  
 
@@ -114,7 +114,7 @@ For a full explanation of PlayReady output protection, please see:
 https://www.microsoft.com/playready/licensing/compliance/
 ```
 
-### Simple JSON Examples
+#### Simple JSON Examples
 
 **Example Rental** : All DRM Providers:
 
@@ -156,7 +156,7 @@ Each time a user requests playback it will check the local cache for a license. 
 
 ```
 
-## 2.5 Using the Token API
+### 2.5 Using the Token API
 
 We provide a secure API to generate a token for your content. This is accessed from the following URL:
 
@@ -187,9 +187,9 @@ The body contains a JSON object which will need to be **escaped**. For example:
 
 
 
-### 2.5.1 Token API Request Example
+#### 2.5.1 Token API Request Example
 
-#### CURL
+##### CURL
 
 ```bash
 curl -X POST \
@@ -198,7 +198,7 @@ curl -X POST \
   -d '{"client": "<client>","policy": "{\"contentid\":\"<content-id>\",\"polend\":\"<pol-end>\",\"liccache\":\"no\"}"}'
 ```
 
-#### GO
+##### GO
 
 ```go
 package main
@@ -231,7 +231,7 @@ func main() {
 }
 ```
 
-#### Ruby (NET::Http)
+##### Ruby (NET::Http)
 
 ```ruby
 require 'uri'
@@ -249,7 +249,7 @@ response = http.request(request)
 puts response.read_body
 ```
 
-#### C# (RestSharp)
+##### C# (RestSharp)
 
 ```c
 var client = new RestClient("https://token-api.drm.technology/generate");
@@ -259,7 +259,7 @@ request.AddParameter("undefined", "{\"client\": \"<client>\",\"policy\": \"{\\\"
 IRestResponse response = client.Execute(request);
 ```
 
-#### Python Requests
+##### Python Requests
 
 ```python
 import requests
@@ -276,7 +276,7 @@ response = requests.request("POST", url, data=payload, headers=headers)
 print(response.text)
 ```
 
-#### PHP HttpRequest
+##### PHP HttpRequest
 
 ```PHP
 <?php
