@@ -10,6 +10,6 @@ pre {
     color: white !important;
 }
 
-.toctree-l1:active {
+.reference internal:active {
     background-color:  #003763 !important;
 } 
