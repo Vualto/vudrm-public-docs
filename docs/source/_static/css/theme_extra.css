@@ -10,6 +10,6 @@ pre {
     color: white !important;
 }
 
-.reference internal:active {
+.wy-menu-vertical a:active {
     background-color:  #003763 !important;
 } 
