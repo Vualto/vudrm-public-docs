@@ -10,6 +10,6 @@ pre {
     color: white !important;
 }
 
-.wy-menu-vertical a:not(current):active {
+.wy-menu-vertical .toctree-l1:not(current):active {
     background-color:  #003763 !important;
 } 
