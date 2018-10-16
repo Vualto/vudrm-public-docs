@@ -9,3 +9,7 @@ pre {
 .version {
     color: white !important;
 }
+
+.toctree-l1:active {
+    background-color:  #003763 !important;
+} 
