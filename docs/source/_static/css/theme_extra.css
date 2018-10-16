@@ -5,3 +5,7 @@ pre {
 .wy-side-nav-search {
     background-color: #003763 !important;
 }
+
+.version {
+    color: white;
+}
