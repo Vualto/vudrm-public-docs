@@ -31,7 +31,7 @@ def setup(app):
 
 # -- Project information -----------------------------------------------------
 
-project = u'vudrm-public-docs'
+project = u'VUDRM Documentation'
 copyright = u'2018, Vualto'
 author = u'Vualto'
 
