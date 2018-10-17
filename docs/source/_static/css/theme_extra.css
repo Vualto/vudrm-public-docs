@@ -23,5 +23,25 @@ h1, h2, h3, h4, h5, h6, a, .wy-nav-content-wrap .caption {
 }
 
 .wy-nav-content-wrap a:hover {
-    color: #0099cc;
+    color: #0099CC;
+}
+
+.wy-side-nav-search a:hover {
+    background: rgba(255, 255, 255, 0);
+}
+
+.danger .admonition-title {
+    background: #C60C30 !important;
+}
+
+.warning .admonition-title {
+    background: #FECB00 !important;
+}
+
+.hint .admonition-title {
+    background: #92D400 !important;
+}
+
+.note .admonition-title {
+    background: #0099CC !important;
 }
