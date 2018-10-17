@@ -18,6 +18,10 @@ body, p, h1, h2, h3, h4, h5, h6 {
     font-family: Arial !important;
 }
 
-h1, h2, h3, h4, h5, h6, a {
+h1, h2, h3, h4, h5, h6, a, .wy-nav-content-wrap .caption {
     color: #003c69;    
+}
+
+.wy-nav-content-wrap a:hover {
+    color: #0099cc;
 }
