@@ -4,7 +4,8 @@ Welcome to the VUDRM documentation!
 .. toctree::
    :maxdepth: 2
    :hidden:
-   All Documentation <https://vualto-public-documentation.readthedocs-hosted.com/>
+   
+   All Documentation <https://vualto-public-documentation.readthedocs-hosted.com/en/latest/index.html>
 
 .. toctree::
    :maxdepth: 2
