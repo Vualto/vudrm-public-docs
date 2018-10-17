@@ -3,6 +3,7 @@ Welcome to the VUDRM documentation!
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
    All Documentation <https://vualto-public-documentation.readthedocs-hosted.com/>
 
 .. toctree::
