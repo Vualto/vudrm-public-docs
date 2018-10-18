@@ -10,8 +10,12 @@ pre {
     color: white !important;
 }
 
-.wy-menu-vertical a:not(.current):not(.internal):active {
+.wy-menu-vertical .toctree-l1:not(.current):active {
     background-color:  #003c69 !important;
+} 
+
+.wy-menu-vertical a:active {
+    background-color:  rgba(255, 255, 255, 0) !important;
 } 
 
 body, p, h1, h2, h3, h4, h5, h6 {
