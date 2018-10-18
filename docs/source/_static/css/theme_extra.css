@@ -2,7 +2,7 @@ pre {
     background-color: rgba(255, 254, 245, 1);
 }
 
-.wy-side-nav-search {
+.wy-side-nav-search, .wy-nav-top {
     background-color: #003c69 !important;
 }
 
