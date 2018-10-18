@@ -40,6 +40,7 @@ version = u''
 # The full version, including alpha/beta/rc tags
 release = u''
 
+html_context = {'home_link': 'https://vualto-public-documentation.readthedocs-hosted.com/'}
 
 # -- General configuration ---------------------------------------------------
 
