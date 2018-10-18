@@ -7,9 +7,11 @@ Welcome to the VUDRM documentation!
    
    All Documentation <https://vualto-public-documentation.readthedocs-hosted.com/en/latest/index.html>
 
+Contents:
+---------
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    VUDRM-Token-Integration.md
    VUDRM-Speke-Key-Provider.md
