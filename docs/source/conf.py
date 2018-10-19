@@ -30,7 +30,7 @@ def setup(app):
 
 # -- Project information -----------------------------------------------------
 
-project = u'VUDRM Documentation'
+project = u'vualto-vudrm-public-docs'
 copyright = u'2018, VUALTO'
 author = u'VUALTO'
 
