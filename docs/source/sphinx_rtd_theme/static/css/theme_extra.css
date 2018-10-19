@@ -61,3 +61,33 @@ h1, h2, h3, h4, h5, h6, a, .wy-nav-content-wrap .caption {
     padding: 35px;
     min-width: 120px;
 }
+
+.rst-versions.shift-up .other-versions {
+    display: block;
+}
+
+.rst-versions .other-versions {
+    font-size: 90%;
+    padding: 12px;
+    color: gray;
+    display: none;
+}
+
+.other-versions {
+    text-align: left;
+}
+
+.rst-versions .other-versions dd a {
+    display: inline-block;
+    padding: 6px;
+    color: #fcfcfc;
+}
+
+.other-versions a {
+    border: 0;
+}
+
+.rst-versions .other-versions dd {
+    display: inline-block;
+    margin: 0;
+}
