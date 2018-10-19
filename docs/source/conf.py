@@ -34,7 +34,7 @@ project = u'VUDRM Documentation'
 copyright = u'2018, VUALTO'
 author = u'VUALTO'
 
-html_context = {'home_link': 'https://vualto-internal-documentation.readthedocs-hosted.com'}
+html_context = {'home_link': 'https://vualto-public-documentation.readthedocs-hosted.com'}
 
 # The short X.Y version
 version = u''
