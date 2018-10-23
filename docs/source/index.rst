@@ -1,6 +1,6 @@
 .. image:: _static/vudrmLogoThin.png
    :width: 350px
-   :height: 75px
+   :height: 60px
    :scale: 50 %
    :alt: alternate text
    :align: right
