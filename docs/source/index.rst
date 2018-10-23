@@ -1,4 +1,4 @@
-.. image:: _static/vudrmLogo.png
+.. image:: _static/vudrmLogoThin.png
    :width: 350px
    :height: 142px
    :scale: 50 %
