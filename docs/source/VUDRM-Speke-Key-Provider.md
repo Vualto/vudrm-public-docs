@@ -1,4 +1,4 @@
-# Vudrm Speke Keyprovider Api
+# SPEKE Keyprovider Api
 These are the docs for the speke key provider, which has a speke endpoint for use with AWS.
 
 ## Use with AWS Media Convert (VOD)
