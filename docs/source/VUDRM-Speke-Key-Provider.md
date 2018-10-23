@@ -170,7 +170,7 @@ These are the docs for the speke key provider, which has a speke endpoint for us
 ## Endpoints
 Staging url: https://speke-keyprovider-staging.drm.technology/
 
-## Speke
+## SPEKE
 To retrieve drm information formatted to the CPIX standard POST a request, formatting below, to **https://speke-keyprovider-staging.drm.technology/client-name/speke**, where "client-name" is the name of the client. 
 
 **Please note when requesting a XML response Fairplay must be requested seperately to Widevine and Playready.**
