@@ -1,4 +1,4 @@
-# SPEKE Key Provider Api
+# SPEKE Key Provider API
 These are the docs for the speke key provider, which has a speke endpoint for use with AWS.
 
 ## Use with AWS Media Convert (VOD)
