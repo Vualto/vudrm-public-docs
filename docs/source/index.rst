@@ -1,3 +1,10 @@
+.. image:: _static/vudrmLogo.png
+   :width: 350px
+   :height: 142px
+   :scale: 50 %
+   :alt: alternate text
+   :align: right
+
 VUDRM DOCUMENTATION
 ===================
 
