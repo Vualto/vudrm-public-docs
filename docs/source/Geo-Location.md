@@ -1,4 +1,4 @@
-# Geo Location API
+# GEO LOCATION API
 
 This API can be used to retrieve geographical location information about IPv4 or IPv6 addresses.
 

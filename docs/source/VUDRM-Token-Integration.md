@@ -1,4 +1,4 @@
-# Token Integration 
+# TOKEN INTEGRATION 
 
 ## 1. Summary
 

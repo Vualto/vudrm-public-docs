@@ -1,11 +1,11 @@
-Welcome to the VUDRM documentation!
-===================================
+VUDRM DOCUMENTATION
+===================
 
 .. toctree::
    :maxdepth: 2
    :hidden:
    
-   All Documentation <https://vualto-public-documentation.readthedocs-hosted.com/en/latest/index.html>
+   ALL DOCUMENTATION <https://vualto-public-documentation.readthedocs-hosted.com/en/latest/index.html>
 
 Contents:
 ---------
