@@ -95,3 +95,7 @@ h1, h2, h3, h4, h5, h6, a, .wy-nav-content-wrap .caption {
 .toctree-expand {
     display : none !important;
 }
+
+.rst-content .align-right {
+    margin: 0;
+}
