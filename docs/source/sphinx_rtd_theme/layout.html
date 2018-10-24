@@ -145,8 +145,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
           {%- block document %}
            <div itemprop="articleBody">
-             {% if use_product_logo %}
-              <img class="align-right" style="width: 175.0px; height: 32.5px; margin: 0;" alt="productLogo" src="{{ pathto('_static/productLogo.png', 1) }}">
+             {% if product_logo %}
+              <img class="align-right" style="width: 175.0px; height: 32.5px; margin: 0;" alt="productLogo" src="{{ pathto(product_logo, 1) }}">
              {% endif %}
             {% block body %}{% endblock %}
            </div>

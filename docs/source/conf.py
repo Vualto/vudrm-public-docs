@@ -36,7 +36,7 @@ author = u'VUALTO'
 
 html_context = {
     'home_link': 'https://vualto-public-documentation.readthedocs-hosted.com',
-    'use_product_logo': ''
+    'product_logo': '_static/vudrmLogo.png'
 }
 
 # The short X.Y version
