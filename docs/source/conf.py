@@ -34,8 +34,10 @@ project = u'vualto-vudrm-public-docs'
 copyright = u'2018, VUALTO'
 author = u'VUALTO'
 
-html_context = {'home_link': 'https://vualto-public-documentation.readthedocs-hosted.com'}
-use_product_logo = 'true'
+html_context = {
+    'home_link': 'https://vualto-public-documentation.readthedocs-hosted.com',
+    'use_product_logo' = 'true'
+}
 
 # The short X.Y version
 version = u''
