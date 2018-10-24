@@ -35,6 +35,7 @@ copyright = u'2018, VUALTO'
 author = u'VUALTO'
 
 html_context = {'home_link': 'https://vualto-public-documentation.readthedocs-hosted.com'}
+use_product_logo = false
 
 # The short X.Y version
 version = u''
