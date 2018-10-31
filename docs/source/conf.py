@@ -35,7 +35,7 @@ copyright = u'2018, VUALTO'
 author = u'VUALTO'
 
 html_context = {
-    'home_link': 'https://vualto-public-documentation.readthedocs-hosted.com',
+    'home_link': 'https://vualto.docs.com',
     'product_logo': '_static/vudrmLogo.png'
 }
 
