@@ -7,8 +7,8 @@ Here you will find a range of tools to guide you in using VUDRM services. If you
    :maxdepth: 2
    :hidden:
    
-   ALL DOCUMENTATION <https://vualto-public-documentation.readthedocs-hosted.com/en/latest/index.html>
-   VUDRM <https://vualto-public-documentation.readthedocs-hosted.com/projects/vudrm/en/latest/index.html>
+   ALL DOCUMENTATION <https://docs.vualto.com>
+   VUDRM <https://docs.vualto.com/projects/vudrm/en/latest/index.html>
 
 Contents:
 ---------
