@@ -1,3 +1,7 @@
+.wy-nav-content {
+    min-width: 100%;
+}
+
 pre {
     background-color: rgba(255, 254, 245, 1);
 }
