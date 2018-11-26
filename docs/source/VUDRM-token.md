@@ -1,6 +1,6 @@
 # VUDRM TOKEN 
 
-The VUDRM token has two purposes; authentication and the delivery of the DRM policy to the license server. It also represents a signed authorisation on the client’s behalf for Vualto to issue a DRM license to the holder of the token, issuing a VUDRM token to a player will grant that player access to the DRM-protected content.
+The VUDRM token has two purposes; authentication and the delivery of the DRM policy to the license server. It also represents a signed authorisation on the client's behalf for Vualto to issue a DRM license to the holder of the token, issuing a VUDRM token to a player will grant that player access to the DRM-protected content.
 
 Due to the first purpose VUDRM tokens have a limited lifetime and are designed to be single use. Please contact support@vualto.com if you do not know what the VUDRM token's TTL is for your account.
 
