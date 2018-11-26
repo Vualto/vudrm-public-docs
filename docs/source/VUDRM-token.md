@@ -16,13 +16,13 @@ VUDRM tokens should be generated using the [VUDRM token API](vudrm-token-api). T
 
 The VUDRM token is comprised of four components each separated by the pipe character (ASCII code 124):
 - The client name.
-- The time the token was generated in ISO8601 format (yyyy-MM-ddThh:mm:ssZ).
+- The time the token was generated in an ISO8601 format (yyyy-MM-ddThh:mm:ssZ).
 - The encrypted DRM policy.
-- A signed hash
+- A signed hash.
 
 ## DRM policy
 
-The DRM policy is included in the VUDRM token as the encrypted third component. When using multiple DRM providers the parameters that are applicable to `ALL` will work across DRM technologies. Parameters specific to one DRM can be used but will be ignored if not relevant. For example; a VUDRM token can be created that pertains to both Widevine and PlayReady. Any PlayReady specific parameters will only be applied when a PlayReady licence is required and will be ignored for Widevine.
+The DRM policy is included in the VUDRM token as the encrypted third component. When using multiple DRM providers the parameters that are applicable to `ALL` will work across all DRM technologies. Parameters specific to one DRM provider can be used but will be ignored if not relevant. For example, a VUDRM token can be created that pertains to both Widevine and PlayReady. Any PlayReady specific parameters will only be applied when a PlayReady licence is required and will be ignored for Widevine.
 
 | Key                | Type     | Format                    | Applicable DRM | Description                                                                                                                     |
 |--------------------|----------|---------------------------|----------------|---------------------------------------------------------------------------------------------------------------------------------|
@@ -49,9 +49,9 @@ PlayReady has an extensive list of policy options described [here](https://docs.
 
 ### Fairplay DRM policy
 
-Fairplay has three types of license; `rental`, `lease` and `persist`. 
+Fairplay has three types of license; `rental`, `lease`, and `persist`. 
 
-Fairplay licenses can only be persisted past the user session by an offline enabled iOS applications. When using Safari a session will last for the time the browser tab is open.
+Fairplay licenses can only be persisted past the user session by an offline enabled iOS application. When using Safari a session will be preserved until the browser tab is closed.
 
 Fairplay does not allow playback over non-HDCP connections. 
 
@@ -83,7 +83,7 @@ Using the `type` of `persist` will cause playback to stop at the license expiry 
 
 ### Widevine DRM policy
 
-Widevine licenses can only be persisted past the user session by an Android application. When using Chrome a session will last for the time the browser tab is open.
+Widevine licenses can only be persisted past the user session by an Android application. When using Chrome a session will be preserved until the browser tab is closed.
 
 ### DRM policy examples
 
@@ -97,10 +97,10 @@ The following sections display some example policies. These polices apply to all
     "polend":"DD-MM-YYYY HH:mm:ss",
     "type":"r"
 }
-
 ```
 
 #### Subscription
+
 ```JSON
 {
     "contentid":"filename",
@@ -130,7 +130,8 @@ The body of the POST request comprises of the account name and the DRM policy.
 
 The quotes in the DRM policy must be **escaped**. 
 
-For example: 
+For example:
+
 ```JSON
 {
     "client": "YOUR_NAME",
@@ -250,25 +251,3 @@ try {
   echo $ex;
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
