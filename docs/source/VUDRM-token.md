@@ -6,7 +6,7 @@ Due to the first purpose VUDRM tokens have a limited lifetime and are designed t
 
 The second purpose allows the user's playback rights for individual pieces of content to be set dynamically. A single user may be granted different rights on a single piece of content depending on business requirements.
 
-VUDRM tokens should be generated using the [VUDRM token API](vudrm-token-api). The request to the [VUDRM token API](vudrm-token-api) should be made from a server side application and the VUDRM token should then be delivered to the client side for use by a player in a license request.
+VUDRM tokens should be generated using the [VUDRM token API](/projects/vudrm/en/latest/VUDRM-token.html#vudrm-token-api). The request to the [VUDRM token API](/projects/vudrm/en/latest/VUDRM-token.html#vudrm-token-api) should be made from a server side application and the VUDRM token should then be delivered to the client side for use by a player in a license request.
 
 *** VUDRM tokens should not be generated on the client side ***
 
