@@ -1,19 +1,118 @@
 # ENCRYPTION KEY PROVISION
 
-## 1. Overview
+The VUDRM key provision service exposes the generation of DRM encryption. It provides a secure REST API allowing you to retrieve encryption keys for all DRM types in order to encrypt your content.
 
-The purpose of this document is to outline the work required to integrate the vudrm key provider solution into the client’s DRM workflow. The key provider
-service can be used to integrate either an encoder or streaming server to use vudrm. 
+## Key provider API
 
-It provides a secure REST API allowing you to get content encryption keys for all DRM types in order to encrypt your content. 
+The key provider API will provide all the information required in order to encrypt various types of content. In order to be as flexible as possible it will return encryption keys in Base16 and Base64 as some systems require different values. 
 
-## 2. Key Provider Response
+The following sections describe the requests and responses in order to retrieve the keys. The most common scenario is to request CENC and Fairplay encryption keys. 
 
-The key provider service will provide all the information required in order to encrypt various types of content. In order to be as flexible as possible we will return
-encryption keys in Base16 and Base64 as some systems require different values. 
+### Request
 
-Our Keyprovider response will contain (dependant on the DRM options specified) : 
+A `GET` should be made to the following URL:
 
+```URL
+https://key-provider.drm.technology/<DRM_TYPE>/<CLIENT_NAME>/<CONTENT_ID> 
+```
+
+The breakdown of this URL is:
+- `DRM_TYPE`: The type of encryption keys being requested. Possible values are `cenc`, `fairplay`, `widevine`, `playready`, and `aes`.
+- `CLIENT_NAME`: The account name. Plese contact support@vualto.com if you do not have the account name.
+- `CONTENT_ID`: A unique content identifier. This value will always generate the same encryption keys.
+
+In order to provide the keys securely an API key is required in the header of the request. Please contact support@vualto.com if you do not have an API key.
+
+Below is an example curl request for `cenc` encryption keys using the client `vualto` and with the `CONTENT_ID` of `test`
+
+```bash
+curl -X "GET" "https://key-provider.drm.technology/cenc/vualto/test" -H "API_KEY: 8930a415-6eb0-4393-a108-9780d9g687b5" 
+```
+
+### Response
+
+In order to provide the keys securely the DRM encryption keys are encrypted in the response.
+
+The format of the response will be:
+
+```JSON
+{
+    "key":"jmr3FPUDpUeAhruWEv565gXgjvrYOEyajtSVfOxLWyYydBSLPfbp0kCJH5UbloEqAlGNKP15ZQfNpIEeKK4AM3c8j22p10XD6mHqqsa8n2LWrVXDFEQ2k1psNdaxJzLMHLzSdA9BXgYUjAVdRD6+K6u0coW4T8l7PTTzJSFGKqg=Kfddff0b08aca3d6b47df62b5fdab748879224fee"
+} 
+```
+
+#### Decrypting the response examples
+
+This section contains examples of how to decrypt the response from the key provider API.
+
+You will need the `CLIENT_NAME`, `SHARED_SECRET` and the `key` value from the request to the Keyprovider API.
+
+##### Ruby
+
+```ruby
+require 'base64'
+require 'crypt/rijndael'
+require 'digest'
+require 'openssl'
+
+client = "<CLIENT_NAME>"
+shared_secret = "<SHARED_SECRET>"
+
+encrypted_keys = "<KEYPROVIDER_ENCRYPTED_KEY_VALUE>"
+
+message, message_hash = encrypted_keys.split('|')
+
+pre_computed = client + message
+computed_hash = Digest::SHA1.new.hexdigest(shared_secret + pre_computed)
+
+if computed_hash == message_hash
+  decoded_message = Base64.strict_decode64(message)
+  decipher = OpenSSL::Cipher::Cipher.new('AES-128-ECB').decrypt
+  decipher.key = shared_secret[0..15]
+  unencrypted_keys = decipher.update(decoded_message) + decipher.final
+else
+  raise "hash check failed"
+end
+```
+
+##### PHP
+
+```PHP
+<?php
+    class Crypto
+    { 
+        private $_cipher;
+        private $_mode;
+        private $_keySize; 
+
+        public function __construct($cipher = MCRYPT_RIJNDAEL_128, $mode = MCRYPT_MODE_ECB) 
+        {
+            $this->_cipher = $cipher;
+            $this->_mode = $mode;
+            $this->_keySize = mcrypt_get_key_size($this->_cipher, $this->_mode); 
+        }
+
+        public function decrypt($encryptedText, $sharedSecret)
+        { 
+            $cipherText = base64_decode($encryptedText, true);
+            $paddedPlainText = mcrypt_decrypt($this->_cipher, substr($sharedSecret, 0, 16), 
+                $cipherText, $this->_mode);
+            $plainText = $this->removePkcs5Pad($paddedPlainText);
+            return $plainText; 
+        }
+
+        private function removePkcs5Pad($padded) 
+        {
+            $len = strlen($padded);
+            $padSize = ord($padded[$len - 1]);
+            return substr($padded, 0, $len - $padSize); 
+        }
+    }
+?> 
+```
+
+
+### CENC encryption key 
 
 ### 2.1 Microsoft Playready
 
@@ -141,54 +240,7 @@ Our Keyprovider response will contain (dependant on the DRM options specified) :
 ```key_url``` : AES Key URL : URL to the AES Key Server 
 
 
-## 3. Key Provider API
 
-
-The Key Provider is a very simple REST API that will return all the different DRM key information. In order to provide this securely we require that your unique
-API key is included in the header of the request, and the internal JSON is encrypted. 
-
-To access the key provider send a GET command to the following URL with a Header set to: 
-
-{API-KEY} : {YOUR CLIENT API KEY}
-
-The API key can be retrieved from your login at admin.drm.technology or by contacting us. 
-
-Live Key Provider Service URL : 
-
-```URL
-https://key-provider.drm.technology/<DRM_Type>/<ClientID>/<ContentID> 
-```
-
-**DRM_Type** : access, playready, Widevine, cenc, aes .
-
-**ClientID** : Unique Client ID provided by Vualto on Account Creation (available in admin system).
-
-**ContentID** : Unique Content ID to identify the encryption – the same ContentID will always return the same response from the Keyprovider service. 
-
-So an example Live service call might look like this: 
-
-``` URL
-https://key-provider.drm.technology/playready/vualto/test1 
-```
-
-The format of the response will look something similar to: 
-
-```JSON
-
-{
-    "key":"jmr3FPUDpUeAhruWEv565gXgjvrYOEyajtSVfOxLWyYydBSLPfbp0kCJH5UbloEqAlGNKP15ZQfNpIEeKK4AM3c8j22p10XD6mHqqsa8n2LWrVXDFEQ2k1psNdaxJzLMHLzSdA9BXgYUjAVdRD6+K6u0coW4T8l7PTTzJSFGKqg=Kfddff0b08aca3d6b47df62b5fdab748879224fee"
-} 
-```
-
-The internal response is an encrypted JSON string, using the examples in Appendix A this can be decrypted to show the example responses shown above. 
-
-**Example Curl Request:**
-
-Below is an example curl request for the client “Vualto” for “CENC” drm with the content id of “test” 
-
-```
-curl -X "GET" "https://key-provider.drm.technology/cenc/vualto/test" -H "API-KEY: 8930a415-6eb0-4393-a108-9780d9g687b5" 
-```
 
 
 
@@ -206,54 +258,7 @@ This is only meant as a simple example.
 
 ### Crypto.php
 
-```PHP
-<?php
-    class Crypto
-    { 
-        private $_cipher;
-        private $_mode;
-        private $_keySize; 
 
-        public function __construct($cipher = MCRYPT_RIJNDAEL_128, $mode = MCRYPT_MODE_ECB) 
-        {
-            $this->_cipher = $cipher;
-            $this->_mode = $mode;
-            $this->_keySize = mcrypt_get_key_size($this->_cipher, $this->_mode); 
-        }
-
-        public function encrypt($plainText, $sharedSecret)
-        { 
-            $cipherText = mcrypt_encrypt($this->_cipher, substr($sharedSecret, 0, 16), 
-                $this->addPkcs5Pad($plainText, 16), $this->_mode); 
-            $base64CipherText = base64_encode($cipherText);
-            return $base64CipherText; 
-        }
-
-        public function decrypt($encryptedText, $sharedSecret)
-        { 
-            $cipherText = base64_decode($encryptedText, true);
-            $paddedPlainText = mcrypt_decrypt($this->_cipher, substr($sharedSecret, 0, 16), 
-                $cipherText, $this->_mode);
-            $plainText = $this->removePkcs5Pad($paddedPlainText);
-            return $plainText; 
-        }
-
-        private function addPkcs5Pad($text, $blocksize)
-        { 
-            $pad = $blocksize - (strlen($text) % $blocksize);
-            return $text . str_repeat(chr($pad), $pad); 
-        }
-
-
-        private function removePkcs5Pad($padded) 
-        {
-            $len = strlen($padded);
-            $padSize = ord($padded[$len - 1]);
-            return substr($padded, 0, $len - $padSize); 
-        }
-    }
-?> 
-```
 
 ### index.php
 
