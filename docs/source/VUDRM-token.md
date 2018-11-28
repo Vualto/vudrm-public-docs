@@ -8,7 +8,7 @@ The second purpose allows the user's playback rights for individual pieces of co
 
 VUDRM tokens should be generated using the [VUDRM token API](/projects/vudrm/en/latest/VUDRM-token.html#vudrm-token-api). The request to the [VUDRM token API](/projects/vudrm/en/latest/VUDRM-token.html#vudrm-token-api) should be made from a server side application and the VUDRM token should then be delivered to the client side for use by a player in a license request.
 
-*** VUDRM tokens should not be generated on the client side ***
+** VUDRM tokens should not be generated on the client side **
 
 ## VUDRM token structure
 
