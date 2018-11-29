@@ -37,11 +37,13 @@ The format of the response will be:
 
 ```JSON
 {
-    "key":"jmr3FPUDpUeAhruWEv565gXgjvrYOEyajtSVfOxLWyYydBSLPfbp0kCJH5UbloEqAlGNKP15ZQfNpIEeKK4AM3c8j22p10XD6mHqqsa8n2LWrVXDFEQ2k1psNdaxJzLMHLzSdA9BXgYUjAVdRD6+K6u0coW4T8l7PTTzJSFGKqg=Kfddff0b08aca3d6b47df62b5fdab748879224fee"
+    "key":"r8tXpf8wSSHKVnW1fz+MgZY3BTnTO+/IGFglt9oUwtKWj8eyguSLd0bzOhcn4DMF4JWOAbhbKopJE/cZWPqIfl3RCIwl46UP57/m7870+z3NWxh/JSvrfWBq4SGmkykfDLKjyLBqb5F6dDlUB+flcfZMcQh6FGk5GNGEniXliB/kyCrVDiKdwAw3hft8rT4/itFQDMRKkhJf1Fh67AZ1LyzOI3CCY/oO4w/XF/XMAJ1z92tAKULI+cPMFaXT3I77N3iaQoYN78mJkKgAr71Tlf91+ASB8jqOCHD6nNgm6nGxZlsTVK5wxdhT4zbMJq4xb7daSy7xMWdH/1eXuIh0ZhWicKJqbWHKIeifZWFras/0QzqN27rupHF3UYnYQ40V3ESE2PUIe8Cs8471QRHlruYlwtgBBmGme2ERZWFjrRFEeUt8SobQkCIZrzDEKaQ2bJMyOy1yMt8oklpFaW9pBg3yHZEK1WZn5u8ynV+ZWLI6soCNpMgkPYe2UtnFOhFRZfT8WG09FGJiouzyL3fCZAguxP8u9jkzQTv15UhwO/StdpTKCn1yxr3KoyxGAk3L|166c43d4023880a99691fd9679e6ad785305f205"
 } 
 ```
 
-The value of `key` is the encrypted blob containing the DRM encryption keys.
+The value of `key` has two components separated by a pipe (ASCII code 124):
+- Encrypted blob containing the DRM encryption keys. 
+- Hash used in a checksum
 
 #### Decrypting the response
 
