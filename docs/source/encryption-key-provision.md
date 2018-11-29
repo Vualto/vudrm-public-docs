@@ -41,11 +41,13 @@ The format of the response will be:
 } 
 ```
 
-#### Decrypting the response examples
+The value of `key` is the encrypted blob containing the DRM encryption keys.
+
+#### Decrypting the response
 
 This section contains examples of how to decrypt the response from the key provider API.
 
-You will need the `CLIENT_NAME`, `SHARED_SECRET` and the `key` value from the request to the Keyprovider API.
+You will need the `CLIENT_NAME`, `SHARED_SECRET` and the `KEY_PROVIDER_RESPONSE` value from the request to the Keyprovider API.
 
 ##### C#
 
@@ -59,9 +61,9 @@ namespace Vudrm.EncryptionExamples
 {
     class Program
     {
-        private const string Client = "<CLIENT_NAME>";
-        private const string SharedSecret = "<SHARED_SECRET>";
-        private const string KeyProviderResponse = "<KEY_PROVIDER_RESPONSE>";
+        private const string Client = "CLIENT_NAME";
+        private const string SharedSecret = "SHARED_SECRET";
+        private const string KeyProviderResponse = "KEY_PROVIDER_RESPONSE";
         
         static void Main(string[] args)
         {
@@ -76,7 +78,7 @@ namespace Vudrm.EncryptionExamples
             }
             else
             {
-                Console.WriteLine("Key provider response has did not validate");
+                Console.WriteLine("Key provider response hash did not validate");
             }
             Console.ReadLine();
         }
@@ -133,10 +135,10 @@ require 'crypt/rijndael'
 require 'digest'
 require 'openssl'
 
-client = "<CLIENT_NAME>"
-shared_secret = "<SHARED_SECRET>"
+client = "CLIENT_NAME"
+shared_secret = "SHARED_SECRET"
 
-encrypted_keys = "<KEYPROVIDER_ENCRYPTED_KEY_VALUE>"
+encrypted_keys = "KEY_PROVIDER_RESPONSE"
 
 message, message_hash = encrypted_keys.split('|')
 
@@ -149,8 +151,18 @@ if computed_hash == message_hash
   decipher.key = shared_secret[0..15]
   unencrypted_keys = decipher.update(decoded_message) + decipher.final
 else
-  raise "hash check failed"
+  raise "Key provider response hash did not validate"
 end
+```
+
+##### GO
+
+```go
+```
+
+##### Python
+
+```python
 ```
 
 ##### PHP
