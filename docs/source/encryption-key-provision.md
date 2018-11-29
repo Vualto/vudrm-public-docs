@@ -47,6 +47,84 @@ This section contains examples of how to decrypt the response from the key provi
 
 You will need the `CLIENT_NAME`, `SHARED_SECRET` and the `key` value from the request to the Keyprovider API.
 
+##### C#
+
+```c#
+using System;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace Vudrm.EncryptionExamples
+{
+    class Program
+    {
+        private const string Client = "<CLIENT_NAME>";
+        private const string SharedSecret = "<SHARED_SECRET>";
+        private const string KeyProviderResponse = "<KEY_PROVIDER_RESPONSE>";
+        
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Decrypting keyprovider API response...");
+            var splitKeyProviderResponse = KeyProviderResponse.Split('|');
+            var computedHash = ComputeHash(SharedSecret, Client, splitKeyProviderResponse[0]);
+            if (computedHash == splitKeyProviderResponse[1])
+            {
+                Console.WriteLine("key providers response hash passed validation");
+                var decryptedKeyProviderResponse = Decrypt(splitKeyProviderResponse[0], SharedSecret);
+                Console.WriteLine("Decrypted key provider response: " + decryptedKeyProviderResponse);
+            }
+            else
+            {
+                Console.WriteLine("Key provider response has did not validate");
+            }
+            Console.ReadLine();
+        }
+
+        private string Decrypt(string policy, string sharedSecret)
+        {
+            try
+            {
+                var encrypted = Convert.FromBase64String(policy);
+                var key = Encoding.ASCII.GetBytes(sharedSecret.Substring(0, 16));
+                var rj = new RijndaelManaged
+                {
+                    Mode = CipherMode.ECB,
+                    BlockSize = 128,
+                    Key = key
+                };
+                var decryptor = rj.CreateDecryptor(key, null);
+                var ms = new MemoryStream(encrypted);
+                var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
+                var plain = new byte[encrypted.Length];
+                var decryptcount = cs.Read(plain, 0, plain.Length);
+                ms.Close();
+                cs.Close();
+                return (Encoding.UTF8.GetString(plain, 0, decryptcount));
+            }
+            catch
+            {
+                return policy;
+            }
+        }
+
+        private string ComputeHash(string sharedSecret, string client, string encryptedMessage)
+        {
+            var preComputed = sharedSecret + client + encryptedMessage;
+            var algorithm = new SHA1Managed();
+            var bytesOf = Encoding.UTF8.GetBytes(preComputed);
+            var hashOf = algorithm.ComputeHash(bytesOf);
+            var result = new StringBuilder();
+            foreach (var b in hashOf)
+            {
+                result.Append(b.ToString("x2").ToLower());
+            }
+            return result.ToString();
+        }
+    }
+}
+```
+
 ##### Ruby
 
 ```ruby
@@ -110,7 +188,6 @@ end
     }
 ?> 
 ```
-
 
 ### CENC encryption key 
 
