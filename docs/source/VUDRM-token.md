@@ -75,7 +75,7 @@ Using the `type` of `lease` will cause playback to stop at the license expiry. N
 
 The use case of the `persist` license is for offline playback. 
 
-You can specify a `persist` license by setting the `type` key to `p` in the DRM policy. Setting `licache` to `yes` will also cause a persist license to be generated. If `type` and `liccache` are set in the DRM policy then the license type will be set to `persist`.
+You can specify a `persist` license by setting the `type` key to `p` in the DRM policy. Setting `licache` to `yes` will also cause a persist license to be generated. If `type` and `liccache` are set in the DRM policy then the `type` will automatically be set to `p`.
 
 You can set the expiry of the license using the `duration_persist` key or the `polend` key. If both `duration_persist` and `polend` are set in a policy then `duration_persist` will be used.
 
