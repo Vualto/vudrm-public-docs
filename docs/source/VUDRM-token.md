@@ -61,7 +61,7 @@ You can specify a `rental` license by setting the `type` key to `r` in the DRM p
 
 You can set the expiry of the license using the `duration_rental` key or the `polend` key. If both `duration_rental` and `polend` are set in a policy then `duration_rental` will be used.
 
-Using the `type` of `rental` will not cause playback to stop at the license expiry if the encryption keys have not changed.
+When using the `type` of `rental` playback will continue after license expiry until the encryption keys change.
 
 #### Fairplay lease DRM policy
 
