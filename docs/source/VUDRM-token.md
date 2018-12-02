@@ -28,7 +28,7 @@ The DRM policy is included in the VUDRM token as the encrypted third component. 
 |--------------------|----------|---------------------------|----------------|---------------------------------------------------------------------------------------------------------------------------------|
 | `contentid`        | string   | Any                       | ALL            | The content identifier. This is used for tracking content in the stats and is not required.                                     |
 | `polbegin`         | datetime | DD-MM-YYYY HH:mm:ss       | ALL            | The start date for the license. Default value depends on the DRM provider.                                                      |
-| `polend`           | datetime | DD-MM-YYYY HH:mm:ss       | ALL            | The end date for the license. Default value depends on the DRM provider.                                                        |
+| `polend`           | datetime | DD-MM-YYYY HH:mm:ss       | ALL            | Policy End. The end date for the license. Default value depends on the DRM provider.                                                        |
 | `liccache`         | string   | `yes` OR `no`             | ALL            | Should the license be cached. Implementation depends on the DRM provider.                                                       |
 | `firstplayback`    | integer  | Seconds                   | PlayReady      | Once playback initiated the user will have this window to complete playback. Once the window completes the license will expire. | 
 | `securitylevel`    | integer  | `150` OR `2000` OR `3000` | PlayReady      | https://docs.microsoft.com/en-us/playready/overview/security-level                                                              |
