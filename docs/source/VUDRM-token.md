@@ -35,7 +35,7 @@ The DRM policy is included in the VUDRM token as the encrypted third component. 
 | `type`             | string   | `r` OR `l` OR `p`         | Fairplay       | See [Fairplay DRM policy](fairplay-drm-policy) section for detail.                                                              |
 | `duration_rental`  | string   | Seconds                   | Fairplay       | Overrides polend for rental type policies.                                                               |
 | `duration_lease`   | string   | Seconds                   | Fairplay       | Overrides polend for lease type policies                                                              |
-| `duration_persist` | string   | Seconds                   | Fairplay       | See [Fairplay DRM policy](fairplay-drm-policy) section for detail.                                                              |
+| `duration_persist` | string   | Seconds                   | Fairplay       | Overrides polend for persist type policies                                                              |
 
 This table is not an exhaustive list, for example it does not include advanced PlayReady settings. If you require the use of more advanced settings please contact support@vualto.com
 
