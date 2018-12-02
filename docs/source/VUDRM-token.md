@@ -33,7 +33,7 @@ The DRM policy is included in the VUDRM token as the encrypted third component. 
 | `firstplayback`    | integer  | Seconds                   | PlayReady      | Once playback initiated the user will have this window to complete playback. Once the window completes the license will expire. | 
 | `securitylevel`    | integer  | `150` OR `2000` OR `3000` | PlayReady      | https://docs.microsoft.com/en-us/playready/overview/security-level                                                              |
 | `type`             | string   | `r` OR `l` OR `p`         | Fairplay       | See [Fairplay DRM policy](fairplay-drm-policy) section for detail.                                                              |
-| `duration_rental`  | string   | Seconds                   | Fairplay       | See [Fairplay DRM policy](fairplay-drm-policy) section for detail.                                                              |
+| `duration_rental`  | string   | Seconds                   | Fairplay       | Overrides polend for rental type policies.                                                               |
 | `duration_lease`   | string   | Seconds                   | Fairplay       | See [Fairplay DRM policy](fairplay-drm-policy) section for detail.                                                              |
 | `duration_persist` | string   | Seconds                   | Fairplay       | See [Fairplay DRM policy](fairplay-drm-policy) section for detail.                                                              |
 
