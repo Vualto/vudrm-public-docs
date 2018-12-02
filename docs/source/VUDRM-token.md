@@ -73,7 +73,7 @@ Using the `type` of `lease` will cause playback to stop at the license expiry. N
 
 #### Fairplay persist DRM policy
 
-The use case of the `persist` license is for offline playback. 
+A `persist` license is used for offline playback. 
 
 Setting `licache` to `yes` or the `type` to `p` will generate a persisted license. Setting `licache` to `yes` will override any other `type` settings.
 
