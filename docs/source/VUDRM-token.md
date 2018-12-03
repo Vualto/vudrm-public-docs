@@ -6,7 +6,7 @@ Due to the first purpose VUDRM tokens have a limited lifetime and are designed t
 
 The second purpose allows the user's playback rights for individual pieces of content to be set dynamically. A single user may be granted different rights on a single piece of content depending on business requirements.
 
-VUDRM tokens should be generated using the [VUDRM token API](/projects/vudrm/en/latest/VUDRM-token.html#vudrm-token-api). The request to the [VUDRM token API](/projects/vudrm/en/latest/VUDRM-token.html#vudrm-token-api) should be made from a server side application and the VUDRM token should then be delivered to the client side for use by a player in a license request.
+VUDRM tokens should be generated using the [VUDRM token API](#vudrm-token-api). The request to the [VUDRM token API](#vudrm-token-api) should be made from a server side application and the VUDRM token should then be delivered to the client side for use by a player in a license request.
 
 **VUDRM tokens should not be generated on the client side.**
 
@@ -32,10 +32,10 @@ The DRM policy is included in the VUDRM token as the encrypted third component. 
 | `liccache`         | string   | `yes` OR `no`             | ALL            | Licence Cache. Should the license be cached. Implementation depends on the DRM provider.                                                       |
 | `firstplayback`    | integer  | Seconds                   | PlayReady      | Once playback initiated the user will have this window to complete playback. Once the window completes the license will expire. | 
 | `securitylevel`    | integer  | `150` OR `2000` OR `3000` | PlayReady      | https://docs.microsoft.com/en-us/playready/overview/security-level                                                              |
-| `type`             | string   | `r` OR `l` OR `p`         | Fairplay       | release, lease or persist. See [Fairplay DRM policy](fairplay-drm-policy) section for details.                                                              |
-| `duration_rental`  | string   | Seconds                   | Fairplay       | Overrides polend for rental type policies.                                                               |
-| `duration_lease`   | string   | Seconds                   | Fairplay       | Overrides polend for lease type policies                                                              |
-| `duration_persist` | string   | Seconds                   | Fairplay       | Overrides polend for persist type policies                                                              |
+| `type`             | string   | `r` OR `l` OR `p`         | Fairplay       | release, lease or persist. See [Fairplay DRM policy](#fairplay-drm-policy) section for details.                                                              |
+| `duration_rental`  | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay rental licenses.                                                               |
+| `duration_lease`   | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay lease licenses.                                                              |
+| `duration_persist` | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay persist licenses.                                                           |
 
 This table is not an exhaustive list, for example it does not include advanced PlayReady settings. If you require the use of more advanced settings please contact support@vualto.com
 
