@@ -93,6 +93,8 @@ The following sections display some example polices. These polices apply to all 
 
 #### Rental
 
+This policy is designed for a rental business model. The license generated from this policy will expire at the time set by the `polend` value and will allow immediate playback.
+
 ```JSON
 {
     "contentid":"filename",
@@ -102,6 +104,8 @@ The following sections display some example polices. These polices apply to all 
 ```
 
 #### Subscription
+
+This policy is designed for a subscription business model. The license generated from this policy will not allow playback until `polbegin` is reached and will expire when `polend` is reached.
 
 ```JSON
 {
@@ -113,6 +117,8 @@ The following sections display some example polices. These polices apply to all 
 ```
 
 #### Offline playback license
+
+This policy is designed for an offline playback scenario. The license generated from this policy will allow playback immediately and the license will expire when the `polend` value is reached. The license will be cached until the `polend` value is reached.
 
 ```JSON
 {
@@ -141,115 +147,11 @@ For example:
 }   
 ``` 
 
-### VUDRM token API examples
-
-#### CURL
+An example request to the VUDRM token API in curl is:
 
 ```bash
 curl -X POST \
   https://token-api.drm.technology/generate \
   -H 'API_KEY: <your-api-key>' \
   -d '{"client": "<client>","policy": "{\"contentid\":\"<content-id>\",\"polend\":\"<pol-end>\",\"liccache\":\"no\"}"}'
-```
-
-#### GO
-
-```go
-package main
-
-import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io/ioutil"
-)
-
-func main() {
-
-	url := "https://token-api.drm.technology/generate"
-
-	payload := strings.NewReader("{\"client\": \"<client>\",\"policy\": \"{\\\"contentid\\\":\\\"<content-id>\\\",\\\"polend\\\":\\\"<pol-end>\\\",\\\"liccache\\\":\\\"no\\\"}\"}")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("API_KEY", "<api-key>")
-
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
-
-	fmt.Println(res)
-	fmt.Println(string(body))
-
-}
-```
-
-#### Ruby (NET::Http)
-
-```ruby
-require 'uri'
-require 'net/http'
-
-url = URI("https://token-api.drm.technology/generate")
-
-http = Net::HTTP.new(url.host, url.port)
-
-request = Net::HTTP::Post.new(url)
-request["API_KEY"] = '<api-key>'
-request.body = "{\"client\": \"<client>\",\"policy\": \"{\\\"contentid\\\":\\\"<content-id>\\\",\\\"polend\\\":\\\"<pol-end>\\\",\\\"liccache\\\":\\\"no\\\"}\"}"
-
-response = http.request(request)
-puts response.read_body
-```
-
-#### C# (RestSharp)
-
-```c#
-var client = new RestClient("https://token-api.drm.technology/generate");
-var request = new RestRequest(Method.POST);
-request.AddHeader("API_KEY", "<api-key>");
-request.AddParameter("undefined", "{\"client\": \"<client>\",\"policy\": \"{\\\"contentid\\\":\\\"<content-id>\\\",\\\"polend\\\":\\\"<pol-end>\\\",\\\"liccache\\\":\\\"no\\\"}\"}", ParameterType.RequestBody);
-IRestResponse response = client.Execute(request);
-```
-
-#### Python Requests
-
-```python
-import requests
-
-url = "https://token-api.drm.technology/generate"
-
-payload = "{\"client\": \"<client>\",\"policy\": \"{\\\"contentid\\\":\\\"<content-id>\\\",\\\"polend\\\":\\\"<pol-end>\\\",\\\"liccache\\\":\\\"no\\\"}\"}"
-headers = {
-    'API_KEY': "<api-key>"
-    }
-
-response = requests.request("POST", url, data=payload, headers=headers)
-
-print(response.text)
-```
-
-#### PHP HttpRequest
-
-```PHP
-<?php
-
-$request = new HttpRequest();
-$request->setUrl('https://token-api.drm.technology/generate');
-$request->setMethod(HTTP_METH_POST);
-
-$request->setHeaders(array(
-  'API_KEY' => '<api-key>'
-));
-
-$request->setBody('{"client": "<client>","policy": "{\\"contentid\\":\\"<content-id>\\",\\"polend\\":\\"<pol-end>\\",\\"liccache\\":\\"no\\"}"}');
-
-try {
-  $response = $request->send();
-
-  echo $response->getBody();
-} catch (HttpException $ex) {
-  echo $ex;
-}
 ```
