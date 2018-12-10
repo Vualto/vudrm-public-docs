@@ -75,9 +75,9 @@ Using the `type` of `lease` will cause playback to stop at the license expiry. N
 
 A `persist` license is used for offline playback. 
 
-Setting `licache` to `yes` or the `type` to `p` will generate a persisted license. Setting `licache` to `yes` will override any other `type` settings.
+Setting `liccache` to `yes` or the `type` to `p` will generate a persisted license. Setting `liccache` to `yes` will override any other `type` settings.
 
-Setting `type` to `p` will override setting `licache` to `no`.
+Setting `type` to `p` will override setting `liccache` to `no`.
 
 You can set the expiry of the license using the `duration_persist` key or the `polend` key. If both `duration_persist` and `polend` are set in a policy then `duration_persist` will be used.
 
