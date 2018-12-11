@@ -17,7 +17,7 @@ https://key-provider.drm.technology/<DRM_TYPE>/<CLIENT_NAME>/<CONTENT_ID>
 ```
 
 The breakdown of this URL is:
-- `DRM_TYPE`: The type of encryption keys being requested. Possible values are `cenc`, `fairplay`, `widevine`, `playready`, and `aes`.
+- `DRM_TYPE`: The type of encryption keys being requested. Possible values are `cenc`, `fairplay`, `widevine`, `playready`, and `aes`. See [Using the encryption keys](#using-the-encryption-keys) for more information.
 - `CLIENT_NAME`: The account name. Plese contact support@vualto.com if you do not have the account name.
 - `CONTENT_ID`: A unique content identifier. This value will always generate the same encryption keys.
 
@@ -167,129 +167,25 @@ end
 ```python
 ```
 
-##### PHP
+### Using the encryption keys
 
-```PHP
-<?php
-    class Crypto
-    { 
-        private $_cipher;
-        private $_mode;
-        private $_keySize; 
+The next section explains the various encryption keys provided by the Key Provider API. Each set has a different use case. For use with USP products [CENC](#cenc) and [Fairplay](#fairplay) encryption keys are recommended. See the [Use with mp4split](#use-with-mp4split) section for more details on how to use `mp4split` with the Key Provider.
 
-        public function __construct($cipher = MCRYPT_RIJNDAEL_128, $mode = MCRYPT_MODE_ECB) 
-        {
-            $this->_cipher = $cipher;
-            $this->_mode = $mode;
-            $this->_keySize = mcrypt_get_key_size($this->_cipher, $this->_mode); 
-        }
+#### CENC
 
-        public function decrypt($encryptedText, $sharedSecret)
-        { 
-            $cipherText = base64_decode($encryptedText, true);
-            $paddedPlainText = mcrypt_decrypt($this->_cipher, substr($sharedSecret, 0, 16), 
-                $cipherText, $this->_mode);
-            $plainText = $this->removePkcs5Pad($paddedPlainText);
-            return $plainText; 
-        }
+CENC is the Common Encryption Scheme and it standardises encryption keys between different DRM systems. This allows a single set of encryption keys to be use to encrypt a single file using different DRM systems. VUDRM supports Widevine and PlayReady when generating CENC encryption keys.
 
-        private function removePkcs5Pad($padded) 
-        {
-            $len = strlen($padded);
-            $padSize = ord($padded[$len - 1]);
-            return substr($padded, 0, $len - $padSize); 
-        }
-    }
-?> 
+Make the following request to the Key Provider API in order to retrieve `cenc` Keys.
+
+```bash
+curl -X GET https://key-provider.drm.technology/cenc/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
 ```
 
-### CENC encryption key 
+The keys return in this response can be used for PlayReady and Widevine scenarios. They allow a single piece of content to be used across multiple devices and browsers.
 
-### 2.1 Microsoft Playready
-
-**Example Resonse:**
+An example decrypted response would be:
 
 ```JSON
-    
-    {
-        "key_id":"kX9efHkfIS++X+m8kZPDOw==",
-        "key_id_guid":"7c5e7f91-1f79-2f21-be5f-e9bc9193c33b",
-        "key_id_uuid":"917f5e7c791f-2f21-be5fe9bc9193c33b",
-        "key_id_hex":"917F5E7C791F212FBE5FE9BC9193C33B",
-        "content_key":"eI5JjujIo1Ek7lqO+3gg0A==",
-        "content_key_hex":"788E498EE8C8A35124EE5A8EFB7820D0",
-        "laurl":"http://vualto.playready.drm.technology/rightsmanager.asmx",
-        "service_id":"gwICI8yfIUGf4R/5qOWuqg==",
-        "service_id_guid":"23020283-9fcc-4121-9fe11ff9a8e5aeaa",
-        "key_iv":"07261ee6ee074f1d",
-        "checksum":"wf0goCGB2O4="
-    }
-
-```
-
-```Content Encryption Key``` : 128bit encryption key in Base16 and Base64, we will also provide Big and Little Endian values due to compatability with common encryption. 
-
-```key_id```  : Unique ID for the encryption (Base64, Base16 and GUID).
-
-```laurl```  : License Server Acquisition URL.
-
-```key_iv``` : Provides an additional random value to strengthen the encryption.
-
-```checksum``` : Required in some older Playready Solutions.
-
-```service_id``` : Uniqiue Vualto DRM Service ID.
-
-
-### 2.2 Adobe Primetime (nee Access)
-
-**Example Response:**
-
-```JSON
-
-{
-"content_key":"7AD77B22434F85F9BA990D2582A953C5",
-"drm_specific_data":"AgARfEFkZGl0aW9uYWxIZWFkZXIDAApFbmNyeXB0aW9uAwAHVmVyc2lvbgBAAAAAAAAAAAAGTWV0aG9kAgAIU3RhbmRhcmQABUZsYWdzAAAAAAAAAAAAAAZQYXJhbXMDAAdWZXJzaW9uAD/wAAAAAAAAABNFbmNyeXB0aW9uQWxnb3JpdGhtAgAHQUVTLUNCQwAQRW5jcnlwdGlvblBhcmFtcwMACUtleUxlbmd0aABAMAAAAAAAAAAACQAHS2V5SW5mbwMAB1N1YlR5cGUCAA1GbGFzaEFjY2Vzc3YyAAREYXRhAwAITWV0YWRhdGEMAAAZ6E1JSVRhUVlKS29aSWh2Y05BUWNDb0lJVFdqQ0NFMVlDQVFFeEN6QUpCZ1VyRGdNQ0dnVUFNSUlIOWdZSktvWklodmNOQVFjQm9JSUg1d1NDQitNd2dnZmZBZ0VDTUlJQlJ6Q0NBVU1DQVFNQ0FRRUVKRVpGT0VKRlJFWXpMVUl3UlVRdE16ZzROaTFDUVVSRUxVWXlRVEZCTXpVeE5VUkdNekdCdERCQkRDbGpiMjB1WVdSdlltVXVabXhoYzJoaFkyTmxjM011Y21sbmFIUnpMbXhwWTJWdWMyVlZjMkZuWmFBVU1SSXdFQVlKS29aSWh2Y3ZBd1lPb0FNQkFmOHdid3doWTI5dExtRmtiMkpsTG1ac1lYTm9ZV05qWlhOekxuSnBaMmgwY3k1d2JHRjVvRW94U0RBZUJna3Foa2lHOXk4REJnZWdBd0VCLzZFTU1BcWdBd29CQWFFRENnRUJNQ1lHQ1NxR1NJYjNMd01HQzZBREFRSC9vUlF3RXFBRENnRUJvUXN3Q1FvQkFhQUVBd0lHd0tBS0RBZ3pMakF1TURVMU9hRVpEQmRHY21GdVkyVlVWaUJFWldaaGRXeDBJRkJ2YkdsamVhTXlNVEF3TGd3cVkyOXRMbUZrYjJKbExtWnNZWE5vWVdOalpYTnpMbUYwZEhKcFluVjBaWE11WVc1dmJubHRiM1Z6TVFDbUF3RUIvekdDQk80d2dnVHFNU2NNSldoMGRIQTZMeTloWTJObGMzTXVkV0YwTG1SeWJTNTBaV05vYm05c2IyZDVMMnhwZG1Vd2dnUzlNSUlEcGFBREFnRUNBaEF0Mjd3b0VLOWhMK2F3Y1RIZEk5emdNQTBHQ1NxR1NJYjNEUUVCQ3dVQU1HVXhDekFKQmdOVkJBWVRBbFZUTVNNd0lRWURWUVFLRXhwQlpHOWlaU0JUZVhOMFpXMXpJRWx1WTI5eWNHOXlZWFJsWkRFeE1DOEdBMVVFQXhNb1FXUnZZbVVnUm14aGMyZ2dRV05qWlhOeklFTjFjM1J2YldWeUlFSnZiM1J6ZEhKaGNDQkRRVEFlRncweE5EQTFNakl3TURBd01EQmFGdzB4TmpBMU1qRXlNelU1TlRsYU1JR0NNUXN3Q1FZRFZRUUdFd0pWVXpFak1DRUdBMVVFQ2hRYVFXUnZZbVVnVTNsemRHVnRjeUJKYm1OdmNuQnZjbUYwWldReEVqQVFCZ05WQkFzVUNWUnlZVzV6Y0c5eWRERWJNQmtHQTFVRUN4UVNRV1J2WW1VZ1JteGhjMmdnUVdOalpYTnpNUjB3R3dZRFZRUUREQlJXVlVGTVZFOHRWRk5RVkMweU1ERTBNRFV5TWpDQm56QU5CZ2txaGtpRzl3MEJBUUVGQUFPQmpRQXdnWWtDZ1lFQXhMSWFJNFFZbm0xOGFMRm9Ma2F5ZW5IRUVWeG4rdzF0QkdsaFVkQzVEeGl1cDdrWnViRXNXbHhZZzRYQWJWckVRckw1R0h2Qzlha1lwSkxObm9VY0dDVCtDLzFoSWhXTXRMSWRmSmxKTUhHYTQzTVBVTmdqTjJkenMzOTdQb3Z6bWpkS2tnQitkaGJTaCtPZytmNUYyanE0My9pMDE3YjhYYXVXY2JqRnJmMENBd0VBQWFPQ0FjMHdnZ0hKTUdrR0ExVWRId1JpTUdBd1hxQmNvRnFHV0doMGRIQTZMeTlqY213ekxtRmtiMkpsTG1OdmJTOUJaRzlpWlZONWMzUmxiWE5KYm1OdmNuQnZjbUYwWldSR2JHRnphRUZqWTJWemMwTjFjM1J2YldWeVFtOXZkSE4wY21Gd0wweGhkR1Z6ZEVOU1RDNWpjbXd3Q3dZRFZSMFBCQVFEQWdTd01JSGtCZ05WSFNBRWdkd3dnZGt3Z2RZR0NpcUdTSWIzTHdNSkFBQXdnY2N3TWdZSUt3WUJCUVVIQWdFV0ptaDBkSEE2THk5M2QzY3VZV1J2WW1VdVkyOXRMMmR2TDJac1lYTm9ZV05qWlhOelgyTndNSUdRQmdnckJnRUZCUWNDQWpDQmd4cUJnRlJvYVhNZ1kyVnlkR2xtYVdOaGRHVWdhR0Z6SUdKbFpXNGdhWE56ZFdWa0lHbHVJR0ZqWTI5eVpHRnVZMlVnZDJsMGFDQjBhR1VnUVdSdlltVWdSbXhoYzJnZ1FXTmpaWE56SUVOUVV5QnNiMk5oZEdWa0lHRjBJR2gwZEhBNkx5OTNkM2N1WVdSdlltVXVZMjl0TDJkdkwyWnNZWE5vWVdOalpYTnpYMk53TUI4R0ExVWRJd1FZTUJhQUZCb2tadzhrUGlncHNMbmlkWTZGQVYybG45RE1NQjBHQTFVZERnUVdCQlRYMXVCcWxQcFJRZ2hJcGhQUjIxUFV6dDNwc1RBVkJnTlZIU1VFRGpBTUJnb3Foa2lHOXk4RENRRTNNQkVHQ2lxR1NJYjNMd01KQWdVRUF3SUJBREFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBTFRLS212V1pqdTRva3RtRnFockFma0pld1FtRy9vOVU0amJCRkRidjIvZUpIYXhBZHIrZEZ4WXlISDlmSDFocWVxeiswQ2FDT1krRmc1YndGVEVlcStDbFVNa2dpNjg2ZjZ4WVhMZFk2Y0NxYkFnODgrTjk5M0YxWFFOa2J5MEJQOHdoeHR3T3k4NWpGSGdwTUVtUzZ0c0ZmdktJN2ZxMVh4YVh6Mk1oZnJQdEFzeWpxNEJ2ODJHZ25LbDIzZWxOZi8zNmxJSmR6dFVVL1dpbE1vREFUU1A3Z3ZFUnJFYzJwK0xkZkw3R05mMGV1NVh5L3ZqUjVMclAvZE8zWWNvSnprMUowMFFxc2cxRk03UC9NKy9VK3d5cE1kc1V0cUdwWjg2eE5vUmk3MFhuOGtDSWR4SFJNSWpBTHdicVQ1ckRQRnU3SG5yYnBZTllQdGN0ZmhRWTZ6Q0NBUlFFSkVNeE16WkROelpDTFVZNE56RXRNMEU1T0MwNVFUUkdMVUkwTXpZM01FSTRORFZHTUJnUE1qQXhOVEEyTVRZd05qTTRNekphQklHQWtpOThHdXVTVVhsdFplWDB3eEtwcVlabExlOUhWNGY0WnJOOHF1MVJCRmJLb2tnNjdCKzBDeWFzc2N2S1pob2FHRmJaaUlhN2ZzNHp5RmlKaTdtZndrUXk0VGFHYnJqZUNadFZZbG9rTzc0cGUzOXByUmlPM0pEV09DNEg2R2Z3NEJ4Tm10eEx0cFFRRGRhK0dVZUVOeFRIQmJiaVpDQzJyWnhVUzA4S1E5VXdJUVlKS29aSWh2Y3ZBd2dDQkJTd3NhSkwwVnJzeFFlZHM1YS9Eakx3cFpBY0JLQU1CQXB6WVcxd2JHVXViWEEwb1NjTUpXaDBkSEE2THk5aFkyTmxjM011ZFdGMExtUnliUzUwWldOb2JtOXNiMmQ1TDJ4cGRtVXdlVEJsTVFzd0NRWURWUVFHRXdKVlV6RWpNQ0VHQTFVRUNnd2FRV1J2WW1VZ1UzbHpkR1Z0Y3lCSmJtTnZjbkJ2Y21GMFpXUXhNVEF2QmdOVkJBTU1LRUZrYjJKbElFWnNZWE5vSUVGalkyVnpjeUJEZFhOMGIyMWxjaUJDYjI5MGMzUnlZWEFnUTBFQ0VIQzhHc09leVQ5djhKWVRNVnB0dnRtZ0Nnd0lOQzR3TGpBME1UU2dnZ25HTUlJRXZEQ0NBNlNnQXdJQkFnSVFjTHdhdzU3SlAyL3dsaE14V20yKzJUQU5CZ2txaGtpRzl3MEJBUXNGQURCbE1Rc3dDUVlEVlFRR0V3SlZVekVqTUNFR0ExVUVDaE1hUVdSdlltVWdVM2x6ZEdWdGN5QkpibU52Y25CdmNtRjBaV1F4TVRBdkJnTlZCQU1US0VGa2IySmxJRVpzWVhOb0lFRmpZMlZ6Y3lCRGRYTjBiMjFsY2lCQ2IyOTBjM1J5WVhBZ1EwRXdIaGNOTVRRd05USXlNREF3TURBd1doY05NVFl3TlRJeE1qTTFPVFU1V2pDQmdURUxNQWtHQTFVRUJoTUNWVk14SXpBaEJnTlZCQW9VR2tGa2IySmxJRk41YzNSbGJYTWdTVzVqYjNKd2IzSmhkR1ZrTVJFd0R3WURWUVFMRkFoUVlXTnJZV2RsY2pFYk1Ca0dBMVVFQ3hRU1FXUnZZbVVnUm14aGMyZ2dRV05qWlhOek1SMHdHd1lEVlFRRERCUldWVUZNVkU4dFVFdEhVaTB5TURFME1EVXlNakNCbnpBTkJna3Foa2lHOXcwQkFRRUZBQU9CalFBd2dZa0NnWUVBdVpZQjE5THJuSG0zeW5kN0IxQnVzeFZKU2ViWWZaRzVidytOWGUrY0kyYXpsV3FIZDdpZmk4K3NLN1FOTkI4bjhuTmJ3Qi8zRUl2aFlHK3c4RTFMNXF6ZjY0UkdZdk5pSmtPcEJBb1hJU1ZMeHppYmM0TGJJU1RBOTZjM1Nxdi91M0ExNXpUbThQYzgvOVN3TUpQNk5zL1lmTmpHaDFxUUFURDVWZGNGNk04Q0F3RUFBYU9DQWMwd2dnSEpNR2tHQTFVZEh3UmlNR0F3WHFCY29GcUdXR2gwZEhBNkx5OWpjbXd6TG1Ga2IySmxMbU52YlM5QlpHOWlaVk41YzNSbGJYTkpibU52Y25CdmNtRjBaV1JHYkdGemFFRmpZMlZ6YzBOMWMzUnZiV1Z5UW05dmRITjBjbUZ3TDB4aGRHVnpkRU5TVEM1amNtd3dDd1lEVlIwUEJBUURBZ1N3TUlIa0JnTlZIU0FFZ2R3d2dka3dnZFlHQ2lxR1NJYjNMd01KQUFBd2djY3dNZ1lJS3dZQkJRVUhBZ0VXSm1oMGRIQTZMeTkzZDNjdVlXUnZZbVV1WTI5dEwyZHZMMlpzWVhOb1lXTmpaWE56WDJOd01JR1FCZ2dyQmdFRkJRY0NBakNCZ3hxQmdGUm9hWE1nWTJWeWRHbG1hV05oZEdVZ2FHRnpJR0psWlc0Z2FYTnpkV1ZrSUdsdUlHRmpZMjl5WkdGdVkyVWdkMmwwYUNCMGFHVWdRV1J2WW1VZ1JteGhjMmdnUVdOalpYTnpJRU5RVXlCc2IyTmhkR1ZrSUdGMElHaDBkSEE2THk5M2"
-}
-
-```
-
-```content_key``` : Provided in Base16
-
-```drm_specific_data``` : This is the DRM ‘blob’ that contains all the relevant DRM data for the Adobe Primetime encryption process. 
-
-### 2.3 Google Widevine 
-
-**Example Response:** 
-
-```JSON
-
-{
-    "key_id":"NxB8uJFHVSuaO5BjiMzuEQ==",
-    "key_id_hex":"37107CB89147552B9A3B906388CCEE11",
-    "content_key":"Unyx1s3fMFUedA688fCNxw==",
-    "content_key_hex":"527CB1D6CDDF30551E740EBCF1F08DC7",
-    "laurl":"https://license.widevine.com/cenc/getcontentkey/vualto",
-    "drm_specific_data":"CAESEDcQfLiRR1UrmjuQY4jM7hEaBnZ1YWx0byIFdGVzdDEqAkhEMgA="
-} 
-
-```
-
- 
-```Content Encryption Key``` : 128bit encryption key in Base16 and Base64, we will also provide Big and Little Endean values due to compatability with common encryption.
-
-```key_id``` : Unique ID for the encryption (Base64, Base16 and GUID).
-
- ```laurl``` : License Server Acquisition URL.
- 
- ```drm_specific_dataa``` This is the Widevine PSSH box that contains all the relevant DRM data for widevine encryption. 
-
-
-### 2.4 CENC (Common Encryption) 
-
-**Example Response :**
-
-```JSON
-
 {
     "key_id_big":"fF5/kR95LyG+X+m8kZPDOw==",
     "key_id_hex":"7C5E7F911F792F21BE5FE9BC9193C33B",
@@ -302,136 +198,155 @@ end
 } 
 ```
 
-```Content Encryption Key``` – 128bit encryption key in Base16 and Base64, we will also provide Big and Little Endean values due to compatability with common encryption.
+The values are:
 
-```key_id``` : Unique ID for the encryption (Base64, Base16 and GUID) – due to differences between Playready and Widevine Endianess we return both responses.
+- `key_id_big`: Unique ID for the encryption. Base64 in Big Endian. 
+- `key_id_hex`: Unique ID for the encryption. Base16 in Little Endian. This one should be used with `mp4split`.
+- `content_key`: 128bit encryption key in base64 in Big Endian.
+- `content_key_hex`: 128bit encryption key in base16 in Little Endian. This one should be used with `mp4split`.
+- `playready_key_iv`: Additional random value to strengthen the PlayReady encryption.
+- `widevine_drm_specific_data`: The Widevine PSSH box.
+- `playready_laurl`: The PlayReady license server URL.
+- `widevine_laurl`: The Widevine license server URL.
 
-```laurl``` : License Server Acquisition URL for both Widevine and Playready.
+#### Fairplay
 
-```key_iv``` : Provides an additional random value to strengthen the encryption.
+[Fairplay](https://developer.apple.com/streaming/fps/) is Apple's DRM system and is commonly used in conjunction with CENC encryption to provide support to the widest amount of devices possible.
 
-```widevine_drm_specific_data``` : This is the Widevine PSSH box that contains all the relevant DRM data for widevine encryption. 
+Make the following request to retrieve `fairplay` keys from the Key Provider API:
 
+```bash
+curl -X GET https://key-provider.drm.technology/fairplay/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
+```
 
-### 2.4 AES
+An example decrypted response would be:
 
-**Example Response:**
+```json
+{
+    "key_hex": "457A8E3300DE6D549A95037F1C7ADEB1",
+    "iv_hex": "EB86EAFBD487391383E8FFF957561B0C",
+    "laurl": "skd://fairplay-license.drm.technology/license/somecontentid"
+}
+```
+
+The values are:
+
+- `key_hex`: Unique ID for the encryption.
+- `iv_hex`: The encryption key.
+- `laurl`: The Fairplay license server URL. At the point of the request to the license server the `skd` protocol should be replaced with `https`. 
+
+#### HLS AES encryption
+
+HLS AES-128 is the Advanced Encryption Standard using a 128 bit key, Cipher Block Chaining (CBC) and PKCS7 padding.
+
+Make the following request to retrieve HLS AES encryption keys from the Key Provider API:
+
+```bash
+curl -X GET https://key-provider.drm.technology/aes/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
+```
+
+An example decrypted response would be:
 
 ```JSON
-
 {
     "key_hex":"dd682004123622a99c2a2afcdad6217c",
     "key_url":"http://keyprovider.drm.technology:9293/aes/getkey/vualto/test1"
 }
 ```
- 
- 
-```key_hex``` : AES Content Key : Base16 AES Content key.
-
-```key_url``` : AES Key URL : URL to the AES Key Server 
+- `key_hex`: Base16 AES Content key.
+- `key_url`: URL to the AES Key Server 
 
 
+#### Playready
 
+[PlayReady](https://www.microsoft.com/playready/) is Microsoft's DRM system. Only use these keys directly to target PlayReady enabled devices. The use of CENC keys is preferred.
 
+Make the following request to retrieve `playready` keys from the Key Provider API:
 
-
-## Appendix A
-
-The following PHP code snippets provides information to decrypt the Key provider Response – the ClientID and Shared Secret values can be found in the DRM Admin System at ```http://admin.drm.technology``` in the configuration section. 
-
-Sample consists of 3 PHP files: 
-Crypto.php 
-index.php  
-request.php
-
-This is only meant as a simple example. 
-
-
-### Crypto.php
-
-
-
-### index.php
-
-```PHP
-
-<?php
-     require 'request.php';
-     require 'crypto.php';
-     $client = '';
-     $contentId = ''; 
-     $keyproviderUrl = "http://key-provider.drm.technology:9293/playready/$clientID/$contentID";
-     $sharedSecret = '';
-     $request = new Request();
-     $request->setHeader('content-type', 'utf-8')->setHeader('accept', 'application/json');
-     $response = $request->get($keyproviderUrl);
-     $responseParts = explode('|', $response);
-     $checksum = sha1($sharedSecret . $client . $responseParts[0]); 
-     
-     if($checksum != $responseParts[1]){ 
-        throw new Exception("Checksum has failed");
-     } 
-     
-     $crypto = new Crypto(); 
-     $result = $crypto->decrypt($responseParts[0], $sharedSecret);
-    
-     if(!$result) {
-        throw new Exception("Decryption has failed");
-      } 
-    
-      echo $result;
-?> 
-
+```bash
+curl -X GET https://key-provider.drm.technology/playready/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
 ```
 
-### request.php
+An example decrypted response would be:
 
-```PHP
-
-<?php 
-    class Request
-    {
-        private $_handle;
-        private $_headers = array()
-        public function __construct() 
-        {
-            $this->_handle = curl_init();
-            curl_setopt($this->_handle, CURLOPT_RETURNTRANSFER, true);
-        }
-        
-        public function get($url)
-        {
-            curl_setopt($this->_handle, CURLOPT_URL, $url); 
-            $this->applyHeaders(); 
-            return curl_exec($this->_handle);
-        } 
-        
-        public function setHeader($header, $value) 
-        {
-            if(!array_key_exists($header, $this->_headers)){
-                $this->_headers[$header] = array(); 
-            }
-            $value = strtolower($value);
-            if(!in_array($value, $this->_headers[$header])){
-            $this->_headers[$header][] = $value;
-        }
-        
-        return $this;
-        }
-        
-        private function applyHeaders()
-        {
-            $headers = array();
-            foreach($this->_headers as $header => $values){ 
-            if(is_array($values)){
-                $valueString = implode('; ', $values);
-            }else
-                $valueString = $values;
-            }
-            $headers[] = $header . ': ' . $valueString;
-        }
-        curl_setopt($this->_handle, CURLOPT_HTTPHEADER, $headers);
-    }
- }?> 
-
+```JSON    
+{
+    "key_id":"kX9efHkfIS++X+m8kZPDOw==",
+    "key_id_guid":"7c5e7f91-1f79-2f21-be5f-e9bc9193c33b",
+    "key_id_uuid":"917f5e7c791f-2f21-be5fe9bc9193c33b",
+    "key_id_hex":"917F5E7C791F212FBE5FE9BC9193C33B",
+    "content_key":"eI5JjujIo1Ek7lqO+3gg0A==",
+    "content_key_hex":"788E498EE8C8A35124EE5A8EFB7820D0",
+    "laurl":"http://vualto.playready.drm.technology/rightsmanager.asmx",
+    "service_id":"gwICI8yfIUGf4R/5qOWuqg==",
+    "service_id_guid":"23020283-9fcc-4121-9fe11ff9a8e5aeaa",
+    "key_iv":"07261ee6ee074f1d",
+    "checksum":"wf0goCGB2O4="
+}
 ```
+
+The values are:
+- `key_id`: Unique ID for the encryption. Base64 in Big Endian.
+- `key_id_guid`: Unique ID for the encryption. GUID in Big Endian.
+- `key_id_uuid`: Unique ID for the encryption. UUID in Little Endian.
+- `key_id_hex`: Unique ID for the encryption. Base16 in Little Endean. This one should be used with `mp4split`.
+- `content_key`: 128bit encryption key in base64.
+- `content_key_hex`: 128bit encryption key in base16. This one should be used with `mp4split`.
+- `laurl`: The PlayReady license server URL.
+- `service_id`: Unique VUDRM service ID for Vualto in Base64.
+- `service_id_guid`: Unique VUDRM service ID for Vualto as a GUID.
+- `key_iv`: Additional random value to strengthen the PlayReady encryption.
+- `checksum`: Extra security value required by some older PlayReady solutions.
+
+#### Widevine 
+
+[Widevine](https://www.widevine.com/) is Google's DRM system. Use these keys to target Widevine enabled devices directly. The use of CENC keys is preferred.
+
+Make the following request to retrieve `widevine` keys from the Key Provider API:
+
+```bash
+curl -X GET https://key-provider.drm.technology/widevine/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
+```
+
+An example decrypted response would be:
+
+```JSON
+{
+    "key_id":"NxB8uJFHVSuaO5BjiMzuEQ==",
+    "key_id_hex":"37107CB89147552B9A3B906388CCEE11",
+    "content_key":"Unyx1s3fMFUedA688fCNxw==",
+    "content_key_hex":"527CB1D6CDDF30551E740EBCF1F08DC7",
+    "laurl":"https://license.widevine.com/cenc/getcontentkey/vualto",
+    "drm_specific_data":"CAESEDcQfLiRR1UrmjuQY4jM7hEaBnZ1YWx0byIFdGVzdDEqAkhEMgA="
+} 
+```
+
+- `key_id`: Unique ID for the encryption. Base64 in Little Endian.
+- `key_id_hex`: Unique ID for the encryption. Base16 in Little Endian. This one should be used with `mp4split`.
+- `content_key`: 128bit encryption key in base64.
+- `content_key_hex`: 128bit encryption key in base16. This one should be used with `mp4split`.
+- `laurl`: The Widevine license server URL.
+- `drm_specific_data`: The Widevine PSSH box.
+
+#### Use with mp4split
+
+The encryption keys provided by the Key Provider API are compatible with [Unified Streaming Platform's](https://www.unified-streaming.com/) products.
+
+The recommended approach is to call the Key Provider API and retrieve CENC and Fairplay Keys. Once the encryption keys have been retrieved they can be used with mp4split to generate an ism:
+
+```bash
+mp4split --license-key=$LICENSE_KEY -o $ISM \
+ --iss.key=${key_id_hex}:${content_key_hex} \
+ --iss.key_iv=${playready_key_iv} \
+ --iss.license_server_url=${playready_laurl} \
+ --widevine.key=${key_id_hex}:${content_key_hex} \
+ --widevine.license_server_url=${widevine_laurl} \
+ --widevine.drm_specific_data=${widevine_drm_specific_data} \
+ --hls.client_manifest_version=4 \
+ --hls.key=:${key_hex} \
+ --hls.key_iv=${iv_hex} \
+ --hls.license_server_url=${laurl} \
+ --hls.playout=sample_aes_streamingkeydelivery
+```
+
+The HLS values come from the Fairplay encryption keys, all other values are from the CENC keys.
