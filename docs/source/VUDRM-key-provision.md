@@ -160,6 +160,69 @@ end
 ##### GO
 
 ```go
+package main
+
+import (
+	"crypto/aes"
+	"crypto/sha1"
+	"encoding/base64"
+	"errors"
+	"fmt"
+	"strings"
+)
+
+var (
+	Client = "CLIENT"
+	SharedSecret = "SHARED_SECRET"
+	KeyProviderResponse = "KEY_PROVIDER_RESPONSE"
+	PKCS5 = &pkcs5{}
+)
+
+type pkcs5 struct{}
+
+func main() {
+	s := strings.Split(KeyProviderResponse, "|")
+	encryptedMessage, hash := s[0], s[1]
+	generatedHash := generateKeyProviderHash(SharedSecret, Client, encryptedMessage)
+	if generatedHash == hash {
+		decryptedKeys := decrypt(encryptedMessage, SharedSecret)
+		fmt.Printf(decryptedKeys)
+	} else {
+		fmt.Printf("hash failed validation")
+	}
+}
+
+func generateKeyProviderHash(sharedSecret string, client string, encryptedMessage string) string {
+	v := fmt.Sprintf("%s%s%s", sharedSecret, client, encryptedMessage)
+	hasher := sha1.New()
+	hasher.Write([]byte(v))
+	return fmt.Sprintf("%x", hasher.Sum(nil))
+}
+
+func decrypt(encryptedData string, sharedSecret string) string {
+	source, _ := base64.StdEncoding.DecodeString(encryptedData)
+	key := []byte(sharedSecret)[0:16]
+
+	cipher, _ := aes.NewCipher([]byte(key))
+	buffer := make([]byte, len(source))
+	size := 16
+
+	for bs, be := 0, size; bs < len(source); bs, be = bs+size, be+size {
+		cipher.Decrypt(buffer[bs:be], source[bs:be])
+	}
+
+	plainBytes, _ := PKCS5.unPadding(buffer, 16)
+	return string(plainBytes)
+}
+
+func (p *pkcs5) unPadding(src []byte, blockSize int) ([]byte, error) {
+	srcLen := len(src)
+	paddingLen := int(src[srcLen-1])
+	if paddingLen >= srcLen || paddingLen > blockSize {
+		return nil, errors.New("padding size error")
+	}
+	return src[:srcLen-paddingLen], nil
+}
 ```
 
 ##### Python
