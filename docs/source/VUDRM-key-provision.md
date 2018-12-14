@@ -404,7 +404,7 @@ An example decrypted response would be:
     "key_id_hex":"37107CB89147552B9A3B906388CCEE11",
     "content_key":"Unyx1s3fMFUedA688fCNxw==",
     "content_key_hex":"527CB1D6CDDF30551E740EBCF1F08DC7",
-    "laurl":"https://license.widevine.com/cenc/getcontentkey/vualto",
+    "laurl":"https://widevine-proxy.drm.technology/proxy",
     "drm_specific_data":"CAESEDcQfLiRR1UrmjuQY4jM7hEaBnZ1YWx0byIFdGVzdDEqAkhEMgA="
 } 
 ```
