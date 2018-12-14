@@ -282,7 +282,7 @@ An example decrypted response would be:
     "playready_key_iv":"cd340bf920a34bfb",
     "widevine_drm_specific_data":"CAESEJrENOhpDl58uLPtkqsm0/kaBnZ1YWx0byIgN0M1RTdGOTExRjc5MkYyMUJFNUZFOUJDOTE5M0MzM0IqAkhEMgA=",
     "playready_laurl":"http://playready.drm.technology/rightsmanager.asmx",
-    "widevine_laurl":"https://license.widevine.com/cenc/getcontentkey/vualto"
+    "widevine_laurl":"https://widevine-proxy.drm.technology/proxy"
 } 
 ```
 
@@ -338,7 +338,7 @@ An example decrypted response would be:
 ```JSON
 {
     "key_hex":"dd682004123622a99c2a2afcdad6217c",
-    "key_url":"http://keyprovider.drm.technology:9293/aes/getkey/vualto/test1"
+    "key_url":"http://keyprovider.drm.technology:9293/aes/getkey/vualto/somecontentid"
 }
 ```
 - `key_hex`: Base16 AES Content key.
