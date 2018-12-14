@@ -228,6 +228,31 @@ func (p *pkcs5) unPadding(src []byte, blockSize int) ([]byte, error) {
 ##### Python
 
 ```python
+import base64
+import binascii
+import json
+import hashlib
+
+from Crypto.Cipher import AES
+
+client = "CLIENT"
+shared_secret = "SHARED_SECRET"
+key_provider_response = "KEY_PROVIDER_RESPONSE"
+
+print("Decrypting Key Provider Response...")
+split_key_provider_response = key_provider_response.split("|")
+pre_computed = (shared_secret + client + split_key_provider_response[0]).encode("utf-8")
+computed_hash = hashlib.sha1(pre_computed).hexdigest()
+if computed_hash == split_key_provider_response[1]:
+    key = shared_secret[0:16]
+    decoded_text = base64.b64decode(split_key_provider_response[0])
+    aes = AES.new(key.encode("utf8"), AES.MODE_ECB)
+    padded_text = aes.decrypt(decoded_text)
+    unpadded_text = padded_text[:-padded_text[-1]]
+    decrypted_keys = json.loads(unpadded_text)
+    print("Decrypted keys: " + json.dumps(decrypted_keys))
+else:
+    print("Hash validation failed for key provider response!")
 ```
 
 ### Using the encryption keys
