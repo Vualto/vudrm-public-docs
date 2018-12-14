@@ -26,7 +26,7 @@ In order to provide the keys securely an API key is required in the header of th
 Below is an example curl request for `cenc` encryption keys using the client `vualto` and with the `CONTENT_ID` of `test`
 
 ```bash
-curl -X "GET" "https://key-provider.drm.technology/cenc/vualto/test" -H "API_KEY: 8930a415-6eb0-4393-a108-9780d9g687b5" 
+curl -X "GET" "https://key-provider.drm.technology/cenc/vualto/test" -H "API_KEY: <API_KEY>" 
 ```
 
 ### Response
