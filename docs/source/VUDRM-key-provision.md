@@ -18,12 +18,12 @@ https://key-provider.drm.technology/<DRM_TYPE>/<CLIENT_NAME>/<CONTENT_ID>
 
 The breakdown of this URL is:
 - `DRM_TYPE`: The type of encryption keys being requested. Possible values are `cenc`, `fairplay`, `widevine`, `playready`, and `aes`. See [Using the encryption keys](#using-the-encryption-keys) for more information.
-- `CLIENT_NAME`: The account name. Plese contact support@vualto.com if you do not have the account name.
+- `CLIENT_NAME`: The account name. Plese contact support@vualto.com if you do not have an account name.
 - `CONTENT_ID`: A unique content identifier. This value will always generate the same encryption keys.
 
-In order to provide the keys securely an API key is required in the header of the request. Please contact support@vualto.com if you do not have an API key.
+In order to provide the keys securely, an API key is required in the header of the request. Please contact support@vualto.com if you do not have an API key.
 
-Below is an example curl request for `cenc` encryption keys using the client `vualto` and with the `CONTENT_ID` of `test`
+Below is an example curl request for `cenc` encryption keys using the client `vualto` and with the `CONTENT_ID` of `test`.
 
 ```bash
 curl -X "GET" "https://key-provider.drm.technology/cenc/vualto/test" -H "API_KEY: <API_KEY>" 
@@ -31,7 +31,7 @@ curl -X "GET" "https://key-provider.drm.technology/cenc/vualto/test" -H "API_KEY
 
 ### Response
 
-In order to provide the keys securely the DRM encryption keys are encrypted in the response.
+In order to provide the keys securely, the DRM encryption keys are encrypted in the response.
 
 The format of the response will be:
 
@@ -43,7 +43,7 @@ The format of the response will be:
 
 The value of `key` has two components separated by a pipe (ASCII code 124):
 - Encrypted blob containing the DRM encryption keys. 
-- Hash used in a checksum
+- Hash used in a checksum.
 
 #### Decrypting the response
 
@@ -269,7 +269,7 @@ Make the following request to the Key Provider API in order to retrieve `cenc` K
 curl -X GET https://key-provider.drm.technology/cenc/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
 ```
 
-The keys return in this response can be used for PlayReady and Widevine scenarios. They allow a single piece of content to be used across multiple devices and browsers.
+The keys returned in this response can be used for PlayReady and Widevine scenarios. They allow a single piece of content to be used across multiple devices and browsers.
 
 An example decrypted response would be:
 
@@ -318,7 +318,6 @@ An example decrypted response would be:
 ```
 
 The values are:
-
 - `key_hex`: Unique ID for the encryption.
 - `iv_hex`: The encryption key.
 - `laurl`: The Fairplay license server URL. At the point of the request to the license server the `skd` protocol should be replaced with `https`. 
@@ -341,11 +340,13 @@ An example decrypted response would be:
     "key_url":"http://keyprovider.drm.technology:9293/aes/getkey/vualto/somecontentid"
 }
 ```
-- `key_hex`: Base16 AES Content key.
+
+The values are:
+- `key_hex`: Base16 AES Content key
 - `key_url`: URL to the AES Key Server 
 
 
-#### Playready
+#### PlayReady
 
 [PlayReady](https://www.microsoft.com/playready/) is Microsoft's DRM system. Only use these keys directly to target PlayReady enabled devices. The use of CENC keys is preferred.
 
@@ -409,6 +410,7 @@ An example decrypted response would be:
 } 
 ```
 
+The values are:
 - `key_id`: Unique ID for the encryption. Base64 in Little Endian.
 - `key_id_hex`: Unique ID for the encryption. Base16 in Little Endian. This one should be used with `mp4split`.
 - `content_key`: 128bit encryption key in base64.
