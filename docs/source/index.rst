@@ -16,8 +16,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   VUDRM-key-provision.md
    VUDRM-token.md
    VUDRM-Speke-Key-Provider.md
-   VUDRM-Key-Provider.md
    Geo-Location.md
    
