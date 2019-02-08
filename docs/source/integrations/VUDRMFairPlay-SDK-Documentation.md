@@ -1,4 +1,4 @@
-# VUDRMFairPlay SDK DOCUMENTATION #
+# FAIRPLAY SDK #
 
 The VUDRMFairPlay SDK is available for iOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on this platform. 
 Current release: v0.0.1 (70)
