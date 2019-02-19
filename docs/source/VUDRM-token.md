@@ -43,6 +43,11 @@ The `polbegin` and `polend` settings use the timezone set at the account level. 
 
 There are also limitations depending on environments that are not explained in the table. Please refer to the following sections for more detail:
 
+### Defualt DRM policy
+It is possible to specify a default DRM policy that will be used when we receive a VUDRM token. For example if you wish for all licenses requested to default to caching the license, the default DRM policy would be `{ "liccache":"yes" }`, meaning a VUDRM token with the policy `{ "polend":"DD-MM-YYYY HH:mm:ss" }` would be the same as `{ "liccache":"yes", "polend":"DD-MM-YYYY HH:mm:ss" }`. The values in the default policy can be overridden by simply putting them in the policy you pass in the VUDRM token. For example if the default DRM policy was `{ "liccache":"yes" }` but you wanted a license to not be cached, the policy in the VUDRM token would be `{ "liccache":"no" }`.
+
+If you wish to utilise this feature please contact support@vualto.com.
+
 ### PlayReady DRM policy
 
 PlayReady has an extensive list of policy options described [here](https://docs.microsoft.com/en-us/playready/overview/license-and-policies). The majority of these options are supported via the VUDRM token's policy. Please contact support@vualto.com for more details.
