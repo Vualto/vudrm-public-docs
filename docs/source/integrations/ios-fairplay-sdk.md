@@ -150,7 +150,7 @@ private var assetName = ""
 
 - No known issues at this time. If you believe you have found an issue, please contact us at support@vualto.com
 
-## RELEASE NOTES
+## Release notes
 
 ### v0.0.1 (build 70) on 15/01/2019
 
