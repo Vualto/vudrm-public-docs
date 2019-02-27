@@ -16,9 +16,10 @@ The [vuplay-theoplayer](https://github.com/vualto/vuplay-theoplayer) repository 
 ```javascript
 var streamUrl = "<your-stream-url>";
 var vudrmToken = "<your-vudrm-token>";
+var containerElement = document.getElementById("vuplay-container");
 
 var player = new THEOplayer.Player(containerElement, {
-  libraryLocation: "{theoplayerjs-scripts-path}",
+  libraryLocation: "<your-theoplayerjs-scripts-path>",
   ui: {
     fluid: true
   }
