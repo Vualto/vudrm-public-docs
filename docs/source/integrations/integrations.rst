@@ -7,6 +7,6 @@ INTEGRATIONS
 
    bitmovin.md
    jwplayer.md
-   Theoplayer.md
+   theo-player.md
    ios-fairplay-sdk.md
    
