@@ -1,25 +1,26 @@
 # Bitmovin
 
-[Bitmovin](https://bitmovin.com) is an industry leading HTML5 video player, supporting MPEG-DASH, HLS & Smooth Streaming.
+[Bitmovin](https://bitmovin.com) is an industry leading HTML5 video player.
 
-The [VUPLAY-Bitmovin repository](https://github.com/Vualto/vuplay-bitmovin) demonstrates at a lower level how to integrate [VUDRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with Bitmovin.
+The [vuplay-bitmovin](https://github.com/Vualto/vuplay-bitmovin) repository demonstrates at a lower level how to integrate [vudrm](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with Bitmovin.
 
-## Basic setup
+## Basic set up
 
-```
-var container = document.getElementById('my-player');
+```javascript
+var container = document.getElementById("my-player");
 var VUDRM_TOKEN = "<your-vudrm-token>";
 
 var playerConfig = {
-    key: '<your-bitmovin-player-key>'
+  key: "<your-bitmovin-player-key>"
 };
 
 var source = {
-    title: "Getting Started with the Bitmovin Player",
-    description: "Now you are ready to embed the Bitmovin Player into your own website :)",
-    dash: '<your-mpeg-dash-stream-url>',
-    hls: '<your-hls-stream-url>',
-    poster: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/poster.jpg',
+  title: "Getting Started with the Bitmovin Player",
+  description:
+    "Now you are ready to embed the Bitmovin Player into your own website :)",
+  dash: "<your-mpeg-dash-stream-url>",
+  hls: "<your-hls-stream-url>",
+  poster: "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/poster.jpg"
 };
 ```
 
@@ -27,24 +28,24 @@ The source object above has a `drm` property, within this you can add the approp
 
 ## Widevine example
 
-```
+```javascript
 source.drm = {
-    widevine: {
+  widevine: {
     LA_URL: "https://widevine-proxy.drm.technology/proxy",
-    prepareMessage: function (keyMessage) {
-        return JSON.stringify({
-                token: VUDRM_TOKEN,
-                drm_info: Array.apply(null, new Uint8Array(keyMessage.message)),
-                kid: "<CONTENT-KEY-ID>"
-            });
-        }
+    prepareMessage: function(keyMessage) {
+      return JSON.stringify({
+        token: VUDRM_TOKEN,
+        drm_info: Array.apply(null, new Uint8Array(keyMessage.message)),
+        kid: "<CONTENT-KEY-ID>"
+      });
     }
-}
+  }
+};
 ```
 
 ## PlayReady example
 
-```
+```javascript
 source.drm = {
     playready: {
         LA_URL: `https://playready-license.drm.technology/rightsmanager.asmx?token=" + encodeURIComponent(VUDRM_TOKEN);
@@ -54,7 +55,7 @@ source.drm = {
 
 ## Fairplay example
 
-```
+```javascript
 source.drm = {
   fairplay: {
     certificateURL: "<YOUR-FAIRPLAY-CERT>",
