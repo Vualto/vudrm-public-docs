@@ -4,10 +4,10 @@
 
 The [vuplay-jwplayer](https://github.com/Vualto/vuplay-jwplayer) repository demonstrates at a lower level how to integrate [vudrm](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with JWPlayer.
 
-## Basic set up
+## Basic setup
 
 ```javascript
-var vudrmToken = "<vudrm-token>";
+var vudrmToken = "<your-vudrm-token>";
 
 // where `player` is the id of a div
 jwplayer("player").setup({
@@ -63,7 +63,7 @@ var playReadyDrmConfig = {
 };
 ```
 
-## Fairplay example
+## FairPlay example
 
 ```javascript
 var fairplayDrmConfig = {

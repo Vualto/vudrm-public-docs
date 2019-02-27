@@ -4,7 +4,7 @@
 
 The [vuplay-theoplayer](https://github.com/vualto/vuplay-theoplayer) repository demonstrates at a lower level how to integrate [vudrm](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with THEOplayer.
 
-## Basic set up
+## Basic setup
 
 ```html
 <div
@@ -67,7 +67,7 @@ player.source = {
 };
 ```
 
-## Fairplay example
+## FairPlay example
 
 ```javascript
 player.source = {
