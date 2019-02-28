@@ -7,7 +7,7 @@ The [vuplay-dashjs](https://github.com/Vualto/vuplay-dashjs) repository demonstr
 ## Basic setup
 
 ```javascript
-var url = "<your-stream-url>";
+var streamUrl = "<your-stream-url>";
 var vudrmToken = "<your-vudrm-token>";
 
 var player = dashjs.MediaPlayer().create();
@@ -81,7 +81,7 @@ player.setProtectionData({
   }
 });
 
-player.attachSource(url);
+player.attachSource(streamUrl);
 ```
 
 ## PlayReady example
@@ -98,7 +98,7 @@ player.setProtectionData({
   }
 });
 
-player.attachSource(url);
+player.attachSource(streamUrl);
 ```
 
 ## No FairPlay support
