@@ -1,6 +1,8 @@
 # Chromecast
 
-To support VUDRM through google cast, you need to implement your own receiver app (see [documentation](https://developers.google.com/cast/docs/caf_receiver/))
+To support VUDRM through google cast, you need to implement your own receiver app (see [google documentation](https://developers.google.com/cast/docs/caf_receiver/))
+
+The [vuplay-chromecast-receiver-app](https://github.com/Vualto/vuplay-chromecast-receiver-app) repository demonstrates an implementation of [VUDRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with a google chromecast, with a `sender and receiver app`.
 
 ## Sender app
 
@@ -33,11 +35,6 @@ playbackConfig.licenseRequestHandler = function licenseRequestHandler(requestInf
     requestInfo.content = generateRequestContent(body);
 };
 
-playbackConfig.licenseHandler = function licenseHandler(requestInfo) {
-    // Not sure that we need it?
-    // https://developers.google.com/cast/docs/reference/caf_receiver/cast.framework.PlaybackConfig#licenseHandler
-};
-
 playbackConfig.manifestHandler = function manifestHandler(manifest) {
     // This function set the kid (!side effect!), but it can be passed through the sender app
     var decoded = _UTF8toUTF16LE(manifest);
@@ -48,16 +45,6 @@ playbackConfig.manifestHandler = function manifestHandler(manifest) {
 
     return _UTF16toUTF8(decoded);
 };
-
-function generateRequestContent(body) {
-    var buffer = [];
-
-    for (var i=0; i < body.length; i++) {
-        buffer.push(body.charCodeAt(i));
-    }
-
-    return new Uint8Array(buffer);
-}
 
 function generateBody(requestInfoContent) {
     var context = cast.framework.CastReceiverContext.getInstance();
@@ -71,6 +58,20 @@ function generateBody(requestInfoContent) {
     })
 }
 
+
+function generateRequestContent(body) {
+    var buffer = [];
+
+    for (var i=0; i < body.length; i++) {
+        buffer.push(body.charCodeAt(i));
+    }
+
+    return new Uint8Array(buffer);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Utils
+
 function _UTF16toUTF8(text){
     var cp = [];
 
@@ -81,9 +82,7 @@ function _UTF16toUTF8(text){
     return String.fromCharCode.apply( String, cp );
 }
 
-/*
-*   !! little endian conversion !!
-*/
+// ! little endian conversion !!
 function _UTF8toUTF16LE(text){
     var byteArray = new Uint8Array(text.length * 2);
 
