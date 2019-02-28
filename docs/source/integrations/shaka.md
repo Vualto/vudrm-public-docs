@@ -11,21 +11,22 @@ The [vuplay-shaka](https://github.com/Vualto/vuplay-shaka) repository demonstrat
 ```
 
 ```javascript
-var mpegdashStreamUrl = "<mpeg-dash-stream-url>";
-var vudrmToken = "<vudrm-token>";
+var mpegdashStreamUrl = "<your-stream-url>";
+var vudrmToken = "<your-vudrm-token>";
+var shakaPlayer;
 
 shaka.polyfill.installAll();
 if (shaka.Player.isBrowserSupported()) {
   var video = document.getElementById("video");
-  window.shakaPlayerInstance = new shaka.Player(video);
-  window.shakaPlayerInstance.addEventListener("error", onErrorEvent);
+  shakaPlayer = new shaka.Player(video);
+  shakaPlayer.addEventListener("error", onErrorEvent);
 }
 ```
 
 ## Widevine example
 
 ```javascript
-window.shakaPlayerInstance.configure({
+shakaPlayer.configure({
   drm: {
     servers: {
       "com.widevine.alpha": "https://widevine-proxy.drm.technology/proxy"
@@ -33,12 +34,12 @@ window.shakaPlayerInstance.configure({
   }
 });
 
-window.shakaPlayerInstance
+shakaPlayer
   .getNetworkingEngine()
   .registerRequestFilter(function(type, request) {
     if (type != shaka.net.NetworkingEngine.RequestType.LICENSE) return;
 
-    var selectedDrmInfo = window.shakaPlayerInstance.drmInfo();
+    var selectedDrmInfo = shakaPlayer.drmInfo();
     if (selectedDrmInfo.keySystem !== "com.widevine.alpha") {
       return;
     }
@@ -55,7 +56,7 @@ window.shakaPlayerInstance
     request.headers["Content-Type"] = "application/json";
   });
 
-window.shakaPlayerInstance
+shakaPlayer
   .load(mpegdashStreamUrl)
   .then(function() {
     console.log("The stream has now been loaded!");
@@ -69,7 +70,7 @@ window.shakaPlayerInstance
 var playReadyLaURL =
   "https://playready-license.drm.technology/rightsmanager.asmx?token=" +
   encodeURIComponent(vudrmToken);
-window.shakaPlayerInstance.configure({
+shakaPlayer.configure({
   drm: {
     servers: {
       "com.microsoft.playready": playReadyLaURL
@@ -77,7 +78,7 @@ window.shakaPlayerInstance.configure({
   }
 });
 
-window.shakaPlayerInstance
+shakaPlayer
   .load(mpegdashStreamUrl)
   .then(function() {
     console.log("The stream has now been loaded!");
