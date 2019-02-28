@@ -6,7 +6,7 @@ PLAYERS
    :glob:
 
    bitmovin.md
-   jwplayer.md
-   theo-player.md
-   shaka.md
    dash-js.md
+   jwplayer.md
+   shaka.md
+   theo-player.md
