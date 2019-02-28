@@ -87,4 +87,4 @@ window.shakaPlayerInstance
 
 ## No FairPlay support
 
-Shaka does not currently support FairPlay
+Shaka does not currently support FairPlay.
