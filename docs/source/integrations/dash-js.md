@@ -13,8 +13,6 @@ var vudrmToken = "<your-vudrm-token>";
 var player = dashjs.MediaPlayer().create();
 ```
 
-The source object above has a `drm` property, within this you can add the appropriate DRM configuration.
-
 ## Widevine example
 
 ```javascript
