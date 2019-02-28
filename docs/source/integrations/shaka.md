@@ -11,7 +11,7 @@ The [vuplay-shaka](https://github.com/Vualto/vuplay-shaka) repository demonstrat
 ```
 
 ```javascript
-var mpegdashStreamUrl = "<your-stream-url>";
+var streamUrl = "<your-stream-url>";
 var vudrmToken = "<your-vudrm-token>";
 var shakaPlayer;
 
@@ -57,7 +57,7 @@ shakaPlayer
   });
 
 shakaPlayer
-  .load(mpegdashStreamUrl)
+  .load(streamUrl)
   .then(function() {
     console.log("The stream has now been loaded!");
   })
@@ -79,7 +79,7 @@ shakaPlayer.configure({
 });
 
 shakaPlayer
-  .load(mpegdashStreamUrl)
+  .load(streamUrl)
   .then(function() {
     console.log("The stream has now been loaded!");
   })
