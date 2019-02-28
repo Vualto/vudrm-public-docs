@@ -1,9 +1,8 @@
-INTEGRATIONS
+MOBILE
 ============
 
 .. toctree::
    :maxdepth: 2
    :glob:
 
-   mobile/index.rst
-   players/index.rst
+   ios-fairplay-sdk.md
