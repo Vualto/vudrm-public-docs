@@ -2,7 +2,7 @@
 
 [dash.js](https://github.com/Dash-Industry-Forum/dash.js/wiki) is an initiative of the DASH Industry Forum to establish a production quality framework for building video and audio players that play back MPEG-DASH content using client-side JavaScript libraries leveraging the Media Source Extensions API set as defined by the W3C.
 
-The [vuplay-dashjs](https://github.com/Vualto/vuplay-dashjs) repository demonstrates at a lower level how to integrate [vudrm](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with dash.js.
+The [vuplay-dashjs](https://github.com/Vualto/vuplay-dashjs) repository demonstrates at a lower level how to integrate [VUDRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with dash.js.
 
 ## Basic setup
 

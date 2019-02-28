@@ -2,7 +2,7 @@
 
 [JWPlayer](https://jwplayer.com/) is an industry leading HTML5 video player.
 
-The [vuplay-jwplayer](https://github.com/Vualto/vuplay-jwplayer) repository demonstrates at a lower level how to integrate [vudrm](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with JWPlayer.
+The [vuplay-jwplayer](https://github.com/Vualto/vuplay-jwplayer) repository demonstrates at a lower level how to integrate [VUDRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with JWPlayer.
 
 ## Basic setup
 
