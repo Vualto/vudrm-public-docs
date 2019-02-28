@@ -9,4 +9,4 @@ INTEGRATIONS
    jwplayer.md
    theo-player.md
    ios-fairplay-sdk.md
-   
+   dash-js.md
