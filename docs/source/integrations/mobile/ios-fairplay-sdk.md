@@ -2,7 +2,7 @@
 
 The VUDRMFairPlay SDK is available for iOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on this platform.
 
-Current release: v0.0.1 (74)
+Current release: v0.0.1 (85)
 
 - Overview
 - Requirements
@@ -17,17 +17,16 @@ Current release: v0.0.1 (74)
 
 VUDRMFairPlay SDK enables Apple’s AVPlayer from AVFoundation to securely request licenses from Vualto’s VUDRM cloud based DRM platform using an extended instance of AssetResourceLoaderDelegate.
 
-There are three deployment scenarios:
+Three deployment scenarios exist, being Online Playback / Download and Offline Playback using an associated rental or persist token and two legacy methods which are restricted to Online Playback and use an associated rental token.
 
-1. Online Playback / Download and Offline Playback using a persisted token and license and legacy methods.
-2. Make use of Apple’s AVPlayer and AVPlayerViewController to present users with the platform
-   default skins, with DRM content.
-3. Create your own video player based on AVPlayer.
-   As an evolution of the the hugely successful VUPLAY SDK, this SDK has a number of key benefits:
-   - Complete control over the entire AVPlayer lifecycle
-   - Numerous optimisations to enable faster playback
-   - Bitcode support
-   - Support for building/linking against the simulators
+Make use of Apple’s AVPlayer and AVPlayerViewController to present users with the platform default skins, with DRM content. Or create your own video player based on AVPlayer.
+
+As an evolution of the the hugely successful VUPLAY SDK, this SDK has a number of key benefits:
+
+ - Complete control over the entire AVPlayer lifecycle
+ - Numerous optimisations to enable faster playback
+ - Bitcode support
+ - Support for building/linking against the simulators
 
 The SDK is fully supported in both Objective-C and Swift applications. 
 
@@ -36,8 +35,8 @@ A demo application written in Swift is available on request. Please contact [sup
 ## Requirements
 
 - Minimum iOS deployment target of 9.x or higher
-- Xcode 10.1
-- Swift 4.2
+- Xcode 10.2
+- Swift 5
 
 ## Xcode Integration
 
@@ -184,9 +183,29 @@ private var assetName = ""
 
 ## Known Issues
 
-- No known issues at this time. If you believe you have found an issue, please contact us at support@vualto.com
+- There is a known issue in iOS 11 where audio may not be correctly routed by the OS. This issue can be resolved by adding the following to `viewDidLoad` in your initial view controller:
+
+```swift
+do {
+	if #available(iOS 10.0, *) {
+		try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+	} else {
+		// Fallback on earlier versions
+    }
+}
+catch {
+	print("Setting category to AVAudioSessionCategoryPlayback failed.")
+}
+```
+
+- If you believe you have found any further issues, please contact us at support@vualto.com
 
 ## Release notes
+
+### v0.0.1 (build 85) on 27/03/2019
+
+- Update to Swift 5
+- Bug fixes and improvements
 
 ### v0.0.1 (build 74) on 21/03/2019
 
