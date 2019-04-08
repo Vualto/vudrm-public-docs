@@ -65,7 +65,7 @@ Before you can use the demo project or framework in your own project, for each i
 - Fairplay Rental `{"type": "r","duration_rental": 3600}`
 
 For further information about VUDRM please contact us, or refer to our documentation:
-[https://docs.vualto.com/en/latest/vudrm.html](https://docs.vualto.com/en/latest/vudrm.html)
+[https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html)
 
 ## Example framework usage
 
