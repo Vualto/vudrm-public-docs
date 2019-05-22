@@ -175,7 +175,7 @@ Internally
 - Samsung S5 (6.0.1)
 - Samsung Tab 10 A5 (6.0.1)
 - HP 8 Tablet (4.4.2)
-- Hauwei Honor 9 (8.0.0)
+- Huawei Honor 9 (8.0.0)
 
 ## Known Issues
 
