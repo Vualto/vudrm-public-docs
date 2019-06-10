@@ -40,13 +40,13 @@ These are the docs for the speke key provider, which has a speke endpoint for us
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
 -	Add a “Resource ID”
 -	Set the “System ID” to “edef8ba9-79d6-4ace-a3c8-27dcd51d21ed”
--	Set the “URL” to “https://speke-keyprovider-staging.drm.technology/vualto-demo/speke”
+-	Set the “URL” to “https://speke-keyprovider.vudrm.tech/vualto-demo/speke”
 
 #### Playready (only if output group is DASH ISO)
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
 -	Add a “Resource ID” 
 -	Set the “System ID” to “9a04f079-9840-4286-ab92-e65be0885f95”
--	Set the “URL” to “https://speke-keyprovider-staging.drm.technology/vualto-demo/speke”
+-	Set the “URL” to “https://speke-keyprovider.vudrm.tech/vualto-demo/speke”
 
 #### Fairplay (only if output group is Apple HLS)
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
@@ -55,7 +55,7 @@ These are the docs for the speke key provider, which has a speke endpoint for us
 -	Set “Initialization vector in manifest” to “Exclude”
 -	Add a “Resource ID”
 -	Set the “System ID” to “94ce86fb-07ff-4f43-adb8-93d2fa968ca2”
--	Set the “URL” to “https://speke-keyprovider-staging.drm.technology/vualto-demo/speke”
+-	Set the “URL” to “https://speke-keyprovider.vudrm.tech/vualto-demo/speke”
 -	Set the “Constant initilization vector” to “00000000000000000000000000000000”
 
 ### 12. Configure the outputs “Outputs”. (Use the same one as above)
@@ -103,14 +103,14 @@ These are the docs for the speke key provider, which has a speke endpoint for us
 
 ### 19. Load into a player to show the content working. (Use the same one as above)
 #### Widevine
--	Open “https://cdn.vuplay.co.uk/ibc-demo/index.html” in a new Google Chrome tab and select custom stream.
+-	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Google Chrome tab and select custom stream.
 -	Press the “Edit” button next to the player key box and type “arconics-staging|9116e9b8-5bd2-4ab1-a282-085ce379f8a6”
 -	Return to your S3 tab and copy the link from the bottom of the page and paste it into “Custom stream url” box, it should look something like “https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd”
 -	Generate a VUDRM token in the admin for your client and paste it into the “Custom VUDRM Token” 
 -	Press “Load player”
 
 #### Playready
--	Open “https://cdn.vuplay.co.uk/ibc-demo/index.html” in a new Microsoft Edge tab and select custom stream.
+-	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Microsoft Edge tab and select custom stream.
 -	Return to your S3 tab and copy the link from the bottom of the page and paste it into “Custom stream url” box, it should look something like “https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd”
 -	Generate a VUDRM token in the admin for the your client and paste it into the “Custom VUDRM Token” 
 -	Press “Load player”
@@ -145,7 +145,7 @@ These are the docs for the speke key provider, which has a speke endpoint for us
 -   If you wish to use Playready DRM use "9a04f079-9840-4286-ab92-e65be0885f95" as the System ID (only if output group is DASH ISO)
 -   If you wish to use Fairplay DRM use "94ce86fb-07ff-4f43-adb8-93d2fa968ca2" as the System ID (only if output group is APPLE HLS)
 
-### 10. Set the URL to "https://speke-keyprovider-staging.drm.technology/client-name/speke" where client-name is the name of the client.
+### 10. Set the URL to "https://speke-keyprovider.vudrm.tech/client-name/speke" where client-name is the name of the client.
 
 ### 11. Add an appropriate Role ARN.
 
@@ -155,25 +155,23 @@ These are the docs for the speke key provider, which has a speke endpoint for us
 
 ### 14. Load into a player to show the content working.
 #### Widevine
--	Open “https://cdn.vuplay.co.uk/ibc-demo/index.html” in a new Google Chrome tab and select custom stream.
+-	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Google Chrome tab and select custom stream.
 -	Press the “Edit” button next to the player key box and type “arconics-staging|9116e9b8-5bd2-4ab1-a282-085ce379f8a6”
 -	Paste in the endpoints URL for the "Custom stream url"
 -	Generate a VUDRM token in the admin for your client and paste it into the “Custom VUDRM Token” 
 -	Press “Load player”
 
 #### Playready
--	Open “https://cdn.vuplay.co.uk/ibc-demo/index.html” in a new Microsoft Edge tab and select custom stream.
+-	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Microsoft Edge tab and select custom stream.
 -	Paste in the endpoints URL for the "Custom stream url"
 -	Generate a VUDRM token in the admin for your client and paste it into the “Custom VUDRM Token” 
 -	Press “Load player”
 
 ## Endpoints
-Staging url: https://speke-keyprovider-staging.drm.technology/
+Staging url: https://speke-keyprovider.vudrm.tech/
 
 ## SPEKE
-To retrieve drm information formatted to the CPIX standard POST a request, formatting below, to **https://speke-keyprovider-staging.drm.technology/client-name/speke**, where "client-name" is the name of the client. 
-
-**Please note when requesting a XML response Fairplay must be requested seperately to Widevine and Playready.**
+To retrieve drm information formatted to the CPIX standard POST a request, formatting below, to **https://speke-keyprovider.vudrm.tech//client-name/speke**, where "client-name" is the name of the client. 
 
 ### Examples  
 #### Requests
