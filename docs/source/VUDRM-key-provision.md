@@ -13,7 +13,7 @@ The following sections describe the requests and responses in order to retrieve 
 A `GET` should be made to the following URL:
 
 ```URL
-https://key-provider.drm.technology/<DRM_TYPE>/<CLIENT_NAME>/<CONTENT_ID> 
+https://keyprovider.vudrm.tech/<DRM_TYPE>/<CLIENT_NAME>/<CONTENT_ID> 
 ```
 
 The breakdown of this URL is:
@@ -26,7 +26,7 @@ In order to provide the keys securely, an API key is required in the header of t
 Below is an example curl request for `cenc` encryption keys using the client `vualto` and with the `CONTENT_ID` of `test`.
 
 ```bash
-curl -X "GET" "https://key-provider.drm.technology/cenc/vualto/test" -H "API_KEY: <API_KEY>" 
+curl -X "GET" "https://keyprovider.vudrm.tech/cenc/vualto/test" -H "API_KEY: <API_KEY>" 
 ```
 
 ### Response
@@ -266,7 +266,7 @@ CENC is the Common Encryption Scheme and it standardises encryption keys between
 Make the following request to the Key Provider API in order to retrieve `cenc` Keys.
 
 ```bash
-curl -X GET https://key-provider.drm.technology/cenc/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
+curl -X GET https://keyprovider.vudrm.tech/cenc/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
 ```
 
 The keys returned in this response can be used for PlayReady and Widevine scenarios. They allow a single piece of content to be used across multiple devices and browsers.
@@ -281,8 +281,8 @@ An example decrypted response would be:
     "content_key_hex":"788E498EE8C8A35124EE5A8EFB7820D0",
     "playready_key_iv":"cd340bf920a34bfb",
     "widevine_drm_specific_data":"CAESEJrENOhpDl58uLPtkqsm0/kaBnZ1YWx0byIgN0M1RTdGOTExRjc5MkYyMUJFNUZFOUJDOTE5M0MzM0IqAkhEMgA=",
-    "playready_laurl":"http://playready.drm.technology/rightsmanager.asmx",
-    "widevine_laurl":"https://widevine-proxy.drm.technology/proxy"
+    "playready_laurl":"http://playready-license.vudrm.tech/rightsmanager.asmx",
+    "widevine_laurl":"https://widevine-license.vudrm.tech/proxy"
 } 
 ```
 
@@ -304,7 +304,7 @@ The values are:
 Make the following request to retrieve `fairplay` keys from the Key Provider API:
 
 ```bash
-curl -X GET https://key-provider.drm.technology/fairplay/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
+curl -X GET https://keyprovider.vudrm.tech/fairplay/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
 ```
 
 An example decrypted response would be:
@@ -313,7 +313,7 @@ An example decrypted response would be:
 {
     "key_hex": "457A8E3300DE6D549A95037F1C7ADEB1",
     "iv_hex": "EB86EAFBD487391383E8FFF957561B0C",
-    "laurl": "skd://fairplay-license.drm.technology/license/somecontentid"
+    "laurl": "skd://fairplay-license.vudrm.tech/license/somecontentid"
 }
 ```
 
@@ -329,7 +329,7 @@ HLS AES-128 is the Advanced Encryption Standard using a 128 bit key, Cipher Bloc
 Make the following request to retrieve HLS AES encryption keys from the Key Provider API:
 
 ```bash
-curl -X GET https://key-provider.drm.technology/aes/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
+curl -X GET https://keyprovider.vudrm.tech/aes/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
 ```
 
 An example decrypted response would be:
@@ -337,7 +337,7 @@ An example decrypted response would be:
 ```JSON
 {
     "key_hex":"dd682004123622a99c2a2afcdad6217c",
-    "key_url":"http://keyprovider.drm.technology:9293/aes/getkey/vualto/somecontentid"
+    "key_url":"http://keyprovider.vudrm.tech:9293/aes/getkey/vualto/somecontentid"
 }
 ```
 
@@ -353,7 +353,7 @@ The values are:
 Make the following request to retrieve `playready` keys from the Key Provider API:
 
 ```bash
-curl -X GET https://key-provider.drm.technology/playready/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
+curl -X GET https://keyprovider.vudrm.tech/playready/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
 ```
 
 An example decrypted response would be:
@@ -366,7 +366,7 @@ An example decrypted response would be:
     "key_id_hex":"917F5E7C791F212FBE5FE9BC9193C33B",
     "content_key":"eI5JjujIo1Ek7lqO+3gg0A==",
     "content_key_hex":"788E498EE8C8A35124EE5A8EFB7820D0",
-    "laurl":"http://vualto.playready.drm.technology/rightsmanager.asmx",
+    "laurl":"http://vualto.playready-license.vudrm.tech/rightsmanager.asmx",
     "service_id":"gwICI8yfIUGf4R/5qOWuqg==",
     "service_id_guid":"23020283-9fcc-4121-9fe11ff9a8e5aeaa",
     "key_iv":"07261ee6ee074f1d",
@@ -394,7 +394,7 @@ The values are:
 Make the following request to retrieve `widevine` keys from the Key Provider API:
 
 ```bash
-curl -X GET https://key-provider.drm.technology/widevine/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
+curl -X GET https://keyprovider.vudrm.tech/widevine/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
 ```
 
 An example decrypted response would be:
@@ -405,7 +405,7 @@ An example decrypted response would be:
     "key_id_hex":"37107CB89147552B9A3B906388CCEE11",
     "content_key":"Unyx1s3fMFUedA688fCNxw==",
     "content_key_hex":"527CB1D6CDDF30551E740EBCF1F08DC7",
-    "laurl":"https://widevine-proxy.drm.technology/proxy",
+    "laurl":"https://widevine-license.vudrm.tech/proxy",
     "drm_specific_data":"CAESEDcQfLiRR1UrmjuQY4jM7hEaBnZ1YWx0byIFdGVzdDEqAkhEMgA="
 } 
 ```
