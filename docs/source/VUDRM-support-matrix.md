@@ -2,34 +2,34 @@
 
 | Browsers | PlayReady | Widevine | Fairplay |
 |-|-|-|-|
-| **Chrome** | <p>&#10008;</p> | <p>&#10004;</p> | :x: | :white_check_mark: | :x: | :x: |
-| **Edge** _Windows 10^_ | :white_check_mark: | :x: | :white_check_mark: | :x: | :x: | :white_check_mark: |
-| **Firefox** | :x: | :x: | :x: | :x: | :white_check_mark: | :x: |
-| **Internet Explorer 11** _Windows 8.1^_ | :x: | :x: | :x: | :x: | :x: | :x: |
-| **Safari** | :x: | :x: | :x: | :x: | :x: | :x: |
-| **Opera** | :x: | :x: | :x: | :x: | :x: | :x: |
+| **Chrome** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Edge** _Windows 10^_ | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
+| **Firefox** | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Internet Explorer 11** _Windows 8.1^_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Safari** | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Opera** | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
 
 | Mobile | PlayReady | Widevine | Fairplay |
 |-|-|-|-|
-| **Android 4.4^** _VUDRMWidevine SDK: offline playback available_ | :x: | :x: | :x: | :x: | :white_check_mark: |
-| **Chrome mobile (Android)** | :white_check_mark: | :white_check_mark: | :x: | :x: | :x: |
-| **iOS** _VUDRMfairplay SDK: 10^ offline available, 9^ online only_ | :x: | :x: | :white_check_mark: | :white_check_mark: | :x: |
-| **Safari mobile (iOS)** _iOS 11.2^_ | :x: | :x: | :x: | :x: | :x: |
-| **Windows phone** | :x: | :x: | :x: | :x: | :x: |
+| **Android 4.4^** _VUDRMWidevine SDK: offline playback available_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
+| **Chrome mobile (Android)** | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **iOS** _VUDRMfairplay SDK: 10^ offline available, 9^ online only_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Safari mobile (iOS)** _iOS 11.2^_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Windows phone** | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
 
 | Consoles | PlayReady | Widevine | Fairplay |
 |-|-|-|-|
-| **PlayStation** | :white_check_mark: | :white_check_mark: |
-| **Xbox** | :x: | :x: |
+| **PlayStation** | <p>&#10004;</p> | <p>&#10004;</p> |
+| **Xbox** | <p>&#10008;</p> | <p>&#10008;</p> |
 
 | Smart TV's | PlayReady | Widevine | Fairplay |
 |-|-|-|-|
-| **Amazon Fire** | :white_check_mark: | :x: | :x: | :x: | :x: | :white_check_mark: | :white_check_mark: | :x: | :white_check_mark: |
-| **Android TV** _VUDRMWidevine SDK_ | :white_check_mark: | :white_check_mark: | :x: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | :x: | :white_check_mark: |
-| **Apple TV** _VUDRMfairplay SDK_ | :x: | :x: | :white_check_mark: | :x: | :x: | :x: | :x: | :white_check_mark: | :x: |
-| **Google Chromecast** | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: |
-| **Google TV** | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: |
-| **Roku** | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: |
-| **Samsung Tizen** _2017 models^_ | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: |
-| **tvOS** _VUDRMfairplay SDK_ | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: |
-| **Smart TV Alliance** _LG, PANASONIC, PHILIPS, TOSHIBA_ | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: | :x: |
+| **Amazon Fire** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
+| **Android TV** _VUDRMWidevine SDK_ | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
+| **Apple TV** _VUDRMfairplay SDK_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Google Chromecast** | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Google TV** | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Roku** | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Samsung Tizen** _2017 models^_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **tvOS** _VUDRMfairplay SDK_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Smart TV Alliance** _LG, PANASONIC, PHILIPS, TOSHIBA_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
