@@ -2,7 +2,7 @@
 
 | Browsers | PlayReady | Widevine | Fairplay |
 |-|-|-|-|
-| **Chrome** | :x: | :white_check_mark: | :x: | :white_check_mark: | :x: | :x: |
+| **Chrome** | <p>&#10008;</p> | <p>&#10004;</p> | :x: | :white_check_mark: | :x: | :x: |
 | **Edge** _Windows 10^_ | :white_check_mark: | :x: | :white_check_mark: | :x: | :x: | :white_check_mark: |
 | **Firefox** | :x: | :x: | :x: | :x: | :white_check_mark: | :x: |
 | **Internet Explorer 11** _Windows 8.1^_ | :x: | :x: | :x: | :x: | :x: | :x: |
