@@ -1,6 +1,6 @@
 
 
-# VUDRMWidevine SDK Documentation
+# Android Widevine SDK Documentation
 
 VUDRMWidevine is an Android Archive (AAR) which can be used during the media rendering pipeline to provide a DRM plugin to ExoPlayer 2.9.6 which will work with Vualto DRM workflow. VUDRMWidevine has been developed to specifically manage the session DRM, allowing complete asset and player management.
 
@@ -26,7 +26,7 @@ Current release: v0.3.4 (272)
 1.	VUDRMWidevine is distributed from our maven repository, access to which is made possible by adding the 
 following to the repositories closure of your apps top level build.gradle file:
 
-	```java
+```java
 allprojects {
     repositories {
         jcenter()
@@ -88,7 +88,7 @@ For further information about VUDRM please contact us, or refer to our documenta
 
 3.	Then you can pass it to ExoPlayer as the component required when creating the DefaultDrmSessionManager<FrameworkMediaCrypto> object.
 
-	```java
+```java
 try {
     	return new DefaultDrmSessionManager<>(vudrm.widevineDRMSchemeUUID,
             FrameworkMediaDrm.newInstance(vudrm.widevineDRMSchemeUUID),
@@ -113,7 +113,7 @@ It is important to consider that while online, VUDRMWidevine handles generating 
 
 1.	Initially identical to online sessions, start by instantiating an (online) AssetConfiguration using the fluent interface. This configuration is used to acquire the offline license for later use when offline.
 
-	```java
+```java
 	try {
     	assetConfiguration = new AssetConfiguration.Builder()
             .tokenWith(drmToken)
@@ -135,7 +135,7 @@ It is important to consider that while online, VUDRMWidevine handles generating 
 
 4.	An offline license can then be acquired using Exoplayers OfflineLicenseHelper call:
 
-	```
+```
 byte[] offlineLicenseKeySetId = mOfflineLicenseHelper.downloadLicense(drmInitData);
 ```
 
@@ -145,7 +145,7 @@ byte[] offlineLicenseKeySetId = mOfflineLicenseHelper.downloadLicense(drmInitDat
 
 	When the download is complete, offline playback can then be achieved by calling the asset using a VUDRM OfflineAssetConfiguration and a standard Widevine DefaultDrmSessionManager<FrameworkMediaCrypto> object using an HttpMediaDrmCallback that can be passed to the player.
 
-	```java
+```java
 try {
 	    OfflineAssetConfiguration assetConfiguration = new OfflineAssetConfiguration.Builder()
 			.kidProviderWith(
