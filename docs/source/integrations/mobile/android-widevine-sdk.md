@@ -1,6 +1,6 @@
 
 
-# Android Widevine SDK Documentation
+# Android Widevine SDK
 
 VUDRMWidevine is an Android Archive (AAR) which can be used during the media rendering pipeline to provide a DRM plugin to ExoPlayer 2.9.6 which will work with Vualto DRM workflow. VUDRMWidevine has been developed to specifically manage the session DRM, allowing complete asset and player management.
 
