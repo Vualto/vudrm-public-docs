@@ -54,7 +54,9 @@ allprojects {
 
 	and dependency:
 
-	``` implementation 'com.vualto.vudrm:kidplugin:0.3.4'```
+	```java 
+	implementation 'com.vualto.vudrm:kidplugin:0.3.4'
+	```
 	
 ## Example Usage
 
@@ -69,33 +71,33 @@ For further information about VUDRM please contact us, or refer to our documenta
 
 	The default license server can also be overridden using the API call ‘licenceUrlWith(<Your license URL>)’. An Asset ID is required only for offline streaming sessions storage and management.
 
-	```java
-	try {
-    	assetConfiguration = new AssetConfiguration.Builder()
-            .tokenWith(drmToken)
-            .KIDWith(KID)
-            .build();
-		} catch (Exception e) {
-    		// Handle exception
-		}
-	```
+```java
+try {
+	assetConfiguration = new AssetConfiguration.Builder()
+		.tokenWith(drmToken)
+		.KIDWith(KID)
+		.build();
+	} catch (Exception e) {
+		// Handle exception
+	}
+```
 
 2. Once you’ve built the object you can construct a plugin by instantiating a WidevineCallback object with the asset configuration.
 
-	```
-	WidevineCallback callback = new WidevineCallback(assetConfiguration);
-	```
+```
+WidevineCallback callback = new WidevineCallback(assetConfiguration);
+```
 
 3.	Then you can pass it to ExoPlayer as the component required when creating the DefaultDrmSessionManager<FrameworkMediaCrypto> object.
 
 ```java
 try {
-    	return new DefaultDrmSessionManager<>(vudrm.widevineDRMSchemeUUID,
-            FrameworkMediaDrm.newInstance(vudrm.widevineDRMSchemeUUID),
-            callback,
-            null,
-            new Handler(),
-            null);
+	return new DefaultDrmSessionManager<>(vudrm.widevineDRMSchemeUUID,
+		FrameworkMediaDrm.newInstance(vudrm.widevineDRMSchemeUUID),
+		callback,
+		null,
+		new Handler(),
+		null);
 	} catch (UnsupportedDrmException e) {
     	e.printStackTrace();
     	return null;
@@ -114,11 +116,11 @@ It is important to consider that while online, VUDRMWidevine handles generating 
 1.	Initially identical to online sessions, start by instantiating an (online) AssetConfiguration using the fluent interface. This configuration is used to acquire the offline license for later use when offline.
 
 ```java
-	try {
-    	assetConfiguration = new AssetConfiguration.Builder()
-            .tokenWith(drmToken)
-            .KIDWith(KID)
-            .build();
+try {
+	assetConfiguration = new AssetConfiguration.Builder()
+		.tokenWith(drmToken)
+		.KIDWith(KID)
+		.build();
 	} catch (Exception e) {
     	// Handle exception
 	}
@@ -147,16 +149,16 @@ byte[] offlineLicenseKeySetId = mOfflineLicenseHelper.downloadLicense(drmInitDat
 
 ```java
 try {
-	    OfflineAssetConfiguration assetConfiguration = new OfflineAssetConfiguration.Builder()
-			.kidProviderWith(
-				new HttpKidSource(
-					new URL(streamUrl)
-                 )
-          	)
-       	.build();
-		} catch (Exception e) {
-    		// Handle exception
-		}
+	OfflineAssetConfiguration assetConfiguration = new OfflineAssetConfiguration.Builder()
+		.kidProviderWith(
+			new HttpKidSource(
+				new URL(streamUrl)
+				)
+		)
+	.build();
+	} catch (Exception e) {
+		// Handle exception
+	}
 ```
 
 
