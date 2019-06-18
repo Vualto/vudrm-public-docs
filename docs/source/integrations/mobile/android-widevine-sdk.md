@@ -73,13 +73,13 @@ For further information about VUDRM please contact us, or refer to our documenta
 
 	```java
 	try {
-	assetConfiguration = new AssetConfiguration.Builder()
-		.tokenWith(drmToken)
-		.KIDWith(KID)
-		.build();
-	} catch (Exception e) {
-		// Handle exception
-	}
+		assetConfiguration = new AssetConfiguration.Builder()
+			.tokenWith(drmToken)
+			.KIDWith(KID)
+			.build();
+		} catch (Exception e) {
+			// Handle exception
+		}
 	```
 
 2. Once you’ve built the object you can construct a plugin by instantiating a WidevineCallback object with the asset configuration.
