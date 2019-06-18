@@ -26,20 +26,20 @@ Current release: v0.3.4 (272)
 1.	VUDRMWidevine is distributed from our maven repository, access to which is made possible by adding the 
 following to the repositories closure of your apps top level build.gradle file:
 
-```java
-allprojects {
-    repositories {
-        jcenter()
-        maven {
-            url "https://maven.drm.technology/artifactory/vudrm-widevine"
-            credentials {
-                username = "mavenUsername"
-                password = "mavenPassword"
-            }
-        }
-    }
-}		
-```
+	```java
+	allprojects {
+		repositories {
+			jcenter()
+			maven {
+				url "https://maven.drm.technology/artifactory/vudrm-widevine"
+				credentials {
+					username = "mavenUsername"
+					password = "mavenPassword"
+				}
+			}
+		}
+	}		
+	```
 2.	Change the username and password to your credentials for authentication to the maven repository
 
 3.	Under your module’s build.gradle dependencies add:
@@ -71,8 +71,8 @@ For further information about VUDRM please contact us, or refer to our documenta
 
 	The default license server can also be overridden using the API call ‘licenceUrlWith(<Your license URL>)’. An Asset ID is required only for offline streaming sessions storage and management.
 
-```java
-try {
+	```java
+	try {
 	assetConfiguration = new AssetConfiguration.Builder()
 		.tokenWith(drmToken)
 		.KIDWith(KID)
@@ -80,29 +80,29 @@ try {
 	} catch (Exception e) {
 		// Handle exception
 	}
-```
+	```
 
 2. Once you’ve built the object you can construct a plugin by instantiating a WidevineCallback object with the asset configuration.
 
-```
-WidevineCallback callback = new WidevineCallback(assetConfiguration);
-```
+	```
+	WidevineCallback callback = new WidevineCallback(assetConfiguration);
+	```
 
 3.	Then you can pass it to ExoPlayer as the component required when creating the DefaultDrmSessionManager<FrameworkMediaCrypto> object.
 
-```java
-try {
-	return new DefaultDrmSessionManager<>(vudrm.widevineDRMSchemeUUID,
-		FrameworkMediaDrm.newInstance(vudrm.widevineDRMSchemeUUID),
-		callback,
-		null,
-		new Handler(),
-		null);
-	} catch (UnsupportedDrmException e) {
-    	e.printStackTrace();
-    	return null;
-	}
-```
+	```java
+	try {
+		return new DefaultDrmSessionManager<>(vudrm.widevineDRMSchemeUUID,
+			FrameworkMediaDrm.newInstance(vudrm.widevineDRMSchemeUUID),
+			callback,
+			null,
+			new Handler(),
+			null);
+		} catch (UnsupportedDrmException e) {
+			e.printStackTrace();
+			return null;
+		}
+	```
 
 
 ### Offline Streaming Sessions
@@ -115,16 +115,16 @@ It is important to consider that while online, VUDRMWidevine handles generating 
 
 1.	Initially identical to online sessions, start by instantiating an (online) AssetConfiguration using the fluent interface. This configuration is used to acquire the offline license for later use when offline.
 
-```java
-try {
-	assetConfiguration = new AssetConfiguration.Builder()
-		.tokenWith(drmToken)
-		.KIDWith(KID)
-		.build();
-	} catch (Exception e) {
-    	// Handle exception
-	}
-```
+	```java
+	try {
+		assetConfiguration = new AssetConfiguration.Builder()
+			.tokenWith(drmToken)
+			.KIDWith(KID)
+			.build();
+		} catch (Exception e) {
+			// Handle exception
+		}
+	```
 
 2.	Once you’ve built the object you can construct a plugin by instantiating a WidevineCallback object with the asset configuration.
 
@@ -137,9 +137,9 @@ try {
 
 4.	An offline license can then be acquired using Exoplayers OfflineLicenseHelper call:
 
-```
-byte[] offlineLicenseKeySetId = mOfflineLicenseHelper.downloadLicense(drmInitData);
-```
+	```
+	byte[] offlineLicenseKeySetId = mOfflineLicenseHelper.downloadLicense(drmInitData);
+	```
 
 	The ```offlineLicenseKeySetId``` is the key binder between the offline asset and the associated offline license.
 
@@ -147,19 +147,19 @@ byte[] offlineLicenseKeySetId = mOfflineLicenseHelper.downloadLicense(drmInitDat
 
 	When the download is complete, offline playback can then be achieved by calling the asset using a VUDRM OfflineAssetConfiguration and a standard Widevine DefaultDrmSessionManager<FrameworkMediaCrypto> object using an HttpMediaDrmCallback that can be passed to the player.
 
-```java
-try {
-	OfflineAssetConfiguration assetConfiguration = new OfflineAssetConfiguration.Builder()
-		.kidProviderWith(
-			new HttpKidSource(
-				new URL(streamUrl)
-				)
-		)
-	.build();
-	} catch (Exception e) {
-		// Handle exception
-	}
-```
+	```java
+	try {
+		OfflineAssetConfiguration assetConfiguration = new OfflineAssetConfiguration.Builder()
+			.kidProviderWith(
+				new HttpKidSource(
+					new URL(streamUrl)
+					)
+			)
+		.build();
+		} catch (Exception e) {
+			// Handle exception
+		}
+	```
 
 
 References:
