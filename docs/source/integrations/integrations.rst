@@ -7,3 +7,4 @@ INTEGRATIONS
 
    mobile/index.rst
    players/index.rst
+   VUDRM-support-matrix.md
