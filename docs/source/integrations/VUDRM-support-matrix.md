@@ -1,0 +1,35 @@
+# VUDRM SUPPORT MATRIX
+
+| Browsers | PlayReady | Widevine | Fairplay |
+|-|-|-|-|
+| **Chrome** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Edge** _Windows 10^_ | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Firefox** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Internet Explorer 11** _Windows 8.1^_ | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Safari** | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
+| **Opera** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+
+| Mobile | PlayReady | Widevine | Fairplay |
+|-|-|-|-|
+| **Android 4.4^** _VUDRMWidevine SDK: offline playback available_ | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Chrome mobile (Android)** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **iOS** _VUDRMfairplay SDK: 10^ offline available, 9^ online only_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
+| **Safari mobile (iOS)** _iOS 11.2^_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
+| **Windows phone** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+
+| Consoles | PlayReady | Widevine | Fairplay |
+|-|-|-|-|
+| **PlayStation** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **Xbox** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+
+| Smart TV's | PlayReady | Widevine | Fairplay |
+|-|-|-|-|
+| **Amazon Fire** | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Android TV** _VUDRMWidevine SDK_ | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Apple TV** _VUDRMfairplay SDK_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
+| **Google Chromecast** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Google TV** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Roku** | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+| **Samsung Tizen** _2017 models^_ | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
+| **tvOS** _VUDRMfairplay SDK_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
+| **Smart TV Alliance** _LG, PANASONIC, PHILIPS, TOSHIBA_ | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> |

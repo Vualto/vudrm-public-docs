@@ -19,5 +19,6 @@ Contents:
    VUDRM-key-provision.md
    VUDRM-token.md
    VUDRM-Speke-Key-Provider.md
+   VUDRM-support-matrix.md
    Geo-Location.md
    integrations/integrations.rst   
