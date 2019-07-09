@@ -1,6 +1,6 @@
 # VUDRM SUPPORT MATRIX
 
-** See bottom of page for caveats. **
+**See bottom of page for caveats.**
 
 | Browsers | PlayReady | Widevine | Fairplay |
 |-|-|-|-|
