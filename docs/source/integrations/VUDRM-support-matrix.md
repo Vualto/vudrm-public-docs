@@ -24,7 +24,7 @@
 | **PlayStation** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
 | **Xbox** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
 
-| Smart TV's | PlayReady | Widevine | Fairplay |
+| Smart TVs | PlayReady | Widevine | Fairplay |
 |-|-|-|-|
 | **Amazon Fire** | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
 | **Android TV** _VUDRMWidevine SDK_ | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
