@@ -1,5 +1,7 @@
 # VUDRM SUPPORT MATRIX
 
+**See bottom of page for caveats.**
+
 | Browsers | PlayReady | Widevine | Fairplay |
 |-|-|-|-|
 | **Chrome** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
@@ -22,7 +24,7 @@
 | **PlayStation** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
 | **Xbox** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
 
-| Smart TV's | PlayReady | Widevine | Fairplay |
+| Smart TVs | PlayReady | Widevine | Fairplay |
 |-|-|-|-|
 | **Amazon Fire** | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
 | **Android TV** _VUDRMWidevine SDK_ | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
@@ -33,3 +35,12 @@
 | **Samsung Tizen** _2017 models^_ | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
 | **tvOS** _VUDRMfairplay SDK_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
 | **Smart TV Alliance** _LG, PANASONIC, PHILIPS, TOSHIBA_ | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
+
+## Caveats
+- Widevine mandates all browser CDM implementations to stay current with Chrome stable releases to ensure that the latest updates are applied. Older versions of Chrome, Firefox, and Opera may not be able to use DRM. Click [here](https://www.widevine.com/news) for Widevine’s deprecation schedule.
+
+- VUDRM uses Widevine Modular by default (Widevine Classic is not supported).
+
+- Some Smart TV Alliance models may not support Widevine.
+
+- In Linux based systems, Widevine may not be supported on some versions of Chrome and Firefox.
