@@ -39,7 +39,7 @@ load(url, token, laUrl) {
 
 ## Receiver
 
-setup of the host within your `receiver` application.
+Setup of the host within your `receiver` application.
 
 ```javascript
 if (event.data.media && event.data.media.contentId){
