@@ -255,9 +255,9 @@ else:
     print("Hash validation failed for key provider response!")
 ```
 
-### Using the encryption keys
+## Using the encryption keys
 
-The next section explains the various encryption keys provided by the Key Provider API. Each set has a different use case. For use with USP products [CENC](#cenc) and [Fairplay](#fairplay) encryption keys are recommended. See the [Use with mp4split](#use-with-mp4split) section for more details on how to use `mp4split` with the Key Provider.
+The next section explains the various encryption keys provided by the Key Provider API. Each set has a different use case. For use with USP products [CENC](#cenc) and [Fairplay](#fairplay) encryption keys are recommended. See the [Unified Streaming Integration](#unified-streaming-integration) section for more details on how to use `mp4split` with the Key Provider.
 
 #### CENC
 
@@ -275,15 +275,16 @@ An example decrypted response would be:
 
 ```JSON
 {
-    "key_id_big":"fF5/kR95LyG+X+m8kZPDOw==",
-    "key_id_hex":"7C5E7F911F792F21BE5FE9BC9193C33B",
-    "content_key":"eI5JjujIo1Ek7lqO+3gg0A==",
-    "content_key_hex":"788E498EE8C8A35124EE5A8EFB7820D0",
-    "playready_key_iv":"cd340bf920a34bfb",
-    "widevine_drm_specific_data":"CAESEJrENOhpDl58uLPtkqsm0/kaBnZ1YWx0byIgN0M1RTdGOTExRjc5MkYyMUJFNUZFOUJDOTE5M0MzM0IqAkhEMgA=",
-    "playready_laurl":"http://playready-license.vudrm.tech/rightsmanager.asmx",
-    "widevine_laurl":"https://widevine-license.vudrm.tech/proxy"
-} 
+    "key_id_big": "qMTumUz5drgbusWY+fi5LA==",
+    "key_id_hex": "A8C4EE994CF976B81BBAC598F9F8B92C",
+    "content_key": "ETweRxyDIuDqAadsWdx0HQ==",
+    "content_key_hex": "113C1E471C8322E0EA01A76C59DC741D",
+    "playready_key_iv": "dd80b66b2fe44be4",
+    "playready_laurl": "https://playready-license.vudrm.tech/rightsmanager.asmx",
+    "playready_checksum": "j+7cluk2J58=",
+    "widevine_drm_specific_data": "Ig1zb21lY29udGVudGlkSOPclZsG",
+    "widevine_laurl": "https://widevine-license.vudrm.tech/proxy"
+}
 ```
 
 The values are:
@@ -293,8 +294,9 @@ The values are:
 - `content_key`: 128bit encryption key in base64 in Big Endian.
 - `content_key_hex`: 128bit encryption key in base16 in Little Endian. This one should be used with `mp4split`.
 - `playready_key_iv`: Additional random value to strengthen the PlayReady encryption.
-- `widevine_drm_specific_data`: The Widevine PSSH box.
 - `playready_laurl`: The PlayReady license server URL.
+- `playready_checksum`: A PlayReady specific security value required by some older PlayReady solutions and [Wowza](wowza-integration).
+- `widevine_drm_specific_data`: The Widevine PSSH box.
 - `widevine_laurl`: The Widevine license server URL.
 
 #### Fairplay
@@ -418,9 +420,9 @@ The values are:
 - `laurl`: The Widevine license server URL.
 - `drm_specific_data`: The Widevine PSSH box.
 
-#### Use with mp4split
+## Unified Streaming Integration
 
-The encryption keys provided by the Key Provider API are compatible with [Unified Streaming Platform's](https://www.unified-streaming.com/) products.
+The encryption keys provided by the Key Provider API are compatible with [Unified Streaming Platform's](https://www.unified-streaming.com/) mp4split product.
 
 The recommended approach is to call the Key Provider API and retrieve CENC and Fairplay Keys. Once the encryption keys have been retrieved they can be used with mp4split to generate an ism:
 
@@ -440,3 +442,63 @@ mp4split --license-key=$LICENSE_KEY -o $ISM \
 ```
 
 The HLS values come from the Fairplay encryption keys, all other values are from the CENC keys.
+
+## Wowza Integration
+
+The encryption keys provided by the Key Provider API are compatible with [Wowza](https://www.wowza.com/).
+
+The following steps detail how to configure Wowza to support VUDRM:
+
+### Configure Wowza Stream Settings
+
+1. Stop Wowza appending the session ID to the license server URL: https://www.wowza.com/docs/how-to-control-streaming-session-id-appended-to-encryption-urls-in-chunklist-responses-cupertinoappendqueryparamstoencurl
+2. Change the `EXT-X-VERSION` for HLS streaming to `5` by setting the `cupertinoExtXVersion` value: https://www.wowza.com/docs/how-to-change-the-ext-x-version-for-apple-http-live-streaming
+
+### Manually Set VUDRM Settings
+
+This method of integrating VUDRM with Wowza uses key files:
+https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc
+https://www.wowza.com/docs/how-to-secure-apple-hls-streaming-using-drm-encryption#keyfiles
+
+NB: Widevine, PlayReady and Fairplay key values can be set in the same file.
+
+An example key file is:
+
+```bash
+mpegdashstreaming-cenc-key-id: MT8jItzhV+ay+3QEtoyIxQ==
+mpegdashstreaming-cenc-content-key: EcZ9tM1adkoleC1hwFlpQw==
+mpegdashstreaming-cenc-algorithm: AESCTR
+mpegdashstreaming-cenc-keyserver-widevine: true
+mpegdashstreaming-cenc-keyserver-widevine-system-id: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
+mpegdashstreaming-cenc-keyserver-widevine-pssh-data: Igp3b3d6YS1kZW1vSOPclZsG
+mpegdashstreaming-cenc-keyserver-playready: true
+mpegdashstreaming-cenc-keyserver-playready-system-id: 9a04f079-9840-4286-ab92-e65be0885f95
+mpegdashstreaming-cenc-keyserver-playready-license-url: https://playready-license.drm.technology/rightsmanager.as
+mpegdashstreaming-cenc-keyserver-playready-checksum: Mv5YB5EhHKw=
+cupertinostreaming-aes128-method: SAMPLE-AES
+cupertinostreaming-aes128-url: skd://fairplay-license.staging.vudrm.tech/license/wowza-demo
+cupertinostreaming-aes128-key: 24F79075974B8E1BC8AF576925B8458F
+cupertinostreaming-aes128-iv: A140A11A450DBC04E67F39B850C13D41
+cupertinostreaming-aes128-iv-include-in-chunklist: false
+cupertinostreaming-aes128-key-format: com.apple.streamingkeydelivery
+cupertinostreaming-aes128-key-format-version: 1
+```
+
+The values are:
+- `mpegdashstreaming-cenc-key-id`: The `key_id_big` value from the [CENC response](#cenc).
+- `mpegdashstreaming-cenc-content-key`: The `content_key` value from the [CENC response](#cenc).
+- `mpegdashstreaming-cenc-algorithm`: Must be set to `AESCTR`.
+- `mpegdashstreaming-cenc-keyserver-widevine`: Must be set to `true`.
+- `mpegdashstreaming-cenc-keyserver-widevine-system-id`: Must be set to `edef8ba9-79d6-4ace-a3c8-27dcd51d21ed`
+- `mpegdashstreaming-cenc-keyserver-widevine-pssh-data`: The `widevine_drm_specific_data` value from the [CENC response](#cenc).
+- `mpegdashstreaming-cenc-keyserver-playready`: Must be set to `true`.
+- `mpegdashstreaming-cenc-keyserver-playready-system-id`: Must be set to `9a04f079-9840-4286-ab92-e65be0885f95`
+- `mpegdashstreaming-cenc-keyserver-playready-license-url`: The `playready_laurl` value from the [CENC response](#cenc).
+- `mpegdashstreaming-cenc-keyserver-playready-checksum`: The `checksum` value from the [CENC Response](#cenc)
+- `cupertinostreaming-aes128-method`: Must be set to `SAMPLE-AES`.
+- `cupertinostreaming-aes128-url`: The `laurl` value from the [Fairplay Response](#fairplay)
+- `cupertinostreaming-aes128-key`: The `key_hex` value from the [Fairplay Response](#fairplay)
+- `cupertinostreaming-aes128-iv`: The `iv_hex` value from the [Fairplay Response](#fairplay)
+- `cupertinostreaming-aes128-iv-include-in-chunklist`: Must be set to `false`.
+- `cupertinostreaming-aes128-key-format`: Must be set to `com.apple.streamingkeydelivery`.
+- `cupertinostreaming-aes128-key-format-version`: Must be set to `1`.
