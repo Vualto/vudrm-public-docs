@@ -46,7 +46,7 @@ if (event.data.media && event.data.media.contentId){
     let host, protocol;
     let url = event.data.media.contentId;
     let initStart = event.data.media.currentTime || 0;
-    let autoplay = event.data.autoplay !== false;
+let autoplay = !!event.data.autoplay;
     let customData = event.data.media.customData || {};
 
     host = new cast.player.api.Host({mediaElement:this._video, url});
