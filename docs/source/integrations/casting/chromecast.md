@@ -6,7 +6,7 @@ Google have extensive [documentation](https://developers.google.com/cast/docs/de
 
 ## Basic setup
 
-In order to stream DRM protected content on a Chromecast using Google' web SDK you will need to create a Custom Receiver app. The app will utilise two parts a `Sender` and a `Receiver`.
+In order to stream DRM protected content on a Chromecast using Googles' web SDK you will need to create a Custom Receiver app. The app will utilise two parts a `Sender` and a `Receiver`.
 
 Typically the `Sender` would reside either as part of the web page or your chosen player.
 
@@ -14,7 +14,7 @@ The `Receiver` is an application that you host and register with Google.
 
 Below is an example of basic `Sender` & `Receiver` side code using the Google SDK.  
 
-### Sender
+## Sender
 
 ```javascript
 load(url, token, laUrl) {
@@ -35,7 +35,7 @@ load(url, token, laUrl) {
 }
 ```
 
-### Receiver
+## Receiver
 
 setup of the host within your `receiver` application.
 
@@ -55,7 +55,7 @@ if (event.data.media && event.data.media.contentId){
     }
 ```
 
-#### MPEG-DASH overrides
+### MPEG-DASH overrides
 
 ```javascript
 let kid;
