@@ -8,11 +8,11 @@ Follow the instructions laid out in the [Roku getting started guide](https://dev
 
 We recommend using DASH with PlayReady on Roku devices.
 
-the documentation for which can be found in the [content protection](https://developer.roku.com/en-gb/docs/specs/content-protection.md)
+The documentation for which can be found in the [content protection](https://developer.roku.com/en-gb/docs/specs/content-protection.md)
 
 ```javascript
-customData = "<VUDRM-TOKEN>";
-contentNode = createObject("roSGNode", "contentNode")
+var customData = "<VUDRM-TOKEN>";
+var contentNode = createObject("roSGNode", "contentNode")
 contentNode.streamFormat = "dash"
 contentNode.url = "<MPEG-DASH-URL>"
 contentNode.encodingType = "PlayReadyLicenseAcquisitionAndChallenge"
