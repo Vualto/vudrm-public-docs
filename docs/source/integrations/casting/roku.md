@@ -4,7 +4,7 @@
 
 ## Basic setup
 
-Follow the instructions laid out in the [Roku getting started guide](https://developer.roku.com/en-gb/docs/developer-program/getting-started/roku-dev-prog.md) to set up your environment. Roku uses it's own scripting language called BrightScript to set up channels/apps.
+Follow the getting started instructions laid out in the [Roku documentation](https://developer.roku.com/en-gb/overview) to set up your environment. Roku uses it's own scripting language called BrightScript to set up channels/apps.
 
 We recommend using DASH with PlayReady on Roku devices.
 
@@ -21,7 +21,7 @@ contentNode.encodingKey = "PlayReadyLicenseServerUrl" + "%%%" + customData
 
 ## Testing your stream
 
-You can also test your streams outside of the Roku app using the [Steam testing tool](https://developer.roku.com/en-gb/docs/developer-program/dev-tools/tools-overview.md#stream-testing-tool)
+You can also test your streams outside of the Roku app using the [Stream testing tool](https://developer.roku.com/en-gb/docs/developer-program/dev-tools/tools-overview.md#stream-testing-tool)
 
 - Add your device `IP` and `Model` to the device manager.
 - Ensure that `Mode` is set to `Video`
