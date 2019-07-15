@@ -452,14 +452,19 @@ The following steps detail how to configure Wowza to support VUDRM:
 ### Configure Wowza Stream Settings
 
 1. Stop Wowza appending the session ID to the license server URL: 
+
 [https://www.wowza.com/docs/how-to-control-streaming-session-id-appended-to-encryption-urls-in-chunklist-responses-cupertinoappendqueryparamstoencurl](https://www.wowza.com/docs/how-to-control-streaming-session-id-appended-to-encryption-urls-in-chunklist-responses-cupertinoappendqueryparamstoencurl)
+
 2. Change the `EXT-X-VERSION` for HLS streaming to `5` by setting the `cupertinoExtXVersion` value: 
+
 [https://www.wowza.com/docs/how-to-change-the-ext-x-version-for-apple-http-live-streaming](https://www.wowza.com/docs/how-to-change-the-ext-x-version-for-apple-http-live-streaming)
 
 ### Manually Set VUDRM Settings
 
 This method of integrating VUDRM with Wowza uses key files:
+
 [https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc](https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc)
+
 [https://www.wowza.com/docs/how-to-secure-apple-hls-streaming-using-drm-encryption#keyfiles](https://www.wowza.com/docs/how-to-secure-apple-hls-streaming-using-drm-encryption#keyfiles)
 
 NB: Widevine, PlayReady and Fairplay key values can be set in the same file.
