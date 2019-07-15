@@ -480,10 +480,10 @@ mpegdashstreaming-cenc-keyserver-widevine-system-id: edef8ba9-79d6-4ace-a3c8-27d
 mpegdashstreaming-cenc-keyserver-widevine-pssh-data: Igp3b3d6YS1kZW1vSOPclZsG
 mpegdashstreaming-cenc-keyserver-playready: true
 mpegdashstreaming-cenc-keyserver-playready-system-id: 9a04f079-9840-4286-ab92-e65be0885f95
-mpegdashstreaming-cenc-keyserver-playready-license-url: https://playready-license.drm.technology/rightsmanager.as
+mpegdashstreaming-cenc-keyserver-playready-license-url: https://playready-license.vudrm.tech/rightsmanager.asmx
 mpegdashstreaming-cenc-keyserver-playready-checksum: Mv5YB5EhHKw=
 cupertinostreaming-aes128-method: SAMPLE-AES
-cupertinostreaming-aes128-url: skd://fairplay-license.staging.vudrm.tech/license/wowza-demo
+cupertinostreaming-aes128-url: skd://fairplay-license.vudrm.tech/license/wowza-demo
 cupertinostreaming-aes128-key: 24F79075974B8E1BC8AF576925B8458F
 cupertinostreaming-aes128-iv: A140A11A450DBC04E67F39B850C13D41
 cupertinostreaming-aes128-iv-include-in-chunklist: false
