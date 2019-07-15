@@ -2,7 +2,7 @@
 
 Chromecast is a casting device developed by Google, to enable streaming from web apps upon large screen display devices.
 
-Google have extensive [documentation](https://developers.google.com/cast/docs/developers) about their SDK'. If you have never developed a Chromecast application before we would strongly advise you start here.
+Google have extensive [documentation](https://developers.google.com/cast/docs/developers) about their SDK. If you have never developed a Chromecast application before we would strongly advise you start here.
 
 ## Basic setup
 

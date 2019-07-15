@@ -24,8 +24,8 @@ contentNode.encodingKey = "PlayReadyLicenseServerUrl" + "%%%" + customData
 You can also test your streams outside of the Roku app using the [Stream testing tool](https://developer.roku.com/en-gb/docs/developer-program/dev-tools/tools-overview.md#stream-testing-tool)
 
 - Add your device `IP` and `Model` to the device manager.
-- Ensure that `Mode` is set to `Video`
-- Ensure that `Format` is set to either `Auto` or `DASH`
+- Ensure that `Mode` is set to `Video`.
+- Ensure that `Format` is set to either `Auto` or `DASH`.
 - Within the DRM section choose `encoding type` : `PlayReady: LA And Challenge`.
 - Put your newly generated VUDRM-token in to the custom data input box.
 - In `License server Url(optional)` put `https://playready-license.drm.technology/rightsmanager.asmx`.
