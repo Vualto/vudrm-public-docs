@@ -1,6 +1,6 @@
 # Roku
 
-Roku is a streaming stick.
+ The Roku OS was purpose-built for streaming and runs across all Roku devices, including streaming players and Roku TVs. On the Roku platform the applications that stream your media are called channels.
 
 ## Basic setup
 
@@ -14,7 +14,19 @@ the documentation for which can be found in the [content protection](https://dev
 customData = "<VUDRM-TOKEN>";
 contentNode = createObject("roSGNode", "contentNode")
 contentNode.streamFormat = "dash"
-contentNode.url = "wwww.myvideo.com/content.mpd"
+contentNode.url = "<MPEG-DASH-URL>"
 contentNode.encodingType = "PlayReadyLicenseAcquisitionAndChallenge"
 contentNode.encodingKey = "PlayReadyLicenseServerUrl" + "%%%" + customData
 ```
+
+## Testing your stream
+
+You can also test your streams outside of the Roku app using the [Steam testing tool](https://developer.roku.com/en-gb/docs/developer-program/dev-tools/tools-overview.md#stream-testing-tool)
+
+- Add your device `IP` and `Model` to the device manager.
+- Ensure that `Mode` is set to `Video`
+- Ensure that `Format` is set to either `Auto` or `DASH`
+- Within the DRM section choose `encoding type` : `PlayReady: LA And Challenge`
+- Put your newly generated VUDRM-token in to the custom data input box.
+- in `License server Url(optional)` put `https://playready-license.drm.technology/rightsmanager.asmx`
+- click `Play`
