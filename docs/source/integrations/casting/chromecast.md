@@ -16,6 +16,8 @@ Below is an example of basic `Sender` & `Receiver` side code using the Google SD
 
 ## Sender
 
+setup of the load function within your `sender` within your site or player.
+
 ```javascript
 load(url, token, laUrl) {
     if (!this.isConnected) { return };
