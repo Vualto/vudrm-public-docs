@@ -42,6 +42,7 @@ load(url, token, laUrl) {
 setup of the host within your `receiver` application.
 
 ```javascript
+let videoElement = document.getElementById("your-video-element");
 if (event.data.media && event.data.media.contentId){
     let host, protocol;
     let url = event.data.media.contentId;
@@ -49,11 +50,15 @@ if (event.data.media && event.data.media.contentId){
     let autoplay = event.data.autoplay !== false;
     let customData = event.data.media.customData || {};
 
-    host = new cast.player.api.Host({mediaElement:this._video, url});
-
+    host = new cast.player.api.Host({mediaElement:videoElement, url});
+    let player = new cast.player.api.Player(host);
+    player.load(protocol, initStart);
     host.onError = (errorCode) => {
         console.error('Fatal Error ' + errorCode);
-        this._unloadPlayer();
+        if (player) {
+            player.unload();
+            player = null;
+        }
     }
 ```
 
