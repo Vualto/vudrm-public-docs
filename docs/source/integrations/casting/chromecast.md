@@ -55,7 +55,7 @@ if (event.data.media && event.data.media.contentId){
     }
 ```
 
-### MPEG-DASH overrides
+#### MPEG-DASH overrides
 
 ```javascript
 let kid;
