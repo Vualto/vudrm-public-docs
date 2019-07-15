@@ -10,6 +10,8 @@ Typically the `Sender` would reside either as part of the web page or your chose
 
 The `Receiver` is an application that you host and register with Google.
 
+Below is an example of basic receiver side code using the `Receiver` SDK.  
+
 ```javascript
 if (event.data.media && event.data.media.contentId){
     let host, protocol;
@@ -20,7 +22,7 @@ if (event.data.media && event.data.media.contentId){
 
     host = new cast.player.api.Host({mediaElement:this._video, url});
 
-    host.onError = (errorCode:string) => {
+    host.onError = (errorCode) => {
         console.error('Fatal Error ' + errorCode);
         this._unloadPlayer();
     }
@@ -28,11 +30,11 @@ if (event.data.media && event.data.media.contentId){
     switch (true) {
         // MPEG-DASH
         case url.lastIndexOf('.mpd') >= 0:
-            let kid:string;
+            let kid;
             host.protectionSystem = cast.player.api.ContentProtection.WIDEVINE;
             host.licenseUrl = customData.laUrl || 'https://widevine-proxy.drm.technology/proxy';
 
-            host.processManifest = (manifest:string):string => {
+            host.processManifest = (manifest) => {
                 let parser = new DOMParser();
                 let xmlDoc = parser.parseFromString(manifest, 'text/xml');
                 let el = xmlDoc.querySelector('ContentProtection');
@@ -40,7 +42,7 @@ if (event.data.media && event.data.media.contentId){
                 return manifest;
             };
 
-            host.updateLicenseRequestInfo = (requestInfo:any) => {
+            host.updateLicenseRequestInfo = (requestInfo) => {
                 let token = customData.token;
                 let body = JSON.stringify({
                                 token: token,
@@ -48,7 +50,7 @@ if (event.data.media && event.data.media.contentId){
                                 kid: kid
                             });
 
-                let buffer:any[] = [];
+                let buffer = [];
 
                 for (let i=0; i<body.length; i++) {
                     buffer.push(body.charCodeAt(i));
@@ -70,17 +72,10 @@ if (event.data.media && event.data.media.contentId){
             case url.indexOf('.ism/') >= 0:
                 protocol = cast.player.api.CreateSmoothStreamingProtocol(host);
                 break;
-            }
+    }
 
-            if (protocol)
-            {
-                this._player = new cast.player.api.Player(host);
-                this._player.load(protocol, initStart);
-            }
-            else
-            {
-                // MP4, MOV, etc
-                this._defaultOnLoad(event);
-            }
-        }
+    if (protocol) {
+        this._player = new cast.player.api.Player(host);
+        this._player.load(protocol, initStart);
+    }
 ```
