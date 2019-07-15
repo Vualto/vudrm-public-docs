@@ -12,6 +12,8 @@ The `Receiver` is an application that you host and register with Google.
 
 Below is an example of basic receiver side code using the `Receiver` SDK.  
 
+setup of the host.
+
 ```javascript
 if (event.data.media && event.data.media.contentId){
     let host, protocol;
@@ -26,56 +28,40 @@ if (event.data.media && event.data.media.contentId){
         console.error('Fatal Error ' + errorCode);
         this._unloadPlayer();
     }
+```
 
-    switch (true) {
-        // MPEG-DASH
-        case url.lastIndexOf('.mpd') >= 0:
-            let kid;
-            host.protectionSystem = cast.player.api.ContentProtection.WIDEVINE;
-            host.licenseUrl = customData.laUrl || 'https://widevine-proxy.drm.technology/proxy';
+### MPEG-DASH overrides
 
-            host.processManifest = (manifest) => {
-                let parser = new DOMParser();
-                let xmlDoc = parser.parseFromString(manifest, 'text/xml');
-                let el = xmlDoc.querySelector('ContentProtection');
-                kid = el ? el.getAttribute('cenc:default_KID') : '';
-                return manifest;
-            };
+```javascript
+let kid;
+host.protectionSystem = cast.player.api.ContentProtection.WIDEVINE;
+host.licenseUrl = customData.laUrl || 'https://widevine-proxy.drm.technology/proxy';
 
-            host.updateLicenseRequestInfo = (requestInfo) => {
-                let token = customData.token;
-                let body = JSON.stringify({
-                                token: token,
-                                drm_info: Array.apply(null, requestInfo.content),
-                                kid: kid
-                            });
+host.processManifest = (manifest) => {
+    let parser = new DOMParser();
+    let xmlDoc = parser.parseFromString(manifest, 'text/xml');
+    let el = xmlDoc.querySelector('ContentProtection');
+    kid = el ? el.getAttribute('cenc:default_KID') : '';
+    return manifest;
+};
 
-                let buffer = [];
+host.updateLicenseRequestInfo = (requestInfo) => {
+    let token = customData.token;
+    let body = JSON.stringify({
+        token: token,
+        drm_info: Array.apply(null, requestInfo.content),
+        kid: kid
+    });
 
-                for (let i=0; i<body.length; i++) {
-                    buffer.push(body.charCodeAt(i));
-                }
+    let buffer = [];
 
-                requestInfo.headers['Content-Type'] = 'application/json';
-                requestInfo.content = new Uint8Array(buffer);
-            }
-
-            protocol = cast.player.api.CreateDashStreamingProtocol(host);
-            break;
-
-            // HLS
-            case url.lastIndexOf('.m3u8') >= 0:
-                protocol = cast.player.api.CreateHlsStreamingProtocol(host);
-                break;
-
-            // Smooth Streaming
-            case url.indexOf('.ism/') >= 0:
-                protocol = cast.player.api.CreateSmoothStreamingProtocol(host);
-                break;
+    for (let i=0; i<body.length; i++) {
+        buffer.push(body.charCodeAt(i));
     }
 
-    if (protocol) {
-        this._player = new cast.player.api.Player(host);
-        this._player.load(protocol, initStart);
-    }
+    requestInfo.headers['Content-Type'] = 'application/json';
+    requestInfo.content = new Uint8Array(buffer);
+}
+
+protocol = cast.player.api.CreateDashStreamingProtocol(host);
 ```
