@@ -12,7 +12,30 @@ Typically the `Sender` would reside either as part of the web page or your chose
 
 The `Receiver` is an application that you host and register with Google.
 
-Below is an example of basic receiver side code using the `Receiver` SDK.  
+Below is an example of basic `Sender` & `Receiver` side code using the Google SDK.  
+
+### Sender
+
+```javascript
+load(url, token, laUrl) {
+    if (!this.isConnected) { return };
+    let mediaInfo, request;
+    mediaInfo = new chrome.cast.media.MediaInfo(url);
+    mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
+    mediaInfo.metadata.metadataType = chrome.cast.media.MetadataType.GENERIC;
+    mediaInfo.metadata.title = 'VUDRM Demo';
+    mediaInfo.customData = { laUrl, token };
+
+    request = new chrome.cast.media.LoadRequest(mediaInfo);
+    request.autoplay = true;
+    request.currentTime = 0;
+    this._castContext.getCurrentSession().loadMedia(request).catch((error) => {
+        console.error(error);
+    });
+}
+```
+
+### Receiver
 
 setup of the host within your `receiver` application.
 
