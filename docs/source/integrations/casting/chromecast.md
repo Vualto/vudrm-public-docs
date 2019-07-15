@@ -1,6 +1,8 @@
 # Chromecast
 
-Chromecast is a casting device developed by Google.
+Chromecast is a casting device developed by Google, to enable streaming from web apps upon large screen display devices.
+
+Google have extensive [documentation](https://developers.google.com/cast/docs/developers) about their SDK'. If you have never developed a Chromecast application before we would strongly advise you start here.
 
 ## Basic setup
 
@@ -12,7 +14,7 @@ The `Receiver` is an application that you host and register with Google.
 
 Below is an example of basic receiver side code using the `Receiver` SDK.  
 
-setup of the host.
+setup of the host within your `receiver` application.
 
 ```javascript
 if (event.data.media && event.data.media.contentId){
