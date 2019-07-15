@@ -8,7 +8,7 @@ Follow the getting started instructions laid out in the [Roku documentation](htt
 
 We recommend using DASH with PlayReady on Roku devices.
 
-the documentation for which can be found in the [content protection](https://developer.roku.com/en-gb/docs/specs/content-protection.md)
+The documentation for which can be found in the [content protection](https://developer.roku.com/en-gb/docs/specs/content-protection.md).
 
 ```javascript
 customData = "<VUDRM-TOKEN>";
