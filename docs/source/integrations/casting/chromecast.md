@@ -67,7 +67,7 @@ let autoplay = !!event.data.autoplay;
 ```javascript
 let kid;
 host.protectionSystem = cast.player.api.ContentProtection.WIDEVINE;
-host.licenseUrl = customData.laUrl || 'https://widevine-proxy.drm.technology/proxy';
+host.licenseUrl = 'https://widevine-proxy.drm.technology/proxy';
 
 host.processManifest = (manifest) => {
     let parser = new DOMParser();
