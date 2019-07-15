@@ -2,7 +2,7 @@
 
 Chromecast is a casting device developed by Google, to enable streaming from web apps upon large screen display devices.
 
-Google have extensive [documentation](https://developers.google.com/cast/docs/developers) about their SDK'. If you have never developed a Chromecast application before we would strongly advise you start here.
+Google have extensive [documentation](https://developers.google.com/cast/docs/developers) about their SDK. If you have never developed a Chromecast application before we would strongly advise you start here.
 
 ## Basic setup
 
@@ -16,7 +16,7 @@ Below is an example of basic `Sender` & `Receiver` side code using the Google SD
 
 ## Sender
 
-setup of the load function within your `sender` within your site or player.
+Setup of the load function within your `sender` within your site or player.
 
 ```javascript
 load(url, token, laUrl) {
@@ -39,7 +39,7 @@ load(url, token, laUrl) {
 
 ## Receiver
 
-setup of the host within your `receiver` application.
+Setup of the host within your `receiver` application.
 
 ```javascript
 let videoElement = document.getElementById("your-video-element");
@@ -47,7 +47,7 @@ if (event.data.media && event.data.media.contentId){
     let host, protocol;
     let url = event.data.media.contentId;
     let initStart = event.data.media.currentTime || 0;
-    let autoplay = event.data.autoplay !== false;
+let autoplay = !!event.data.autoplay;
     let customData = event.data.media.customData || {};
 
     host = new cast.player.api.Host({mediaElement:videoElement, url});

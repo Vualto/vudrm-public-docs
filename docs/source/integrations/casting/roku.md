@@ -8,7 +8,7 @@ Follow the getting started instructions laid out in the [Roku documentation](htt
 
 We recommend using DASH with PlayReady on Roku devices.
 
-the documentation for which can be found in the [content protection](https://developer.roku.com/en-gb/docs/specs/content-protection.md)
+The documentation for which can be found in the [content protection](https://developer.roku.com/en-gb/docs/specs/content-protection.md).
 
 ```javascript
 
@@ -25,9 +25,9 @@ contentNode.encodingKey = "PlayReadyLicenseServerUrl" + "%%%" + customData
 You can also test your streams outside of the Roku app using the [Stream testing tool](https://developer.roku.com/en-gb/docs/developer-program/dev-tools/tools-overview.md#stream-testing-tool)
 
 - Add your device `IP` and `Model` to the device manager.
-- Ensure that `Mode` is set to `Video`
-- Ensure that `Format` is set to either `Auto` or `DASH`
-- Within the DRM section choose `encoding type` : `PlayReady: LA And Challenge`
+- Ensure that `Mode` is set to `Video`.
+- Ensure that `Format` is set to either `Auto` or `DASH`.
+- Within the DRM section choose `encoding type` : `PlayReady: LA And Challenge`.
 - Put your newly generated VUDRM-token in to the custom data input box.
-- in `License server Url(optional)` put `https://playready-license.drm.technology/rightsmanager.asmx`
-- click `Play`
+- In `License server Url(optional)` put `https://playready-license.drm.technology/rightsmanager.asmx`.
+- Click `Play`.
