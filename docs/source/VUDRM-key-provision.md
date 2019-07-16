@@ -461,7 +461,7 @@ The following steps detail how to configure Wowza to support VUDRM:
 
 This method of integrating VUDRM with Wowza uses key files:
 - [how to secure mpeg dash](https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc)
-- [https://www.wowza.com/docs/how-to-secure-apple-hls-streaming-using-drm-encryption#keyfiles](https://www.wowza.com/docs/how-to-secure-apple-hls-streaming-using-drm-encryption#keyfiles)
+- [how to secure apple hls streaming](https://www.wowza.com/docs/how-to-secure-apple-hls-streaming-using-drm-encryption#keyfiles)
 
 NB: Widevine, PlayReady, and Fairplay key values can be set in the same file.
 
