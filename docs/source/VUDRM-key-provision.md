@@ -493,7 +493,7 @@ The values are:
 - `mpegdashstreaming-cenc-algorithm`: Must be set to `AESCTR`.
 - `mpegdashstreaming-cenc-keyserver-widevine`: Must be set to `true`.
 - `mpegdashstreaming-cenc-keyserver-widevine-system-id`: Must be set to `edef8ba9-79d6-4ace-a3c8-27dcd51d21ed`
-- `mpegdashstreaming-cenc-keyserver-widevine-pssh-data`: The `widevine_drm_specific_data` value from the [CENC response](#cenc).
+- `mpegdashstreaming-cenc-keyserver-widevine-pssh-data`: The `widevine_drm_specific_data` value from the [CENC Response](#cenc).
 - `mpegdashstreaming-cenc-keyserver-playready`: Must be set to `true`.
 - `mpegdashstreaming-cenc-keyserver-playready-system-id`: Must be set to `9a04f079-9840-4286-ab92-e65be0885f95`
 - `mpegdashstreaming-cenc-keyserver-playready-license-url`: The `playready_laurl` value from the [CENC Response](#cenc).
