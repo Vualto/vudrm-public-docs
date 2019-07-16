@@ -295,7 +295,7 @@ The values are:
 - `content_key_hex`: 128bit encryption key in base16 in Little Endian. This one should be used with `mp4split`.
 - `playready_key_iv`: Additional random value to strengthen the PlayReady encryption.
 - `playready_laurl`: The PlayReady license server URL.
-- `playready_checksum`: A PlayReady specific security value required by some older PlayReady solutions and [Wowza](wowza-integration).
+- `playready_checksum`: A PlayReady specific security value required by some older PlayReady solutions and [Wowza](#wowza-integration).
 - `widevine_drm_specific_data`: The Widevine PSSH box.
 - `widevine_laurl`: The Widevine license server URL.
 
