@@ -455,7 +455,7 @@ The following steps detail how to configure Wowza to support VUDRM:
 	- [how to control the streaming session id](https://www.wowza.com/docs/how-to-control-streaming-session-id-appended-to-encryption-urls-in-chunklist-responses-cupertinoappendqueryparamstoencurl)
 
 2. Change the `EXT-X-VERSION` for HLS streaming to `5` by setting the `cupertinoExtXVersion` value: 
-	- [https://www.wowza.com/docs/how-to-change-the-ext-x-version-for-apple-http-live-streaming](https://www.wowza.com/docs/how-to-change-the-ext-x-version-for-apple-http-live-streaming)
+	- [how to change the ext x version](https://www.wowza.com/docs/how-to-change-the-ext-x-version-for-apple-http-live-streaming)
 
 ### Manually Set VUDRM Settings
 
