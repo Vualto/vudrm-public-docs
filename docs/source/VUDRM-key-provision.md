@@ -496,7 +496,7 @@ The values are:
 - `mpegdashstreaming-cenc-keyserver-widevine-pssh-data`: The `widevine_drm_specific_data` value from the [CENC response](#cenc).
 - `mpegdashstreaming-cenc-keyserver-playready`: Must be set to `true`.
 - `mpegdashstreaming-cenc-keyserver-playready-system-id`: Must be set to `9a04f079-9840-4286-ab92-e65be0885f95`
-- `mpegdashstreaming-cenc-keyserver-playready-license-url`: The `playready_laurl` value from the [CENC response](#cenc).
+- `mpegdashstreaming-cenc-keyserver-playready-license-url`: The `playready_laurl` value from the [CENC Response](#cenc).
 - `mpegdashstreaming-cenc-keyserver-playready-checksum`: The `checksum` value from the [CENC Response](#cenc)
 - `cupertinostreaming-aes128-method`: Must be set to `SAMPLE-AES`.
 - `cupertinostreaming-aes128-url`: The `laurl` value from the [Fairplay Response](#fairplay)
