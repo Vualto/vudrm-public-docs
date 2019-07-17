@@ -21,14 +21,13 @@ Setup of the load function within your `sender` within your site or player.
 ```javascript
 load(url, token, laUrl) {
     if (!this.isConnected) { return };
-    let mediaInfo, request;
-    mediaInfo = new chrome.cast.media.MediaInfo(url);
+    let mediaInfo = new chrome.cast.media.MediaInfo(url);
     mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
     mediaInfo.metadata.metadataType = chrome.cast.media.MetadataType.GENERIC;
     mediaInfo.metadata.title = 'VUDRM Demo';
     mediaInfo.customData = { laUrl, token };
 
-    request = new chrome.cast.media.LoadRequest(mediaInfo);
+    let request = new chrome.cast.media.LoadRequest(mediaInfo);
     request.autoplay = true;
     request.currentTime = 0;
     this._castContext.getCurrentSession().loadMedia(request).catch((error) => {
