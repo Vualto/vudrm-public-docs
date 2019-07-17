@@ -20,7 +20,7 @@ Setup of the load function within your `sender` within your site or player.
 
 ```javascript
 load(url, token, laUrl) {
-    if (!this.castService.isConnected) { return };
+    if (player.isConnected) { return };
     let mediaInfo = new chrome.cast.media.MediaInfo(url);
     mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
     mediaInfo.metadata.metadataType = chrome.cast.media.MetadataType.GENERIC;
