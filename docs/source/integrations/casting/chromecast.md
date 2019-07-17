@@ -30,7 +30,7 @@ load(url, token, laUrl) {
     let request = new chrome.cast.media.LoadRequest(mediaInfo);
     request.autoplay = true;
     request.currentTime = 0;
-    this._castContext.getCurrentSession().loadMedia(request).catch((error) => {
+    cast.framework.CastContext.getInstance().getCurrentSession().loadMedia(request).catch((error) => {
         console.error(error);
     });
 }
