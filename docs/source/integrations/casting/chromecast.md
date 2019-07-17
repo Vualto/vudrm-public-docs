@@ -65,7 +65,6 @@ if (event.data.media && event.data.media.contentId){
 ### MPEG-DASH overrides
 
 ```javascript
-let kid;
 host.protectionSystem = cast.player.api.ContentProtection.WIDEVINE;
 host.licenseUrl = 'https://widevine-proxy.drm.technology/proxy';
 
@@ -73,15 +72,14 @@ host.processManifest = (manifest) => {
     let parser = new DOMParser();
     let xmlDoc = parser.parseFromString(manifest, 'text/xml');
     let el = xmlDoc.querySelector('ContentProtection');
-    kid = el ? el.getAttribute('cenc:default_KID') : '';
+    let kid = el ? el.getAttribute('cenc:default_KID') : '';
     return manifest;
 };
 
 host.updateLicenseRequestInfo = (requestInfo) => {
     // customData is the message object that was sent to the receiver.
-    let token = customData.token;
     let body = JSON.stringify({
-        token: token,
+        token: customData.token,
         drm_info: Array.apply(null, requestInfo.content),
         kid: kid
     });
