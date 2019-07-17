@@ -44,13 +44,13 @@ Setup of the host within your `receiver` application.
 ```javascript
 let videoElement = document.getElementById("your-video-element");
 if (event.data.media && event.data.media.contentId){
-    let host, protocol;
     let url = event.data.media.contentId;
     let initStart = event.data.media.currentTime || 0;
-let autoplay = !!event.data.autoplay;
+    let autoplay = !!event.data.autoplay;
     let customData = event.data.media.customData || {};
 
-    host = new cast.player.api.Host({mediaElement:videoElement, url});
+    let host = new cast.player.api.Host({mediaElement:videoElement, url});
+    let protocol = cast.player.api.CreateDashStreamingProtocol(host);
     let player = new cast.player.api.Player(host);
     player.load(protocol, initStart);
     host.onError = (errorCode) => {
@@ -78,6 +78,7 @@ host.processManifest = (manifest) => {
 };
 
 host.updateLicenseRequestInfo = (requestInfo) => {
+    // customData is the message object that was sent to the receiver.
     let token = customData.token;
     let body = JSON.stringify({
         token: token,
