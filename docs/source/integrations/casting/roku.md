@@ -22,7 +22,7 @@ contentNode.encodingKey = "PlayReadyLicenseServerUrl" + "%%%" + customData
 
 ## Testing your stream
 
-You can also test your streams outside of the Roku app using the [Stream testing tool](https://developer.roku.com/en-gb/docs/developer-program/dev-tools/tools-overview.md#stream-testing-tool)
+You can also test your streams outside of the Roku app using the [Stream testing tool](https://developer.roku.com/en-gb/docs/developer-program/dev-tools/tools-overview.md#stream-testing-tool).
 
 - Add your device `IP` and `Model` to the device manager.
 - Ensure that `Mode` is set to `Video`.
