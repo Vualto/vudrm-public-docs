@@ -36,8 +36,7 @@
 | **tvOS** _VUDRMfairplay SDK_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
 | **Smart TV Alliance** _LG, PANASONIC, PHILIPS, TOSHIBA_ | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
 
-## Caveats
-- Widevine mandates all browser CDM implementations to stay current with Chrome stable releases to ensure that the latest updates are applied. Older versions of Chrome, Firefox, and Opera may not be able to use DRM. Click [here](https://www.widevine.com/news) for Widevine’s deprecation schedule.
+- Widevine mandates all browser CDM implementations to stay current with Chrome stable releases to ensure that the latest updates are applied. Older versions of Chrome, Firefox, and Opera may not be able to use DRM. See [Widevine's deprecation schedule](https://www.widevine.com/news).
 
 - VUDRM uses Widevine Modular by default (Widevine Classic is not supported).
 
