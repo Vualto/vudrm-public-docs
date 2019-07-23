@@ -516,7 +516,7 @@ In this example, the API is exposed on port 9000 and the API key is set to some 
 
 ```
 docker run -d --restart always -p 9000:80 \
--e WOWZADRMAPI_APIKEY=192f4617-1748-47e5-9eca-3caf2ec8dd45 \
+-e WOWZADRMAPI_APIKEY=93640045-31f1-45c0-aa0d-b5682d7c9ac8 \
 -e WOWZADRMAPI_KEYFILESPATH=/mnt/keyfiles \
 -e WOWZADRMAPI_GRANDCENTRALURL=https://config-api.drm.technology/v1/clients \
 -e WOWZADRMAPI_KEYPROVIDERURL=https://key-provider.drm.technology \
