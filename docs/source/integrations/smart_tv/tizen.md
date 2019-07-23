@@ -18,9 +18,9 @@ All of our player partners provide mechanisms to make use of VUDRM, and as Tizen
 
 Tizen has an inbuilt player within the SDK which can be used to provide encrypted playback utilising PlayReady DRM.
 
-Full documentation of the `avplayer` can be found on Samsung's developer [documentation](https://developer.samsung.com/tv/develop/legacy-platform-library/ovw008/index)
+Full documentation of the `avplayer` can be found on Samsung's developer [documentation](https://developer.samsung.com/tv/develop/legacy-platform-library/ovw008/index).
 
-implementing a PlayReady solution can be done with the following code sample.
+Implementing a PlayReady solution can be done with the following code sample.
 
 Full dicumentatuion of Samsungs PlayReady support can be found [Tizen PlayRead documentation](https://developer.samsung.com/tv/develop/legacy-platform-library/tut00064/index)
 
