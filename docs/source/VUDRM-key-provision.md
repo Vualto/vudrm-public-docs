@@ -505,3 +505,128 @@ The values are:
 - `cupertinostreaming-aes128-iv-include-in-chunklist`: Must be set to `false`.
 - `cupertinostreaming-aes128-key-format`: Must be set to `com.apple.streamingkeydelivery`.
 - `cupertinostreaming-aes128-key-format-version`: Must be set to `1`.
+
+### Vualto Wowza DRM API
+
+The Vualto Wowza DRM API is a small Docker web API application which runs on the Wowza server, allowing the provisioning of keyfiles through a simple REST interface.
+
+#### Running using Docker
+
+In this example, the API is exposed on port 9000 and the API key is set to some GUID:
+
+```
+docker run -d --restart always -p 9000:80 \
+-e WOWZADRMAPI_APIKEY=192f4617-1748-47e5-9eca-3caf2ec8dd45 \
+-e WOWZADRMAPI_KEYFILESPATH=/mnt/keyfiles \
+-e WOWZADRMAPI_GRANDCENTRALURL=https://config-api.drm.technology/v1/clients \
+-e WOWZADRMAPI_KEYPROVIDERURL=https://key-provider.drm.technology \
+-v /usr/local/WowzaStreamingEngine-4.7.7/keys:/mnt/keyfiles \
+--name wowza-drm-api vualto/wowza-drm-api:latest
+```
+
+#### Supported actions
+
+`<streamid>` must match the name of the Stream File on the Wowza server
+
+All requests to the API must be authorised with a `x-api-key` header, whose value must match that set by the `WOWZADRMAPI_APIKEY` environment variable. A missing or mismatched `x-api-key` header will yield a `401 Unauthorized` status
+
+---
+
+`GET /api/keyfile/<streamid> `
+
+Returns the contents of the keyfile for that Wowza stream if it exists, otherwise 404
+
+---
+
+`POST /api/keyfile/<streamid>`
+
+Create or overwrite the keyfile for the Wowza stream.
+
+Keys can be supplied either automatically using the Vualto DRM platform or manually.
+
+Example body for manual keys:
+
+```
+{
+    "cenc": {
+        "keyid": "RNpS70UjCY5oVHd+4yJoHQ==",
+        "contentkey": "lnA03mLuxnL3toiRMxV4Zw=="
+    },
+    "playready": {
+        "laurl": "https://playready-license.vudrm.tech/rightsmanager.asmx",
+        "checksum": "pcTs6CEp98A="
+    },
+    "widevine": {
+        "psshdata": "IiRkN2EyOTk1Ni0yOTgwLTQzMzgtYjYyNy04N2MxZjA3OWUwOTFI49yVmwY="
+    },
+    "fairplay": {
+        "key": "CBF76BB43B9A54254A5FC20074A3A53B",
+        "iv": "1A3F2AA76D84742DD123E3E50E7BC681",
+        "laurl": "skd://fairplay-license.vudrm.tech/license/d7a29956-2980-4338-b627-87c1f079e091"
+    }
+}
+```
+
+Example response of the created keyfile:
+```
+mpegdashstreaming-cenc-key-id: RNpS70UjCY5oVHd+4yJoHQ==
+mpegdashstreaming-cenc-content-key: lnA03mLuxnL3toiRMxV4Zw==
+mpegdashstreaming-cenc-algorithm: AESCTR
+mpegdashstreaming-cenc-keyserver-playready: true
+mpegdashstreaming-cenc-keyserver-playready-system-id: 9a04f079-9840-4286-ab92-e65be0885f95
+mpegdashstreaming-cenc-keyserver-playready-license-url: https://playready-license.vudrm.tech/rightsmanager.asmx
+mpegdashstreaming-cenc-keyserver-playready-checksum: pcTs6CEp98A=
+mpegdashstreaming-cenc-keyserver-widevine: true
+mpegdashstreaming-cenc-keyserver-widevine-system-id: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
+mpegdashstreaming-cenc-keyserver-widevine-pssh-data: IiRkN2EyOTk1Ni0yOTgwLTQzMzgtYjYyNy04N2MxZjA3OWUwOTFI49yVmwY=
+cupertinostreaming-aes128-method: SAMPLE-AES
+cupertinostreaming-aes128-url: skd://fairplay-license.vudrm.tech/license/d7a29956-2980-4338-b627-87c1f079e091
+cupertinostreaming-aes128-key: CBF76BB43B9A54254A5FC20074A3A53B
+cupertinostreaming-aes128-iv: 1A3F2AA76D84742DD123E3E50E7BC681
+cupertinostreaming-aes128-iv-include-in-chunklist: true
+cupertinostreaming-aes128-key-format: com.apple.streamingkeydelivery
+cupertinostreaming-aes128-key-format-version: 1
+
+```
+
+`cenc` is required with either `playready` or `widevine`
+
+
+Example body using the VUALTO DRM key provider:
+
+```
+{
+    "contentId": "mycontentid",
+    "client": "my-client-name",
+    "clientApiKey": "8f30c7d2-a9b9-474e-907b-97a190abd6c4",
+    "drmJson": "{\"drm_provider\": \"VUALTO\"}"
+}
+```
+
+Example response:
+
+```
+mpegdashstreaming-cenc-key-id: jQGIareSAu0jZ5MYUQBQlw==
+mpegdashstreaming-cenc-content-key: kMvY/VcE9FnWe61SKUnKYw==
+mpegdashstreaming-cenc-algorithm: AESCTR
+mpegdashstreaming-cenc-keyserver-playready: true
+mpegdashstreaming-cenc-keyserver-playready-system-id: 9a04f079-9840-4286-ab92-e65be0885f95
+mpegdashstreaming-cenc-keyserver-playready-license-url: https://playready-license.drm.technology/rightsmanager.asmx
+mpegdashstreaming-cenc-keyserver-playready-checksum: qYKKs3wVDDk=
+mpegdashstreaming-cenc-keyserver-widevine: true
+mpegdashstreaming-cenc-keyserver-widevine-system-id: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
+mpegdashstreaming-cenc-keyserver-widevine-pssh-data: IgtteWNvbnRlbnRpZEjj3JWbBg==
+cupertinostreaming-aes128-method: SAMPLE-AES
+cupertinostreaming-aes128-url: skd://fairplay-license.drm.technology/license/mycontentid
+cupertinostreaming-aes128-key: 74FF8E038FB0F65AA5D01C52596B99A5
+cupertinostreaming-aes128-iv: 59E932087732AA68DF8BCAE63230479E
+cupertinostreaming-aes128-iv-include-in-chunklist: false
+cupertinostreaming-aes128-key-format: com.apple.streamingkeydelivery
+cupertinostreaming-aes128-key-format-version: 1
+```
+
+---
+
+`DELETE /api/keyfile/<streamid>`
+
+Remove the keyfile for the specified Wowza stream, returning it's contents before deletion
