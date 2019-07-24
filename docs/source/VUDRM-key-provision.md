@@ -518,23 +518,23 @@ In this example, the API is exposed on port 9000 and the API key is set to some 
 docker run -d --restart always -p 9000:80 \
 -e WOWZADRMAPI_APIKEY=93640045-31f1-45c0-aa0d-b5682d7c9ac8 \
 -e WOWZADRMAPI_KEYFILESPATH=/mnt/keyfiles \
--e WOWZADRMAPI_GRANDCENTRALURL=https://config-api.drm.technology/v1/clients \
--e WOWZADRMAPI_KEYPROVIDERURL=https://key-provider.drm.technology \
+-e WOWZADRMAPI_GRANDCENTRALURL=https://config.vudrm.tech/v1/clients \
+-e WOWZADRMAPI_KEYPROVIDERURL=https://keyprovider.vudrm.tech \
 -v /usr/local/WowzaStreamingEngine-4.7.7/keys:/mnt/keyfiles \
 --name wowza-drm-api vualto/wowza-drm-api:latest
 ```
 
 #### Supported actions
 
-`<streamid>` must match the name of the Stream File on the Wowza server
+`<streamid>` must match the name of the Stream File on the Wowza server.
 
-All requests to the API must be authorised with a `x-api-key` header, whose value must match that set by the `WOWZADRMAPI_APIKEY` environment variable. A missing or mismatched `x-api-key` header will yield a `401 Unauthorized` status
+All requests to the API must be authorised with a `x-api-key` header, whose value must match that set by the `WOWZADRMAPI_APIKEY` environment variable. A missing or mismatched `x-api-key` header will yield a `401 Unauthorized` status.
 
 ---
 
 `GET /api/keyfile/<streamid> `
 
-Returns the contents of the keyfile for that Wowza stream if it exists, otherwise 404
+Returns the contents of the keyfile for that Wowza stream if it exists, otherwise a 404.
 
 ---
 
@@ -589,7 +589,7 @@ cupertinostreaming-aes128-key-format-version: 1
 
 ```
 
-`cenc` is required with either `playready` or `widevine`
+`cenc` is required with either `playready` or `widevine`.
 
 
 Example body using the VUALTO DRM key provider:
@@ -611,13 +611,13 @@ mpegdashstreaming-cenc-content-key: kMvY/VcE9FnWe61SKUnKYw==
 mpegdashstreaming-cenc-algorithm: AESCTR
 mpegdashstreaming-cenc-keyserver-playready: true
 mpegdashstreaming-cenc-keyserver-playready-system-id: 9a04f079-9840-4286-ab92-e65be0885f95
-mpegdashstreaming-cenc-keyserver-playready-license-url: https://playready-license.drm.technology/rightsmanager.asmx
+mpegdashstreaming-cenc-keyserver-playready-license-url: https://playready-license.vudrm.tech/rightsmanager.asmx
 mpegdashstreaming-cenc-keyserver-playready-checksum: qYKKs3wVDDk=
 mpegdashstreaming-cenc-keyserver-widevine: true
 mpegdashstreaming-cenc-keyserver-widevine-system-id: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
 mpegdashstreaming-cenc-keyserver-widevine-pssh-data: IgtteWNvbnRlbnRpZEjj3JWbBg==
 cupertinostreaming-aes128-method: SAMPLE-AES
-cupertinostreaming-aes128-url: skd://fairplay-license.drm.technology/license/mycontentid
+cupertinostreaming-aes128-url: skd://fairplay-license.vudrm.tech/license/mycontentid
 cupertinostreaming-aes128-key: 74FF8E038FB0F65AA5D01C52596B99A5
 cupertinostreaming-aes128-iv: 59E932087732AA68DF8BCAE63230479E
 cupertinostreaming-aes128-iv-include-in-chunklist: false
@@ -629,4 +629,4 @@ cupertinostreaming-aes128-key-format-version: 1
 
 `DELETE /api/keyfile/<streamid>`
 
-Remove the keyfile for the specified Wowza stream, returning it's contents before deletion
+Remove the keyfile for the specified Wowza stream, returning it's contents before deletion.
