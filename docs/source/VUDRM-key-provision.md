@@ -506,10 +506,10 @@ The values are:
 - `cupertinostreaming-aes128-key-format`: Must be set to `com.apple.streamingkeydelivery`.
 - `cupertinostreaming-aes128-key-format-version`: Must be set to `1`.
 
-### Vualto Wowza DRM API
+### VUALTO Wowza DRM API
 
-The Vualto Wowza DRM API is a small Docker web API application which runs on the Wowza server, allowing the provisioning of keyfiles through a simple REST interface.
-
+The VUALTO Wowza DRM API is a small Docker web API application which runs on the Wowza server, allowing the provisioning of keyfiles through a simple REST interface.
+The VUALTO Wowza DRM API has been tested with (Wowza Streaming Engine version 4.7.7)[https://www.wowza.com/docs/wowza-streaming-engine-4-7-7-release-notes].
 #### Running using Docker
 
 In this example, the API is exposed on port 9000 and the API key is set to some GUID:
@@ -520,7 +520,7 @@ docker run -d --restart always -p 9000:80 \
 -e WOWZADRMAPI_KEYFILESPATH=/mnt/keyfiles \
 -e WOWZADRMAPI_GRANDCENTRALURL=https://config.vudrm.tech/v1/clients \
 -e WOWZADRMAPI_KEYPROVIDERURL=https://keyprovider.vudrm.tech \
--v /usr/local/WowzaStreamingEngine-4.7.7/keys:/mnt/keyfiles \
+-v [wowza-install-dir]/keys:/mnt/keyfiles \
 --name wowza-drm-api vualto/wowza-drm-api:latest
 ```
 
