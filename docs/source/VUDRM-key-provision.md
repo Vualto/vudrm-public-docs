@@ -521,12 +521,13 @@ docker run -d --restart always -p 9000:80 \
 -e WOWZADRMAPI_GRANDCENTRALURL=https://config.vudrm.tech/v1/clients \
 -e WOWZADRMAPI_KEYPROVIDERURL=https://keyprovider.vudrm.tech \
 -v [wowza-install-dir]/keys:/mnt/keyfiles \
---name wowza-drm-api vualto/wowza-drm-api:latest
+--name wowza-drm-api vualto/wowza-drm-api:1.0.0
 ```
 
 #### Supported actions
 
-`<streamid>` must match the name of the Stream File on the Wowza server.
+`<streamid>` must match the name of the Stream to protect. This will be the name of the .key file created on the server.
+(https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc)
 
 All requests to the API must be authorised with a `x-api-key` header, whose value must match that set by the `WOWZADRMAPI_APIKEY` environment variable. A missing or mismatched `x-api-key` header will yield a `401 Unauthorized` status.
 
