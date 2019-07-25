@@ -527,7 +527,7 @@ docker run -d --restart always -p 9000:80 \
 #### Supported actions
 
 `<streamid>` must match the name of the Stream to protect. This will be the name of the .key file created on the server.
-Details about what name should be used for the key file can be found here: https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc
+Details about what name should be used for the key file can be found here: [https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc](https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc)
 
 All requests to the API must be authorised with a `x-api-key` header, whose value must match that set by the `WOWZADRMAPI_APIKEY` environment variable. A missing or mismatched `x-api-key` header will yield a `401 Unauthorized` status.
 
