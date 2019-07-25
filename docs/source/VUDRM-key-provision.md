@@ -509,7 +509,7 @@ The values are:
 ### VUALTO Wowza DRM API
 
 The VUALTO Wowza DRM API is a small Docker web API application which runs on the Wowza server, allowing the provisioning of keyfiles through a simple REST interface.
-The VUALTO Wowza DRM API has been tested with (Wowza Streaming Engine version 4.7.7)[https://www.wowza.com/docs/wowza-streaming-engine-4-7-7-release-notes].
+The VUALTO Wowza DRM API has been tested with [Wowza Streaming Engine version 4.7.7](https://www.wowza.com/docs/wowza-streaming-engine-4-7-7-release-notes).
 #### Running using Docker
 
 In this example, the API is exposed on port 9000 and the API key is set to some GUID:
