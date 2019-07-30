@@ -22,7 +22,7 @@ For further information on Samsungs PlayReady support please visit the [Tizen Pl
 
 Implementing a PlayReady solution can be done with the following code sample.
 
-Full dicumentatuion of Samsungs PlayReady support can be found [Tizen PlayRead documentation](https://developer.samsung.com/tv/develop/legacy-platform-library/tut00064/index).
+For Samsungs full documentation on PlayReady support please visit the [Tizen PlayRead documentation](https://developer.samsung.com/tv/develop/legacy-platform-library/tut00064/index).
 
 ```javascript
 avplayObj.show();
