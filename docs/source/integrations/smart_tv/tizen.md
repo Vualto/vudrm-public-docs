@@ -47,13 +47,11 @@ avplayObj.play(
 let customData = "<YOUR VUDRM TOKEN>"
 avplayObj.setPlayerProperty(3, customData, customData.length);
 
-let la_url ="https://playready-license.drm.technology/rightsmanager.asmx";
-avplayObj.setPlayerProperty(4, la_url, la_url.length);
+let laUrl ="https://playready-license.drm.technology/rightsmanager.asmx";
+avplayObj.setPlayerProperty(4, laUrl, laUrl.length);
 
 SefPluginPlayReady = document.getElementById('PluginSefPlayReady');
 SefPluginPlayReady.Open("PlayReadyDrm",  "1.000",  "PlayReadyDrm");
-SefPluginPlayReady.Execute("ProcessInitiatorsFromUrl",  la_url);
+SefPluginPlayReady.Execute("ProcessInitiatorsFromUrl",  laUrl);
 SefPluginPlayReady.Close();
 ```
-
-
