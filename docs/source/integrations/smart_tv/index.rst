@@ -5,4 +5,5 @@ SMART TV's
    :maxdepth: 2
    :glob:
 
+   lg.md
    tizen.md
