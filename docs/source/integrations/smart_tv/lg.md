@@ -32,33 +32,20 @@ If you choose to use the luna services please follow LG's own documentation desc
 Within the LG documentation you are shown a snippet of XML you are to provide to the luna DRM service. This snippet XML is available as a Base64 encrypted string within the manifest. To retrieve the XML you will need to search the manifest for the `<pro xmlns="urn:microsoft:playready">` node and decode the value it contains.
 
 ```javascript
-
-function stripUnnecessaryData(message) {
-    let startingPoint = message.indexOf('<WRMHEADER');
-    message = message.substring(startingPoint, message.length);
-	return message;
-}
-
-function cleanString(input) {
-    var output = "";
-    for (var i=0; i<input.length; i++) {
-        let code = input.charCodeAt(i); //162 0-31
-        if (code !== 162 && code > 31) {
-            output += input.charAt(i);
-        }
-    }
-    return output;
+function isInvalidCharacter (char) {
+    let code = char.charCodeAt(0);
+    let isUnwantedAsciiCode = code === 162;
+    let isControlCode = code < 32
+    return !isUnwantedAsciiCode && !isControlCode;
 }
 
 function getPlayReadyMessage(manifest, token) {
     let xml = new DOMParser().parseFromString(manifest, 'application/xml');
     let pros = xml.querySelectorAll('pro');
-    pros = Array.prototype.slice.call(pros);
+    pros = Array.from(pros);
     return pros.map(p => {
-        let base64String = p.innerHTML;
-        let decodedMessage = window.atob(base64String);
-        let message = cleanString(decodedMessage);
-        message = stripUnnecessaryData(message);
+        let decodedMessage = window.atob(p.innerHTML);
+        let message = decodedMessage.split("").filter(isInvalidCharacter).join("");
         let XMLMessage = '<?xml version="1.0" encoding="utf-8"?>'
         + '<PlayReadyInitiator xmlns= "http://schemas.microsoft.com/DRM/2007/03/protocols/">'
         + '<LicenseAcquisition>'
@@ -69,4 +56,6 @@ function getPlayReadyMessage(manifest, token) {
         return XMLMessage;
     });
 }
+
+let XMLMessages = getPlayReadyMessage(manifestString, "VUDRM TOKEN");
 ```
