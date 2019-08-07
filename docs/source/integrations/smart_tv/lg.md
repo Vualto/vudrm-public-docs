@@ -53,7 +53,7 @@ function cleanString(input) {
 function getPlayReadyMessage(manifest, token) {
     let xml = new DOMParser().parseFromString(manifest, 'application/xml');
     let pros = xml.querySelectorAll('pro');
-    pros = Array.prototype.slice.call(pros);
+    pros = Array.from(pros);
     return pros.map(p => {
         let base64String = p.innerHTML;
         let decodedMessage = window.atob(base64String);
