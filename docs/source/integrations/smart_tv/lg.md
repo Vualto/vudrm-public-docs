@@ -42,10 +42,10 @@ function isInvalidCharacter (char) {
 function getPlayReadyMessage(manifest, token) {
     let xml = new DOMParser().parseFromString(manifest, 'application/xml');
     let pros = xml.querySelectorAll('pro');
-    pros = Array.from(pros);
-    return pros.map(p => {
+    return Array.from(pros).map(p => {
         let decodedMessage = window.atob(p.innerHTML);
         let message = decodedMessage.split("").filter(isInvalidCharacter).join("");
+        message = message.substring(message.indexOf('<WRMHEADER'), message.length);
         let XMLMessage = '<?xml version="1.0" encoding="utf-8"?>'
         + '<PlayReadyInitiator xmlns= "http://schemas.microsoft.com/DRM/2007/03/protocols/">'
         + '<LicenseAcquisition>'
