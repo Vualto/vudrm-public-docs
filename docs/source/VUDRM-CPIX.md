@@ -226,3 +226,5 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 ## Unified Streaming Integration
 
+Use our [CPIX Edge Reverse](https://cloud.docker.com/u/vualto/repository/docker/vualto/cpix-proxy) Proxy in order to work with USP.
+
