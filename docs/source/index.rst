@@ -20,4 +20,5 @@ Contents:
    VUDRM-token.md
    VUDRM-Speke-Key-Provider.md
    Geo-Location.md
-   integrations/integrations.rst   
+   VUDRM-CPIX.md
+   integrations/integrations.rst

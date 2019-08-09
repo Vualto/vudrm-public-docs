@@ -50,8 +50,6 @@ curl -XGET -H "API-KEY: <api-key>" \
 </cpix:CPIX>
 ```
 
-#### Request
-
 ### Decrypt
 
 Get a CPIX 2.1 document with only a single content key.
