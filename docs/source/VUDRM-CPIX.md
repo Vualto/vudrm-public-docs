@@ -12,9 +12,9 @@ You may use our CPIX API in order to fetch VUDRM encyrption keys on CPIX XML doc
 
 Get a CPIX 2.1 document with all DRM systems `<client-name>` is entitled to use.
 
-#### optional query params:
+#### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included on the response.
+* `drm` : comma separated list of DRM systems to be included included in the response.
 
 #### Request
 
@@ -54,9 +54,9 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 Get a CPIX 2.1 document with only a single content key.
 
-#### optional query params:
+#### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included on the response.
+* `drm` : comma separated list of DRM systems to be included included in the response.
 
 #### Request
 
@@ -84,9 +84,9 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 Get a CPIX 2.1 document that uses separate keys for video and audio tracks. Only supported for DASH with PlayReady and Widevine.
 
-#### optional query params:
+#### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included on the response.
+* `drm` : comma separated list of DRM systems to be included included in the response.
 
 #### Request
 
@@ -141,11 +141,11 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 ### Multikey with audio clear
 
-Get a CPIX 2.1 document that use only 1 content key for video, audio tracks are left on the clear. supported for DASH with PlayReady and Widevine.
+Get a CPIX 2.1 document that use only 1 content key for video, audio tracks are left on the clear. Only supported for DASH with PlayReady and Widevine.
 
-#### optional query params:
+#### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included on the response.
+* `drm` : comma separated list of DRM systems to be included included in the response.
 
 #### Request
 
@@ -195,11 +195,11 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 ### Keys
 
-Get a encryption keys and license URLs for a given `<content-id>` (JSON response).
+Get encryption keys and license URLs for a given `<content-id>` (JSON response).
 
-#### optional query params:
+#### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included on the response.
+* `drm` : comma separated list of DRM systems to be included included in the response.
 
 #### Request
 
