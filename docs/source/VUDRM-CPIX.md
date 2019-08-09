@@ -1,6 +1,6 @@
 # CPIX API
 
-You may use our CPIX API in order to fetch VUDRM encyrption keys on CPIX XML document format. Compatible with Unified Streaming (version 1.9.3 and above).
+You may use our CPIX API in order to fetch VUDRM encyrption keys in CPIX XML document format. Compatible with Unified Streaming (version 1.9.3 and above).
 
 > Replace `<api-key>`, `<client-name>` and `<content-id>` with appropiate values.
 
