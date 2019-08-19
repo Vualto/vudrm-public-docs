@@ -2,7 +2,7 @@
 
 The VUDRMFairPlay SDK is available for iOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on this platform.
 
-Current release: v0.0.1 (85)
+Current release: v0.0.1 (93)
 
 - Overview
 - Requirements
@@ -62,7 +62,7 @@ More information about ATS can be found in Apple’s TechNote:
 
 ## Preparation
 
-Before you can use the demo project or framework in your own project, for each instance you will require a URL to correctly prepared content, an asset ID for the content, and a VUDRM token which must be correctly generated for the type of instance you wish to create. Example VUDRM token type templates available are:
+Before you can use the demo project or framework in your own project, for each instance you will require a URL to correctly prepared content, an content ID for the content (also referred to as assetID in previous versions), and a VUDRM token which must be correctly generated for the type of instance you wish to create. Example VUDRM token type templates available are:
 
 - Fairplay Rental `{"type": "r","duration_rental": 3600}`
  - Fairplay Rental tokens may only be used to stream online content to devices running iOS 9.x or higher.
@@ -106,10 +106,10 @@ play buttons. To play an asset we create the assetDownloadTask and then assign t
 
 ```swift
 let asset = AVURLAsset(url: assetURL!)
-self.drm = vudrmFairPlay(asset: asset, assetName: assetName, token: token)
-assetDownloadTask = assetUrlSession.makeAssetDownloadTask(asset: asset, assetTitle: assetName,
+self.drm = vudrmFairPlay(asset: asset, contentID: contentID, token: token)
+assetDownloadTask = assetUrlSession.makeAssetDownloadTask(asset: asset, assetTitle: contentID,
 assetArtworkData: nil, options: nil)!
-assetDownloadTask.taskDescription = assetName
+assetDownloadTask.taskDescription = contentID
 
 let playerItem = AVPlayerItem(asset: assetDownloadTask.urlAsset)
 let player = AVPlayer(playerItem: playerItem)
@@ -136,13 +136,13 @@ These are the originally provided methods which are for online playback use only
 
 ```swift
 let player = AVPlayer(url: assetURL!)
-self.drm = vudrmFairPlay(player: player, token: token, assetName: assetName)
+self.drm = vudrmFairPlay(player: player, token: token, contentID: contentID)
 ```
 
 -	Legacy method 2: Pass in a reference to your stream URL and the token to be used when retrieving a license. An AVAsset will be created by VUDRMFairPlay and this can be used to create your player.
 
 ```swift
-self.drm = vudrmFairPlay(url:assetURL! as NSURL, token: token, assetName: assetName)
+self.drm = vudrmFairPlay(url:assetURL! as NSURL, token: token, contentID: contentID)
 let playerItem = AVPlayerItem(asset: (drm?.asset)!)
 let player = AVPlayer(playerItem: playerItem)
 ```
@@ -167,7 +167,7 @@ With the VUDRMFairPlay framework installed, the example demo application can be 
 ```swift
 private var assetURL = URL(string: "")
 private var token = ""
-private var assetName = ""
+private var contentID = ""
 ```
 
 - To initialise via view controller on device, populate the URL, Token, and Asset Name fields with valid values. For ease of use, pasting into the URL field in the form URL + space + Token will auto populate both fields correctly. At runtime, any values in the URL and Token fields will override any hard coded values.
@@ -201,6 +201,11 @@ catch {
 - If you believe you have found any further issues, please contact us at support@vualto.com
 
 ## Release notes
+
+### v0.0.1 (build 93) on 29/07/2019
+
+- Update license server DNS
+- Replaces instances of assetName and assetID with contentID to be consistent across DRM platform
 
 ### v0.0.1 (build 85) on 27/03/2019
 

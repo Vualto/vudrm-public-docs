@@ -4,7 +4,7 @@
 
 VUDRMWidevine is an Android Archive (AAR) which can be used during the media rendering pipeline to provide a DRM plugin to ExoPlayer 2.9.6 which will work with Vualto DRM workflow. VUDRMWidevine has been developed to specifically manage the session DRM, allowing complete asset and player management.
 
-Current release: v0.3.4 (272)
+Current release: v0.3.5 (277)
 
 
 - Requirements
@@ -187,6 +187,12 @@ Internally
 If you believe you have found any other issue, please contact us at support@vualto.com
 
 ## Release Notes
+
+v0.3.5 (build 277) on 07/08/2019
+
+- Update license server DNS
+- Replaces instances of assetName and assetID with contentID to be consistent across DRM platform
+
 v0.3.4 (build 272) on 22/05/2019
 
 - Widevine Offline Implementation – Download asset and license, and play downloaded asset offline with saved license.
