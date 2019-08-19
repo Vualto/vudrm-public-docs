@@ -62,7 +62,7 @@ More information about ATS can be found in Apple’s TechNote:
 
 ## Preparation
 
-Before you can use the demo project or framework in your own project, for each instance you will require a URL to correctly prepared content, an content ID for the content (also referred to as assetID in previous versions), and a VUDRM token which must be correctly generated for the type of instance you wish to create. Example VUDRM token type templates available are:
+Before you can use the demo project or framework in your own project, for each instance you will require a URL to correctly prepared content, a content ID for the content (also referred to as assetID in previous versions), and a VUDRM token which must be correctly generated for the type of instance you wish to create. Example VUDRM token type templates available are:
 
 - Fairplay Rental `{"type": "r","duration_rental": 3600}`
  - Fairplay Rental tokens may only be used to stream online content to devices running iOS 9.x or higher.
