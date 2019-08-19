@@ -2,7 +2,7 @@
 
 The VUDRMFairPlay SDK is available for tvOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on this platform.
 
-Current release: v0.0.1 (10)
+Current release: v0.0.1 (14)
 
 - Overview
 - Requirements
@@ -118,6 +118,10 @@ private var token = ""
 - If you believe you have found any issues, please contact us at support@vualto.com
 
 ## Release notes
+
+### v0.0.1 (build 14) on 13/08/2019
+
+- Update license server DNS
 
 ### v0.0.1 (build 10) on 08/04/2019
 
