@@ -82,7 +82,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 ### Multikey
 
-Get a CPIX 2.1 document that uses separate keys for video and audio tracks. Only supported for DASH with PlayReady and Widevine.
+Get a CPIX 2.1 document that uses separate keys for video and audio tracks. Only supported by DASH with PlayReady or Widevine.
 
 #### Optional query params:
 
