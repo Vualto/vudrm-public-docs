@@ -2,7 +2,7 @@
 
 You may use our CPIX API in order to fetch VUDRM encryption keys in CPIX XML document format. Compatible with Unified Streaming (version 1.9.3 and above).
 
-> Replace `<api-key>`, `<client-name>` and `<content-id>` with appropiate values.
+> Replace `<api-key>`, `<client-name>`, and `<content-id>` with appropiate values.
 
 > Available DRM systems [`fairplay`, `playready`, `widevine`].
 
