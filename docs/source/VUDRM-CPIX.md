@@ -141,7 +141,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 ### Multikey with audio clear
 
-Get a CPIX 2.1 document that use only 1 content key for video, audio tracks are left on the clear. Only supported for DASH with PlayReady and Widevine.
+Get a CPIX 2.1 document that use only 1 content key for video; audio tracks are left on the clear. Only supported by DASH with PlayReady or Widevine.
 
 #### Optional query params:
 
