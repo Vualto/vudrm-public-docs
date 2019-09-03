@@ -2,7 +2,7 @@
 
 The VUDRM key provision service exposes the generation of DRM encryption. It provides two secure REST APIs allowing you to retrieve encryption keys for all DRM types in order to encrypt your content.
 
-## CPIX API
+## CPIX Key Provider API
 
 You may use our CPIX API in order to fetch VUDRM encryption keys in CPIX XML document format. Compatible with Unified Streaming (version 1.9.3 and above).
 
