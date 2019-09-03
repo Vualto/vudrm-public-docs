@@ -18,7 +18,7 @@ Get a CPIX 2.1 document with all DRM systems `<client-name>` is entitled to use.
 
 ##### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included in the response.
+* `drm` : comma separated list of DRM systems to be included in the response.
 
 ##### Request
 
