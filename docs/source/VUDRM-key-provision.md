@@ -1,8 +1,236 @@
 # ENCRYPTION KEY PROVISION
 
-The VUDRM key provision service exposes the generation of DRM encryption. It provides a secure REST API allowing you to retrieve encryption keys for all DRM types in order to encrypt your content.
+The VUDRM key provision service exposes the generation of DRM encryption. It provides two secure REST APIs allowing you to retrieve encryption keys for all DRM types in order to encrypt your content.
 
-## Key provider API
+## CPIX API
+
+You may use our CPIX API in order to fetch VUDRM encryption keys in CPIX XML document format. Compatible with Unified Streaming (version 1.9.3 and above).
+
+> Replace `<api-key>`, `<client-name>`, and `<content-id>` with appropiate values.
+
+> Available DRM systems [`fairplay`, `playready`, `widevine`].
+
+### Endpoints
+
+#### Default
+
+Get a CPIX 2.1 document with all DRM systems `<client-name>` is entitled to use.
+
+##### Optional query params:
+
+* `drm` : comma separated list of DRM systems to be included included in the response.
+
+##### Request
+
+```bash
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>"
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+  <cpix:ContentKeyList>
+    <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+      <cpix:Data>
+        <pskc:Secret>
+          <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+        </pskc:Secret>
+      </cpix:Data>
+    </cpix:ContentKey>
+  </cpix:ContentKeyList>
+  <cpix:DRMSystemList>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+      <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+      <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData>YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+    </cpix:DRMSystem>
+  </cpix:DRMSystemList>
+</cpix:CPIX>
+```
+
+#### Decrypt
+
+Get a CPIX 2.1 document with only a single content key.
+
+##### Optional query params:
+
+* `drm` : comma separated list of DRM systems to be included included in the response.
+
+##### Request
+
+```bash
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>/decrypt"
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+  <cpix:ContentKeyList>
+    <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+      <cpix:Data>
+        <pskc:Secret>
+          <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+        </pskc:Secret>
+      </cpix:Data>
+    </cpix:ContentKey>
+  </cpix:ContentKeyList>
+</cpix:CPIX>
+```
+
+#### Multikey
+
+Get a CPIX 2.1 document that uses separate keys for video and audio tracks. Only supported by DASH with PlayReady or Widevine.
+
+##### Optional query params:
+
+* `drm` : comma separated list of DRM systems to be included included in the response.
+
+##### Request
+
+```bash
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>/multikey"
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+  <cpix:ContentKeyList>
+    <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+      <cpix:Data>
+        <pskc:Secret>
+          <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+        </pskc:Secret>
+      </cpix:Data>
+    </cpix:ContentKey>
+    <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+      <cpix:Data>
+        <pskc:Secret>
+          <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+        </pskc:Secret>
+      </cpix:Data>
+    </cpix:ContentKey>
+  </cpix:ContentKeyList>
+  <cpix:DRMSystemList>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+      <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+      <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+      <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+      <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+  </cpix:DRMSystemList>
+  <cpix:ContentKeyUsageRuleList>
+    <cpix:ContentKeyUsageRule kid="11111111-1111-1111-1111-111111111111">
+      <cpix:VideoFilter></cpix:VideoFilter>
+    </cpix:ContentKeyUsageRule>
+    <cpix:ContentKeyUsageRule kid="22222222-2222-2222-22222-22222222222">
+      <cpix:AudioFilter></cpix:AudioFilter>
+    </cpix:ContentKeyUsageRule>
+  </cpix:ContentKeyUsageRuleList>
+</cpix:CPIX>
+```
+
+#### Multikey with audio clear
+
+Get a CPIX 2.1 document that use only 1 content key for video; audio tracks are left on the clear. Only supported by DASH with PlayReady or Widevine.
+
+##### Optional query params:
+
+* `drm` : comma separated list of DRM systems to be included included in the response.
+
+##### Request
+
+```
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>/multikey/audioclear"
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+  <cpix:ContentKeyList>
+    <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+      <cpix:Data>
+        <pskc:Secret>
+          <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+        </pskc:Secret>
+      </cpix:Data>
+    </cpix:ContentKey>
+    <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222">
+    </cpix:ContentKey>
+  </cpix:ContentKeyList>
+  <cpix:DRMSystemList>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+      <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+      <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+      <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+      <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+  </cpix:DRMSystemList>
+  <cpix:ContentKeyUsageRuleList>
+    <cpix:ContentKeyUsageRule kid="11111111-1111-1111-1111-111111111111">
+      <cpix:VideoFilter></cpix:VideoFilter>
+    </cpix:ContentKeyUsageRule>
+    <cpix:ContentKeyUsageRule kid="22222222-2222-2222-22222-22222222222">
+      <cpix:AudioFilter></cpix:AudioFilter>
+    </cpix:ContentKeyUsageRule>
+  </cpix:ContentKeyUsageRuleList>
+</cpix:CPIX>
+```
+
+#### Keys
+
+Get encryption keys and license URLs for a given `<content-id>` (JSON response).
+
+##### Optional query params:
+
+* `drm` : comma separated list of DRM systems to be included included in the response.
+
+##### Request
+
+```
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/keys/<client-name>/<content-id>"
+```
+
+```json
+{
+  "key_id_hex": "76616c7565686578666f726d61746564",
+  "content_key_hex": "76616c7565686578666f726d61746564",
+  "iv_hex": "76616c7565686578666f726d61746564",
+  "playready_pssh_data": "YmFzZTY0LXBsYXlyZWFkeS1oZWFkZXItb2JqZWN0Cg==",
+  "playready_system_id": "9a04f079-9840-4286-ab92-e65be0885f95",
+  "widevine_drm_specific_data": "YmFzZTY0LXdpZGV2aW5lLXBzc2gtZGF0YQo=",
+  "widevine_system_id": "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed",
+  "fairplay_system_id": "94ce86fb-07ff-4f43-adb8-93d2fa968ca2",
+  "fairplay_laurl": "skd://fairplay-license.vudrm.tech/license/<content-id>"
+}
+```
+
+### Unified Streaming Integration
+
+Use our [CPIX Edge Reverse Proxy](https://cloud.docker.com/u/vualto/repository/docker/vualto/cpix-proxy) in order to integrate with USP.
+
+## JSON Key provider API
 
 The key provider API will provide all the information required in order to encrypt various types of content. In order to be as flexible as possible it will return encryption keys in Base16 and Base64 as some systems require different values. 
 
@@ -259,11 +487,13 @@ else:
 
 The next section explains the various encryption keys provided by the Key Provider API. Each set has a different use case. For use with USP products [CENC](#cenc) and [Fairplay](#fairplay) encryption keys are recommended. See the [Unified Streaming Integration](#unified-streaming-integration) section for more details on how to use `mp4split` with the Key Provider.
 
+This section uses the JSON key provider by the keys retrieved from the CPIX Key Provider can be used in the same way.
+
 #### CENC
 
 CENC is the Common Encryption Scheme and it standardises encryption keys between different DRM systems. This allows a single set of encryption keys to be use to encrypt a single file using different DRM systems. VUDRM supports Widevine and PlayReady when generating CENC encryption keys.
 
-Make the following request to the Key Provider API in order to retrieve `cenc` Keys.
+Make the following request to the JSON Key Provider API in order to retrieve `cenc` Keys.
 
 ```bash
 curl -X GET https://keyprovider.vudrm.tech/cenc/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
@@ -303,7 +533,7 @@ The values are:
 
 [Fairplay](https://developer.apple.com/streaming/fps/) is Apple's DRM system and is commonly used in conjunction with CENC encryption to provide support to the widest amount of devices possible.
 
-Make the following request to retrieve `fairplay` keys from the Key Provider API:
+Make the following request to retrieve `fairplay` keys from the JSON Key Provider API:
 
 ```bash
 curl -X GET https://keyprovider.vudrm.tech/fairplay/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
@@ -328,7 +558,7 @@ The values are:
 
 HLS AES-128 is the Advanced Encryption Standard using a 128 bit key, Cipher Block Chaining (CBC) and PKCS7 padding.
 
-Make the following request to retrieve HLS AES encryption keys from the Key Provider API:
+Make the following request to retrieve HLS AES encryption keys from the JSON Key Provider API:
 
 ```bash
 curl -X GET https://keyprovider.vudrm.tech/aes/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
@@ -352,7 +582,7 @@ The values are:
 
 [PlayReady](https://www.microsoft.com/playready/) is Microsoft's DRM system. Only use these keys directly to target PlayReady enabled devices. The use of CENC keys is preferred.
 
-Make the following request to retrieve `playready` keys from the Key Provider API:
+Make the following request to retrieve `playready` keys from the JSON Key Provider API:
 
 ```bash
 curl -X GET https://keyprovider.vudrm.tech/playready/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
@@ -393,7 +623,7 @@ The values are:
 
 [Widevine](https://www.widevine.com/) is Google's DRM system. Use these keys to target Widevine enabled devices directly. The use of CENC keys is preferred.
 
-Make the following request to retrieve `widevine` keys from the Key Provider API:
+Make the following request to retrieve `widevine` keys from the JSON Key Provider API:
 
 ```bash
 curl -X GET https://keyprovider.vudrm.tech/widevine/<CLIENT>/<CONTENT_ID> -H 'API_KEY: <API_KEY>'
@@ -422,9 +652,9 @@ The values are:
 
 ## Unified Streaming Integration
 
-The encryption keys provided by the Key Provider API are compatible with [Unified Streaming Platform's](https://www.unified-streaming.com/) mp4split product.
+The encryption keys provided by the Key Provider APIs are compatible with [Unified Streaming Platform's](https://www.unified-streaming.com/) mp4split product.
 
-The recommended approach is to call the Key Provider API and retrieve CENC and Fairplay Keys. Once the encryption keys have been retrieved they can be used with mp4split to generate an ism:
+The recommended approach is to call the Key Provider APIs and retrieve CENC and Fairplay Keys. Once the encryption keys have been retrieved they can be used with mp4split to generate an ism:
 
 ```bash
 mp4split --license-key=$LICENSE_KEY -o $ISM \
@@ -445,7 +675,7 @@ The HLS values come from the Fairplay encryption keys, all other values are from
 
 ## Wowza Integration
 
-The encryption keys provided by the Key Provider API are compatible with [Wowza](https://www.wowza.com/).
+The encryption keys provided by the Key Provider APIs are compatible with [Wowza](https://www.wowza.com/).
 
 The following steps detail how to configure Wowza to support VUDRM:
 
@@ -510,6 +740,7 @@ The values are:
 
 The VUALTO Wowza DRM API is a small Docker web API application which runs on the Wowza server, allowing the provisioning of keyfiles through a simple REST interface.
 The VUALTO Wowza DRM API has been tested with [Wowza Streaming Engine version 4.7.7](https://www.wowza.com/docs/wowza-streaming-engine-4-7-7-release-notes).
+
 #### Running using Docker
 
 In this example, the API is exposed on port 9000 and the API key is set to some GUID:
