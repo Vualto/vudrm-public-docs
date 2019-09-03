@@ -487,7 +487,7 @@ else:
 
 The next section explains the various encryption keys provided by the Key Provider API. Each set has a different use case. For use with USP products [CENC](#cenc) and [Fairplay](#fairplay) encryption keys are recommended. See the [Unified Streaming Integration](#unified-streaming-integration) section for more details on how to use `mp4split` with the Key Provider.
 
-This section uses the JSON key provider by the keys retrieved from the CPIX Key Provider can be used in the same way.
+This section uses the JSON key provider but the keys retrieved from the CPIX Key Provider can be used in the same way.
 
 #### CENC
 
