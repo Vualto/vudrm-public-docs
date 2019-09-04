@@ -654,7 +654,7 @@ The values are:
 
 The encryption keys provided by the Key Provider APIs are compatible with [Unified Streaming Platform's](https://www.unified-streaming.com/) mp4split product.
 
-The recommended approach is to call the Key Provider APIs and retrieve CENC and Fairplay Keys. Once the encryption keys have been retrieved they can be used with mp4split to generate an ism:
+The recommended approach is to call the CPIX Key Provider API to retrieve CENC and Fairplay Keys. Once the encryption keys have been retrieved they can be used with mp4split to generate an ism:
 
 ```bash
 mp4split --license-key=$LICENSE_KEY -o $ISM \
