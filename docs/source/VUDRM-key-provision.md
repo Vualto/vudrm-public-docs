@@ -18,7 +18,7 @@ Get a CPIX 2.1 document with all DRM systems `<client-name>` is entitled to use.
 
 ##### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included in the response.
+* `drm` : comma separated list of DRM systems to be included in the response.
 
 ##### Request
 
@@ -60,7 +60,7 @@ Get a CPIX 2.1 document with only a single content key.
 
 ##### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included in the response.
+* `drm` : comma separated list of DRM systems to be included in the response.
 
 ##### Request
 
@@ -90,7 +90,7 @@ Get a CPIX 2.1 document that uses separate keys for video and audio tracks. Only
 
 ##### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included in the response.
+* `drm` : comma separated list of DRM systems to be included in the response.
 
 ##### Request
 
@@ -145,11 +145,11 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 #### Multikey with audio clear
 
-Get a CPIX 2.1 document that use only 1 content key for video; audio tracks are left in the clear. Only supported by DASH with PlayReady or Widevine.
+Get a CPIX 2.1 document that uses only 1 content key for video; audio tracks are left on the clear. Only supported by DASH with PlayReady or Widevine.
 
 ##### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included in the response.
+* `drm` : comma separated list of DRM systems to be included in the response.
 
 ##### Request
 
@@ -203,7 +203,7 @@ Get encryption keys and license URLs for a given `<content-id>` (JSON response).
 
 ##### Optional query params:
 
-* `drm` : comma separated list of DRM systems to be included included in the response.
+* `drm` : comma separated list of DRM systems to be included in the response.
 
 ##### Request
 
