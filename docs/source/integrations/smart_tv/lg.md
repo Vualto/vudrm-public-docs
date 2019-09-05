@@ -29,31 +29,18 @@ If you choose to use the luna services please follow LG's own documentation desc
 
 ### PlayReady XML message retrieval
 
-Within the LG documentation you are shown a snippet of XML you are to provide to the luna DRM service. This snippet XML is available as a Base64 encrypted string within the manifest. To retrieve the XML you will need to search the manifest for the `<pro xmlns="urn:microsoft:playready">` node and decode the value it contains.
+Within the LG documentation you are shown a snippet of XML you are to provide to the luna DRM service.
 
 ```javascript
-function isInvalidCharacter (char) {
-    let code = char.charCodeAt(0);
-    let isUnwantedAsciiCode = code === 162;
-    let isControlCode = code < 32
-    return !isUnwantedAsciiCode && !isControlCode;
-}
 
 function getPlayReadyMessage(manifest, token) {
-    let xml = new DOMParser().parseFromString(manifest, 'application/xml');
-    let pros = xml.querySelectorAll('pro');
-    return Array.from(pros).map(p => {
-        let decodedMessage = window.atob(p.innerHTML);
-        let message = decodedMessage.split("").filter(isInvalidCharacter).join("");
-        message = message.substring(message.indexOf('<WRMHEADER'), message.length);
-        let XMLMessage = '<?xml version="1.0" encoding="utf-8"?>'
+
+        return '<?xml version="1.0" encoding="utf-8"?>'
         + '<PlayReadyInitiator xmlns= "http://schemas.microsoft.com/DRM/2007/03/protocols/">'
-        + '<LicenseAcquisition>'
-        + '<Header>' + message + '</Header>'
+        + '<SetCustomData>'
         + '<CustomData>' + token + '</CustomData>'
-        + '</LicenseAcquisition>'
+        + '</SetCustomData>'
         + '</PlayReadyInitiator>';
-        return XMLMessage;
     });
 }
 
