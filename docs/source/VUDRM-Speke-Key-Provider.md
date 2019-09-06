@@ -1,6 +1,8 @@
 # SPEKE KEY PROVIDER API
 These are the docs for the speke key provider, which has a speke endpoint for use with AWS.
 
+In order to use our SPEKE API you will need to set up an API gateway that adds the header `API-KEY` with your API key and with your client name inplace of `client-name` in "https://speke.vudrm.tech/client-name/speke".
+
 ## Use with AWS Media Convert (VOD)
 ### 1. Go to AWS S3.
 -	Log into the AWS console
@@ -40,13 +42,13 @@ These are the docs for the speke key provider, which has a speke endpoint for us
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
 -	Add a “Resource ID”
 -	Set the “System ID” to “edef8ba9-79d6-4ace-a3c8-27dcd51d21ed”
--	Set the “URL” to “https://speke-keyprovider.vudrm.tech/vualto-demo/speke”
+-	Set the “URL” to that of your api gateway
 
 #### Playready (only if output group is DASH ISO)
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
 -	Add a “Resource ID” 
 -	Set the “System ID” to “9a04f079-9840-4286-ab92-e65be0885f95”
--	Set the “URL” to “https://speke-keyprovider.vudrm.tech/vualto-demo/speke”
+-	Set the “URL” to that of your api gateway
 
 #### Fairplay (only if output group is Apple HLS)
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
@@ -55,7 +57,7 @@ These are the docs for the speke key provider, which has a speke endpoint for us
 -	Set “Initialization vector in manifest” to “Exclude”
 -	Add a “Resource ID”
 -	Set the “System ID” to “94ce86fb-07ff-4f43-adb8-93d2fa968ca2”
--	Set the “URL” to “https://speke-keyprovider.vudrm.tech/vualto-demo/speke”
+-	Set the “URL” to that of your api gateway
 -	Set the “Constant initilization vector” to “00000000000000000000000000000000”
 
 ### 12. Configure the outputs “Outputs”. (Use the same one as above)
@@ -145,7 +147,7 @@ These are the docs for the speke key provider, which has a speke endpoint for us
 -   If you wish to use Playready DRM use "9a04f079-9840-4286-ab92-e65be0885f95" as the System ID (only if output group is DASH ISO)
 -   If you wish to use Fairplay DRM use "94ce86fb-07ff-4f43-adb8-93d2fa968ca2" as the System ID (only if output group is APPLE HLS)
 
-### 10. Set the URL to "https://speke-keyprovider.vudrm.tech/client-name/speke" where client-name is the name of the client.
+### 10. Set the URL to that of your api gateway.
 
 ### 11. Add an appropriate Role ARN.
 
@@ -168,16 +170,18 @@ These are the docs for the speke key provider, which has a speke endpoint for us
 -	Press “Load player”
 
 ## Endpoints
-Staging url: https://speke-keyprovider.vudrm.tech/
+Production url: https://speke.vudrm.tech/
+Staging url: https://speke.staging.vudrm.tech/
 
 ## SPEKE
-To retrieve drm information formatted to the CPIX standard POST a request, formatting below, to **https://speke-keyprovider.vudrm.tech//client-name/speke**, where "client-name" is the name of the client. 
+To retrieve drm information formatted to the AWS SPEKE standard send a POST request, formatting below, to **https://speke.vudrm.tech//client-name/speke**, where "client-name" is the name of the client. 
 
 ### Examples  
 #### Requests
 #### Headers
 ```
-Content-Type: application/xml
+Content-Type: application/xml 
+API-KEY: <api-key>
 ```
 #### Widevine and Playready
 ```
@@ -232,7 +236,7 @@ Content-Type: application/xml
     <cpix:DRMSystemList>
         <cpix:DRMSystem kid="someKid" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
             <speke:ProtectionHeader>playreadyProtectionHeader</speke:ProtectionHeader>
-            <cpix:PSSH>playreadyProtectionHeader</cpix:PSSH>
+            <cpix:PSSH>playreadyPSSHBox</cpix:PSSH>
         </cpix:DRMSystem>
         <cpix:DRMSystem kid="someKid" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
             <PSSH>widevinePSSHBox</PSSH>
