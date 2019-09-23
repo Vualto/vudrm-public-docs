@@ -8,7 +8,10 @@ The second purpose allows the user's playback rights for individual pieces of co
 
 VUDRM tokens should be generated using the [VUDRM token API](#vudrm-token-api). The request to the [VUDRM token API](#vudrm-token-api) should be made from a server side application and the VUDRM token should then be delivered to the client side for use by a player in a license request.
 
-**VUDRM tokens should not be generated on the client side.**
+<div class="admonition warning">
+    <p class="first admonition-title">Warning</p>
+    <p class="last">VUDRM tokens should not be generated on the client side.</p>
+</div>
 
 ## VUDRM token structure
 
@@ -141,14 +144,15 @@ The request to the VUDRM token API needs to be a POST and requires an `API_KEY` 
 
 The body of the POST request comprises of the account name and the DRM policy.
 
-The quotes in the DRM policy must be **escaped**. 
-
 For example:
 
 ```JSON
 {
     "client": "YOUR_NAME",
-    "policy": "{\"contentid\":\"filename\",\"polend\":\"26-11-2018 16:48:59\"}"
+    "policy": {
+        "contentid": "filename",
+        "polend": "26-11-2018 16:48:59"
+    }
 }   
 ``` 
 
@@ -158,5 +162,5 @@ An example request to the VUDRM token API in curl is:
 curl -X POST \
   https://token.vudrm.tech/generate \
   -H 'API_KEY: <your-api-key>' \
-  -d '{"client": "<client>","policy": "{\"contentid\":\"<content-id>\",\"polend\":\"<pol-end>\",\"liccache\":\"no\"}"}'
+  -d '{"client": "<client>","policy": {"contentid":"<content-id>","polend":"<pol-end>","liccache":"no"}}'
 ```
