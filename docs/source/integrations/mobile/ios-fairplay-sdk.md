@@ -2,7 +2,7 @@
 
 The VUDRMFairPlay SDK is available for iOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on this platform.
 
-Current release: v0.0.1 (93)
+Current release: v0.0.1 (105)
 
 - Overview
 - Requirements
@@ -35,7 +35,7 @@ A demo application written in Swift is available on request. Please contact [sup
 ## Requirements
 
 - Minimum iOS deployment target of 9.x or higher
-- Xcode 10.2
+- Xcode 11
 - Swift 5
 
 ## Xcode Integration
@@ -201,6 +201,10 @@ catch {
 - If you believe you have found any further issues, please contact us at support@vualto.com
 
 ## Release notes
+
+### v0.0.1 (build 105) on 24/09/2019
+
+- Update required for XCode 11 / iOS 13
 
 ### v0.0.1 (build 93) on 29/07/2019
 
