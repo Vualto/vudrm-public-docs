@@ -11,6 +11,10 @@ Being a HTML5, Javascript friendly environment there are two options for you whe
 - Use one of our partner players with existing integration (Bitmovin, JWPlayer, THEOplayer).
 - Use the inbuilt `luna` services with a `video` element.
 
+## Mandatory stream considerations
+
+It is not possible to use the `mpd.inline_drm` setting in the playout profiles for LG TV streams, this will result in playback issues.
+
 ## Recommendations
 
 Below are a list of choices we recommend based on our experience using the LG WebOS platform.
