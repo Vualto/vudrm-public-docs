@@ -19,7 +19,7 @@ VUDRMFairPlay SDK enables Apple’s AVPlayer from AVFoundation to securely reque
 
 Make use of Apple’s AVPlayer and AVPlayerViewController to present users with the platform default skins, with DRM content. Or create your own video player based on AVPlayer.
 
-As an evolution of the the hugely successful VUPLAY SDK, this SDK has a number of key benefits:
+This SDK has a number of key benefits:
 
  - Complete control over the entire AVPlayer lifecycle
  - Numerous optimisations to enable faster playback
