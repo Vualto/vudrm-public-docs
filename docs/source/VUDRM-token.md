@@ -29,7 +29,7 @@ The DRM policy is included in the VUDRM token as the encrypted third component. 
 
 | Key                | Type     | Format                    | Applicable DRM | Description                                                                                                                     |
 |--------------------|----------|---------------------------|----------------|---------------------------------------------------------------------------------------------------------------------------------|
-| `contentid`        | string   | Any                       | ALL            | The content identifier. This is used for tracking content in the stats and is not required.                                     |
+| `content_id`       | string   | Any                       | ALL            | The content identifier. This is used for tracking content in the stats and is not required.                                     |
 | `polbegin`         | datetime | DD-MM-YYYY HH:mm:ss       | ALL            | Policy Begin. The start date for the license. Default value depends on the DRM provider. The default timezone for this value is Europe/London. This value comes from [this database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), of which we support a subset; if you wish to use a different timezone please contact support@vualto.com.                                                     |
 | `polend`           | datetime | DD-MM-YYYY HH:mm:ss       | ALL            | Policy End. The end date for the license. Default value depends on the DRM provider. The default timezone for this value is Europe/London. This value comes from [this database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), of which we support a subset; if you wish to use a different timezone please contact support@vualto.com.                                                       |
 | `liccache`         | string   | `yes` OR `no`             | ALL            | Licence Cache. Should the license be cached. Implementation depends on the DRM provider.                                                       |
@@ -105,7 +105,7 @@ This policy is designed for a rental business model. The license generated from 
 
 ```JSON
 {
-    "contentid":"filename",
+    "content_id":"filename",
     "polend":"DD-MM-YYYY HH:mm:ss",
     "type":"r"
 }
@@ -117,7 +117,7 @@ This policy is designed for a subscription business model. The license generated
 
 ```JSON
 {
-    "contentid":"filename",
+    "content_id":"filename",
     "polbegin":"DD-MM-YYYY HH:mm:ss",
     "polend":"DD-MM-YYYY HH:mm:ss",
     "type":"l"
@@ -130,7 +130,7 @@ This policy is designed for an offline playback scenario. The license generated 
 
 ```JSON
 {
-    "contentid":"filename",
+    "content_id":"filename",
     "polend":"DD-MM-YYYY HH:mm:ss",
     "liccache":"yes"
 }
@@ -150,7 +150,7 @@ For example:
 {
     "client": "YOUR_NAME",
     "policy": {
-        "contentid": "filename",
+        "content_id": "filename",
         "polend": "26-11-2018 16:48:59"
     }
 }   
@@ -162,5 +162,5 @@ An example request to the VUDRM token API in curl is:
 curl -X POST \
   https://token.vudrm.tech/generate \
   -H 'API_KEY: <your-api-key>' \
-  -d '{"client": "<client>","policy": {"contentid":"<content-id>","polend":"<pol-end>","liccache":"no"}}'
+  -d '{"client": "<client>","policy": {"content_id":"<content-id>","polend":"<pol-end>","liccache":"no"}}'
 ```
