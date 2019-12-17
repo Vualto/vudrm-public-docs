@@ -39,8 +39,7 @@ The DRM policy is included in the VUDRM token as the encrypted third component. 
 | `duration_rental`  | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay rental licenses.                                                               |
 | `duration_lease`   | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay lease licenses.                                                              |
 | `duration_persist` | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay persist licenses.                                                           |
-| `match_content_id` | bool     | `true` or `false`         | Fairplay, Widevine       | Boolean for if the content id in the token should be compared with the content id used to encrypt a piece of content.                                                     
-
+| `match_content_id` | bool     | `true` or `false`         | Fairplay, Widevine       | Boolean for if the content id in the token should be compared with the content id in the used in the license request; the content id in the license request will be the same as the content id used to generate the keys that encrypted a given piece of content.                                                     
 
 This table is not an exhaustive list, for example it does not include advanced PlayReady settings. If you require the use of more advanced settings please contact support@vualto.com
 
@@ -49,7 +48,7 @@ The `polbegin` and `polend` settings use the timezone set at the account level. 
 There are also limitations depending on environments that are not explained in the table. Please refer to the following sections for more detail:
 
 ### Match conntent id
-If `content_id` has been set and `match_content_id` has been set to `true`, when a license request is made the content id in the license request and the content id in the VUDRM token will be compared. If they **are** the same a license will be served as normal; if they are **not** the same the license request will be denied.
+If `content_id` has been set and `match_content_id` has been set to `true`, when a license request is made the content id in the license request and the content id in the VUDRM token will be compared. If they **are** the same a license will be served as normal; if they are **not** the same the license request will be denied. If `match_content_id` has been set to `false` **or** `content_id` has not been specified then this comparision will not occur. 
 
 ### Default DRM policy
 It is possible to specify a default DRM policy that will be used when we receive a VUDRM token. For example if you wish for all licenses requested to default to caching the license, the default DRM policy would be `{ "liccache":"yes" }`, meaning a VUDRM token with the policy `{ "polend":"DD-MM-YYYY HH:mm:ss" }` would be the same as `{ "liccache":"yes", "polend":"DD-MM-YYYY HH:mm:ss" }`. The values in the default policy can be overridden by simply putting them in the policy you pass in the VUDRM token. For example if the default DRM policy was `{ "liccache":"yes" }` but you wanted a license to not be cached, the policy in the VUDRM token would be `{ "liccache":"no" }`.
