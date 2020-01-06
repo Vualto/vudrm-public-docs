@@ -47,7 +47,7 @@ The `polbegin` and `polend` settings use the timezone set at the account level. 
 
 There are also limitations depending on environments that are not explained in the table. Please refer to the following sections for more detail:
 
-### Match conntent id
+### Match content id
 If `content_id` has been set and `match_content_id` has been set to `true`, when a license request is made the content id in the license request and the content id in the VUDRM token will be compared. If they **are** the same a license will be served as normal; if they are **not** the same the license request will be denied. If `match_content_id` has been set to `false` **or** `content_id` has not been specified then this comparision will not occur. 
 
 ### Default DRM policy
