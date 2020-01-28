@@ -4,8 +4,9 @@ The VUDRM key provision service exposes the generation of DRM encryption. It pro
 
 ## CPIX Key Provider API
 
-We recommend using our CPIX API in order to fetch VUDRM encryption keys in CPIX XML document format. Compatible with Unified Streaming (version 1.9.3 and above).
+We recommend using our CPIX API to fetch VUDRM encryption keys in CPIX XML document format. Compatible with Unified Streaming (version 1.9.3 and above).
 This API can also be used to return the keys from the CPIX document in JSON format; for more information on this please see the [JSON keys](#json-keys) section.
+All requests made to this API will require your API key set as the header `API-KEY`. If you do not know or have not been given your API key please contact support@vualto.com.
 
 > Replace `<api-key>`, `<client-name>`, and `<content-id>` with appropiate values.
 
@@ -87,7 +88,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 #### Multikey
 
-Get a CPIX 2.1 document that uses separate keys for video and audio tracks. Only supported by DASH with PlayReady or Widevine.
+Get a CPIX 2.1 document that uses separate keys for video and audio tracks; it is Only supported by DASH with PlayReady or Widevine.
 
 ##### Optional query params:
 
@@ -146,7 +147,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 #### Multikey with audio clear
 
-Get a CPIX 2.1 document that uses only 1 content key for video; audio tracks are left in the clear. Only supported by DASH with PlayReady or Widevine.
+Get a CPIX 2.1 document that uses only 1 content key for video; audio tracks are left in the clear and is only supported by DASH with PlayReady or Widevine.
 
 ##### Optional query params:
 
@@ -229,11 +230,11 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 The values are:
 
-- `key_id_hex`: Unique ID for the encryption. Base16 in Little Endian. This one should be used with `mp4split`.
-- `content_key_hex`: 128bit encryption key in base16 in Little Endian. This one should be used with `mp4split`.
-- `iv_hex`: The encryption key.
-- `playready_pssh_data`: Base 64 encoded pssh box containing the Playready header.
-- `playready_system_id`: The DASH protection system-specific identifier for Playready.
+- `key_id_hex`: Unique ID for the encryption. Base16 in Little Endian. Used by PlayReady and Widevine.
+- `content_key_hex`: 128bit encryption key in base16 in Little Endian. Used by Fairplay, PlayReady, and Widevine.
+- `iv_hex`: The encryption key. Used by Fairplay.
+- `playready_pssh_data`: Base 64 encoded pssh box containing the PlayReady header.
+- `playready_system_id`: The DASH protection system-specific identifier for PlayReady.
 - `widevine_drm_specific_data`: Base 64 encoded pssh box containing the content id.
 - `widevine_system_id`: The DASH protection system-specific identifier for Widevine.
 - `fairplay_system_id`: The DASH protection system-specific identifier for Fairplay.
@@ -245,9 +246,9 @@ Use our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) in
 
 #### mp4split
 
-##### With CPIX document
+##### With a CPIX document
 
-A CPIX document can be used in the below mp4split to encrypt content. For a full list CPIX mp4split options see Unified Streamings full [documentation](https://docs.unified-streaming.com/documentation/drm/cpix_cmdline_options.html).
+A CPIX document can be used in the below mp4split command to encrypt content. For a full list CPIX mp4split options see Unified Streamings full [documentation](https://docs.unified-streaming.com/documentation/drm/cpix_cmdline_options.html).
 
 ```bash
 mp4split --license-key=$USP_LICENSE_KEY -o $ismName \
@@ -262,7 +263,6 @@ Keys requested in JSON format can be used in the below mp4split to encrypt conte
 ```bash
 mp4split --license-key=$USP_LICENSE_KEY -o $ismName \
      --iss.key=$key_id_hex:$content_key_hex \
-     --iss.key_iv=$playreadyIv \
      --iss.license_server_url="https://playready-license.vudrm.tech/rightsmanager.asmx" \
      --widevine.key=$key_id_hex:$content_key_hex \
      --widevine.license_server_url="https://widevine-license.vudrm.tech/proxy" \
@@ -274,7 +274,6 @@ mp4split --license-key=$USP_LICENSE_KEY -o $ismName \
      --hls.playout=sample_aes_streamingkeydelivery \
      video.ismv audio.isma
 ```
-- The `iss.key_iv` is the the first 16 characters of the `iv_hex` or can be ommited completely.
 
 ## Wowza Integration
 
