@@ -88,7 +88,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 #### Multikey
 
-Get a CPIX 2.1 document that uses separate keys for video and audio tracks; it is Only supported by DASH with PlayReady or Widevine.
+Get a CPIX 2.1 document that uses separate keys for video and audio tracks; it is only supported by DASH with PlayReady or Widevine.
 
 ##### Optional query params:
 
@@ -242,17 +242,33 @@ The values are:
   
 ### Unified Streaming Integration
 
-Use our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) in order to integrate with USP.
+The recommended approach to integrate with USP will depend on your exact use case. If you will be requesting CPIX documents regularly, e.g. for use with live content, it is recommended to use our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) to retrieve CPIX documents. If you will be making less frequent calls for CPIX documents, e.g. for one time packaging, you can use either our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) or request CPIX documents from our CPIX Key Provider API directly.
+
+If you would prefer to not use a CPIX document at all you can also use the [JSON formatted response].
 
 #### mp4split
 
 ##### With a CPIX document
 
-A CPIX document can be used in the below mp4split command to encrypt content. For a full list CPIX mp4split options see Unified Streamings full [documentation](https://docs.unified-streaming.com/documentation/drm/cpix_cmdline_options.html).
+A CPIX document can be used in the below mp4split commands to encrypt content. For a full list CPIX mp4split options see Unified Streamings full [documentation](https://docs.unified-streaming.com/documentation/drm/cpix_cmdline_options.html).
+
+You can encrypt content with a CPIX document stored locally by doing the following commands.
+
+```bash
+curl -XGET -H "API-KEY: <api-key>" \
+  "https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>" \
+  > drm.cpix
+
+mp4split --license-key=$USP_LICENSE_KEY -o $ismName \
+  --cpix=drm.cpix \
+  video.ismv audio.isma
+```
+
+Or you can reference our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) directly in the mp4split command as follows.
 
 ```bash
 mp4split --license-key=$USP_LICENSE_KEY -o $ismName \
-  --cpix=drm.cpix \
+  --cpix="$(curl http://local-cpix-proxy/v1/cpix/<client-name>/<content-id>)" \
   video.ismv audio.isma
 ```
 
