@@ -244,7 +244,7 @@ The values are:
 
 The recommended approach to integrate with USP will depend on your exact use case. If you will be requesting CPIX documents regularly, e.g. for use with live content, it is recommended to use our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) to retrieve CPIX documents. If you will be making less frequent calls for CPIX documents, e.g. for one time packaging, you can use either our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) or request CPIX documents from our CPIX Key Provider API directly.
 
-If you would prefer to not use a CPIX document at all you can also use the [JSON formatted response].
+If you would prefer to not use a CPIX document at all you can also use the [JSON formatted response](#json-keys).
 
 #### mp4split
 
