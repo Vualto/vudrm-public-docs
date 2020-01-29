@@ -1,7 +1,7 @@
 # SPEKE KEY PROVIDER API
 These are the docs for the speke key provider, which has a speke endpoint for use with AWS.
 
-In order to use our SPEKE API you will need to set up an API gateway that adds the header `API-KEY` with your API key and with your client name inplace of `client-name` in "https://speke.vudrm.tech/client-name/speke".
+In order to use our SPEKE API you will need to set up an API gateway that adds the header `API-KEY` with your API key and with your client name inplace of `client-name` in "https://speke.vudrm.tech/client-name/speke". For more information on how to setup the API Gateway see the [API Gateway](#API-Gateway) section.
 
 ## Use with AWS Media Convert (VOD)
 ### 1. Go to AWS S3.
@@ -267,3 +267,63 @@ Content-Type: application/xml
     </cpix:DRMSystemList>
 </cpix:CPIX>
 ```
+
+## API Gateway
+
+### Importing the API from Swagger
+
+After navigating to API Gateway Service in AWS and clicking `Create API`, simply click `Import` for a REST API.
+Then ensure the protocol is set to `REST` and `Import from Swagger or Open API 3` is selected.
+You can then paste the JSON below and click `Import`.
+
+```JSON
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "speke proxy"
+  },
+  "basePath": "/speke",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "API-KEY",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### API Gateway set up
+
+Once imported you will need to set up the post method by clicking `Set up now`.
+- Set `Integration Type` to be `HTTP`
+- Check `Use HTTP Proxy integration`
+- Set the `Endpoint URL` to be `https://speke.vudrm.tech/<your-client-name>/speke`
+
+With these options set click `Create`.
+
+Then select `Integration Request` and under the `HTTP Headers` section add a header with the name `API-KEY` and `Mapped from` set to `'<your-api-key>'` ensuring to include the single quotes surrounding your API key.
+
+Now in the `Actions` dropdown select `Deploy API`.
+
+From the `Deployment stage` dropdown select `[New Stage]`, and enter an appropriate name for the stage in the box below.
+
+You will then be sent to the stage editor for the stage you have just created and deployed to. On this page there will be your `Invoke URL`. This is the URL that can be used by other AWS services to make requests to our SPEKE API.
