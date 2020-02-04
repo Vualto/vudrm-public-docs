@@ -1,7 +1,7 @@
 # SPEKE KEY PROVIDER API
 These are the docs for the speke key provider, which has a speke endpoint for use with AWS.
 
-In order to use our SPEKE API you will need to set up an API gateway that adds the header `API-KEY` with your API key and with your client name inplace of `client-name` in "https://speke.vudrm.tech/client-name/speke". For more information on how to setup the API Gateway see the [API Gateway](#api-gateway) section.
+In order to use our SPEKE API you will need to set up an API gateway that adds the header `API-KEY` with your API key and with your client name in place of `client-name` in "https://speke.vudrm.tech/client-name/speke". For more information on how to setup the API Gateway see the [API Gateway](#api-gateway) section.
 
 ## Use with AWS Media Convert (VOD)
 ### 1. Go to AWS S3.
