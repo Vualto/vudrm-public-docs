@@ -198,6 +198,9 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable({{ 'true' if theme_sticky_navigation|tobool else 'false' }});
       });
+
+      currrentDate = new Date();
+      document.getElementById("copyright-date-footer").innerHTML = "© Copyright " + currrentDate.getFullYear() + ", VUALTO Ltd";
   </script>
 
   {%- block footer %} {% endblock %}
