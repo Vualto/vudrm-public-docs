@@ -268,7 +268,7 @@ Or you can reference our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vual
 
 ```bash
 mp4split --license-key=$USP_LICENSE_KEY -o $ismName \
-  --cpix="$(curl http://local-cpix-proxy/v1/cpix/<client-name>/<content-id>)" \
+  --cpix="http://local-cpix-proxy/v1/cpix/<client-name>/<content-id>" \
   video.ismv audio.isma
 ```
 
