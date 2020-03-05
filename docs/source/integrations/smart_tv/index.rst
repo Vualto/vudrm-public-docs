@@ -7,3 +7,4 @@ SMART TV's
 
    lg.md
    tizen.md
+   tizen-legacy.md
