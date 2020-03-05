@@ -23,6 +23,8 @@ For further information on Samsungs PlayReady support please visit the [Tizen Pl
 Implementing a PlayReady solution can be done with the following [demo repo](https://github.com/Vualto/vudrm-tizen).
 
 ```javascript
+// create listeners for your player
+const listeners = {};
 const source = "<YOUR DASH STREAM>";
 const drmParam = {
     DeleteLicenseAfterUse: true,
