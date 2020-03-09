@@ -42,7 +42,7 @@ A demo application written in Swift is available on request. Please contact [sup
 ## Xcode Integration
 The VUDRMFairPlay SDK is distributed using Cocoapods. Projects set up with Cocoapods use an Xcode workspace, so it is important that projects with Cocoapods are always opened using the workspace file instead of the project file. Our simple demo applictation demonstrates the required set up for Cocoapods.
 
-If you are integrating the VUDRMFairPlay SDK into your own project, please ensure that the project has been set up correctly for Cocoapods. There are numerous online turtorials demonstrating how to do this. You can then replace or merge the`podfile` with the one in our demo application.
+If you are integrating the VUDRMFairPlay SDK into your own project, please ensure that the project has been set up correctly for Cocoapods. There are numerous online tutorials demonstrating how to do this. You can then replace or merge the`podfile` with the one in our demo application.
 
 It is important that the latest version of Cocoapods is installed before the demo project or your project can be opened without error.
 
@@ -50,7 +50,7 @@ It is important that the latest version of Cocoapods is installed before the dem
 
 	`sudo gem install cocoapods`
 
-2. To pull vudrmFairPlay.framework in to the demo project or your project with Cocoapods, ensure that you quit Xcode if it is running, then open the Temrinal application and navigate to the project directory, for example:
+2. To pull vudrmFairPlay.framework in to the demo project or your project with Cocoapods, ensure that you quit Xcode if it is running, then open the Terminal application and navigate to the project directory, for example:
 
  	`cd /Users/username/Documents/Dev/vudrm-fairplay-demo-ios`
 
