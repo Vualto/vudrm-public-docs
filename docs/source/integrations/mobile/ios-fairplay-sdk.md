@@ -30,18 +30,39 @@ This SDK has a number of key benefits:
 
 The SDK is fully supported in both Objective-C and Swift applications. 
 
-A demo application written in Swift is available on request. Please contact [support@vualto.com](support@vualto.com) to request a download of the SDK.
+A demo application written in Swift is available on request. Please contact [support@vualto.com](support@vualto.com) to request access.
 
 ## Requirements
 
 - Minimum iOS deployment target of 9.x or higher
 - Xcode 11
 - Swift 5
+- Cocoapods
 
 ## Xcode Integration
+The VUDRMFairPlay SDK is distributed using Cocoapods. Projects set up with Cocoapods use an Xcode workspace, so it is important that projects with Cocoapods are always opened using the workspace file instead of the project file. Our simple demo applictation demonstrates the required set up for Cocoapods.
 
-1. Copy the vudrmFairPlay.framework into your application's project directory
-2. Navigate to your target and add vudrmFairPlay.framework to your ‘Embedded Binaries’. You should see that vudrmFairPlay.framework also now appears under ‘Linked Frameworks and Libraries’:
+If you are integrating the VUDRMFairPlay SDK into your own project, please ensure that the project has been set up correctly for Cocoapods. There are numerous online tutorials demonstrating how to do this. You can then replace or merge the `podfile` with the one in our demo application.
+
+It is important that the latest version of Cocoapods is installed before the demo project or your project can be opened without error.
+
+1. You can ensure that you have the latest version of Cocoapods by opening a new shell in the Terminal application and entering:
+
+	`sudo gem install cocoapods`
+
+2. To pull vudrmFairPlay.framework in to the demo project or your project with Cocoapods, ensure that you quit Xcode if it is running, then open the Terminal application and navigate to the project directory, for example:
+
+ 	`cd /Users/username/Documents/Dev/vudrm-fairplay-demo-ios`
+
+	Then enter:
+	
+	`pod install cocoapods`
+
+The project should now be ready to open and run in Xcode.
+
+Please see below for more information on using the demo application.
+
+If you are unable to use Cocoapods in your project, please contact [support@vualto.com](support@vualto.com) to discuss other options.
 
 ## Information about application transport security (ATS)
 
@@ -201,6 +222,10 @@ catch {
 - If you believe you have found any further issues, please contact us at support@vualto.com
 
 ## Release notes
+
+### v0.0.1 (build 131) on 29/01/2020
+
+- Cocoapod distribution integration
 
 ### v0.0.1 (build 105) on 24/09/2019
 
