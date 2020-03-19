@@ -10,6 +10,8 @@ All requests made to this API will require your API key set as the header `API-K
 
 > Replace `<api-key>`, `<client-name>`, and `<content-id>` with appropiate values.
 
+> `<content-id>` may only contain alphanumeric, underscores, and hyphens.
+
 > Available DRM systems [`fairplay`, `playready`, `widevine`].
 
 ### Endpoints
