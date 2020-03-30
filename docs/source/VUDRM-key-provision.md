@@ -10,6 +10,8 @@ All requests made to this API will require your API key set as the header `API-K
 
 > Replace `<api-key>`, `<client-name>`, and `<content-id>` with appropiate values.
 
+> `<content-id>` may only contain alphanumeric characters, underscores, and hyphens.
+
 > Available DRM systems [`fairplay`, `playready`, `widevine`].
 
 ### Endpoints
@@ -500,7 +502,7 @@ https://keyprovider.vudrm.tech/<DRM_TYPE>/<CLIENT_NAME>/<CONTENT_ID>
 The breakdown of this URL is:
 - `DRM_TYPE`: The type of encryption keys being requested. Possible values are `cenc`, `fairplay`, `widevine`, `playready`, and `aes`. See [Using the encryption keys](#using-the-encryption-keys) for more information.
 - `CLIENT_NAME`: The account name. Plese contact support@vualto.com if you do not have an account name.
-- `CONTENT_ID`: A unique content identifier. This value will always generate the same encryption keys.
+- `CONTENT_ID`: A unique content identifier. This value will always generate the same encryption keys. May only contain alphanumeric characters, underscores, and hyphens.
 
 In order to provide the keys securely, an API key is required in the header of the request. Please contact support@vualto.com if you do not have an API key.
 
