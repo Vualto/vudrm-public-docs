@@ -57,7 +57,8 @@ release = u''
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx_markdown_tables'
+    'sphinx_markdown_tables',
+    'm2r'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

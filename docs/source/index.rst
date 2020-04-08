@@ -21,3 +21,5 @@ Contents:
    VUDRM-Speke-Key-Provider.md
    Geo-Location.md
    integrations/integrations.rst
+   release-notes/index.rst
+   
