@@ -5,7 +5,5 @@ RELEASE NOTES
 - `05-04-2020 <#id2>`_
 
 
-.. mdinclude:: release-notes/08-04-2020.md
-.. mdinclude:: release-notes/05-04-2020.md
-
-
+.. mdinclude:: 08-04-2020.md
+.. mdinclude:: 05-04-2020.md
