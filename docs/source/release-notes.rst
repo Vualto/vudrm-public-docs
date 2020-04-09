@@ -1,15 +1,8 @@
 RELEASE NOTES
 =============================================
 
-- `08-04-2020 <#id1>`_
-- `05-04-2020 <#id2>`_
-
-
-.. mdinclude:: 08-04-2020.md
-.. mdinclude:: 05-04-2020.md
-
 .. toctree::
    :maxdepth: 2
-   :hidden:
 
-   archive/index.rst
+   release-notes/recent.rst
+   release-notes/archive.rst
