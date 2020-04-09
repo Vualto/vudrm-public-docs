@@ -7,3 +7,9 @@ RELEASE NOTES
 
 .. mdinclude:: 08-04-2020.md
 .. mdinclude:: 05-04-2020.md
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+
+   archive/index.rst
