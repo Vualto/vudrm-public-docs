@@ -2,7 +2,7 @@
 
 The VUDRMFairPlay SDK is available for iOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on this platform.
 
-Current release: v0.0.1 (105)
+Current release: v0.0.1 (146)
 
 - Overview
 - Requirements
@@ -51,12 +51,14 @@ It is important that the latest version of Cocoapods is installed before the dem
 	`sudo gem install cocoapods`
 
 2. To pull vudrmFairPlay.framework in to the demo project or your project with Cocoapods, ensure that you quit Xcode if it is running, then open the Terminal application and navigate to the project directory, for example:
-
- 	`cd /Users/username/Documents/Dev/vudrm-fairplay-demo-ios`
-
-	Then enter:
+`cd /Users/username/Documents/Dev/vudrm-fairplay-demo-ios`
+Then enter:
 	
 	`pod install cocoapods`
+	
+	or, where the pad has previously been installed:
+	
+	`pod update cocoapods`
 
 The project should now be ready to open and run in Xcode.
 
@@ -222,6 +224,12 @@ catch {
 - If you believe you have found any further issues, please contact us at support@vualto.com
 
 ## Release notes
+
+
+### v0.0.1 (build 146) on 07/04/2020
+
+- Added retrieval of license server URI from manifest
+- Update required for XCode 11.4
 
 ### v0.0.1 (build 131) on 29/01/2020
 
