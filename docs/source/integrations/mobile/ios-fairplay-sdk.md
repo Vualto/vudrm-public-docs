@@ -51,6 +51,7 @@ It is important that the latest version of Cocoapods is installed before the dem
 	`sudo gem install cocoapods`
 
 2. To pull vudrmFairPlay.framework in to the demo project or your project with Cocoapods, ensure that you quit Xcode if it is running, then open the Terminal application and navigate to the project directory, for example:
+
 `cd /Users/username/Documents/Dev/vudrm-fairplay-demo-ios`
 Then enter:
 	
