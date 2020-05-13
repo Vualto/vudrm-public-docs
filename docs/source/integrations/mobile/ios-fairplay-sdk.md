@@ -52,8 +52,9 @@ It is important that the latest version of Cocoapods is installed before the dem
 
 2. To pull vudrmFairPlay.framework in to the demo project or your project with Cocoapods, ensure that you quit Xcode if it is running, then open the Terminal application and navigate to the project directory, for example:
 
-`cd /Users/username/Documents/Dev/vudrm-fairplay-demo-ios`
-Then enter:
+	`cd /Users/username/Documents/Dev/vudrm-fairplay-demo-ios`
+
+	Then enter:
 	
 	`pod install cocoapods`
 	
@@ -114,7 +115,12 @@ There are significant limitations using AirPlay to stream any content that has b
 
 To initialise an instance, create an AVURL asset with your asset URL, and pass that in to the initialiser with the asset ID and a valid token.
 
-Our example uses a single dynamically assigned instance. It would be expected that your application will manage the applications offline assets, including their ID’s, locations and download status. This method uses AVAssetDownloadURLSession with a URLSessionConfiguration to create an AVAssetDownloadTask for each configured asset. The asset ID should be unique to each asset, as it is used to create a path to, and identify, offline assets and their associated content keys.
+<div class="admonition danger">
+    <p class="first admonition-title">Offline Asset Management</p>
+    <p class="last"> The current example application demonstrates a single instance of offline playback using an AVAssetDownloadURLSession with a URLSessionConfiguration to create an AVAssetDownloadTask for that asset. The example is not able to handle multiple assets. Users are expected to develop a method of mapping instances to assets within their application which will avoid multiple downloads of the same asset and will enable management of assets. </p>
+</div>
+
+This method uses AVAssetDownloadURLSession with a URLSessionConfiguration to create an AVAssetDownloadTask for each configured asset. The asset ID should be unique to each asset, as it is used to create a path to, and identify, offline assets and their associated content keys.
 
 The current example initialises an AVAssetDownloadURLSession with a URLSessionConfiguration upon
 loading the ViewController:
