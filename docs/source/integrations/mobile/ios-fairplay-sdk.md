@@ -58,7 +58,7 @@ It is important that the latest version of Cocoapods is installed before the dem
 	
 	`pod install cocoapods`
 	
-	or, where the pad has previously been installed:
+	or, where the pod has previously been installed:
 	
 	`pod update cocoapods`
 
