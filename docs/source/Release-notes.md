@@ -1,6 +1,6 @@
 # RELEASE NOTES 
 
-* [May 2020] #may-2020
+* [May 2020](#may-2020)
 
 ## May 2020
 
