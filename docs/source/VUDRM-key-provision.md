@@ -295,7 +295,7 @@ mp4split --license-key=$USP_LICENSE_KEY -o $ismName \
 
 ### NGINX VOD Module
 
-Our CPIX Key Provider API has an endpoint that is dedicated to providing the key information needed to integrate with kaltura's [NGINX VOD Module](https://github.com/kaltura/nginx-vod-module). 
+Our CPIX Key Provider API has an endpoint that is dedicated to providing the key information needed to integrate with Kaltura's [NGINX VOD Module](https://github.com/kaltura/nginx-vod-module). 
 
 You can request encryption keys in the format required by the NGINX VOD Module by performing the following command.
 
