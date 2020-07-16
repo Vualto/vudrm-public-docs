@@ -232,7 +232,7 @@ catch {
 - SDK redeveloped to:
 	-  resolve issue with persistence restoration after application cache clearance
 	- Enable demonstration of multiple asset DRM based on Apple's HLS Catalog example application.
-	- improve flow and handling using Apples latest FairPlay SDK methods.
+	- Improve flow and handling using Apple's latest FairPlay SDK methods.
 
 ### v0.0.1 (build 146) on 07/04/2020
 
