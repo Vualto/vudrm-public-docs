@@ -86,7 +86,7 @@ More information about ATS can be found in Apple’s TechNote:
 
 ## Preparation
 
-The demo project is based on Apples FairPlay SDK example application. This is configured using the projects `Streams.plist` file. 
+The demo project is based on Apple's FairPlay SDK example application. This is configured using the projects `Streams.plist` file. 
 
 To provide complete configuration for each `Stream` object in the `Streams.plist`you will require:
 
