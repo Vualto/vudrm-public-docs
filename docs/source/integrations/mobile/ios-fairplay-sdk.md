@@ -231,7 +231,7 @@ catch {
 ### v1.0 (build 161) on 10/06/2020
 - SDK redeveloped to:
 	-  resolve issue with persistence restoration after application cache clearance
-	-  enable demonstration of multiple asset DRM based on Apples HLS Catalog example application
+	- Enable demonstration of multiple asset DRM based on Apple's HLS Catalog example application.
 	- improve flow and handling using Apples latest FairPlay SDK methods.
 
 ### v0.0.1 (build 146) on 07/04/2020
