@@ -182,7 +182,7 @@ The ContentKeyManager class should look like this:
      
 ##### Online Playback / Download and Offline Playback:
 
-This will request a license for the content from the license server based on the type of token presented for each instance of VUDRM FairPlay. The tokens may be FairPlay Rental or FairPlay Persist. FairPlay Rental token license requests will be provided a streaming content key, which may be used for online streaming only. FairPlay Persist token license requests will provide a persistent content key, which may be used for both online streaming, and offline playback of downloaded content.
+This will request a license for the content from the license server based on the type of token presented for each instance of VUDRMFairPlay. The tokens may be FairPlay Rental or FairPlay Persist. FairPlay Rental token license requests will be provided a streaming content key, which may be used for online streaming only. FairPlay Persist token license requests will provide a persistent content key, which may be used for both online streaming, and offline playback of downloaded content.
 
 When a download of an asset has been completed with a persist token policy, further playback requests will use the downloaded asset and associated content key, even when online.
 
