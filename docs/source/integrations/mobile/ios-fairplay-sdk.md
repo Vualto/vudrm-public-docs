@@ -90,7 +90,7 @@ The demo project is based on Apple's FairPlay SDK example application. This is c
 
 To provide complete configuration for each `Stream` object in the `Streams.plist`you will require:
 
- - An `skd://` URI entry in the `content_key_id_list`. The correct URI can be obtained by retrieving the manifest and parsing out the `URI` from the `EXT-X-SESSION-KEY` or `EXT-X-KEY`, this can be done in code or manually with curl in the Terminal app, eg enter: `curl https://eample.cloudfront.net/example-demo/examplecontent/examplecontent.ism/.m3u8`. 
+ - An `skd://` URI entry in the `content_key_id_list`. The correct URI can be obtained by retrieving the manifest and parsing out the `URI` from the `EXT-X-SESSION-KEY` or `EXT-X-KEY`, this can be done in code or manually with curl in the Terminal app, e.g. enter: `curl https://eample.cloudfront.net/example-demo/examplecontent/examplecontent.ism/.m3u8`. 
  - The `playlist_url` to correctly prepared content.
  -  A `name` for the content (the correct content ID will be parsed out by VUDRMFairPlay SDK and will always be the last path component of the above `skd://` URI entry).
  - A boolean value which indicates that the `Stream` object is protected with DRM. This setting would not be needed in scenarios where all content is protected, as all assets can be set as protected by default in the source code. 
