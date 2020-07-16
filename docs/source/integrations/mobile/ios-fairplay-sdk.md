@@ -188,7 +188,7 @@ When a download of an asset has been completed with a persist token policy, furt
 
 There are significant limitations using AirPlay to stream any content that has been downloaded to the users device to an Apple TV. Please see the Limitations section for further information.
 
-To initialise your assets DRM instances, your application should create a DRM instance for each entry in the `Streams.plist` file (or comparable configuration) using a `ContentKeyManager`. How to do this is demonstrated in our demo application. The `ContentKeyManager` attaches instances of vudrmFairPlay to an `AssetResourceLoaderDelegate` for each asset using the asset URL, content ID and valid token. The content ID should be unique to each asset, as it is used to create a path to, and identify, offline assets and their associated content keys.
+To initialise your assets DRM instances, your application should create a DRM instance for each entry in the `Streams.plist` file (or comparable configuration) using a `ContentKeyManager`. How to do this is demonstrated in our demo application. The `ContentKeyManager` attaches instances of VUDRMFairPlay to an `AssetResourceLoaderDelegate` for each asset using the asset URL, content ID, and valid token. The content ID should be unique to each asset, as it is used to create a path to, and identify, offline assets and their associated content keys.
 
 ##### DEMO
 
