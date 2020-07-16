@@ -29,7 +29,7 @@ This SDK has a number of key benefits:
 
 The SDK is fully supported in both Objective-C and Swift applications. 
 
-A multiple asset demo application written in Swift, and based on Apples FairPlay SDK example application, is available on request. Please contact [support@vualto.com](support@vualto.com) to request access.
+A multiple asset demo application written in Swift, and based on Apple's FairPlay SDK example application, is available on request. Please contact [support@vualto.com](support@vualto.com) to request access.
 
 ## Requirements
 
