@@ -132,7 +132,7 @@ And, progress can be monitored using the following:
     }
         
 ## Example framework usage
-We strongly recommend referring to our example multiple asset demo application which uses a `ContentKeyManager`class to initialise an instance of VUDRMFairPlay for each stream, it then attaches the instance to an `AssetResourceLoaderDelegate`which is added to the `AssetResourceLoaderDelegateQueue`. Used with an `AssetPersistenceManager` class, the `ContentKeyManager` will also correctly handle persistence restoration with the `updateResourceLoaderDelegate` function.
+We strongly recommend referring to our example multiple asset demo application which uses a `ContentKeyManager`class to initialise an instance of VUDRMFairPlay for each stream, it then attaches the instance to an `AssetResourceLoaderDelegate` which is added to the `AssetResourceLoaderDelegateQueue`. Used with an `AssetPersistenceManager` class, the `ContentKeyManager` will also correctly handle persistence restoration with the `updateResourceLoaderDelegate` function.
 	
 The ContentKeyManager class should look like this:
 
