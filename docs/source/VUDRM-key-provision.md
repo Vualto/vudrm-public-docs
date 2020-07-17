@@ -339,8 +339,8 @@ The addition of this proxy pass inorder to add your api key to the request made 
 ```
 location /drm {
   internal;
-  proxy_pass "https://cpix.staging.vudrm.tech/v1/keys";
-  proxy_set_header API-KEY 11c4c4e0-d3ce-11e5-be15-b7da075a3e2d;
+  proxy_pass "https://cpix.vudrm.tech/v1/keys";
+  proxy_set_header API-KEY <api-key>;
 } 
 ```
 
@@ -438,8 +438,8 @@ http {
 
 		location /drm {
 			internal;
-			proxy_pass "https://cpix.staging.vudrm.tech/v1/keys";
-			proxy_set_header API-KEY 11c4c4e0-d3ce-11e5-be15-b7da075a3e2d;
+			proxy_pass "https://cpix.vudrm.tech/v1/keys";
+			proxy_set_header API-KEY <api-key>;
 		} 
 	}
 }
