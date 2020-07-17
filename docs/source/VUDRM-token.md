@@ -39,8 +39,8 @@ The DRM policy is included in the VUDRM token as the encrypted third component. 
 | `duration_rental`  | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay rental licenses.                                                               |
 | `duration_lease`   | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay lease licenses.                                                              |
 | `duration_persist` | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay persist licenses.                                                           |
-| `match_content_id` | bool     | `true` or `false`         | Fairplay, Widevine       | Boolean for if the content id in the token should be compared with the content id used in the license request; the content id in the license request will be the same as the content id used to generate the keys that encrypted a given piece of content. 
-| `geo_whitelist`     | string array | Array of 3 letter country codes (ISO 3166-1 alpha-3) | Fairplay, Widevine | A list of 3 letter country codes, ISO 3166-1 alpha-3, for all countries that are allowed access. 
+| `match_content_id` | bool     | `true` or `false`         | ALL       | Boolean for if the content id in the token should be compared with the content id used in the license request; the content id in the license request will be the same as the content id used to generate the keys that encrypted a given piece of content. 
+| `geo_whitelist`     | string array | Array of 3 letter country codes (ISO 3166-1 alpha-3) | ALL | A list of 3 letter country codes, ISO 3166-1 alpha-3, for all countries that are allowed access. 
 
 This table is not an exhaustive list, for example it does not include advanced PlayReady settings. If you require the use of more advanced settings please contact support@vualto.com
 
