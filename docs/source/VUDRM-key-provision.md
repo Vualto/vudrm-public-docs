@@ -201,6 +201,94 @@ curl -XGET -H "API-KEY: <api-key>" \
 </cpix:CPIX>
 ```
 
+#### Key Rotation
+
+Get a CPIX 2.1 document with Fairplay keys at every given interval between two given times; key rotation is only supported by HLS with Fairplay or AES.
+
+###### USP support 
+
+Key rotation works with USP versions `1.10.12` and `1.10.18`. If you wish to use version `1.9.5` the `explicitIV` needs to be removed from each content key before the CPIX document is used. This can be done with the following command if the CPIX document has been stored in a file name `keys.cpix`.
+
+```bash
+sed -i -E 's/ explicitIV=.*"//' keys.cpix
+```
+
+##### Query params:
+
+* `start` : start time in `yyyy-MM-ddThh-mm-ssZ` format. E.g. 1970-01-01T00:00:00Z
+* `end` : end time in `yyyy-MM-ddThh-mm-ssZ` format. E.g. 1970-01-01T01:00:00Z
+* `interval` : interval each key should last in seconds.
+
+##### Optional query params:
+
+* `drm` : comma separated list of DRM systems to be included in the response. **Can only be `fairplay` or `aes`**
+
+##### Request
+
+```bash
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix-beta.eu-central-1.vudrm.tech/v1/cpix/<client-name>/<content-id>/rotate?start=<start-time>&end=<end-time>&interval=<interval>"
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xmlns:speke="urn:aws:amazon:com:speke" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+  <cpix:ContentKeyList>
+    <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+      <cpix:Data>
+        <pskc:Secret>
+          <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+        </pskc:Secret>
+      </cpix:Data>
+    </cpix:ContentKey>
+    <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222" explicitIV="YjIxZmRlNzI5MDUyMDEzYw==">
+      <cpix:Data>
+        <pskc:Secret>
+          <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+        </pskc:Secret>
+      </cpix:Data>
+    </cpix:ContentKey>
+    <cpix:ContentKey kid="33333333-3333-3333-3333-333333333333" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+      <cpix:Data>
+        <pskc:Secret>
+          <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+        </pskc:Secret>
+      </cpix:Data>
+    </cpix:ContentKey>
+  </cpix:ContentKeyList>
+  <cpix:DRMSystemList>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData>YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData>YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="33333333-3333-3333-3333-333333333333" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData>YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+    </cpix:DRMSystem>
+  </cpix:DRMSystemList>
+  <cpix:ContentKeyPeriodList>
+    <cpix:ContentKeyPeriod id="period_0" start="1970-01-01T00:00:00Z" end="1970-01-01T00:30:00Z"></cpix:ContentKeyPeriod>
+    <cpix:ContentKeyPeriod id="period_1" start="1970-01-01T00:30:00Z" end="1970-01-01T01:00:00Z"></cpix:ContentKeyPeriod>
+    <cpix:ContentKeyPeriod id="period_2" start="1970-01-01T01:00:00Z" end="1970-01-01T01:30:00Z"></cpix:ContentKeyPeriod>
+  </cpix:ContentKeyPeriodList>
+  <cpix:ContentKeyUsageRuleList>
+    <cpix:ContentKeyUsageRule kid="11111111-1111-1111-1111-111111111111">
+      <cpix:KeyPeriodFilter periodId="period_0"></cpix:KeyPeriodFilter>
+    </cpix:ContentKeyUsageRule>
+    <cpix:ContentKeyUsageRule kid="22222222-2222-2222-22222-22222222222">
+      <cpix:KeyPeriodFilter periodId="period_1"></cpix:KeyPeriodFilter>
+    </cpix:ContentKeyUsageRule>
+    <cpix:ContentKeyUsageRule kid="33333333-3333-3333-3333-333333333333">
+      <cpix:KeyPeriodFilter periodId="period_2"></cpix:KeyPeriodFilter>
+    </cpix:ContentKeyUsageRule>
+  </cpix:ContentKeyUsageRuleList>
+</cpix:CPIX>
+```
+
 #### JSON Keys
 
 Get encryption keys and license URLs for a given `<content-id>` as JSON.
