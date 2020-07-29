@@ -236,13 +236,13 @@ curl -XPOST 'https://cpix.vudrm.tech/v1/cpix/<client-name>/harmonics' \
 </cpix:CPIX>'
 ```
 
-**Note the kids returned in the returned CPIX document may not match the kids in the POST request**
+**Note the kids in the returned CPIX document may not match the kids in the POST request**
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xmlns:speke="urn:aws:amazon:com:speke" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
     <cpix:ContentKeyList>
-        <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
             <cpix:Data>
                 <pskc:Secret>
                     <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
@@ -251,13 +251,13 @@ curl -XPOST 'https://cpix.vudrm.tech/v1/cpix/<client-name>/harmonics' \
         </cpix:ContentKey>
     </cpix:ContentKeyList>
     <cpix:DRMSystemList>
-        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
             <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
         </cpix:DRMSystem>
-        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
             <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
         </cpix:DRMSystem>
-        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
             <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
             <cpix:HLSSignalingData>YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
         </cpix:DRMSystem>
