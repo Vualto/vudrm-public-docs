@@ -241,7 +241,11 @@ The values are:
 - `widevine_system_id`: The DASH protection system-specific identifier for Widevine.
 - `fairplay_system_id`: The DASH protection system-specific identifier for Fairplay.
 - `fairplay_laurl`: The Fairplay license url.
-  
+
+#### Anevia
+
+The Anevia endpoint has the same functionality as the default endpoint. This endpoint only differs in the way the URL is formed, which is as follows `https://cpix.vudrm.tech/v1/cpix/<client-name>/copyProtectionData/<content-id>`. For more information about how this endpoint works please see the [default endpoint](#default) section.
+
 ### Unified Streaming Integration
 
 The recommended approach to integrate with USP will depend on your exact use case. If you will be requesting CPIX documents regularly, e.g. for use with live content, it is recommended to use our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) to retrieve CPIX documents. If you will be making less frequent calls for CPIX documents, e.g. for one time packaging, you can use either our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) or request CPIX documents from our CPIX Key Provider API directly.
