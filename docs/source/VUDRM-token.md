@@ -10,7 +10,7 @@ VUDRM tokens should be generated using the [VUDRM token API](#vudrm-token-api). 
 
 <div class="admonition warning">
     <p class="first admonition-title">Warning</p>
-    <p class="last">VUDRM tokens should not be generated on the client side.</p>
+    <p class="last">VUDRM tokens must not be generated on the client side.</p>
 </div>
 
 ## VUDRM token structure
@@ -22,6 +22,11 @@ The VUDRM token is comprised of four components each separated by the pipe chara
 - The time the token was generated in an ISO8601 format (yyyy-MM-ddThh:mm:ssZ).
 - The encrypted DRM policy.
 - A signed hash.
+
+<div class="admonition danger">
+    <p class="first admonition-title">Danger</p>
+    <p class="last">VUDRM tokens are designed to be single use and have a one to one relationship with the license request. Each license request must use a new VUDRM token. VUDRM tokens will expire, the TTL is set at an account level and in production will be set to around 30 seconds. The time a token will expire is calculated by the time the token is generated plus the TTL; The time a token was generated is displayed in the token. This is a separate time to the DRM policy times set in the encrypted DRM policy.</p>
+</div>
 
 ## DRM policy
 
