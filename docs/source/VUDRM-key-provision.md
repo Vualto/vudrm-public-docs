@@ -157,7 +157,7 @@ Get a CPIX 2.1 document that uses only 1 content key for video; audio tracks are
 
 ##### Request
 
-```
+```bash
 curl -XGET -H "API-KEY: <api-key>" \
 "https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>/multikey/audioclear"
 ```
@@ -198,6 +198,71 @@ curl -XGET -H "API-KEY: <api-key>" \
       <cpix:AudioFilter></cpix:AudioFilter>
     </cpix:ContentKeyUsageRule>
   </cpix:ContentKeyUsageRuleList>
+</cpix:CPIX>
+```
+
+
+
+
+#### Harmonics 
+
+Get a CPIX 2.1 document with all DRM systems `<client-name>` is entitled to use.
+
+##### Request
+
+**Note this endpoint requires a POST request with a CPIX document as the body of the request**
+
+```bash
+curl -XPOST 'https://cpix.vudrm.tech/v1/cpix/<client-name>/harmonics' \
+-H 'API-KEY: <api-key>' \
+-H 'Content-Type: application/xml' \
+--data-raw '<?xml version="1.0"?>
+<cpix:CPIX xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" contentId="<content-id>">
+    <cpix:ContentKeyList>
+        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111"></cpix:ContentKey>
+    </cpix:ContentKeyList>
+    <cpix:DRMSystemList>
+        <cpix:DRMSystem systemId="9a04f079-9840-4286-ab92-e65be0885f95" kid="11111111-1111-1111-1111-111111111111">
+        </cpix:DRMSystem>
+        <cpix:DRMSystem systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed" kid="11111111-1111-1111-1111-111111111111">
+        </cpix:DRMSystem>
+        <cpix:DRMSystem systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2" kid="11111111-1111-1111-1111-111111111111">
+        </cpix:DRMSystem>
+    </cpix:DRMSystemList>
+    <cpix:ContentKeyUsageRuleList>
+    </cpix:ContentKeyUsageRuleList>
+    <cpix:ContentKeyPeriodList>
+    </cpix:ContentKeyPeriodList>
+</cpix:CPIX>'
+```
+
+**Note the kids in the returned CPIX document may not match the kids in the POST request**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xmlns:speke="urn:aws:amazon:com:speke" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+    <cpix:ContentKeyList>
+        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+    </cpix:ContentKeyList>
+    <cpix:DRMSystemList>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData>YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+    </cpix:DRMSystemList>
+    <cpix:ContentKeyUsageRuleList></cpix:ContentKeyUsageRuleList>
 </cpix:CPIX>
 ```
 
