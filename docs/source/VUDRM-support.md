@@ -16,6 +16,6 @@ When contacting our support about a DRM issue please include as much relevant in
 
 All requests made to and from VUDRM services will have a header called `x-request-id`. This header allows us to track a request through our backend; if you are getting unexpected errors from our services giving us the value of this header will allow us to efficiently track any errors that occurred while processing your request. 
 
-### Vualto-Transaction-Id
+### Vualto-Transaction-ID
 
 On some requests you may find a header called `vualto-transaction-id`; this header was originally used for the same purpose as `x-request-id` header. In order to be more in line with industry standards, we are currently in the process of removing the `vualto-transaction-id` and replacing it with `x-request-id`. Please ensure that you use `x-request-id` contact support when contacting support and in any internal logging you perform.
