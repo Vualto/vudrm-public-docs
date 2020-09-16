@@ -2,7 +2,7 @@
 
 ## How to contact us 
 
-For all non-critical support request please email support@vualto.com. If you are a registered user you can contact support via the [help centre](https://vualto.zendesk.com). 
+For all non-critical support requests please email support@vualto.com. If you are a registered user you can contact support via the [help centre](https://vualto.zendesk.com). 
 
 For all critical issues please contact support via one of the numbers below.
 
