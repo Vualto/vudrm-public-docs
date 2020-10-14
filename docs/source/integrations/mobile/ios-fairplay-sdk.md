@@ -2,8 +2,9 @@
 
 The VUDRMFairPlay SDK is available for iOS and tvOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on these platforms, and how to configure our demo application.
 
-Current release: v1.0 (244)
-
+Current release:	iOS v1.0 (244)
+					tvOS v1.0 (212)
+					
 - [Overview](#overview)
 - [Requirements](#requirements)
 - [Xcode Integration](#xcode-integration)
@@ -198,7 +199,7 @@ When using the same implementation as our demo application, iOS requests for lic
 
 ##### DEMO
 
-The demo application that we use targets both iOS and tvOS platforms using shared source code. Each target platform references it's own version of the framework.
+The demo application that we use targets both iOS and tvOS platforms using shared source code. Each target platform references its own version of the framework.
 
 With the VUDRMFairPlay framework installed, the example demo application reads entries in the `Streams.plist` file to configure the content and DRM. You can edit the `Streams.plist` file values, and/or add your own valid values, which should include a `content_id`, `playlist_url` and `vudrm_token`(see **Preparation** above).
 
@@ -206,7 +207,7 @@ With the VUDRMFairPlay framework installed, the example demo application reads e
 
 - The `name` value is the display name, which may differ from the `content_id`.
 
-- The `is_protected` boolean value indicates whether the content is protected with DRM or not. This value can be overrideen in source if all content is protected.
+- The `is_protected` boolean value indicates whether the content is protected with DRM or not. This value can be overridden in source if all content is protected.
 
 `Stream` class objects are mapped to `Asset` class objects to initialise AVURLAssets using the `ContentKeyManager` class.
 
@@ -229,10 +230,11 @@ and is in the: `override func tableView(_ tableView: UITableView, accessoryButto
 
 - If you believe you have found any issues, please contact us at support@vualto.com
 
-## Release notes
+## Release notes (iOS / tvOS)
 
-### v1.0 (build 244) on 07/10/2020
+### v1.0 (build 244/212) on 07/10/2020
 - Fix issue with iOS simulators.
+- Merge iOS and tvOS documentation.
 
 ### v1.0 (build 211) on 02/10/2020
 - Update to Xcode 12, iOS 14, Swift 5.3.
