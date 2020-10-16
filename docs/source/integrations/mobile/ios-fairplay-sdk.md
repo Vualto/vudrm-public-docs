@@ -191,7 +191,7 @@ Requests for playback or download will result in a license request for the conte
 
 In iOS, when a download of an asset has been completed with a persist token policy, further playback requests will use the downloaded asset and associated content key, even when online.
 
-There are significant limitations using AirPlay to stream any content to an Apple TV that has been downloaded to the users device. Please see the [Limitations]((#limitations)) section for further information.
+There are significant limitations using AirPlay to stream any content to an Apple TV that has been downloaded to the users device. Please see the [Limitations](#limitations) section for further information.
 
 To initialise your assets DRM instances, your application should create a DRM instance for each entry in the `Streams.plist` file (or comparable configuration) using a `ContentKeyManager` class. How to do this is demonstrated in our demo application. The `ContentKeyManager` attaches instances of VUDRMFairPlay to an `AssetResourceLoaderDelegate` for each asset using the asset URL, content ID, and valid token. The content ID should be unique to each asset, as it is used along with the `playlist_url` to create a path to, and identify, offline assets and their associated content keys.
 
