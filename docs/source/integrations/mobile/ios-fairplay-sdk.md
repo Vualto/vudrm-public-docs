@@ -187,7 +187,7 @@ The ContentKeyManager class should look like this:
 
 The tvOS platform does not support downloading or offline playback.
 
-Requests for playback or download will request a license for the content from the license server based on the type of token presented for each instance of VUDRMFairPlay. The tokens may be FairPlay Rental or FairPlay Persist. FairPlay Rental token license requests will be provided a streaming content key, which may be used for online streaming only. FairPlay Persist token license requests will be provided a persistent content key, which may be used for both online streaming, and offline playback of downloaded content.
+Requests for playback or download will result in a license request for the content from the license server, based on the type of token presented for each instance of VUDRMFairPlay. The tokens may be FairPlay Rental or FairPlay Persist. FairPlay Rental token license requests will be provided a streaming content key, which may be used for online streaming only. FairPlay Persist token license requests will be provided a persistent content key, which may be used for both online streaming, and offline playback of downloaded content.
 
 In iOS, when a download of an asset has been completed with a persist token policy, further playback requests will use the downloaded asset and associated content key, even when online.
 
