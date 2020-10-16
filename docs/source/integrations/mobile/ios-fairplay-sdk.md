@@ -94,8 +94,8 @@ To provide complete configuration for each `Stream` object in the `Streams.plist
 
  - An `skd://` URI entry in the `content_key_id_list`. The correct URI can be obtained by retrieving the manifest and parsing out the `URI` from the `EXT-X-SESSION-KEY` or `EXT-X-KEY`, this can be done in code (see our demo application for an example) or manually with curl in the Terminal app, e.g. enter: `curl https://eample.cloudfront.net/example-demo/examplecontent/examplecontent.ism/.m3u8`. 
  - The `playlist_url` to correctly prepared content.
- - A `name` for the content. This will be the readable display name and is not used by the SDK. This may differ from the `contentID`.
- - A `content_id` for the content, being the same content ID that the content was prpeared with. This value will always be the last path component of the stream `content_key_id_list` or `skd://` URI entry. Our demo application shows how to retrieve and parse the `content_key_id_list`, however, the `contentID` always needs to be provided for use with offline assets.
+ - A `name` for the content. This will be the readable display name and is not used by the SDK. This may differ from the `content_id`.
+ - A `content_id` for the content, being the same content ID that the content was prpeared with. This value will always be the last path component of the stream `content_key_id_list` or `skd://` URI entry. Our demo application shows how to retrieve and parse the `content_key_id_list`, however, the `content_id` always needs to be provided for use with offline assets.
  - An `is_protected` boolean value which indicates that the `Stream` object is protected with DRM. This setting would not be needed in scenarios where all content is protected, as all assets can be set as protected by default in the source code. 
  - A `vudrm-token` which must be correctly generated for the type of instance you wish to create. Example VUDRM token type templates available are:
 	- Fairplay Rental `{"type": "r","duration_rental": 3600}`
