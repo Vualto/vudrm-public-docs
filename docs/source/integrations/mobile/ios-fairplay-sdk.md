@@ -201,7 +201,7 @@ When using the same implementation as our demo application, iOS requests for lic
 
 The demo application that we use targets both iOS and tvOS platforms using shared source code. Each target platform references its own version of the framework.
 
-With the VUDRMFairPlay framework installed, the example demo application reads entries in the `Streams.plist` file to configure the content and DRM. You can edit the `Streams.plist` file values, and/or add your own valid values, which should include a `content_id`, `playlist_url` and `vudrm_token`(see **Preparation** above).
+With the VUDRMFairPlay framework installed, the example demo application reads entries in the `Streams.plist` file to configure the content and DRM. You can edit the `Streams.plist` file values, and/or add your own valid values, which should include a `content_id`, `playlist_url`, and `vudrm_token`(see [Preparation](#preparation) above).
 
 - The `content_key_id_list` entry in the `Streams.plist` is retrieved in the demo by parsing the manifest using the `getContentKeyIDList` function in the `AssetListTableViewController`.
 
