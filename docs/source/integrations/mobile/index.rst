@@ -7,4 +7,3 @@ MOBILE
 
    android-widevine-sdk.md
    ios-fairplay-sdk.md
-   tvos-fairplay-sdk.md
