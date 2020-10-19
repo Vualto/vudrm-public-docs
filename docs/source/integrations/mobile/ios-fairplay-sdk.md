@@ -1,17 +1,19 @@
-# iOS FairPlay SDK
+# iOS / tvOS FairPlay SDK
 
-The VUDRMFairPlay SDK is available for iOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on this platform, and how to configure our demo application.
+The VUDRMFairPlay SDK is available for iOS and tvOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on these platforms, and how to configure our demo application.
 
-Current release: v1.0 (182)
-
-- Overview
-- Requirements
-- Xcode integration
-- Information about Application Transport Security (ATS)
-- Example framework usage
-- Limitations
-- Known Issues
-- Release Notes
+Current release:	iOS v1.0 (244)
+					tvOS v1.0 (212)
+					
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Xcode Integration](#xcode-integration)
+- [Information about Application Transport Security (ATS)](#information-about-application-transport-security-ats)
+- [Preparation](#preparation)
+- [Example framework usage](#example-framework-usage)
+- [Limitations](#limitations)
+- [Known Issues](#known-issues)
+- [Release Notes](#release-notes)
 
 ## Overview
 
@@ -33,9 +35,9 @@ A multiple asset demo application written in Swift, and based on Apple's FairPla
 
 ## Requirements
 
-- Minimum iOS deployment target of 11.2 or higher
-- Xcode 11.5
-- Swift 5
+- Minimum deployment target of iOS 12.0 and tvOS 12.0 or higher
+- Xcode 12
+- Swift 5.3
 - Cocoapods
 
 ## Xcode Integration
@@ -51,7 +53,7 @@ It is important that the latest version of Cocoapods is installed before the dem
 
 2. To pull vudrmFairPlay.framework in to the demo project or your project with Cocoapods, ensure that you quit Xcode if it is running, then open the Terminal application and navigate to the project directory, for example:
 
-	`cd /Users/username/Documents/Dev/vudrm-fairplay-demo-ios`
+	`cd /Users/username/Documents/Dev/vudrm-fairplay-demo`
 
 	Then enter:
 	
@@ -90,15 +92,16 @@ The demo project is based on Apple's FairPlay SDK example application. This is c
 
 To provide complete configuration for each `Stream` object in the `Streams.plist`you will require:
 
- - An `skd://` URI entry in the `content_key_id_list`. The correct URI can be obtained by retrieving the manifest and parsing out the `URI` from the `EXT-X-SESSION-KEY` or `EXT-X-KEY`, this can be done in code or manually with curl in the Terminal app, e.g. enter: `curl https://eample.cloudfront.net/example-demo/examplecontent/examplecontent.ism/.m3u8`. 
+ - An `skd://` URI entry in the `content_key_id_list`. The correct URI can be obtained by retrieving the manifest and parsing out the `URI` from the `EXT-X-SESSION-KEY` or `EXT-X-KEY`, this can be done in code (see our demo application for an example) or manually with curl in the Terminal app, e.g. enter: `curl https://eample.cloudfront.net/example-demo/examplecontent/examplecontent.ism/.m3u8`. 
  - The `playlist_url` to correctly prepared content.
- - A `name` for the content (the correct content ID will be parsed out by VUDRMFairPlay SDK and will always be the last path component of the above `skd://` URI entry).
- - A boolean value which indicates that the `Stream` object is protected with DRM. This setting would not be needed in scenarios where all content is protected, as all assets can be set as protected by default in the source code. 
+ - A `name` for the content. This will be the readable display name and is not used by the SDK. This may differ from the `content_id`.
+ - A `content_id` for the content, being the same content ID that the content was prpeared with. This value will always be the last path component of the stream `content_key_id_list` or `skd://` URI entry. Our demo application shows how to retrieve and parse the `content_key_id_list`, however, the `content_id` always needs to be provided for use with offline assets.
+ - An `is_protected` boolean value which indicates that the `Stream` object is protected with DRM. This setting would not be needed in scenarios where all content is protected, as all assets can be set as protected by default in the source code. 
  - A `vudrm-token` which must be correctly generated for the type of instance you wish to create. Example VUDRM token type templates available are:
 	- Fairplay Rental `{"type": "r","duration_rental": 3600}`
-		- Fairplay Rental tokens may only be used to stream online content to devices running iOS 9.x or higher.
+		- Fairplay Rental tokens may only be used to stream online content to devices running iOS 12 or higher.
 	- Fairplay Persist `{"type": "p","duration_persist": 3600}`
- 		- Fairplay Persist tokens may be used to stream online content and play offline (downloaded) content to devices running iOS 10.x or higher.
+ 		- Fairplay Persist tokens may be used to stream online content and play offline (downloaded) content to devices running iOS 12 or higher.
 
 For further information about VUDRM please contact us, or refer to our documentation:
 [https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html)
@@ -132,7 +135,7 @@ And, progress can be monitored using the following:
     }
         
 ## Example framework usage
-We strongly recommend referring to our example multiple asset demo application which uses a `ContentKeyManager`class to initialise an instance of VUDRMFairPlay for each stream, it then attaches the instance to an `AssetResourceLoaderDelegate` which is added to the `AssetResourceLoaderDelegateQueue`. Used with an `AssetPersistenceManager` class, the `ContentKeyManager` will also correctly handle persistence restoration with the `updateResourceLoaderDelegate` function.
+We strongly recommend referring to our iOS / tvOS example multiple asset demo application which uses a `ContentKeyManager`class to initialise an instance of VUDRMFairPlay for each stream, it then attaches the instance to an `AssetResourceLoaderDelegate` which is added to the `AssetResourceLoaderDelegateQueue`. Used with an `AssetPersistenceManager` class, the `ContentKeyManager` can also correctly handle persistence restoration with the `updateResourceLoaderDelegate` function.
 	
 The ContentKeyManager class should look like this:
 
@@ -182,17 +185,40 @@ The ContentKeyManager class should look like this:
      
 ##### Online Playback / Download and Offline Playback:
 
-This will request a license for the content from the license server based on the type of token presented for each instance of VUDRMFairPlay. The tokens may be FairPlay Rental or FairPlay Persist. FairPlay Rental token license requests will be provided a streaming content key, which may be used for online streaming only. FairPlay Persist token license requests will provide a persistent content key, which may be used for both online streaming, and offline playback of downloaded content.
+The tvOS platform does not support downloading or offline playback.
 
-When a download of an asset has been completed with a persist token policy, further playback requests will use the downloaded asset and associated content key, even when online.
+Requests for playback or download will result in a license request for the content from the license server, based on the type of token presented for each instance of VUDRMFairPlay. The tokens may be FairPlay Rental or FairPlay Persist. FairPlay Rental token license requests will be provided a streaming content key, which may be used for online streaming only. FairPlay Persist token license requests will be provided a persistent content key, which may be used for both online streaming, and offline playback of downloaded content.
 
-There are significant limitations using AirPlay to stream any content that has been downloaded to the users device to an Apple TV. Please see the Limitations section for further information.
+In iOS, when a download of an asset has been completed with a persist token policy, further playback requests will use the downloaded asset and associated content key, even when online.
 
-To initialise your assets DRM instances, your application should create a DRM instance for each entry in the `Streams.plist` file (or comparable configuration) using a `ContentKeyManager`. How to do this is demonstrated in our demo application. The `ContentKeyManager` attaches instances of VUDRMFairPlay to an `AssetResourceLoaderDelegate` for each asset using the asset URL, content ID, and valid token. The content ID should be unique to each asset, as it is used to create a path to, and identify, offline assets and their associated content keys.
+There are significant limitations using AirPlay to stream any content to an Apple TV that has been downloaded to the users device. Please see the [Limitations](#limitations) section for further information.
+
+To initialise your assets DRM instances, your application should create a DRM instance for each entry in the `Streams.plist` file (or comparable configuration) using a `ContentKeyManager` class. How to do this is demonstrated in our demo application. The `ContentKeyManager` attaches instances of VUDRMFairPlay to an `AssetResourceLoaderDelegate` for each asset using the asset URL, content ID, and valid token. The content ID should be unique to each asset, as it is used along with the `playlist_url` to create a path to, and identify, offline assets and their associated content keys.
+
+When using the same implementation as our demo application, iOS requests for licences for offfine content would reference the framework instance using the`ContentKeyManager`by calling:`ContentKeyManager.shared.assetResourceLoaderDelegate.doRequestPersistableContentKeys(contentKeyIDList: asset.stream.contentKeyIDList!, streamName: asset.stream.contentID, vudrmToken: asset.stream.vudrmToken!, avUrlAsset: avasset)`
 
 ##### DEMO
 
-With the VUDRMFairPlay framework installed, the example demo application uses entries in the `Streams.plist` file to configure the DRM. You can edit the `Streams.plist` file values, and/or add your own valid values, ensuring the `content_key_id_list` entry is correct, and that your `token` is valid (see **Preparation** above).
+The demo application that we use targets both iOS and tvOS platforms using shared source code. Each target platform references its own version of the framework.
+
+With the VUDRMFairPlay framework installed, the example demo application reads entries in the `Streams.plist` file to configure the content and DRM. You can edit the `Streams.plist` file values, and/or add your own valid values, which should include a `content_id`, `playlist_url`, and `vudrm_token`(see [Preparation](#preparation) above).
+
+- The `content_key_id_list` entry in the `Streams.plist` is retrieved in the demo by parsing the manifest using the `getContentKeyIDList` function in the `AssetListTableViewController`.
+
+- The `name` value is the display name, which may differ from the `content_id`.
+
+- The `is_protected` boolean value indicates whether the content is protected with DRM or not. This value can be overridden in source if all content is protected.
+
+`Stream` class objects are mapped to `Asset` class objects to initialise AVURLAssets using the `ContentKeyManager` class.
+
+In iOS, a call is made upon launch by the `AppDelegate` class to the `AssetPersistenceManager` class to restore any persisted content. The call `AssetPersistenceManager.sharedManager.restorePersistenceManager()` asks the `AssetPersistenceManager` class to check any already mapped asset against any outstanding `AVAssetDownloadTask`.
+
+In both target platforms, the call to initialise content from the `Streams.plist` is then performed by the `ContentKeyManager` class.
+
+In iOS, the call to request an offline license from the framework is:
+`ContentKeyManager.shared.assetResourceLoaderDelegate.doRequestPersistableContentKeys(contentKeyIDList: asset.stream.contentKeyIDList!, streamName: asset.stream.contentID, vudrmToken: asset.stream.vudrmToken!, avUrlAsset: avasset)`
+and is in the: `override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath)` function of the 
+`AssetListTableViewController`. This corresponds to the specific stream Download button.
 
 ## Limitations
   
@@ -202,27 +228,16 @@ With the VUDRMFairPlay framework installed, the example demo application uses en
 
 ## Known Issues
 
-- There is a known issue in iOS 11 where audio may not be correctly routed by the OS. This issue can be resolved by adding the following to `viewDidLoad` in your initial view controller:
+- If you believe you have found any issues, please contact us at support@vualto.com
 
-```swift
-do {
-	if #available(iOS 10.0, *) {
-		try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-	} else {
-		// Fallback on earlier versions
-    }
-}
-catch {
-	print("Setting category to AVAudioSessionCategoryPlayback failed.")
-}
-```
+## Release notes (iOS / tvOS)
 
-- In certain circumstances iOS 10 users activating Airplane mode can cause an offline asset to lose refernce to it's offline license.
+### v1.0 (build 244/212) on 07/10/2020
+- Fix issue with iOS simulators.
+- Merge iOS and tvOS documentation.
 
-- If you believe you have found any further issues, please contact us at support@vualto.com
-
-## Release notes
-
+### v1.0 (build 211) on 02/10/2020
+- Update to Xcode 12, iOS 14, Swift 5.3.
 
 ### v1.0 (build 182) on 09/07/2020
 - Added error and progress notifications.
