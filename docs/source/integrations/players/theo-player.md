@@ -38,7 +38,7 @@ player.source = {
         integration: "vudrm",
         token: vudrmToken,
         widevine: {
-          licenseAcquisitionURL: "https://widevine-proxy.drm.technology/proxy"
+          licenseAcquisitionURL: "https://widevine-license.vudrm.tech/proxy"
         }
       }
     }
@@ -59,7 +59,7 @@ player.source = {
         token: vudrmToken,
         playready: {
           licenseAcquisitionURL:
-            "https://playready-license.drm.technology/rightsmanager.asmx"
+            "https://playready-license.vudrm.tech/rightsmanager.asmx"
         }
       }
     }

@@ -31,7 +31,7 @@ The source object above has a `drm` property, within this you can add the approp
 ```javascript
 source.drm = {
   widevine: {
-    LA_URL: "https://widevine-proxy.drm.technology/proxy",
+    LA_URL: "https://widevine-license.vudrm.tech/proxy",
     prepareMessage: function(keyMessage) {
       return JSON.stringify({
         token: vudrmToken,
@@ -48,7 +48,7 @@ source.drm = {
 ```javascript
 source.drm = {
     playready: {
-        LA_URL: "https://playready-license.drm.technology/rightsmanager.asmx?token=" + encodeURIComponent(vudrmToken);
+        LA_URL: "https://playready-license.vudrm.tech/rightsmanager.asmx?token=" + encodeURIComponent(vudrmToken);
     }
 }
 ```

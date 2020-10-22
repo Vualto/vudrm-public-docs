@@ -29,5 +29,5 @@ You can also test your streams outside of the Roku app using the [Stream testing
 - Ensure that `Format` is set to either `Auto` or `DASH`.
 - Within the DRM section choose `encoding type` : `PlayReady: LA And Challenge`.
 - Put your newly generated VUDRM-token in to the custom data input box.
-- In `License server Url(optional)` put `https://playready-license.drm.technology/rightsmanager.asmx`.
+- In `License server Url(optional)` put `https://playready-license.vudrm.tech/rightsmanager.asmx`.
 - Click `Play`.

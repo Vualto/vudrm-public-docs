@@ -47,7 +47,7 @@ avplayObj.play(
 let customData = "<YOUR VUDRM TOKEN>"
 avplayObj.setPlayerProperty(3, customData, customData.length);
 
-let laUrl ="https://playready-license.drm.technology/rightsmanager.asmx";
+let laUrl ="https://playready-license.vudrm.tech/rightsmanager.asmx";
 avplayObj.setPlayerProperty(4, laUrl, laUrl.length);
 
 SefPluginPlayReady = document.getElementById('PluginSefPlayReady');

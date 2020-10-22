@@ -8,7 +8,7 @@ This service requires an API Key and client name. Please contact support@vualto.
 
 A `GET` request should be made to the following URL:
 
-`https://geo.drm.technology/ip_lookup/<client>/<ip_address>`
+`https://geo-location.vudrm.tech/ip_lookup/<client>/<ip_address>`
 
 Replace `<client>` with your client name and `<ip_address>` with the IPv4 or IPv6 address.
 
@@ -119,7 +119,7 @@ Possible values for `proxy.type`:
 
 ```bash
 curl -X GET \
-https://geo.drm.technology/ip_lookup/vualto-demo/188.39.163.11 \
+https://geo-location.vudrm.tech/ip_lookup/vualto-demo/188.39.163.11 \
 -H 'X_AUTH_KEY: <geo-location-api-key>'
 ```
 
@@ -136,7 +136,7 @@ import (
 
 func main() {
 
-	url := "https://geo.drm.technology/ip_lookup/vualto-demo/188.39.163.11"
+	url := "https://geo-location.vudrm.tech/ip_lookup/vualto-demo/188.39.163.11"
 
 	req, _ := http.NewRequest("GET", url, nil)
 
@@ -159,7 +159,7 @@ func main() {
 require 'uri'
 require 'net/http'
 
-url = URI("https://geo.drm.technology/ip_lookup/vualto-demo/188.39.163.11")
+url = URI("https://geo-location.vudrm.tech/ip_lookup/vualto-demo/188.39.163.11")
 
 http = Net::HTTP.new(url.host, url.port)
 
@@ -173,7 +173,7 @@ puts response.read_body
 #### C# (RestSharp)
 
 ```C
-var client = new RestClient("https://geo.drm.technology/ip_lookup/vualto-demo/188.39.163.11");
+var client = new RestClient("https://geo-location.vudrm.tech/ip_lookup/vualto-demo/188.39.163.11");
 var request = new RestRequest(Method.GET);
 request.AddHeader("X_AUTH_KEY", "<geo-location-api-key>");
 IRestResponse response = client.Execute(request);
@@ -184,7 +184,7 @@ IRestResponse response = client.Execute(request);
 ```python
 import requests
 
-url = "https://geo.drm.technology/ip_lookup/vualto-demo/188.39.163.11"
+url = "https://geo-location.vudrm.tech/ip_lookup/vualto-demo/188.39.163.11"
 
 headers = {
     'X_AUTH_KEY': "<geo-location-api-key>",
@@ -201,7 +201,7 @@ print(response.text)
 <?php
 
 $request = new HttpRequest();
-$request->setUrl('https://geo.drm.technology/ip_lookup/vualto-demo/188.39.163.11');
+$request->setUrl('https://geo-location.vudrm.tech/ip_lookup/vualto-demo/188.39.163.11');
 $request->setMethod(HTTP_METH_GET);
 
 $request->setHeaders(array(

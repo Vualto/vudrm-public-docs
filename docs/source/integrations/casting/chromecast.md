@@ -65,7 +65,7 @@ if (event.data.media && event.data.media.contentId){
 
 ```javascript
 host.protectionSystem = cast.player.api.ContentProtection.WIDEVINE;
-host.licenseUrl = 'https://widevine-proxy.drm.technology/proxy';
+host.licenseUrl = 'https://widevine-license.vudrm.tech/proxy';
 
 host.processManifest = (manifest) => {
     let parser = new DOMParser();
