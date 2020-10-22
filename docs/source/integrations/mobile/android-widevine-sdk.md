@@ -67,7 +67,7 @@ For further information about VUDRM please contact us, or refer to our documenta
 
 ### Online Streaming Sessions
 
-1.	Instantiate an AssetConfiguration using the fluent interface, minimally you need to provide the contents KID and DRM token, the default license server in this case will be ‘<https://widevine-proxy.drm.technology/proxy>’. 
+1.	Instantiate an AssetConfiguration using the fluent interface, minimally you need to provide the contents KID and DRM token, the default license server in this case will be ‘<https://widevine-license.vudrm.tech/proxy>’. 
 
 	The default license server can also be overridden using the API call ‘licenceUrlWith(<Your license URL>)’. An Asset ID is required only for offline streaming sessions storage and management.
 
