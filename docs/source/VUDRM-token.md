@@ -46,7 +46,7 @@ The DRM policy is included in the VUDRM token as the encrypted third component. 
 | `duration_persist` | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay persist licenses.                                                           |
 | `match_content_id` | bool     | `true` or `false`         | ALL       | Boolean for if the content id in the token should be compared with the content id used in the license request; the content id in the license request will be the same as the content id used to generate the keys that encrypted a given piece of content. 
 | `geo_whitelist`     | string array | Array of 3 letter country codes (ISO 3166-1 alpha-3) | ALL | A list of 3 letter country codes, ISO 3166-1 alpha-3, for all countries that are allowed access. 
-| `block_vpn_and_tor` | bool    | `ture` or `false`         | ALL   | Boolean for if ips coming from known vpn or tor networks should be blocked. |
+| `block_vpn_and_tor` | bool    | `true` or `false`         | ALL   | Boolean for if ips coming from known vpn or tor networks should be blocked. |
 | `session`          | JSON     | [See below](#drm-session-in-policy) | ALL | A JSON object containing information about a DRM session that can be used to allow/deny a user's license requests.
 
 This table is not an exhaustive list, for example it does not include advanced PlayReady settings. If you require the use of more advanced settings please contact support@vualto.com
