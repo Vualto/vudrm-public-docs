@@ -2,8 +2,8 @@
 
 The VUDRMFairPlay SDK is available for iOS and tvOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on these platforms, and how to configure our demo application.
 
-Current release:	iOS v1.0 (244)
-					tvOS v1.0 (212)
+Current release:	iOS v1.0 (254)
+					tvOS v1.0 (255)
 					
 - [Overview](#overview)
 - [Requirements](#requirements)
@@ -13,6 +13,7 @@ Current release:	iOS v1.0 (244)
 - [Example framework usage](#example-framework-usage)
 - [Limitations](#limitations)
 - [Known Issues](#known-issues)
+- [Troubleshooting](#troubleshooting)
 - [Release Notes](#release-notes)
 
 ## Overview
@@ -36,7 +37,7 @@ A multiple asset demo application written in Swift, and based on Apple's FairPla
 ## Requirements
 
 - Minimum deployment target of iOS 12.0 and tvOS 12.0 or higher
-- Xcode 12
+- Xcode 12.2
 - Swift 5.3
 - Cocoapods
 
@@ -230,7 +231,22 @@ and is in the: `override func tableView(_ tableView: UITableView, accessoryButto
 
 - If you believe you have found any issues, please contact us at support@vualto.com
 
+## Troubleshooting
+
+- Most issues are content related. You can use our demo application to test your own content by updating it with your `Stream` configurations. 
+
+- Errors may also arise because the `Stream` configuration is not correct. 
+	- Content ID - Please ensure that the `content_id` corresponds to that which was used when preparing your content. The `content_id` should always be unique for each `Stream` instance.
+	
+	- Tokens - You can easily eliminate token issues by beginning with a default FairPlay token policy. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our documentation: [https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html)
+	
+If you are not able to play your content after checking it in our demo application please contact support@vualto.com with the demo application logs and the stream configuration used.
+
 ## Release notes (iOS / tvOS)
+
+### v1.0 (build 254/255) on 04/12/2020
+- Update to Xcode 12.2, Swift 5.3.1.
+- Minor improvements.
 
 ### v1.0 (build 244/212) on 07/10/2020
 - Fix issue with iOS simulators.
