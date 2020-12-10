@@ -58,7 +58,7 @@ following to the repositories closure of your apps top level build.gradle file:
 	
 ## Example Usage
 
-Instances of VUDRMWidevine are associated with specific assets. Offline assets can be tracked using Exoplayers OfflineLicenseHelper, DownloadService and DownloadTracker classes. Two types of session are available, determined by the session VUDRM token policy, and the asset configuration.
+Instances of VUDRMWidevine are associated with specific assets. Offline assets can be tracked using Exoplayers OfflineLicenseHelper, DownloadService, and DownloadTracker classes. Two types of session are available, determined by the current session's VUDRM token policy, and the asset configuration.
 
 For further information about VUDRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 
