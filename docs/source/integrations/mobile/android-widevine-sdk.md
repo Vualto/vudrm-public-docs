@@ -125,7 +125,7 @@ If you believe you have found any other issue, please contact us at support@vual
 - Most issues are content related. You can use our demo application to test your own content by updating the `media.exolist.json` with your configurations.
 
 - Errors may also arise because the stream or asset configuration is not correct. 
-	- Tokens - You can easily eliminate token issues by beginning with a default Widevine token policy. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
+	- Tokens - You can easily eliminate token issues by beginning with an empty policy in the VUDRM token. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 
 	
 If you are not able to play your content after checking it in our demo application please contact support@vualto.com with the demo application logs and the stream configuration used.
