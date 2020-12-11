@@ -53,6 +53,26 @@ This table is not an exhaustive list, for example it does not include advanced P
 
 The `polbegin` and `polend` settings use the timezone set at the account level. Please contact support@vualto.com to confirm the timezone for your account. 
 
+### Default values
+
+| Key               | Fairplay | PlayReady             | Widevine |
+|-------------------|----------|-----------------------|----------|
+| `content_id`      | Not set  | Not set               | Not set  | 
+| `polbegin`        | Now*     | `01-01-0001 00:00:00` | Now*     | 
+| `polend`          | Now*     | `12-31-9999 23:59:59` | Now*     | 
+| `liccache`        | `no`     | `yes`                 | `no`     | 
+| `firstplayback`   | N/A      | 10,675,199 days       | Not set  | 
+| `securitylevel`   | N/A      | `2000`                | N/A      | 
+| `type`            | `l`      | N/A                   | N/A      | 
+| `duration_rental` | `0`      | N/A                   | N/A      |
+| `duration_lease`  | `0`      | N/A                   | N/A      |
+| `duration_persist`| `0`      | N/A                   | N/A      |
+| `match_content_id`| `false`  | `false`               | `false`  | 
+| `geo_whitelist`   | Not set  | Not set               | Not set  | 
+| `session`         | Not set  | Not set               | Not set  | 
+
+*When these values have not been set in the policy, as long as no other values would cause playback to stop, content will play indefinitely.
+
 There are also limitations depending on environments that are not explained in the table. Please refer to the following sections for more detail:
 
 ### Match content id
