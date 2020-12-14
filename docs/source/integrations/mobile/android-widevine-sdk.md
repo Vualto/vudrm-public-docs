@@ -2,24 +2,22 @@
 
 # Android Widevine SDK
 
-VUDRMWidevine is an Android Archive (AAR) which can be used during the media rendering pipeline to provide a DRM plugin to ExoPlayer 2.9.6 which will work with Vualto DRM workflow. VUDRMWidevine has been developed to specifically manage the session DRM, allowing complete asset and player management.
+VUDRMWidevine is an Android Archive (AAR) which can be used during the media rendering pipeline to provide a DRM plugin to ExoPlayer 2.12.2 which will work with Vualto DRM workflow. VUDRMWidevine has been developed to specifically manage the session DRM, allowing complete asset and player management.
 
 Current release: v0.3.5 (277)
 
-
-- Requirements
-- Android Studio Integration
-- Example Usage
-- Error handling
-- Devices tested on:
-- Known Issues
-- Release Notes
-
-
+- [Requirements](#requirements)
+- [Android Studio Integration](#android-studio-integration)
+- [Example Usage](#example-usage)
+- [Error handling](#error-handling)
+- [Devices tested on:](#devices-tested-on:)
+- [Known Issues](#known-issues)
+- [Troubleshooting](#troubleshooting)
+- [Release Notes](#release-notes)
 
 ## Requirements
 - Minimum SDK version is 19 (Android 4.4)
-- Android Studio 3.3.2
+- Android Studio 4.0.1
 
 ## Android Studio Integration
 
@@ -40,12 +38,12 @@ following to the repositories closure of your apps top level build.gradle file:
 		}
 	}		
 	```
-2.	Change the username and password to your credentials for authentication to the maven repository
+2.	Map the username and password to your credentials for authentication to the maven repository
 
 3.	Under your module’s build.gradle dependencies add:
 
 	```java
-    implementation 'com.vualto.vudrm:widevine:0.3.4'
+    implementation 'com.vualto.vudrm:widevine:0.3.5'
 	```
 
 4.	Access to our KID plugin is enabled similarly using the same maven repository configuration, but with the url:
@@ -55,112 +53,47 @@ following to the repositories closure of your apps top level build.gradle file:
 	and dependency:
 
 	```java 
-	implementation 'com.vualto.vudrm:kidplugin:0.3.4'
+	implementation 'com.vualto.vudrm:kidplugin:0.3.5'
 	```
 	
 ## Example Usage
 
-Instances of VUDRMWidevine are associated with specific assets. Offline assets can be tracked using Exoplayers OfflineLicenseHelper, DownloadAction, DownloadService, and DownloadTracker classes. Two types of session are available, determined by the session VUDRM token policy, and the asset configuration.
+Instances of VUDRMWidevine are associated with specific assets. Offline assets can be tracked using Exoplayers OfflineLicenseHelper, DownloadService, and DownloadTracker classes. Two types of session are available, determined by the current session's VUDRM token policy, and the asset configuration.
 
-For further information about VUDRM please contact us, or refer to our documentation:
-<https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html>
+For further information about VUDRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 
-### Online Streaming Sessions
+### Online and Offline Streaming Sessions
 
-1.	Instantiate an AssetConfiguration using the fluent interface, minimally you need to provide the contents KID and DRM token, the default license server in this case will be ‘<https://widevine-license.vudrm.tech/proxy>’. 
+Exoplayer 12 introduces more 'under the hood' management of DRM assets, which simplifies the flow for online and offline streaming sessions. For an example of implementation we recommend referring to our multiple asset VUDRM Widevine demo application, which is directly adapted from Exoplayers demo application. To manage the required modification of license calls we have added a simple `VudrmHelper` class to the demo application.
+	
+Asset configurations should contain at least a stream `name`,`uri`,`drm_scheme`("widevine"), and a `drm_license_url`. Tokens may be presented using either Exoplayers license header `drm_key_request_properties`, or a URL encoded token may instead be added to the license server URI, eg: `"drm_license_uri": "https://widevine-license.staging.vudrm.tech/proxy?token=vualto-token-value"`.
 
-	The default license server can also be overridden using the API call ‘licenceUrlWith(<Your license URL>)’. An Asset ID is required only for offline streaming sessions storage and management.
+
+1.	To implement VUDRM Widevine, instantiate an AssetConfiguration using the fluent interface for both online and offline sessions. Minimally you need to provide the contents KID, DRM token, and license server URI.
 
 	```java
-	try {
-		assetConfiguration = new AssetConfiguration.Builder()
-			.tokenWith(drmToken)
-			.KIDWith(KID)
-			.build();
-		} catch (Exception e) {
-			// Handle exception
-		}
+	assetConfiguration = new AssetConfiguration.Builder()
+		.tokenWith(drmToken)
+		.KIDWith(KID)
+		.build();
 	```
 
 2. Once you’ve built the object you can construct a plugin by instantiating a WidevineCallback object with the asset configuration.
 
-	```
-	WidevineCallback callback = new WidevineCallback(assetConfiguration);
+	```java
+	MediaDrmCallback callback = new WidevineCallback (assetConfiguration);
 	```
 
-3.	Then you can pass it to ExoPlayer as the component required when creating the DefaultDrmSessionManager<FrameworkMediaCrypto> object.
+3.	Then you can pass it to ExoPlayer as the component required when creating the DefaultDrmSessionManager object.
 
 	```java
-	try {
-		return new DefaultDrmSessionManager<>(vudrm.widevineDRMSchemeUUID,
-			FrameworkMediaDrm.newInstance(vudrm.widevineDRMSchemeUUID),
-			callback,
-			null,
-			new Handler(),
-			null);
-		} catch (UnsupportedDrmException e) {
-			e.printStackTrace();
-			return null;
-		}
+	return new DefaultDrmSessionManager.Builder()
+    	.setUuidAndExoMediaDrmProvider(C.WIDEVINE_UUID, FrameworkMediaDrm.DEFAULT_PROVIDER)
+	  	.setMultiSession(false)
+		.build(mediaDrmCallback);
 	```
 
-
-### Offline Streaming Sessions
-
-Offline sessions require a method of management that will enable the storage and recall of offline assets, with an associated content URL, and the contents offline license. 
-
-The management system will ensure that when offline the offline asset will not need to be loaded from the file path where it was stored on device, instead the system will call the original online URL, and the stored offline asset will load with the correct license. As demonstrated in our example app, Exoplayer offers us classes that act as such a management system.
-
-It is important to consider that while online, VUDRMWidevine handles generating the Widevine license only for the purposes of online playback or acquisition of an offline license. Offline licenses are persisted as standard Widevine licenses which means that the asset configuration (using ```OfflineAssetConfiguration```) required for offline playback is constructed with minor differences to the online configuration (using ```AssetConfiguration```).
-
-1.	Initially identical to online sessions, start by instantiating an (online) AssetConfiguration using the fluent interface. This configuration is used to acquire the offline license for later use when offline.
-
-	```java
-	try {
-		assetConfiguration = new AssetConfiguration.Builder()
-			.tokenWith(drmToken)
-			.KIDWith(KID)
-			.build();
-		} catch (Exception e) {
-			// Handle exception
-		}
-	```
-
-2.	Once you’ve built the object you can construct a plugin by instantiating a WidevineCallback object with the asset configuration.
-
-		
-		WidevineCallback callback = new WidevineCallback(assetConfiguration);
-
-3.	When creating an ExoPlayer OfflineLicenseHelper you can pass this callback as the component required when creating the DefaultDrmSessionManager<FrameworkMediaCrypto> object. 
-
-	The OfflineLicenseHelper requires DrmInfo as ```drmInitData``` which can be collated using ExoPlayers DashUtil class. 
-
-4.	An offline license can then be acquired using Exoplayers OfflineLicenseHelper call:
-
-	```
-	byte[] offlineLicenseKeySetId = mOfflineLicenseHelper.downloadLicense(drmInitData);
-	```
-
-	The ```offlineLicenseKeySetId``` is the key binder between the offline asset and the associated offline license.
-
-5.	Depending on the chosen set up, when the license has been acquired, the user may then download the asset to their device by calling the Exoplayer DownloadTracker with the content URL. This call will automatically create an assoicated Exoplayer DownloadAction and Exoplayer DownloadService for the given asset. Use these classes with the Exoplayer DownloadTracker to manage the assets and their current status. The DownloadTracker will detect whether the asset for the URL already exists.
-
-	When the download is complete, offline playback can then be achieved by calling the asset using a VUDRM OfflineAssetConfiguration and a standard Widevine DefaultDrmSessionManager<FrameworkMediaCrypto> object using an HttpMediaDrmCallback that can be passed to the player.
-
-	```java
-	try {
-		OfflineAssetConfiguration assetConfiguration = new OfflineAssetConfiguration.Builder()
-			.kidProviderWith(
-				new HttpKidSource(
-					new URL(streamUrl)
-					)
-			)
-		.build();
-		} catch (Exception e) {
-			// Handle exception
-		}
-	```
-
+5.	For offline sessions, Exoplayers DownloadTracker will create a `WidevineOfflineLicenseFetchTask` to acquire and download the license. After this the download will commence. When the download is complete, Exoplayer will manage the asset for playback.
 
 References:
 <http://google.github.io/ExoPlayer/doc/reference/>
@@ -181,10 +114,21 @@ Internally
 
 ## Known Issues
 
-- 32-bit devices displayed issues where a license expiry time (secs) is too large to be handled, it therefore returns 0 seconds remaining and considers the license expired. To work around this, always set the license expiry time in your VUDRM token policy. For further information about VUDRM please contact us, or refer to our documentation:
-<https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html>
+- Exoplayer 12 for AndroidX introduced a requirement that the PSSH box be present in the main manifest. If the PSSH box is not present in the main manifest then Exoplayers `DefaultDrmSessionManager` will throw this error `MissingSchemeDataException: Media does not support uuid: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed`.
+
+- 32-bit devices displayed issues where a license expiry time (secs) is too large to be handled, it therefore returns 0 seconds remaining and considers the license expired. To work around this, always set the license expiry time in your VUDRM token policy. For further information about VUDRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 
 If you believe you have found any other issue, please contact us at support@vualto.com
+
+## Troubleshooting
+
+- Most issues are content related. You can use our demo application to test your own content by updating the `media.exolist.json` with your configurations.
+
+- Errors may also arise because the stream or asset configuration is not correct. 
+	- Tokens - You can easily eliminate token issues by beginning with an empty policy in the VUDRM token. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
+
+	
+If you are not able to play your content after checking it in our demo application please contact support@vualto.com with the demo application logs and the stream configuration used.
 
 ## Release Notes
 
