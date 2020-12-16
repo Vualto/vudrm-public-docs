@@ -19,3 +19,15 @@ All requests made to and from VUDRM services will have a header called `x-reques
 ### Vualto-Transaction-ID
 
 On some requests you may find a header called `vualto-transaction-id`; this header was originally used for the same purpose as `x-request-id` header. In order to be more in line with industry standards, we are currently in the process of removing the `vualto-transaction-id` and replacing it with `x-request-id`. Please ensure that you use `x-request-id` contact support when contacting support and in any internal logging you perform.
+
+### Fairplay onboarding support
+
+In order to configure Fairplay for use with VUDRM we need the following:
+
+- Private key: This is normally named ‘privatekey.pem’ and is encrypted with a password.
+- Password for private key, so that the private key can be decrypted.
+- An ‘Application Secret key’ aka the ASk. This is normally named ‘Ask.txt’.
+- FairPlay certificate. This is normally named ‘fairplay.cer’.
+
+You can request these from Apple by visiting their [FairPlay streaming page](https://developer.apple.com/streaming/fps/)
+and clicking on "Request FPS Deployment Package".
