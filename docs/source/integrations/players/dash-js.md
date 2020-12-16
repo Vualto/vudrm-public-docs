@@ -72,7 +72,7 @@ var overrideProtectionKeyController = function() {
   };
 };
 
-var widevineLaUrl = "https://widevine-proxy.drm.technology/proxy";
+var widevineLaUrl = "https://widevine-license.vudrm.tech/proxy";
 
 player.setProtectionData({
   "com.widevine.alpha": {
@@ -88,7 +88,7 @@ player.attachSource(streamUrl);
 
 ```javascript
 var playReadyLaUrl =
-  "https://playready-license.drm.technology/rightsmanager.asmx?token=" +
+  "https://playready-license.vudrm.tech/rightsmanager.asmx?token=" +
   encodeURIComponent(vudrmToken);
 
 player.setProtectionData({

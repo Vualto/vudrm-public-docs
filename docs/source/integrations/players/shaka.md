@@ -29,7 +29,7 @@ if (shaka.Player.isBrowserSupported()) {
 shakaPlayer.configure({
   drm: {
     servers: {
-      "com.widevine.alpha": "https://widevine-proxy.drm.technology/proxy"
+      "com.widevine.alpha": "https://widevine-license.vudrm.tech/proxy"
     }
   }
 });
@@ -68,7 +68,7 @@ shakaPlayer
 
 ```javascript
 var playReadyLaURL =
-  "https://playready-license.drm.technology/rightsmanager.asmx?token=" +
+  "https://playready-license.vudrm.tech/rightsmanager.asmx?token=" +
   encodeURIComponent(vudrmToken);
 shakaPlayer.configure({
   drm: {

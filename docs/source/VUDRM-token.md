@@ -10,7 +10,7 @@ VUDRM tokens should be generated using the [VUDRM token API](#vudrm-token-api). 
 
 <div class="admonition warning">
     <p class="first admonition-title">Warning</p>
-    <p class="last">VUDRM tokens should not be generated on the client side.</p>
+    <p class="last">VUDRM tokens must not be generated on the client side.</p>
 </div>
 
 ## VUDRM token structure
@@ -22,6 +22,11 @@ The VUDRM token is comprised of four components each separated by the pipe chara
 - The time the token was generated in an ISO8601 format (yyyy-MM-ddThh:mm:ssZ).
 - The encrypted DRM policy.
 - A signed hash.
+
+<div class="admonition danger">
+    <p class="first admonition-title">Danger</p>
+    <p class="last">VUDRM tokens are designed to be single use and have a one to one relationship with the license request. Each license request must use a new VUDRM token. VUDRM tokens will expire, the TTL is set at an account level and in production will be set to around 30 seconds. The time a token will expire is calculated by the time the token is generated plus the TTL; The time a token was generated is displayed in the token. This is a separate time to the DRM policy times set in the encrypted DRM policy.</p>
+</div>
 
 ## DRM policy
 
@@ -35,16 +40,38 @@ The DRM policy is included in the VUDRM token as the encrypted third component. 
 | `liccache`         | string   | `yes` OR `no`             | ALL            | Licence Cache. Should the license be cached. Implementation depends on the DRM provider.                                                       |
 | `firstplayback`    | integer  | Seconds                   | PlayReady, Widevine      | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire.  **You can not use `firstplayback` when `liccache` is set to `no`.** | 
 | `securitylevel`    | integer  | `150` OR `2000` OR `3000` | PlayReady      | https://docs.microsoft.com/en-us/playready/overview/security-level                                                              |
-| `type`             | string   | `r` OR `l` OR `p`         | Fairplay       | release, lease or persist. See [Fairplay DRM policy](#fairplay-drm-policy) section for details.                                                              |
+| `type`             | string   | `r` OR `l` OR `p`         | Fairplay       | rental, lease, or persist. See [Fairplay DRM policy](#fairplay-drm-policy) section for details.                                                              |
 | `duration_rental`  | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay rental licenses.                                                               |
 | `duration_lease`   | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay lease licenses.                                                              |
 | `duration_persist` | string   | Seconds                   | Fairplay       | Overrides polend for Fairplay persist licenses.                                                           |
 | `match_content_id` | bool     | `true` or `false`         | ALL       | Boolean for if the content id in the token should be compared with the content id used in the license request; the content id in the license request will be the same as the content id used to generate the keys that encrypted a given piece of content. 
 | `geo_whitelist`     | string array | Array of 3 letter country codes (ISO 3166-1 alpha-3) | ALL | A list of 3 letter country codes, ISO 3166-1 alpha-3, for all countries that are allowed access. 
+| `block_vpn_and_tor` | bool    | `true` or `false`         | ALL   | Boolean for if ips coming from known vpn or tor networks should be blocked. |
+| `session`          | JSON     | [See below](#drm-session-in-policy) | ALL | A JSON object containing information about a DRM session that can be used to allow/deny a user's license requests.
 
 This table is not an exhaustive list, for example it does not include advanced PlayReady settings. If you require the use of more advanced settings please contact support@vualto.com
 
 The `polbegin` and `polend` settings use the timezone set at the account level. Please contact support@vualto.com to confirm the timezone for your account. 
+
+### Default values
+
+| Key               | Fairplay | PlayReady             | Widevine |
+|-------------------|----------|-----------------------|----------|
+| `content_id`      | Not set  | Not set               | Not set  | 
+| `polbegin`        | Now*     | `01-01-0001 00:00:00` | Now*     | 
+| `polend`          | Now*     | `12-31-9999 23:59:59` | Now*     | 
+| `liccache`        | `no`     | `yes`                 | `no`     | 
+| `firstplayback`   | N/A      | 10,675,199 days       | Not set  | 
+| `securitylevel`   | N/A      | `2000`                | N/A      | 
+| `type`            | `l`      | N/A                   | N/A      | 
+| `duration_rental` | `0`      | N/A                   | N/A      |
+| `duration_lease`  | `0`      | N/A                   | N/A      |
+| `duration_persist`| `0`      | N/A                   | N/A      |
+| `match_content_id`| `false`  | `false`               | `false`  | 
+| `geo_whitelist`   | Not set  | Not set               | Not set  | 
+| `session`         | Not set  | Not set               | Not set  | 
+
+*When these values have not been set in the policy, as long as no other values would cause playback to stop, content will play indefinitely.
 
 There are also limitations depending on environments that are not explained in the table. Please refer to the following sections for more detail:
 
@@ -53,6 +80,47 @@ If `content_id` has been set and `match_content_id` has been set to `true`, when
 
 ### GEO whitelisting
 If `geo_whitelist` has been added to the DRM policy, when a license is requested the GEO location of the client's ip will be checked. If the country is in the whitelist the license request will be successful. If the country is not in the whitelist the request will be denied. E.g. if the DRM policy is `{ "geo_whitelist":[ "gbr", "deu" ] }` only users from the UK and Germany will be able to make successful license requests.
+
+### DRM Session in policy
+
+It is possible to set in the policy used by VUDRM token information about the current DRM session. With this information we will make a request to make to an API of your choosing with an ID and any needed headers. You can set the request to be either a GET request or a POST request. In the case of a GET request we would make a GET request to the URL you specify with a query string parameter called `sessionId` set to ID the passed in the policy. E.g. a GET request to `https://some-url.com/valid?sessionId=abc123`. In the case of a POST request we would make a POST request to the URL you specify with the body of the request being the `sessionId` in JSON. E.g. a POST request to `https://some-url.com/valid` with the body being `{"sessionId":"abc123"}`. The result of the request we make will dictate whether or not a license is returned. If the result **is** a `200` we will serve a valid license back. If the result is **not** a `200` we will not return a valid license. 
+
+There are four parts to the session information: 
+
+| Key         | Type                     | Format                     | Example
+|-------------|--------------------------|----------------------------|--------
+|`id`         | string                   | Any                        | `abc123`
+|`url`        | string                   | URL                        | `https://some-url.com/valid`
+|`methodType` | string                   | `GET` OR `POST`            | `GET`
+|`headers`    | array of key-value pairs | `[{ "key", "value" },...]` | `[{ "someKey", "someValue"}]`
+
+The structure of the session information in a policy should be as follows:
+
+```
+{
+    ... other policy values ...
+    "session": {
+        "id": "...",
+        "url": "...",
+        "methodType": "...",
+        "headers": [ {"headerKey": "headerValue"}, ...]
+    }
+}
+```
+
+#### Example policy with session information
+```
+{
+    "polbegin": "02-04-2019 12:00:00",
+    "polend": "02-04-2019 17:00:00",
+    "session": {
+        "id": "someID",
+        "url": "https://www.some-url.com/valid",
+        "methodType": "GET",
+        "headers": [ {"myHeader": "someValue"}, {"myOtherHeader": "someOtherValue"}]
+    }
+}
+```
 
 ### Default DRM policy
 It is possible to specify a default DRM policy that will be used when we receive a VUDRM token. For example if you wish for all licenses requested to default to caching the license, the default DRM policy would be `{ "liccache":"yes" }`, meaning a VUDRM token with the policy `{ "polend":"DD-MM-YYYY HH:mm:ss" }` would be the same as `{ "liccache":"yes", "polend":"DD-MM-YYYY HH:mm:ss" }`. The values in the default policy can be overridden by simply putting them in the policy you pass in the VUDRM token. For example if the default DRM policy was `{ "liccache":"yes" }` but you wanted a license to not be cached, the policy in the VUDRM token would be `{ "liccache":"no" }`. Any of the values listed above can be be set in the default DRM policy.

@@ -22,4 +22,4 @@ Contents:
    Geo-Location.md
    integrations/integrations.rst
    Release-notes.md
-   
+   VUDRM-support.md

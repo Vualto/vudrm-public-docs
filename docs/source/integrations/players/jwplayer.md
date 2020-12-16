@@ -39,7 +39,7 @@ Each `source` object within the `sources` array, has a `drm` property where a dr
 
 ```javascript
 var widevineDrmConfig = {
-  url: "https://widevine-proxy.drm.technology/proxy",
+  url: "https://widevine-license.vudrm.tech/proxy",
   licenseRequestFilter: function(request, drmInfo) {
     var keyId = drmInfo.keyIds[0].toUpperCase();
     var body = JSON.stringify({
@@ -58,7 +58,7 @@ var widevineDrmConfig = {
 ```javascript
 var playReadyDrmConfig = {
   url:
-    "https://playready-license.drm.technology/rightsmanager.asmx?token=" +
+    "https://playready-license.vudrm.tech/rightsmanager.asmx?token=" +
     encodeURIComponent(vudrmToken)
 };
 ```
@@ -68,7 +68,7 @@ var playReadyDrmConfig = {
 ```javascript
 var fairplayDrmConfig = {
   certificateUrl: fairplayCertUrl,
-  processSpcUrl: "https://fairplay-license.drm.technology/license",
+  processSpcUrl: "https://fairplay-license.vudrm.tech/license",
   extractContentId: extractContentId,
   licenseRequestHeaders: [
     {
