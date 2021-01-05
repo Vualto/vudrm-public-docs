@@ -10,7 +10,7 @@
 
 * Elasticsearch migration to improve reliablity.
 
-* Various improvements to VUDRM Admin, including a new status page, a https redirect, and speed improvements to the dashboard. 
+* Various improvements to VUDRM Admin, including a new status page, a HTTPS redirect, and speed improvements to the dashboard. 
 
 ## November 2020
 
