@@ -16,6 +16,6 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
-   DeveloperDocumentation.rst
+   DeveloperDocumentation/index.rst
    ReleaseNotes.md
    Support.md
