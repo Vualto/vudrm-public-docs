@@ -6,7 +6,7 @@ The [vuplay-jwplayer](https://github.com/Vualto/vuplay-jwplayer) repository demo
 
 ## Example of JWplayer Integration
 
-This file can be found in the repo mentioned above here: []()
+This file can be found in the repo mentioned above here: [https://github.com/Vualto/vuplay-jwplayer/blob/master/vuplay-jwplayer.js](https://github.com/Vualto/vuplay-jwplayer/blob/master/vuplay-jwplayer.js)
 
 ```javascript
 (function() {
