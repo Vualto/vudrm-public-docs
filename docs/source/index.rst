@@ -1,7 +1,9 @@
 VUDRM DOCUMENTATION
 ===================
 
-Here you will find a range of tools to guide you in using VUDRM services. If you have any questions or need assistance in using this platform, please contact docs@vualto.com.
+The VUDRM platform provides a variety of services that allow you to protect your OTT video content with device agnostic support for Microsoft PlayReady, Google Widevine, and FairPlay Streaming.
+
+If you have any questions or need assistance in using this platform, please contact docs@vualto.com.
 
 .. toctree::
    :maxdepth: 2
