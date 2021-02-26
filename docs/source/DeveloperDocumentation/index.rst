@@ -1,11 +1,8 @@
 DEVELOPER DOCUMENTATION
 ===================
 
-Here you will find a range of tools to guide you in using VUDRM services. If you have any questions or need assistance in using this platform, please contact docs@vualto.com.
-
-
-Contents:
----------
+The purpose of this documentation is to explain the usage and functionality of the various VUDRM services. 
+If you have any questions or need assistance in using this platform, please contact docs@vualto.com.
 
 .. toctree::
    :maxdepth: 2
