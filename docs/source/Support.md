@@ -1,4 +1,4 @@
-# SUPPORT PROCESS
+# SUPPORT
 
 ## How to contact us 
 
