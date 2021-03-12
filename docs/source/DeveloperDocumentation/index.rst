@@ -8,6 +8,7 @@ If you have any questions or need assistance in using this platform, please cont
    :maxdepth: 2
 
    VUDRM-key-provision.md
+   VUDRM-Admin.md
    VUDRM-token.md
    VUDRM-Speke-Key-Provider.md
    Geo-Location.md
