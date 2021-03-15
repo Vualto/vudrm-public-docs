@@ -16,7 +16,7 @@ Once you have successfully logged in, you will be redirected to the “Dashboard
 
 The dashboard will show you an overview of all DRM licenses served with your content.
 
-<img src="../_static/user-guide-images/3rangedropdown" class="image" alt="VUALTO Admin - Range Dropdown"/>
+<img src="../_static/user-guide-images/3rangedropdown.png" class="image" alt="VUALTO Admin - Range Dropdown"/>
 
 By clicking on the “Range” dropdown field, you can set custom time frames to get an overview for that time period.
 
@@ -32,7 +32,7 @@ If you require amendments to your account, please contact VUALTO support - make 
 
 #### Client Info - Edit default token policies
 
-<img src="../_static/user-guide-images/5edittokenpolicies" class="image" alt="VUALTO Admin - Edit Token Policies"/>
+<img src="../_static/user-guide-images/5edittokenpolicies.png" class="image" alt="VUALTO Admin - Edit Token Policies"/>
 
 Towards the bottom of the “Client Info” page, you can view each DRM service’s default token policy. This can be edited to give more control over how a service will act.
 
@@ -86,7 +86,7 @@ On the User section of the VUDRM Admin site, you have the option of changing you
 
 ## Health
 
-<img src="../_static/user-guide-images/10healthpage" class="image" alt="VUALTO Admin - Health Page"/>
+<img src="../_static/user-guide-images/10healthpage.png" class="image" alt="VUALTO Admin - Health Page"/>
 
 The health page gives an overview of the general health for each DRM or DRM related service we provide. If one of these services are down, it will be down throughout all regions.
 
