@@ -4,13 +4,19 @@ Our VUDRM Admin page gives you the tools you will need to test our DRM services 
 
 ## Login
 
+<img src="../_static/user-guide-images/1login.png" class="image" alt="VUALTO Admin - Login Page"/>
+
 To access the VUDRM Admin site, please go to https://admin.vudrm.tech/Account/Login - login using the credentials on your onboarding documentation.
 
 ## Dashboard
 
+<img src="../_static/user-guide-images/2dashboardpage.png" class="image" alt="VUALTO Admin - Dashboard Page"/>
+
 Once you have successfully logged in, you will be redirected to the “Dashboard” page.
 
 The dashboard will show you an overview of all DRM licenses served with your content.
+
+<img src="../_static/user-guide-images/3rangedropdown" class="image" alt="VUALTO Admin - Range Dropdown"/>
 
 By clicking on the “Range” dropdown field, you can set custom time frames to get an overview for that time period.
 
@@ -18,11 +24,15 @@ By clicking on the “Range” dropdown field, you can set custom time frames to
 
 ### Client Info
 
+<img src="../_static/user-guide-images/4clientinfo.png" class="image" alt="VUALTO Admin - Client Info Page"/>
+
 The “Client Info” section contains the details of how your account is configured, such as which DRM providers are enabled and which URLs have been set to retrieve each service's DRM licenses.
 
 If you require amendments to your account, please contact VUALTO support - make this a hyperlink...support@vualto.com.
 
 #### Client Info - Edit default token policies
+
+<img src="../_static/user-guide-images/5edittokenpolicies" class="image" alt="VUALTO Admin - Edit Token Policies"/>
 
 Towards the bottom of the “Client Info” page, you can view each DRM service’s default token policy. This can be edited to give more control over how a service will act.
 
@@ -36,6 +46,8 @@ Widevine DRM Policy
 
 ### VUDRM Token
 
+<img src="../_static/user-guide-images/6vudrmtoken.png" class="image" alt="VUALTO Admin - VUDRM Token Page"/>
+
 In this section, you can create, validate, decrypt, encode and decode VUDRM Tokens.
 
 There are a variety of templates to choose from which will automatically populate the Policy text box, you can then generate a token with those parameters. You can also create custom policies as required. Click “Validate Policy” to verify that the policy entered is valid.
@@ -44,6 +56,8 @@ For an in depth guide - please refer to the VUDRM Token documentation -- HYPERLI
 
 ### VUDRM Encryption Keys
 
+<img src="../_static/user-guide-images/7encryptkeys.png" class="image" alt="VUALTO Admin - Encrypt Keys Page"/>
+
 Within this section, you can call the CPIX Key Provider to fetch VUDRM Encryption Keys in CPIX XML document format as well as the CPIX keys as JSON which is generated at the same time, both of which are available to copy. 
 
 We also have our “Legacy JSON Key provider” (available on the “Key Provider API” dropdown) to use if your product requires it.
@@ -51,6 +65,8 @@ We also have our “Legacy JSON Key provider” (available on the “Key Provide
 For more information - please refer to our Encryption Key Provision HYPERLINKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK documentation.
 
 ### VUPLAY Demo
+
+<img src="../_static/user-guide-images/8vuplay.png" class="image" alt="VUALTO Admin - VUPLAY Page"/>
 
 VUPLAY is our internal demo player. By default, a token will be loaded into the player, however, you can copy and paste a token you created in the “VUDRM Token” section of the “Info” page. This can be used to test content with your variation of the token. 
 
@@ -64,9 +80,13 @@ YouTube Player, Multiple Players and Skin are not needed to test content.
 
 ## User
 
+<img src="../_static/user-guide-images/9userpage.png" class="image" alt="VUALTO Admin - User Page"/>
+
 On the User section of the VUDRM Admin site, you have the option of changing your password.
 
 ## Health
+
+<img src="../_static/user-guide-images/10healthpage" class="image" alt="VUALTO Admin - Health Page"/>
 
 The health page gives an overview of the general health for each DRM or DRM related service we provide. If one of these services are down, it will be down throughout all regions.
 
