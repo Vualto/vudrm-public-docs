@@ -6,4 +6,4 @@ The purpose of this guide is to explain the usage and functionality of the VUDRM
 .. toctree::
    :maxdepth: 2
 
-   UserGuide/VUDRM-Admin.md
+   VUDRM-Admin.md
