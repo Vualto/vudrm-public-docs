@@ -20,5 +20,6 @@ Contents:
    :maxdepth: 2
 
    DeveloperDocumentation/index.rst
+   UserGuide/index.rst
    ReleaseNotes.md
    Support.md
