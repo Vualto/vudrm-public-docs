@@ -4,37 +4,37 @@ Our VUDRM Admin page gives you the tools you will need to test our DRM services 
 
 ## Login
 
-<img src="../_static/user-guide-images/1login.png" class="image" width="500" alt="VUALTO Admin - Login Page"/>
-
 To access the VUDRM Admin site, please go to the [Admin Login page](https://admin.vudrm.tech/Account/Login) - login using the credentials on your onboarding documentation.
+
+<img src="../_static/user-guide-images/1login.png" class="image" width="500" alt="VUALTO Admin - Login Page"/>
 
 ## Dashboard
 
-<img src="../_static/user-guide-images/2dashboardpage.png" class="image" width="1000" alt="VUALTO Admin - Dashboard Page"/>
-
 Once you have successfully logged in, you will be redirected to the “Dashboard” page.
+
+<img src="../_static/user-guide-images/2dashboardpage.png" class="image" width="1000" alt="VUALTO Admin - Dashboard Page"/>
 
 The dashboard will show you an overview of all DRM licenses served with your content.
 
-<img src="../_static/user-guide-images/3rangedropdown.png" class="image" width="1000" alt="VUALTO Admin - Range Dropdown"/>
-
 By clicking on the “Range” dropdown field, you can set custom time frames to get an overview for that time period.
+
+<img src="../_static/user-guide-images/3rangedropdown.png" class="image" width="1000" alt="VUALTO Admin - Range Dropdown"/>
 
 ## Configuration
 
 ### Client Info
 
-<img src="../_static/user-guide-images/4clientinfo.png" class="image" width="1000" alt="VUALTO Admin - Client Info Page"/>
-
 The “Client Info” section contains the details of how your account is configured, such as which DRM providers are enabled and which URLs have been set to retrieve each service's DRM licenses.
+
+<img src="../_static/user-guide-images/4clientinfo.png" class="image" width="1000" alt="VUALTO Admin - Client Info Page"/>
 
 If you require amendments to your account, please contact [VUALTO support](support@vualto.com).
 
 #### Client Info - Edit default token policies
 
-<img src="../_static/user-guide-images/5edittokenpolicies.png" class="image" width="1000" alt="VUALTO Admin - Edit Token Policies"/>
+At the bottom of the “Client Info” page, you can view each DRM service’s default token policy. This can be edited to give more control over how a service will act.
 
-Towards the bottom of the “Client Info” page, you can view each DRM service’s default token policy. This can be edited to give more control over how a service will act.
+<img src="../_static/user-guide-images/5edittokenpolicies.png" class="image" width="1000" alt="VUALTO Admin - Edit Token Policies"/>
 
 Each DRM service has limitations to how their policy can be altered. Please read the links below for more details:
 
@@ -45,29 +45,29 @@ Each DRM service has limitations to how their policy can be altered. Please read
 
 ### VUDRM Token
 
-<img src="../_static/user-guide-images/6vudrmtoken.png" class="image" width="1000" alt="VUALTO Admin - VUDRM Token Page"/>
-
 In this section, you can create, validate, decrypt, encode and decode VUDRM Tokens.
 
 There are a variety of templates to choose from which will automatically populate the Policy text box, you can then generate a token with those parameters. You can also create custom policies as required. Click “Validate Policy” to verify that the policy entered is valid.
+
+<img src="../_static/user-guide-images/6vudrmtoken.png" class="image" width="1000" alt="VUALTO Admin - VUDRM Token Page"/>
 
 For an in depth guide of how our tokens work - please refer to the [VUDRM Token documentation](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-token.html#). 
 
 ### VUDRM Encryption Keys
 
-<img src="../_static/user-guide-images/7encryptkeys.png" class="image" width="1000" alt="VUALTO Admin - Encrypt Keys Page"/>
-
 Within this section, you can call the CPIX Key Provider to fetch VUDRM Encryption Keys in CPIX XML document format as well as the CPIX keys as JSON which is generated at the same time, both of which are available to copy. 
 
 We also have our “Legacy JSON Key provider” (available on the “Key Provider API” dropdown) to use if your product requires it.
+
+<img src="../_static/user-guide-images/7encryptkeys.png" class="image" width="1000" alt="VUALTO Admin - Encrypt Keys Page"/>
 
 For more information - please refer to our [Encryption Key Provision documentation](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#).
 
 ### VUPLAY Demo
 
-<img src="../_static/user-guide-images/8vuplay.png" class="image" width="1000" alt="VUALTO Admin - VUPLAY Page"/>
-
 VUPLAY is our internal demo player. By default, a token will be loaded into the player, however, you can copy and paste a token you created in the “VUDRM Token” section of the “Info” page. This can be used to test content with your variation of the token. 
+
+<img src="../_static/user-guide-images/8vuplay.png" class="image" width="1000" alt="VUALTO Admin - VUPLAY Page"/>
 
 The different options are as follows: 
 
@@ -79,15 +79,15 @@ YouTube Player, Multiple Players and Skin are not needed to test content.
 
 ## User
 
-<img src="../_static/user-guide-images/9userpage.png" class="image" width="1000" alt="VUALTO Admin - User Page"/>
-
 On the User section of the VUDRM Admin site, you have the option of changing your password.
+
+<img src="../_static/user-guide-images/9userpage.png" class="image" width="1000" alt="VUALTO Admin - User Page"/>
 
 ## Health
 
-<img src="../_static/user-guide-images/10healthpage.png" class="image" width="1000" alt="VUALTO Admin - Health Page"/>
-
 The health page gives an overview of the general health for each DRM or DRM related service we provide. If one of these services are down, it will be down throughout all regions.
+
+<img src="../_static/user-guide-images/10healthpage.png" class="image" width="1000" alt="VUALTO Admin - Health Page"/>
 
 By default, the page is set to auto-refresh every 60 seconds, but you can toggle this to no if not required.
 
@@ -96,5 +96,3 @@ The world map contains region specific services. A regions health colour will ch
 * GREEN - All services are operational
 * AMBER - 1 or more services are not operational
 * RED - All services are not operational
-
-
