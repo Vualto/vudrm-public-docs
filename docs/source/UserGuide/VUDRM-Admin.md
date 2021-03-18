@@ -1,6 +1,6 @@
 # USER GUIDE
 
-Our VUDRM Admin page gives you the tools you will need to test our DRM services with your content. If you need assistance or clarification in relation to anything in this guide, please contact [mailto](mailto:support@vualto.com).
+Our VUDRM Admin page gives you the tools you will need to test our DRM services with your content. If you need assistance or clarification in relation to anything in this guide, please contact <support@vualto.com>.
 
 ## Login
 
@@ -28,7 +28,7 @@ The `Client Info` section contains the details of how your account is configured
 
 <img src="../_static/user-guide-images/4clientinfo.png" class="image" width="750" alt="VUALTO Admin - Client Info Page"/>
 
-If you require amendments to your account, please contact [mailto](mailto:support@vualto.com).
+If you require amendments to your account, please contact <support@vualto.com>.
 
 #### Client Info - Edit default token policies
 
