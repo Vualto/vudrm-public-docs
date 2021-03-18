@@ -1,6 +1,6 @@
-# VUDRM ADMIN
+# USER GUIDE
 
-Our VUDRM Admin page gives you the tools you will need to test our DRM services with your content. If you need assistance or clarification in relation to anything in this guide, please contact support@vualto.com.
+Our VUDRM Admin page gives you the tools you will need to test our DRM services with your content. If you need assistance or clarification in relation to anything in this guide, please contact [mailto](mailto:support@vualto.com).
 
 ## Login
 
@@ -28,7 +28,7 @@ The `Client Info` section contains the details of how your account is configured
 
 <img src="../_static/user-guide-images/4clientinfo.png" class="image" width="750" alt="VUALTO Admin - Client Info Page"/>
 
-If you require amendments to your account, please contact support@vualto.com.
+If you require amendments to your account, please contact [mailto](mailto:support@vualto.com).
 
 #### Client Info - Edit default token policies
 
@@ -72,7 +72,7 @@ Once a token has been generated, a new button will appear - `Use Token in Demo`.
 
 <img src="../_static/user-guide-images/6-1vudrmtoken.png" class="image" width="1000" alt="VUALTO Admin - VUDRM Token Page - Use Token in Demo"/>
 
-This will load the `VUPLAY Demo` with the generated token in the `Custom VUDRM Token` text box.
+Clicking `Use Token in Demo` will load the `VUPLAY Demo` player with the generated token in the `Custom VUDRM Token` text box.
 
 For an in depth guide of how our tokens work - please refer to the [VUDRM Token documentation](../DeveloperDocumentation/VUDRM-token.html#). 
 
@@ -116,8 +116,6 @@ If you select `Custom Stream`, you will be presented with two text boxes to edit
 * `Custom VUDRM Token` - as mentioned above, this may be blank or contain a token depending on how the player was accessed. Please ensure the text box contains a valid token
 
 Clicking `Load Player` will then load the content with the conditions of the token.
-
-
 
 ## User
 
