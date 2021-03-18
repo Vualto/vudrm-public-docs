@@ -1,6 +1,6 @@
 # VUDRM ADMIN
 
-Our VUDRM Admin page gives you the tools you will need to test our DRM services with your content. If you need assistance or clarification in relation to anything in this guide, please contact [VUALTO support](support@vualto.com).
+Our VUDRM Admin page gives you the tools you will need to test our DRM services with your content. If you need assistance or clarification in relation to anything in this guide, please contact support@vualto.com.
 
 ## Login
 
@@ -28,7 +28,7 @@ The `Client Info` section contains the details of how your account is configured
 
 <img src="../_static/user-guide-images/4clientinfo.png" class="image" width="750" alt="VUALTO Admin - Client Info Page"/>
 
-If you require amendments to your account, please contact [VUALTO support](support@vualto.com).
+If you require amendments to your account, please contact support@vualto.com.
 
 #### Client Info - Edit default token policies
 
@@ -46,18 +46,18 @@ When the amends are complete, click `Close` and then `Save`.
 
 Each DRM service has limitations to how their policy can be altered. Please read the links below for more details:
 
-* [DRM Policy](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-token.html#drm-policy)
-* [PlayReady DRM Policy](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-token.html#playready-drm-policy)
-* [Fairplay DRM Policy](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-token.html#fairplay-drm-policy)
-* [Widevine DRM Policy](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-token.html#widevine-drm-policy)
+* [DRM Policy](../DeveloperDocumentation/VUDRM-token.html#drm-policy)
+* [PlayReady DRM Policy](../DeveloperDocumentation/VUDRM-token.html#playready-drm-policy)
+* [Fairplay DRM Policy](../DeveloperDocumentation/VUDRM-token.html#fairplay-drm-policy)
+* [Widevine DRM Policy](../DeveloperDocumentation/VUDRM-token.html#widevine-drm-policy)
 
 ### VUDRM Token
 
-In this section, you can create, validate, decrypt, encode and decode VUDRM Tokens.
+In this section, you can create, validate, decrypt, encode, and decode VUDRM Tokens.
 
 <img src="../_static/user-guide-images/6vudrmtoken.png" class="image" width="1000" alt="VUALTO Admin - VUDRM Token Page"/>
 
-There are a variety of templates to choose from which will automatically populate the Policy text box, you can then generate a token with those parameters. 
+There are a variety of templates to choose from which will automatically populate the `Policy` text box, please ensure that you replace all default values (such as `{"polend":"DD-MM-YYYY HH:MM:SS"}` to `{"polend":"09-05-2021 12:30:00"}`). When the default values have been changed, you can then generate a token with those parameters. 
 
 The buttons on the page do the following:
 
@@ -68,7 +68,13 @@ The buttons on the page do the following:
 * `Encode Token`    - URL Encodes the token
 * `Decode Token`    - URL Decodes the token
 
-For an in depth guide of how our tokens work - please refer to the [VUDRM Token documentation](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-token.html#). 
+Once a token has been generated, a new button will appear - `Use Token in Demo`. 
+
+<img src="../_static/user-guide-images/6-1vudrmtoken.png" class="image" width="1000" alt="VUALTO Admin - VUDRM Token Page - Use Token in Demo"/>
+
+This will load the `VUPLAY Demo` with the generated token in the `Custom VUDRM Token` text box.
+
+For an in depth guide of how our tokens work - please refer to the [VUDRM Token documentation](../DeveloperDocumentation/VUDRM-token.html#). 
 
 ### VUDRM Encryption Keys
 
@@ -86,11 +92,15 @@ To create an Encryption key, do the following:
 * Click `Generate`
 * Click `Copy` to copy the newly created key
 
-For more information - please refer to our [Encryption Key Provision documentation](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#).
+We also have our `Legacy JSON Key provider` (available on the `Key Provider API` dropdown) to use if your product requires it. However, we recommend you use the `CPIX Key Provider` whenever possible.
+
+For more information - please refer to our [Encryption Key Provision documentation](../DeveloperDocumentation/VUDRM-key-provision.html#).
 
 ### VUPLAY Demo
 
-VUPLAY is our internal demo player. By default, a token will be loaded into the player, however, you can copy and paste a token you created in the `VUDRM Token` section of the `Info` page. This can be used to test content with your variation of the token. 
+VUPLAY is our internal demo player. If you access this page by clicking the tab on the admin site, a token with an open policy is loaded into the player. If you access the player directly, the `Custom VUDRM Token` text box will be blank.
+
+You can copy and paste a token you created in the `VUDRM Token` section of the `Info` page. This can be used to test content with your variation of the token. 
 
 <img src="../_static/user-guide-images/8vuplay.png" class="image" width="1000" alt="VUALTO Admin - VUPLAY Page"/>
 
@@ -98,9 +108,16 @@ The different options are as follows:
 
 * `Default no DRM`  - this will play our demo content with no DRM
 * `Default DRM`     - this will play our demo content with DRM. A `VUDRM Token` is required to view it
-* `Custom Stream`   - this can be used to test custom content with a `VUDRM Token`. Your onboarding document contains a link to an encrypted video for you to use with the player. On request, we can encrypt your content for use with the player - good idea to include this!??!?!!?!?!?!!??!!?!?!
+* `Custom Stream`   - this can be used to test custom content with a `VUDRM Token`
 
-`YouTube Player`, `Multiple Players` and `Skin` are not needed to test content.
+If you select `Custom Stream`, you will be presented with two text boxes to edit:
+
+* `Custom stream url` - your onboarding document contains a link to an encrypted video for you to use with the player, copy and paste that link into the text box. The player will automatically transform this URL to HLS (`.m3u8`) when Fairplay is required
+* `Custom VUDRM Token` - as mentioned above, this may be blank or contain a token depending on how the player was accessed. Please ensure the text box contains a valid token
+
+Clicking `Load Player` will then load the content with the conditions of the token.
+
+
 
 ## User
 
