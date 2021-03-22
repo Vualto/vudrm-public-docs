@@ -48,7 +48,7 @@ The DRM policy is included in the VUDRM token as the encrypted third component. 
 | `geo_whitelist`     | string array | Array of 3 letter country codes (ISO 3166-1 alpha-3) | ALL | A list of 3 letter country codes, ISO 3166-1 alpha-3, for all countries that are allowed access. 
 | `block_vpn_and_tor` | bool    | `true` or `false`         | ALL   | Boolean for if ips coming from known vpn or tor networks should be blocked. |
 | `session`          | JSON     | [See below](#drm-session-in-policy) | ALL | A JSON object containing information about a DRM session that can be used to allow/deny a user's license requests.
-| `can_renew`        | bool      | `true` or `flase`        | Widevine      | Boolean for if this license should renew. **You must use `polend` or `duration_persist` when using `can_renew`.** See [license renewal](#license-renew) for more information.
+| `can_renew`        | bool      | `true` or `flase`        | Widevine      | Boolean for if this license should renew. **You must use `polend` or `duration_persist` when using `can_renew`.** See [license renewal](#license-renewal) for more information.
 
 This table is not an exhaustive list, for example it does not include advanced PlayReady settings. If you require the use of more advanced settings please contact support@vualto.com
 
@@ -124,7 +124,7 @@ The structure of the session information in a policy should be as follows:
 ```
 
 ### License Renewal
-To enable automatic license renewal `can_renew` must be set to true; you must also have set `polend` to be more than 60 seconds in the future or have set `duration_persist` to be more than 60. If this criteria is met then 60 seconds before the license is due to expire a request will be automatically to renew the license. Should a license renewal request fail, then it will be retried every 20 seconds until the license being renewed has expired.
+To enable automatic license renewal `can_renew` must be set to true; you must also have set `polend` to be more than 60 seconds in the future or have set `duration_persist` to be more than 60. If these criteria are met then 60 seconds before the license is due to expire a request will be made automatically to renew the license. Should a license renewal request fail, then it will be retried every 20 seconds until the license being renewed has expired.
 
 ### Default DRM policy
 It is possible to specify a default DRM policy that will be used when we receive a VUDRM token. For example if you wish for all licenses requested to default to caching the license, the default DRM policy would be `{ "liccache":"yes" }`, meaning a VUDRM token with the policy `{ "polend":"DD-MM-YYYY HH:mm:ss" }` would be the same as `{ "liccache":"yes", "polend":"DD-MM-YYYY HH:mm:ss" }`. The values in the default policy can be overridden by simply putting them in the policy you pass in the VUDRM token. For example if the default DRM policy was `{ "liccache":"yes" }` but you wanted a license to not be cached, the policy in the VUDRM token would be `{ "liccache":"no" }`. Any of the values listed above can be be set in the default DRM policy.
