@@ -80,8 +80,6 @@ For an in depth guide of how our tokens work - please refer to the [VUDRM Token 
 
 Within this section, you can call the `CPIX Key Provider` to fetch VUDRM Encryption Keys in CPIX XML document format as well as the CPIX keys as JSON which is generated at the same time, both of which are available to copy. 
 
-We also have our `Legacy JSON Key provider` (available on the `Key Provider API` dropdown) to use if your product requires it.
-
 <img src="../_static/user-guide-images/7encryptkeys.png" class="image" width="1000" alt="VUALTO Admin - Encrypt Keys Page"/>
 
 To create an Encryption key, do the following:
