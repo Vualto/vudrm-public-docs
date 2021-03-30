@@ -26,7 +26,7 @@ By clicking on the `Range` dropdown field, you can set custom time frames to get
 
 The `Client Info` section contains the details of how your account is configured, such as which DRM providers are enabled and which URLs have been set to retrieve each service's DRM licenses.
 
-<img src="../_static/user-guide-images/4clientinfoblurred.png" class="image" width="750" alt="VUALTO Admin - Client Info Page"/>
+<img src="../_static/user-guide-images/4blurredinfopage.png" class="image" width="750" alt="VUALTO Admin - Client Info Page"/>
 
 If you require amendments to your account, please contact <support@vualto.com>.
 
