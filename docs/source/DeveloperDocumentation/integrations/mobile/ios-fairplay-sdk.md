@@ -1,4 +1,6 @@
-# iOS / tvOS FairPlay SDK
+# Legacy
+
+## iOS / tvOS FairPlay SDK
 
 The VUDRMFairPlay SDK is available for iOS and tvOS. This documentation describes the steps to integrate and use the VUDRMFairPlay SDK on these platforms, and how to configure our demo application.
 
@@ -16,7 +18,7 @@ Current release:	iOS v1.0 (254)
 - [Troubleshooting](#troubleshooting)
 - [Release Notes](#release-notes)
 
-## Overview
+### Overview
 
 VUDRMFairPlay SDK enables Apple’s AVPlayer from AVFoundation to securely request licenses from Vualto’s VUDRM cloud based DRM platform using an extended instance of AssetResourceLoaderDelegate.
 
@@ -34,14 +36,14 @@ The SDK is fully supported in both Objective-C and Swift applications.
 
 A multiple asset demo application written in Swift, and based on Apple's FairPlay SDK example application, is available on request. Please contact [support@vualto.com](support@vualto.com) to request access.
 
-## Requirements
+### Requirements
 
 - Minimum deployment target of iOS 12.0 and tvOS 12.0 or higher
 - Xcode 12.2
 - Swift 5.3
 - Cocoapods
 
-## Xcode Integration
+### Xcode Integration
 The VUDRMFairPlay SDK is distributed using Cocoapods. Projects set up with Cocoapods use an Xcode workspace, so it is important that projects with Cocoapods are always opened using the workspace file instead of the project file. Our simple demo application demonstrates the required set up for Cocoapods.
 
 If you are integrating the VUDRMFairPlay SDK into your own project, please ensure that the project has been set up correctly for Cocoapods. There are numerous online tutorials demonstrating how to do this. You can then replace or merge the `podfile` with the one in our demo application.
@@ -70,7 +72,7 @@ Please see below for more information on using the demo application.
 
 If you are unable to use Cocoapods in your project, please contact [support@vualto.com](support@vualto.com) to discuss other options.
 
-## Information about application transport security (ATS)
+### Information about application transport security (ATS)
 
 iOS/tvOS 9 introduces Application Transport Security (ATS) which restricts the use of insecure HTTP.
 In order to permit playback of content over insecure HTTP exemptions need to be added into your application's Info.plist. For example to disable ATS for any connection you would add the following into your application's Info.plist:
@@ -87,7 +89,7 @@ In order to permit playback of content over insecure HTTP exemptions need to be 
 More information about ATS can be found in Apple’s TechNote:
 [https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/)
 
-## Preparation
+### Preparation
 
 The demo project is based on Apple's FairPlay SDK example application. This is configured using the projects `Streams.plist` file. 
 
@@ -135,7 +137,7 @@ And, progress can be monitored using the following:
         }
     }
         
-## Example framework usage
+### Example framework usage
 We strongly recommend referring to our iOS / tvOS example multiple asset demo application which uses a `ContentKeyManager`class to initialise an instance of VUDRMFairPlay for each stream, it then attaches the instance to an `AssetResourceLoaderDelegate` which is added to the `AssetResourceLoaderDelegateQueue`. Used with an `AssetPersistenceManager` class, the `ContentKeyManager` can also correctly handle persistence restoration with the `updateResourceLoaderDelegate` function.
 	
 The ContentKeyManager class should look like this:
@@ -184,7 +186,7 @@ The ContentKeyManager class should look like this:
     }
      
      
-##### Online Playback / Download and Offline Playback:
+###### Online Playback / Download and Offline Playback:
 
 The tvOS platform does not support downloading or offline playback.
 
@@ -198,7 +200,7 @@ To initialise your assets DRM instances, your application should create a DRM in
 
 When using the same implementation as our demo application, iOS requests for licences for offfine content would reference the framework instance using the`ContentKeyManager`by calling:`ContentKeyManager.shared.assetResourceLoaderDelegate.doRequestPersistableContentKeys(contentKeyIDList: asset.stream.contentKeyIDList!, streamName: asset.stream.contentID, vudrmToken: asset.stream.vudrmToken!, avUrlAsset: avasset)`
 
-##### DEMO
+###### DEMO
 
 The demo application that we use targets both iOS and tvOS platforms using shared source code. Each target platform references its own version of the framework.
 
@@ -221,17 +223,17 @@ In iOS, the call to request an offline license from the framework is:
 and is in the: `override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath)` function of the 
 `AssetListTableViewController`. This corresponds to the specific stream Download button.
 
-## Limitations
+### Limitations
   
 - The SDK does not support AirPlay of protected content after a persist content key has been persisted (content downloaded to device). Apple TV is never able to play protected offline/downloaded content with a persist content key. Attempting to do so may result in unexpected behaviours, crashes referring to the content key type, or the content may not load. Protected content may be transmitted with AirPlay before downloading content (and the content key has been persisted on the users device). Protected content may be transmitted with AirPlay using a streaming content key whenever the Apple TV has a network connection.
 
 - The SDK does not support playback of protected content when running in the iOS Simulator. Attempting to do so will result in an invalid `KEYFORMAT` error and the content will not load.
 
-## Known Issues
+### Known Issues
 
 - If you believe you have found any issues, please contact us at support@vualto.com
 
-## Troubleshooting
+### Troubleshooting
 
 - Most issues are content related. You can use our demo application to test your own content by updating it with your `Stream` configurations. 
 
@@ -242,81 +244,81 @@ and is in the: `override func tableView(_ tableView: UITableView, accessoryButto
 	
 If you are not able to play your content after checking it in our demo application please contact support@vualto.com with the demo application logs and the stream configuration used.
 
-## Release notes (iOS / tvOS)
+### Release notes (iOS / tvOS)
 
-### v1.0 (build 254/255) on 04/12/2020
+#### v1.0 (build 254/255) on 04/12/2020
 - Update to Xcode 12.2, Swift 5.3.1.
 - Minor improvements.
 
-### v1.0 (build 244/212) on 07/10/2020
+#### v1.0 (build 244/212) on 07/10/2020
 - Fix issue with iOS simulators.
 - Merge iOS and tvOS documentation.
 
-### v1.0 (build 211) on 02/10/2020
+#### v1.0 (build 211) on 02/10/2020
 - Update to Xcode 12, iOS 14, Swift 5.3.
 
-### v1.0 (build 182) on 09/07/2020
+#### v1.0 (build 182) on 09/07/2020
 - Added error and progress notifications.
 - Improved error handling.
 
-### v1.0 (build 161) on 10/06/2020
+#### v1.0 (build 161) on 10/06/2020
 - SDK redeveloped to:
 	- Resolve issue with persistence restoration after application cache clearance.
 	- Enable demonstration of multiple asset DRM based on Apple's HLS Catalog example application.
 	- Improve flow and handling using Apple's latest FairPlay SDK methods.
 
-### v0.0.1 (build 146) on 07/04/2020
+#### v0.0.1 (build 146) on 07/04/2020
 
 - Added retrieval of license server URI from manifest
 - Update required for XCode 11.4
 
-### v0.0.1 (build 131) on 29/01/2020
+#### v0.0.1 (build 131) on 29/01/2020
 
 - Cocoapod distribution integration
 
-### v0.0.1 (build 105) on 24/09/2019
+#### v0.0.1 (build 105) on 24/09/2019
 
 - Update required for XCode 11 / iOS 13
 
-### v0.0.1 (build 93) on 29/07/2019
+#### v0.0.1 (build 93) on 29/07/2019
 
 - Update license server DNS
 - Replaces instances of assetName and assetID with contentID to be consistent across DRM platform
 
-### v0.0.1 (build 85) on 27/03/2019
+#### v0.0.1 (build 85) on 27/03/2019
 
 - Update to Swift 5
 - Bug fixes and improvements
 
-### v0.0.1 (build 74) on 21/03/2019
+#### v0.0.1 (build 74) on 21/03/2019
 
 - Fix streaming content key handling
 - Bug fixes and improvements
 
-### v0.0.1 (build 70) on 15/01/2019
+#### v0.0.1 (build 70) on 15/01/2019
 
 - Update Persistable Offline framework to Swift 4.2
 
-### v0.0.1 (build 65) on 14/12/2018
+#### v0.0.1 (build 65) on 14/12/2018
 
 - Persistable Offline Release
 
-### v0.0.1 (build 58) on 05/11/2018
+#### v0.0.1 (build 58) on 05/11/2018
 
 - Update framework to Swift 4.2
 
-### v0.0.1 (build 44) on 09/04/2018
+#### v0.0.1 (build 44) on 09/04/2018
 
 - Bug fixes and improvements
 
-### v0.0.1 (build 15) on 05/04/2018
+#### v0.0.1 (build 15) on 05/04/2018
 
 - Update framework to Swift 4.1
 
-### v0.0.1 (build 11) on 27/03/2018
+#### v0.0.1 (build 11) on 27/03/2018
 
 -Bug fixes and improvements
 
-### v0.0.1 (build 5) on 15/11/2017
+#### v0.0.1 (build 5) on 15/11/2017
 
 - Initial Release
