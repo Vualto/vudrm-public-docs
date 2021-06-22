@@ -1,4 +1,4 @@
-# VUDRMFairPlaySDK iOS / tvOS
+# iOS / tvOS FairPlay SDK
 
 VUDRMFairPlaySDK is available for iOS and tvOS. This documentation describes the steps to integrate and use VUDRMFairPlaySDK on these platforms, and how to configure our demo applications.
 
