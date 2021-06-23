@@ -22,7 +22,7 @@ VUDRMFairPlaySDK enables Apple’s AVPlayer from AVFoundation to securely reques
 
 The deployment scenario will allow Online Playback / Download and Offline Playback using an associated rental or persist token.
 
-Make use of Apple’s AVPlayer and AVPlayerViewController to present users with the platform default skins, with DRM content. Or create your own video player based on AVPlayer.
+Make use of Apple’s AVPlayer and AVPlayerViewController to present users with the platform default skins, with DRM content, or create your own video player based on AVPlayer.
 
 This SDK has a number of key benefits:
 
