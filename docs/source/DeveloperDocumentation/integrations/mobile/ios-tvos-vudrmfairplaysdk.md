@@ -294,7 +294,7 @@ In iOS, a call is made upon launch by the `AppDelegate` class to the `AssetPersi
 	
 	- Tokens - You can easily eliminate token issues by beginning with a default FairPlay token policy. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our token [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 	
-If you are not able to play your content after checking it in our demo application please contact support@vualto.com with the demo application logs and the stream configuration used.
+If you are not able to play your content after checking it in our demo application please contact [support@vualto.com](support@vualto.com) with the demo application logs and the stream configuration used.
 
 ## Release notes (iOS / tvOS)
 
