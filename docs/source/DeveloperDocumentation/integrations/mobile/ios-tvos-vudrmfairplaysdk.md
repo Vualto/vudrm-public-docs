@@ -236,7 +236,6 @@ Example VUDRM token type templates available are:
  - Fairplay Persist tokens may be used to stream online content and play offline (downloaded) content.
 
 For further information about VUDRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
-[https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html)
 
 ##### Note:
 
