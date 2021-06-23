@@ -79,7 +79,7 @@ If you are unable to use Cocoapods in your project, please contact [support@vual
 ## Information about application transport security (ATS)
 
 iOS/tvOS 9 introduces Application Transport Security (ATS) which restricts the use of insecure HTTP.
-In order to permit playback of content over insecure HTTP exemptions need to be added into your application's Info.plist. For example to disable ATS for any connection you would add the following into your application's Info.plist:
+In order to permit playback of content over insecure HTTP exemptions need to be added into your application's `Info.plist`. For example to disable ATS for any connection you would add the following into your application's `Info.plist`:
 
 ```xml
 <dict>
