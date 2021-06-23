@@ -283,7 +283,7 @@ In iOS, a call is made upon launch by the `AppDelegate` class to the `AssetPersi
 
 ## Known Issues
 
-- If you believe you have found any issues, please contact us at support@vualto.com
+- If you believe you have found any issues, please contact us at [support@vualto.com](support@vualto.com).
 
 ## Troubleshooting
 
