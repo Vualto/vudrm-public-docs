@@ -91,7 +91,6 @@ In order to permit playback of content over insecure HTTP exemptions need to be 
 ```
 
 More information about ATS can be found in [Apple’s TechNote](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/).
-[https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/)
 
 ## Preparation
 
