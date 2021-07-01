@@ -1,10 +1,60 @@
 # RELEASE NOTES 
 
+* [June 2021](#june-2021)
+* [May 2021](#may-2021)
+* [April 2021](#april-2021)
+* [March 2021](#march-2021)
+* [February 2021](#february-2021)
+* [January 2021](#january-2021)
 * [December 2020](#december-2020)
 * [November 2020](#november-2020)
 * [September 2020](#september-2020)
 * [July 2020](#july-2020)
 * [May 2020](#may-2020)
+
+## June 2021
+
+* New VUDRM cluster based in Milan has been released and is serving traffic.
+
+* Various improvements to VUDRM Admin, including the ability for the client to edit default VUDRM Token policy values.
+
+## May 2021
+
+* Various improvements to VUDRM Admin, including the integration of the JW Player client for testing purposes and Health page amends.
+
+## April 2021
+
+* Improvements for our Widevine logging.
+
+* Various improvements to VUDRM Admin.
+
+## March 2021
+
+* Improvements to the AES License Server.
+
+* Improvements have been made to our Documentation.
+
+* Various improvements to VUDRM Admin.
+
+* Improvements to the Widevine Proxy.
+
+* Internal improvements to Kibana.
+
+## February 2021
+
+* Improvements to our cluster infrastructure. Pods will automatically recycle when they are 14 days old.
+
+* Internal improvements to the KP API and Widevine Proxy. Settings for each can ammended via a VUDRM Token.
+
+* Internal improvements to the Config API.
+
+## January 2021
+
+* Internal improvements to the ElasticSearch monitoring.
+
+* Improvements to the Widevine Proxy - service has been re-written in Go.
+
+* Various improvements to VUDRM Admin, including the ability to create a video for a client and JSON logging.
 
 ## December 2020 
 
