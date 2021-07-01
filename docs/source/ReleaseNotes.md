@@ -14,7 +14,7 @@
 
 ## June 2021
 
-* New VUDRM cluster based in Milan has been released and is serving traffic.
+* New VUDRM cluster based in Milan has been released and is serving traffic for the duration of the Euro 2020 Championship.
 
 * Various improvements to VUDRM Admin, including the ability for the client to edit default VUDRM Token policy values.
 
