@@ -24,21 +24,21 @@
 
 ## April 2021
 
-* Improvements for our Widevine logging.
+* Improvements for our Widevine logging. Logs that show the request start and completion now appear in Kibana.
 
-* Various improvements to VUDRM Admin.
+* Bug fixes in the VUDRM Admin site, including a client cloning issue displaying incorrect errors and the user sometimes being redirected to the Login page incorrectly.
 
 ## March 2021
 
-* Improvements to the AES License Server.
+* Improvements to the AES License Server. Now responds with a 4xx status code when the call to kp-api fails.
 
-* Improvements have been made to our Documentation.
+* Improvements have been made to our Documentation. All documentation now follows a unified template throughout.
 
-* Various improvements to VUDRM Admin.
+* Bug fix in the VUDRM Admin site where the Configuration page would sometimes break the service for certain clients.
 
-* Improvements to the Widevine Proxy.
+* Improvements to the Widevine Proxy. Now forwards the Referer to the STATS API. If Lionsgate is present and set to true, this will also be sent to the STATS API.
 
-* Internal improvements to Kibana.
+* Internal improvements to Kibana. Referer and License URL are displayed in Kibana.
 
 ## February 2021
 
@@ -46,7 +46,7 @@
 
 * Internal improvements to the KP API and Widevine Proxy. Settings for each can ammended via a VUDRM Token.
 
-* Internal improvements to the Config API.
+* Internal improvements to the Config API. Failure to connect to the Database will now respond with a 5xx status code.
 
 ## January 2021
 
