@@ -1,10 +1,60 @@
 # RELEASE NOTES 
 
+* [June 2021](#june-2021)
+* [May 2021](#may-2021)
+* [April 2021](#april-2021)
+* [March 2021](#march-2021)
+* [February 2021](#february-2021)
+* [January 2021](#january-2021)
 * [December 2020](#december-2020)
 * [November 2020](#november-2020)
 * [September 2020](#september-2020)
 * [July 2020](#july-2020)
 * [May 2020](#may-2020)
+
+## June 2021
+
+* New VUDRM cluster based in Milan has been released and is serving traffic for the duration of the Euro 2020 Championship.
+
+* Various improvements to VUDRM Admin, including the ability for the client to edit default VUDRM Token policy values.
+
+## May 2021
+
+* Various improvements to VUDRM Admin, including the integration of the JW Player client for testing purposes and Health page amends.
+
+## April 2021
+
+* Improvements for our Widevine logging. Logs that show the request start and completion now appear in Kibana.
+
+* Bug fixes in the VUDRM Admin site, including a client cloning issue displaying incorrect errors and the user sometimes being redirected to the Login page incorrectly.
+
+## March 2021
+
+* Improvements to the AES License Server. Now responds with a 4xx status code when the call to kp-api fails.
+
+* Improvements have been made to our Documentation. All documentation now follows a unified template throughout.
+
+* Bug fix in the VUDRM Admin site where the Configuration page would sometimes break the service for certain clients.
+
+* Improvements to the Widevine Proxy. Now forwards the Referer to the STATS API. If Lionsgate is present and set to true, this will also be sent to the STATS API.
+
+* Internal improvements to Kibana. Referer and License URL are displayed in Kibana.
+
+## February 2021
+
+* Improvements to our cluster infrastructure. Pods will automatically recycle when they are 14 days old.
+
+* Internal improvements to the KP API and Widevine Proxy. Settings for each can ammended via a VUDRM Token.
+
+* Internal improvements to the Config API. Failure to connect to the Database will now respond with a 5xx status code.
+
+## January 2021
+
+* Internal improvements to the ElasticSearch monitoring.
+
+* Improvements to the Widevine Proxy - service has been re-written in Go.
+
+* Various improvements to VUDRM Admin, including the ability to create a video for a client and JSON logging.
 
 ## December 2020 
 
