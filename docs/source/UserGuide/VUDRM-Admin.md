@@ -108,7 +108,7 @@ The fields are as follows:
 * `DASH Stream URL` - DASH stream to test
 * `HLS Stream URL`  - HLS stream to test
 
-<img src="../_static/user-guide-images/8-1jwplayer-customurl.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration2/>
+<img src="../_static/user-guide-images/8-1jwplayer-customurl.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration2"/>
 
 If you select the `Use Custom License Server URLs?` button, you will be presented with three fields available to edit:
 
