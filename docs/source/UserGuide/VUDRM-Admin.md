@@ -68,11 +68,11 @@ The buttons on the page do the following:
 * `Encode Token`    - URL Encodes the token
 * `Decode Token`    - URL Decodes the token
 
-Once a token has been generated, a new button will appear - `Use Token in Demo`. 
+Once a token has been generated, a new button will appear - `Use Token To Test Your Stream`. 
 
 <img src="../_static/user-guide-images/6-1vudrmtoken.png" class="image" width="1000" alt="VUALTO Admin - VUDRM Token Page - Use Token in Demo"/>
 
-Clicking `Use Token in Demo` will load the `VUPLAY Demo` player with the generated token in the `Custom VUDRM Token` text box.
+Clicking `Use Token To Test Your Stream` will load the `Test Your Stream` player with the generated token in the `VUDRM Token` text box.
 
 For an in depth guide of how our tokens work - please refer to the [VUDRM Token documentation](../DeveloperDocumentation/VUDRM-token.html#). 
 
@@ -94,26 +94,33 @@ We also have our `Legacy JSON Key provider` (available on the `Key Provider API`
 
 For more information - please refer to our [Encryption Key Provision documentation](../DeveloperDocumentation/VUDRM-key-provision.html#).
 
-### VUPLAY Demo
+### Test Your Stream
 
-VUPLAY is our internal demo player. If you access this page by clicking the tab on the admin site, a token with an open policy is loaded into the player. If you access the player directly, the `Custom VUDRM Token` text box will be blank.
+Integrated into the VUDRM Admin site is our internal demo player which can be used for testing your streams. 
 
-You can copy and paste a token you created in the `VUDRM Token` section of the `Info` page. This can be used to test content with your variation of the token. 
+<img src="../_static/user-guide-images/8jwplayer.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration"/>
 
-<img src="../_static/user-guide-images/8vuplay.png" class="image" width="1000" alt="VUALTO Admin - VUPLAY Page"/>
+A token with an open policy is loaded into the Token field used by the player. You can copy and paste a token you created in the `VUDRM Token` section of the `Info` page. This can be used to test content with your variation of the token. Alternatively, clicking the `Use Token To Test Your Stream` within the `VUDRM Token` page will automatically enter that token into the Token field used by the player.
 
-The different options are as follows: 
+The fields are as follows: 
 
-* `Default no DRM`  - this will play our demo content with no DRM
-* `Default DRM`     - this will play our demo content with DRM. A `VUDRM Token` is required to view it
-* `Custom Stream`   - this can be used to test custom content with a `VUDRM Token`
+* `VUDRM Token`     - Token used by the player for the stream
+* `DASH Stream URL` - DASH stream to test
+* `HLS Stream URL`  - HLS stream to test
 
-If you select `Custom Stream`, you will be presented with two text boxes to edit:
+<img src="../_static/user-guide-images/8-1jwplayer-customurl.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration"/>
 
-* `Custom stream url` - your onboarding document contains a link to an encrypted video for you to use with the player, copy and paste that link into the text box. The player will automatically transform this URL to HLS (`.m3u8`) when Fairplay is required
-* `Custom VUDRM Token` - as mentioned above, this may be blank or contain a token depending on how the player was accessed. Please ensure the text box contains a valid token
+If you select the `Use Custom License Server URLs?` button, you will be presented with three fields available to edit:
 
-Clicking `Load Player` will then load the content with the conditions of the token.
+* `Widevine License Server URL`
+* `Playready License Server URL`
+* `Fairplay License Server URL`
+
+If these custom fields have values, they will override the default License Server URLs set within the client configuration.
+
+Clicking `Load Player` will then load the content with the conditions of the filled in fields.
+
+<img src="../_static/user-guide-images/8-2jwplayer-loaded.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration"/>
 
 ## User
 
