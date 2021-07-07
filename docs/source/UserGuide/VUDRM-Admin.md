@@ -98,7 +98,7 @@ For more information - please refer to our [Encryption Key Provision documentati
 
 Integrated into the VUDRM Admin site is our internal demo player which can be used for testing your streams. 
 
-<img src="../_static/user-guide-images/8jwplayer.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration"/>
+<img src="../_static/user-guide-images/8jwplayer.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration1"/>
 
 A token with an open policy is loaded into the Token field used by the player. You can copy and paste a token you created in the `VUDRM Token` section of the `Info` page. This can be used to test content with your variation of the token. Alternatively, clicking the `Use Token To Test Your Stream` button within the `VUDRM Token` page will automatically enter that token into the Token field used by the player.
 
@@ -108,7 +108,7 @@ The fields are as follows:
 * `DASH Stream URL` - DASH stream to test
 * `HLS Stream URL`  - HLS stream to test
 
-<img src="../_static/user-guide-images/8-1jwplayer-customurl.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration"/>
+<img src="../_static/user-guide-images/8-1jwplayer-customurl.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration2/>
 
 If you select the `Use Custom License Server URLs?` button, you will be presented with three fields available to edit:
 
@@ -120,7 +120,7 @@ If these custom fields have values, they will override the default License Serve
 
 Clicking `Load Player` will then load the content with the conditions of the filled in fields.
 
-<img src="../_static/user-guide-images/8-2jwplayer-loaded.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration"/>
+<img src="../_static/user-guide-images/8-2jwplayer-loaded.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration3"/>
 
 ## User
 
