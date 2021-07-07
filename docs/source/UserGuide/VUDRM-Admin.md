@@ -100,7 +100,7 @@ Integrated into the VUDRM Admin site is our internal demo player which can be us
 
 <img src="../_static/user-guide-images/8jwplayer.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration"/>
 
-A token with an open policy is loaded into the Token field used by the player. You can copy and paste a token you created in the `VUDRM Token` section of the `Info` page. This can be used to test content with your variation of the token. Alternatively, clicking the `Use Token To Test Your Stream` within the `VUDRM Token` page will automatically enter that token into the Token field used by the player.
+A token with an open policy is loaded into the Token field used by the player. You can copy and paste a token you created in the `VUDRM Token` section of the `Info` page. This can be used to test content with your variation of the token. Alternatively, clicking the `Use Token To Test Your Stream` button within the `VUDRM Token` page will automatically enter that token into the Token field used by the player.
 
 The fields are as follows: 
 
