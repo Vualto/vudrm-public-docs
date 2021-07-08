@@ -89,10 +89,10 @@ There are four parts to the session information:
 
 | Key         | Type                     | Format                     | Example
 |-------------|--------------------------|----------------------------|--------
-|`id`         | string                   | Any                        | `abc123`
-|`url`        | string                   | URL                        | `https://some-url.com/valid`
-|`methodType` | string                   | `GET` OR `POST`            | `GET`
-|`headers`    | array of key-value pairs | `[{ "key", "value" },...]` | `[{ "someKey", "someValue"}]`
+| `id`        | string                   | Any                        | `abc123`
+| `url`       | string                   | URL                        | `https://some-url.com/valid`
+| `method`    | string                   | `GET` OR `POST`            | `GET`
+| `headers`   | key-value pairs          | `{ "key", "value", ... }`  | `{ "someKey", "someValue" }`
 
 The structure of the session information in a policy should be as follows:
 
@@ -102,8 +102,8 @@ The structure of the session information in a policy should be as follows:
     "session": {
         "id": "...",
         "url": "...",
-        "methodType": "...",
-        "headers": [ {"headerKey": "headerValue"}, ...]
+        "method": "...",
+        "headers": { "headerKey": "headerValue", ... }
     }
 }
 ```
@@ -116,8 +116,8 @@ The structure of the session information in a policy should be as follows:
     "session": {
         "id": "someID",
         "url": "https://www.some-url.com/valid",
-        "methodType": "GET",
-        "headers": [ {"myHeader": "someValue"}, {"myOtherHeader": "someOtherValue"}]
+        "method": "GET",
+        "headers": { "myHeader": "someValue", "myOtherHeader": "someOtherValue" }
     }
 }
 ```
