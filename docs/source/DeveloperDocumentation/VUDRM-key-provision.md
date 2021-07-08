@@ -90,7 +90,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 #### Multikey
 
-Get a CPIX 2.1 document that uses separate keys for video and audio tracks; it is only supported by DASH with PlayReady or Widevine.
+Get a CPIX 2.1 document that uses separate keys for video and audio tracks.
 
 ##### Optional query params:
 
@@ -129,11 +129,21 @@ curl -XGET -H "API-KEY: <api-key>" \
     <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
     </cpix:DRMSystem>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+      <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+    </cpix:DRMSystem>
     <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
     </cpix:DRMSystem>
     <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+      <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
     </cpix:DRMSystem>
   </cpix:DRMSystemList>
   <cpix:ContentKeyUsageRuleList>
@@ -149,7 +159,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 #### Multikey with audio clear
 
-Get a CPIX 2.1 document that uses only 1 content key for video; audio tracks are left in the clear and is only supported by DASH with PlayReady or Widevine.
+Get a CPIX 2.1 document that uses only 1 content key for video; audio tracks are left in the clear.
 
 ##### Optional query params:
 
@@ -183,11 +193,21 @@ curl -XGET -H "API-KEY: <api-key>" \
     <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
     </cpix:DRMSystem>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtX(Key>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+      <cpix:HLSSi)gnalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+    </cpix:DRMSystem>
     <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
     </cpix:DRMSystem>
     <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+      <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
     </cpix:DRMSystem>
   </cpix:DRMSystemList>
   <cpix:ContentKeyUsageRuleList>
@@ -198,6 +218,221 @@ curl -XGET -H "API-KEY: <api-key>" \
       <cpix:AudioFilter></cpix:AudioFilter>
     </cpix:ContentKeyUsageRule>
   </cpix:ContentKeyUsageRuleList>
+</cpix:CPIX>
+```
+
+#### Multikey with seperate bitrates based key
+
+Get a CPIX 2.1 document that uses different content keys per bitrate, and one for audio.
+If given a single bitrate is given the document will use one key for all bitrates upto the given bitrate, and one key for the given bitrate up.
+If two bitrates are given the document will use one key for all bitrates upto the lowest given bitrate, one key for all bitrates between the lowest and highest given bitrates, and one key for the highest given bitrate up.
+
+##### Quiry params:
+
+* `bitrates` : a single bitrate, or two seperated by a comma.
+
+##### Optional query params:
+
+* `drm` : comma separated list of DRM systems to be included in the response.
+
+##### Request
+
+```
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>/multikey?bitrates=8"
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xmlns:speke="urn:aws:amazon:com:speke" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+    <cpix:ContentKeyList>
+        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="33333333-3333-3333-33333-33333333333" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+    </cpix:ContentKeyList>
+    <cpix:DRMSystemList>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+    </cpix:DRMSystemList>
+    <cpix:ContentKeyPeriodList></cpix:ContentKeyPeriodList>
+    <cpix:ContentKeyUsageRuleList>
+        <cpix:ContentKeyUsageRule kid="11111111-1111-1111-1111-111111111111">
+            <cpix:BitrateFilter maxBitrate="8"></cpix:BitrateFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="22222222-2222-2222-22222-22222222222">
+            <cpix:BitrateFilter minBitrate="8"></cpix:BitrateFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="33333333-3333-3333-33333-33333333333">
+            <cpix:AudioFilter></cpix:AudioFilter>
+        </cpix:ContentKeyUsageRule>
+    </cpix:ContentKeyUsageRuleList>
+</cpix:CPIX>
+```
+
+#### Multikey with seperate video quality based keys
+
+Get a CPIX 2.1 document that uses different content keys per video qualty, and one for audio.
+If given a single video quality the document will use one key for all video quality upto the given video quality, and one key for the given video quality up.
+If given multiple video qualities the document will use one key for everything below the lowest quality, one for everything above the highest quality, and one for betwen each given quality. 
+
+##### Quiry params:
+
+* `videoTracks` : a list of video qualities seperated by a comma, can only contain either `SD`, `HD`, or `UHD`.
+
+##### Optional query params:
+
+* `drm` : comma separated list of DRM systems to be included in the response.
+
+##### Request
+
+```
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>/multikey?videoTracks=SD,HD"
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xmlns:speke="urn:aws:amazon:com:speke" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+    <cpix:ContentKeyList>
+        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="33333333-3333-3333-33333-33333333333" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="44444444-4444-4444-44444-44444444444" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+    </cpix:ContentKeyList>
+    <cpix:DRMSystemList>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="44444444-4444-4444-44444-44444444444" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="44444444-4444-4444-44444-44444444444" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="44444444-4444-4444-44444-44444444444" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+    </cpix:DRMSystemList>
+    <cpix:ContentKeyPeriodList></cpix:ContentKeyPeriodList>
+    <cpix:ContentKeyUsageRuleList>
+        <cpix:ContentKeyUsageRule kid="11111111-1111-1111-1111-111111111111">
+            <cpix:BitrateFilter maxPixels="409920"></cpix:BitrateFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="22222222-2222-2222-22222-22222222222">
+            <cpix:BitrateFilter minPixels="409921" maxPixels="2073600"></cpix:BitrateFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="33333333-3333-3333-33333-33333333333">
+            <cpix:VideoFilter minPixels="2073601"></cpix:VideoFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="44444444-4444-4444-44444-44444444444">
+            <cpix:AudioFilter></cpix:AudioFilter>
+        </cpix:ContentKeyUsageRule>
+    </cpix:ContentKeyUsageRuleList>
 </cpix:CPIX>
 ```
 
