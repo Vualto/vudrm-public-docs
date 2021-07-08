@@ -36,7 +36,7 @@
 
 * Bug fix in the VUDRM Admin site where the Configuration page would sometimes break the service for certain clients.
 
-* Improvements to the Widevine Proxy. Now forwards the Referer to the STATS API.
+* Improvements to the Widevine License Server. Now forwards the Referer to the Stats API.
 
 * Internal improvements to Kibana. Referer and License URL are displayed in Kibana.
 
