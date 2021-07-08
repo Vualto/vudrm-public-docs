@@ -18,7 +18,7 @@
 
 * Multikey support for all DRM providers added to CPIX API. Our documentation has been updated to reflect this.
 
-* Internal improvements to the Widevine licesnse server. Added license renewal support.
+* Internal improvements to the Widevine license server. Added license renewal support.
 
 * Various improvements to VUDRM Admin, including a new public demo page.
 
