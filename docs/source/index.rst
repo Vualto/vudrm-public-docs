@@ -19,6 +19,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   UserGuide/VUDRM-Admin.md
    DeveloperDocumentation/index.rst
    ReleaseNotes.md
    Support.md
