@@ -224,7 +224,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 #### Multikey with seperate bitrates based key
 
 Get a CPIX 2.1 document that uses different content keys per bitrate and one for audio.
-If given a single bitrate is given the document will use one key for all bitrates up to the given bitrate, and one key for the given bitrate up.
+If provided with a single bitrate the document will use one key for all bitrates up to the given bitrate, and one key for the given bitrate up.
 If two bitrates are given the document will use one key for all bitrates up to the lowest given bitrate, one key for all bitrates between the lowest and highest given bitrates, and one key for the highest given bitrate up.
 
 ##### Quiry params:
