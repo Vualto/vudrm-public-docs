@@ -30,13 +30,13 @@
 
 ## March 2021
 
-* Improvements to the AES License Server. Now responds with a 4xx status code when the call to kp-api fails.
+* Improvements to the AES license server. Now responds with a 4xx status code when the call to KP API fails.
 
 * Improvements have been made to our Documentation. All documentation now follows a unified template throughout.
 
 * Bug fix in the VUDRM Admin site where the Configuration page would sometimes break the service for certain clients.
 
-* Improvements to the Widevine License Server. Now forwards the Referer to the Stats API.
+* Improvements to the Widevine license server. Now forwards the Referer to the Stats API.
 
 * Internal improvements to Kibana. Referer and License URL are displayed in Kibana.
 
@@ -44,7 +44,7 @@
 
 * Improvements to our cluster infrastructure. Pods will automatically recycle when they are 14 days old.
 
-* Internal improvements to the KP API and Widevine Proxy. Settings for each can ammended via a VUDRM Token.
+* Internal improvements to the KP API and Widevine license server. Settings for each can ammended via a VUDRM Token.
 
 * Internal improvements to the Config API. Failure to connect to the Database will now respond with a 5xx status code.
 
@@ -52,7 +52,7 @@
 
 * Internal improvements to the ElasticSearch monitoring.
 
-* Improvements to the Widevine Proxy - service has been re-written in Go.
+* Improvements to the Widevine license server - service has been re-written in Go.
 
 * Various improvements to VUDRM Admin, including the ability to create a video for a client and JSON logging.
 
