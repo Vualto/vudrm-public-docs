@@ -225,7 +225,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 Get a CPIX 2.1 document that uses different content keys per bitrate and one for audio.
 If provided with a single bitrate the document will use one key for all bitrates up to the given bitrate, and one key for the given bitrate up.
-If two bitrates are given the document will use one key for all bitrates up to the lowest given bitrate, one key for all bitrates between the lowest and highest given bitrates, and one key for the highest given bitrate up.
+If provided with two bitrates the document will use one key for all bitrates up to the lowest given bitrate, one key for all bitrates between the lowest and highest bitrates, and one key for the highest given bitrate up.
 
 ##### Quiry params:
 
@@ -321,8 +321,8 @@ curl -XGET -H "API-KEY: <api-key>" \
 #### Multikey with seperate video quality based keys
 
 Get a CPIX 2.1 document that uses different content keys per video qualty and one for audio.
-If given a single video quality the document will use one key for all video quality up to the given video quality, and one key for the given video quality up.
-If given multiple video qualities the document will use one key for everything below the lowest quality, one for everything above the highest quality, and one for between each given quality. 
+If provided a single video quality the document will use one key for all video quality up to the given video quality, and one key for the given video quality up.
+If provided with multiple video qualities the document will use one key for everything below the lowest quality, one for everything above the highest quality, and one for between each given quality. 
 
 ##### Quiry params:
 
