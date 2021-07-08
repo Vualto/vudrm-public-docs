@@ -12,6 +12,20 @@
 * [July 2020](#july-2020)
 * [May 2020](#may-2020)
 
+## July 2021
+
+* Updates to O/S on most services
+
+* Multikey support for all DRM providers added to CPIX API. Our documentation has been updated to reflect this.
+
+* Internal improvements to the Widevine licesnse server. Added license renewal support.
+
+* Various improvements to VUDRM Admin, including a new public demo page.
+
+* Internal improvements for our Stats API logging.
+
+* Beta release for VUDRM Token v2.
+
 ## June 2021
 
 * New VUDRM cluster based in Milan has been released and is serving traffic for the duration of the Euro 2020 Championship.
