@@ -183,7 +183,7 @@ curl -XGET -H "API-KEY: <api-key>" \
         </pskc:Secret>
       </cpix:Data>
     </cpix:ContentKey>
-    <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+    <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222">
     </cpix:ContentKey>
   </cpix:ContentKeyList>
   <cpix:DRMSystemList>
