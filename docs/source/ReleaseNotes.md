@@ -14,7 +14,7 @@
 
 ## July 2021
 
-* Updates to O/S on most services
+* Updates to O/S on most services.
 
 * Multikey support for all DRM providers added to CPIX API. Our documentation has been updated to reflect this.
 
