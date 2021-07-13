@@ -154,6 +154,10 @@ The structure of the session information in a policy should be as follows:
 }
 ```
 
+### Client data
+
+The client data object is an object in which you can place any additional information about the license request; we will then record this data along side our license servered statistics, allowing from better filtering and a more indepth analysis of your DRM usage. For example if you include `client_data: { "app-version": "my-app-version" }` in your VUDRM policy and then when you update your app change this to be `client_data: { "app-version": "my-new-version" }` we will be able to filter your license served statistics to show which licenses served, used `my-app-version` and which used `my-new-version`.
+
 ### Default DRM policy
 It is possible to specify a default DRM policy that will be used when we receive a VUDRM token. For example if you wish for all licenses requested to default to caching the license, the default DRM policy would be `{ "liccache":"yes" }`, meaning a VUDRM token with the policy `{ "polend":"DD-MM-YYYY HH:mm:ss" }` would be the same as `{ "liccache":"yes", "polend":"DD-MM-YYYY HH:mm:ss" }`. The values in the default policy can be overridden by simply putting them in the policy you pass in the VUDRM token. For example if the default DRM policy was `{ "liccache":"yes" }` but you wanted a license to not be cached, the policy in the VUDRM token would be `{ "liccache":"no" }`. Any of the values listed above can be be set in the default DRM policy.
 
