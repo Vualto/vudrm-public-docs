@@ -723,6 +723,76 @@ cupertinostreaming-aes128-key-format-version: 1
 
 Remove the keyfile for the specified Wowza stream, returning it's contents before deletion.
 
+## SPEKE Key Provider API
+
+To retrieve drm information formatted to the V2 AWS SPEKE standard send a POST request, formatting below, to **https://cpix.vudrm.tech/v2/speke/<client-name>**. If you wish to use the V1 version of the SPEKE format please see our [legacy SPEKE documentaion](## add the link).
+
+### Live with AWS Media Packager
+
+#### Creating a channel
+
+### Example 
+
+### API Gateway Setup
+
+#### Importing the API from Swagger
+
+After navigating to API Gateway Service in AWS and clicking `Create API`, simply click `Import` for a REST API.
+Then ensure the protocol is set to `REST` and `Import from Swagger or Open API 3` is selected.
+You can then paste the JSON below and click `Import`.
+
+```JSON
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "speke proxy"
+  },
+  "basePath": "/speke",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "API-KEY",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### API Gateway set up
+
+Once imported you will need to set up the post method by clicking `Set up now`.
+- Set `Integration Type` to be `HTTP`
+- Check `Use HTTP Proxy integration`
+- Set the `Endpoint URL` to be `https://cpix.vudrm.tech/v2/speke/<client-name>`
+
+With these options set click `Create`.
+
+Then select `Integration Request` and under the `HTTP Headers` section add a header with the name `api-key` and `Mapped from` set to `'<your-api-key>'` ensuring to include the single quotes surrounding your API key.
+
+Now in the `Actions` dropdown select `Deploy API`.
+
+From the `Deployment stage` dropdown select `[New Stage]`, and enter an appropriate name for the stage in the box below.
+
+You will then be sent to the stage editor for the stage you have just created and deployed to. On this page there will be your `Invoke URL`. This is the URL that can be used by other AWS services to make requests to our SPEKE API.
+
 ## Legacy
 
 ### Legacy JSON Key provider API
