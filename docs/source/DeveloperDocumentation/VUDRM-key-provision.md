@@ -321,8 +321,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 #### Multikey with seperate video quality based keys
 
 Get a CPIX 2.1 document that uses different content keys per video qualty and one for audio.
-If provided a single video quality the document will use one key for all video quality up to the given video quality, and one key for the given video quality up.
-If provided with multiple video qualities the document will use one key for everything below the lowest quality, one for everything above the highest quality, and one for between each given quality. 
+If provided with multiple video qualities the response will contain a encryption key for each video quality and one encrypt key for everything else.
 
 ##### Quiry params:
 
