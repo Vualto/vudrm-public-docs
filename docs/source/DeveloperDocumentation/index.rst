@@ -15,5 +15,4 @@ If you have any questions or need assistance in using this platform, please cont
    VUDRM-token.md
    VUDRM-Speke-Key-Provider.md
    Geo-Location.md
-   integrations/integrations.rst
-
+   VUDRM-support-matrix.md
