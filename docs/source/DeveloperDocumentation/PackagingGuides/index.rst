@@ -1,4 +1,4 @@
-Packaging Guides
+PACKAGING GUIDES
 ===================
 
 .. toctree::
