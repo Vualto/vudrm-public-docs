@@ -727,11 +727,50 @@ Remove the keyfile for the specified Wowza stream, returning it's contents befor
 
 To retrieve drm information formatted to the V2 AWS SPEKE standard send a POST request, formatting below, to **https://cpix.vudrm.tech/v2/speke/<client-name>**. If you wish to use the V1 version of the SPEKE format please see our [legacy SPEKE documentaion](## add the link).
 
-### Live with AWS Media Packager
+### Live with AWS Elemental MediaPackage
 
 #### Creating a channel
 
-### Example 
+To create a channel first naviagte to AWS Elemental MediaPackage in the AWS console and click the `Create a new channel` button. Then assign the channel an ID and a description as needed. Now simply click the "Ceate" button.
+
+#### Adding endpoints
+
+##### DASH
+
+Once you are have created a channel and ae viewing it you can start to add endpoints to view your content by pressing the "Add endpoints" button.
+
+Start by assigning an ID, a description as needed, and the manifest name.
+
+In the packager settings section set the type to be `DASH-ISO`.
+
+In the package encryption section select `Encrypt content` and assign a `Resource ID`. The URL should be set to your API gateway endpoint, and the role ARN to that of an appropriate role.
+
+If you want your content to be encrypted with Widevine add "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed" to the `System IDs`.
+
+If you want your content to be encrypted with PlayReady add "9a04f079-9840-4286-ab92-e65be0885f95" to the `System IDs`.
+
+Ensure `SPEKE version` is set to `Version 2.0`.
+
+Finally click save to be able to view your encrypted content.
+
+##### CMAF
+
+Once you are have created a channel and ae viewing it you can start to add endpoints to view your content by pressing the "Add endpoints" button.
+
+Start by assigning an ID, a description as needed, and the manifest name.
+
+In the packager settings section set the type to be `Common Media Application Format (CMAF)`.
+
+In the package encryption section select `Encrypt content` and assign a `Resource ID`. The URL should be set to your API gateway endpoint, and the role ARN to that of an appropriate role.
+
+If you want your content to be encrypted with Widevine add "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed" to the `System IDs`.
+
+If you want your content to be encrypted with Fairplay add "94ce86fb-07ff-4f43-adb8-93d2fa968ca2" to the `System IDs`.
+
+Ensure `SPEKE version` is set to `Version 2.0`.
+
+Finally click save to be able to view your encrypted content.
+
 
 ### API Gateway Setup
 
@@ -776,8 +815,6 @@ You can then paste the JSON below and click `Import`.
 }
 ```
 
-### API Gateway set up
-
 Once imported you will need to set up the post method by clicking `Set up now`.
 - Set `Integration Type` to be `HTTP`
 - Check `Use HTTP Proxy integration`
@@ -792,6 +829,110 @@ Now in the `Actions` dropdown select `Deploy API`.
 From the `Deployment stage` dropdown select `[New Stage]`, and enter an appropriate name for the stage in the box below.
 
 You will then be sent to the stage editor for the stage you have just created and deployed to. On this page there will be your `Invoke URL`. This is the URL that can be used by other AWS services to make requests to our SPEKE API.
+
+### Examples
+
+**NB kid's in response may not match kid's in request**
+
+#### Request
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX contentId="test-content" version="2.3" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:enc="http://www.w3.org/2001/04/xmlenc#">
+    <cpix:ContentKeyList>
+        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" commonEncryptionScheme="cenc"></cpix:ContentKey>
+        <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222" commonEncryptionScheme="cenc"></cpix:ContentKey>
+    </cpix:ContentKeyList>
+    <cpix:DRMSystemList>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH />
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH />
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH />
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH />
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey />
+            <cpix:HLSSignalingData playlist="master" />
+            <cpix:HLSSignalingData playlist="media" />
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey />
+            <cpix:HLSSignalingData playlist="master" />
+            <cpix:HLSSignalingData playlist="media" />
+        </cpix:DRMSystem>
+    </cpix:DRMSystemList>
+    <cpix:ContentKeyUsageRuleList>
+        <cpix:ContentKeyUsageRule kid="11111111-1111-1111-1111-111111111111" intendedTrackType="VIDEO">
+            <cpix:VideoFilter />
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="22222222-2222-2222-22222-22222222222" intendedTrackType="AUDIO">
+            <cpix:AudioFilter />
+        </cpix:ContentKeyUsageRule>
+    </cpix:ContentKeyUsageRuleList>
+</cpix:CPIX>
+```
+
+#### Response
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX version="2.3" contentId="test-content" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+    <cpix:ContentKeyList>
+        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=" commonEncryptionScheme="cenc">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222" explicitIV="YmFzZTY0ZW5jb2RlZAo=" commonEncryptionScheme="cenc">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+    </cpix:ContentKeyList>
+    <cpix:DRMSystemList>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo= </cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+    </cpix:DRMSystemList>
+    <cpix:ContentKeyUsageRuleList>
+        <cpix:ContentKeyUsageRule kid="11111111-1111-1111-1111-111111111111" intendedTrackType="VIDEO">
+            <cpix:VideoFilter></cpix:VideoFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="22222222-2222-2222-22222-22222222222" intendedTrackType="AUDIO">
+            <cpix:AudioFilter></cpix:AudioFilter>
+        </cpix:ContentKeyUsageRule>
+    </cpix:ContentKeyUsageRuleList>
+</cpix:CPIX>
+```
 
 ## Legacy
 
