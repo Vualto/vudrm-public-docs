@@ -1,4 +1,4 @@
-SMART TV's
+SMART TV'S
 ============
 
 .. toctree::
