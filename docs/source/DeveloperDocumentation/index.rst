@@ -10,6 +10,7 @@ If you have any questions or need assistance in using this platform, please cont
    PackagingGuides/index.rst
    PlayerIntegrations/index.rst
    MobileSdks/index.rst
+   SmartTvsAndCasting/index.rst
    VUDRM-key-provision.md
    VUDRM-token.md
    VUDRM-Speke-Key-Provider.md
