@@ -333,17 +333,16 @@ The values are:
 ## SPEKE Key Provider API
 These are the docs for the speke key provider, which has a speke endpoint for use with AWS. To learn how to use our SPEKE API with AWS' Media Services please read our [guide](/projects/vudrm/en/latest/DeveloperDocumentation/aws.html).
 
-### Endpoint
 To retrieve drm information formatted to the AWS SPEKE standard send a POST request, formatting below, to **https://speke.vudrm.tech//client-name/speke**, where "client-name" is the name of the client. 
 
-#### Examples  
-##### Requests
-##### Headers
+### Examples  
+#### Requests
+#### Headers
 ```
 Content-Type: application/xml 
 API-KEY: <api-key>
 ```
-##### Widevine and Playready
+#### Widevine and Playready
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
@@ -360,7 +359,7 @@ API-KEY: <api-key>
    </cpix:DRMSystemList>
 </cpix:CPIX>
 ```
-##### Fairplay
+#### Fairplay
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
@@ -375,12 +374,12 @@ API-KEY: <api-key>
 </cpix:CPIX>
 ```
 
-##### Responses
-##### Headers
+#### Responses
+#### Headers
 ```
 Content-Type: application/xml
 ```
-##### Widevine and Playready
+#### Widevine and Playready
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
@@ -404,7 +403,7 @@ Content-Type: application/xml
     </cpix:DRMSystemList>
 </cpix:CPIX>
 ```
-##### Fairplay
+#### Fairplay
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
