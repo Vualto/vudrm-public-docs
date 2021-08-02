@@ -48,15 +48,15 @@ The values are:
 - `mpegdashstreaming-cenc-algorithm`: Must be set to `AESCTR`.
 - `mpegdashstreaming-cenc-keyserver-widevine`: Must be set to `true`.
 - `mpegdashstreaming-cenc-keyserver-widevine-system-id`: Must be set to `edef8ba9-79d6-4ace-a3c8-27dcd51d21ed`
-- `mpegdashstreaming-cenc-keyserver-widevine-pssh-data`: The `widevine_drm_specific_data` value from the [CENC Response](#cenc).
+- `mpegdashstreaming-cenc-keyserver-widevine-pssh-data`: The `widevine_drm_specific_data` value from the [CENC Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cenc).
 - `mpegdashstreaming-cenc-keyserver-playready`: Must be set to `true`.
 - `mpegdashstreaming-cenc-keyserver-playready-system-id`: Must be set to `9a04f079-9840-4286-ab92-e65be0885f95`
-- `mpegdashstreaming-cenc-keyserver-playready-license-url`: The `playready_laurl` value from the [CENC Response](#cenc).
-- `mpegdashstreaming-cenc-keyserver-playready-checksum`: The `checksum` value from the [CENC Response](#cenc)
+- `mpegdashstreaming-cenc-keyserver-playready-license-url`: The `playready_laurl` value from the [CENC Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cenc).
+- `mpegdashstreaming-cenc-keyserver-playready-checksum`: The `checksum` value from the [CENC Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cenc)
 - `cupertinostreaming-aes128-method`: Must be set to `SAMPLE-AES`.
-- `cupertinostreaming-aes128-url`: The `laurl` value from the [Fairplay Response](#fairplay)
-- `cupertinostreaming-aes128-key`: The `key_hex` value from the [Fairplay Response](#fairplay)
-- `cupertinostreaming-aes128-iv`: The `iv_hex` value from the [Fairplay Response](#fairplay)
+- `cupertinostreaming-aes128-url`: The `laurl` value from the [Fairplay Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#fairplay)
+- `cupertinostreaming-aes128-key`: The `key_hex` value from the [Fairplay Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#fairplay)
+- `cupertinostreaming-aes128-iv`: The `iv_hex` value from the [Fairplay Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#fairplay)
 - `cupertinostreaming-aes128-iv-include-in-chunklist`: Must be set to `false`.
 - `cupertinostreaming-aes128-key-format`: Must be set to `com.apple.streamingkeydelivery`.
 - `cupertinostreaming-aes128-key-format-version`: Must be set to `1`.
