@@ -2,7 +2,7 @@
 
 In order to use our SPEKE API you will need to set up an API gateway that adds the header `API-KEY` with your API key and with your client name in place of `client-name` in "https://speke.vudrm.tech/client-name/speke". For more information on how to setup the API Gateway see the [API Gateway](#api-gateway) section.
 
-## MediaPackager
+## Media Packager
 ### 1. Go to AWS Media Packager.
 -	Log into the AWS console
 -	Either type “Media Packager” into the search box and then select “MediaPackager” or open the “Services” drop down in the top left of the screen and select “MediaPackager” from under the “Media Services” header.
@@ -54,7 +54,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 -	Generate a VUDRM token in the admin for your client and paste it into the “Custom VUDRM Token” 
 -	Press “Load player”
 
-## MediaConvert
+## Media Convert
 ### 1. Go to AWS S3.
 -	Log into the AWS console
 -	Either type “S3” into the search box and then select “S3” or open the “Services” drop down in the top left of the screen and select “S3” from under the “Storage” header.
