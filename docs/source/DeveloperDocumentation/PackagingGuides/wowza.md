@@ -1,4 +1,4 @@
-# Wowza Integration
+# Wowza
 
 The encryption keys provided by the Key Provider APIs are compatible with [Wowza](https://www.wowza.com/).
 
@@ -43,8 +43,8 @@ cupertinostreaming-aes128-key-format-version: 1
 ```
 
 The values are:
-- `mpegdashstreaming-cenc-key-id`: The `key_id_big` value from the [CENC response](#cenc).
-- `mpegdashstreaming-cenc-content-key`: The `content_key` value from the [CENC response](#cenc).
+- `mpegdashstreaming-cenc-key-id`: The `key_id_big` value from the [CENC response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cenc).
+- `mpegdashstreaming-cenc-content-key`: The `content_key` value from the [CENC response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cenc).
 - `mpegdashstreaming-cenc-algorithm`: Must be set to `AESCTR`.
 - `mpegdashstreaming-cenc-keyserver-widevine`: Must be set to `true`.
 - `mpegdashstreaming-cenc-keyserver-widevine-system-id`: Must be set to `edef8ba9-79d6-4ace-a3c8-27dcd51d21ed`
