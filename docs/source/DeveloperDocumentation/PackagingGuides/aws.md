@@ -42,17 +42,16 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 
 ### 14. Load into a player to show the content working.
 #### Widevine
--	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Google Chrome tab and select custom stream.
--	Press the “Edit” button next to the player key box and type “arconics-staging|9116e9b8-5bd2-4ab1-a282-085ce379f8a6”
--	Paste in the endpoints URL for the "Custom stream url"
--	Generate a VUDRM token in the admin for your client and paste it into the “Custom VUDRM Token” 
--	Press “Load player”
+- Open "https://admin.vudrm.tech/" in a new Google Chrome tab and log in, if you do not have a log in please contact support@vualto.com
+- Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
+- Paste the endpoints URL into the "DASH Stream URL" box
+- Press "Load Player" 
 
 #### Playready
--	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Microsoft Edge tab and select custom stream.
--	Paste in the endpoints URL for the "Custom stream url"
--	Generate a VUDRM token in the admin for your client and paste it into the “Custom VUDRM Token” 
--	Press “Load player”
+- Open "https://admin.vudrm.tech/" in a new Microsoft Edge tab and log in, if you do not have a log in please contact support@vualto.com
+- Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
+- Paste the endpoints URL into the "DASH Stream URL" box
+- Press "Load Player" 
 
 ## Media Convert
 ### 1. Go to AWS S3.
@@ -156,17 +155,16 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 
 ### 19. Load into a player to show the content working. (Use the same one as above)
 #### Widevine
--	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Google Chrome tab and select custom stream.
--	Press the “Edit” button next to the player key box and type “arconics-staging|9116e9b8-5bd2-4ab1-a282-085ce379f8a6”
--	Return to your S3 tab and copy the link from the bottom of the page and paste it into “Custom stream url” box, it should look something like “https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd”
--	Generate a VUDRM token in the admin for your client and paste it into the “Custom VUDRM Token” 
--	Press “Load player”
+- Open "https://admin.vudrm.tech/" in a new Google Chrome tab and log in, if you do not have a log in please contact support@vualto.com
+- Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
+-	Return to your S3 tab and copy the link from the bottom of the page and paste it into "DASH Stream URL" box, it should look something like "https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd"
+- Press "Load Player" 
 
 #### Playready
--	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Microsoft Edge tab and select custom stream.
--	Return to your S3 tab and copy the link from the bottom of the page and paste it into “Custom stream url” box, it should look something like “https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd”
--	Generate a VUDRM token in the admin for the your client and paste it into the “Custom VUDRM Token” 
--	Press “Load player”
+- Open "https://admin.vudrm.tech/" in a new Microsoft Edge tab and log in, if you do not have a log in please contact support@vualto.com
+- Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
+-	Return to your S3 tab and copy the link from the bottom of the page and paste it into "DASH Stream URL" box, it should look something like "https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd"
+- Press "Load Player" 
 
 ## API Gateway
 
