@@ -1,9 +1,53 @@
-# SPEKE KEY PROVIDER API
-These are the docs for the speke key provider, which has a speke endpoint for use with AWS.
+# AWS Media Services
 
 In order to use our SPEKE API you will need to set up an API gateway that adds the header `API-KEY` with your API key and with your client name in place of `client-name` in "https://speke.vudrm.tech/client-name/speke". For more information on how to setup the API Gateway see the [API Gateway](#api-gateway) section.
 
-## Use with AWS Media Convert (VOD)
+## Media Packager
+### 1. Go to AWS Media Packager.
+-	Log into the AWS console
+-	Either type “Media Packager” into the search box and then select “MediaPackager” or open the “Services” drop down in the top left of the screen and select “MediaPackager” from under the “Media Services” header.
+
+### 2. Select or create a channel.
+-   To create a channel press the "Create" button in the top right corner, enter an ID for the channel and press create.
+
+### 3. Add an endpoint to the channel.
+-   Press the "Add/edit endpoints" button
+-   Press the "Add" button to create a new endpoint
+
+### 4. Assign an ID to the endpoint.
+-   You can also add a description of the endpoint if needed
+
+### 5. Set the "Manifest Name" to "manifest".
+
+### 6. Set the type of stream.
+-   Use DASH-ISO if you want to use Playready or Widevine DRM
+-   Use Apple HLS if you want to use Fairplay DRM
+
+### 7. Select the option to "Encrypt content".
+
+### 8. Add a Resource ID.
+
+### 9. Add appropriate System IDs.
+-   If you wish to use Widevine DRM use "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed" as the System ID (only if output group is DASH ISO)
+-   If you wish to use Playready DRM use "9a04f079-9840-4286-ab92-e65be0885f95" as the System ID (only if output group is DASH ISO)
+-   If you wish to use Fairplay DRM use "94ce86fb-07ff-4f43-adb8-93d2fa968ca2" as the System ID (only if output group is APPLE HLS)
+
+### 10. Set the URL to that of your API gateway.
+
+### 11. Add an appropriate Role ARN.
+
+### 12. Press the "Save" button under the list of endpoint. 
+
+### 13. To test the content, copy the endpoints URL.
+
+### 14. Load into a player to show the content working.
+#### Widevine
+- Open "https://admin.vudrm.tech/" in a new Google Chrome tab and log in, if you do not have a log in please contact support@vualto.com
+- Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
+- Paste the endpoints URL into the "DASH Stream URL" box
+- Press "Load Player" 
+
+## Media Convert
 ### 1. Go to AWS S3.
 -	Log into the AWS console
 -	Either type “S3” into the search box and then select “S3” or open the “Services” drop down in the top left of the screen and select “S3” from under the “Storage” header.
@@ -42,13 +86,13 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
 -	Add a “Resource ID”
 -	Set the “System ID” to “edef8ba9-79d6-4ace-a3c8-27dcd51d21ed”
--	Set the “URL” to that of your api gateway
+-	Set the “URL” to that of your API gateway
 
 #### Playready (only if output group is DASH ISO)
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
 -	Add a “Resource ID” 
 -	Set the “System ID” to “9a04f079-9840-4286-ab92-e65be0885f95”
--	Set the “URL” to that of your api gateway
+-	Set the “URL” to that of your API gateway
 
 #### Fairplay (only if output group is Apple HLS)
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
@@ -57,7 +101,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 -	Set “Initialization vector in manifest” to “Exclude”
 -	Add a “Resource ID”
 -	Set the “System ID” to “94ce86fb-07ff-4f43-adb8-93d2fa968ca2”
--	Set the “URL” to that of your api gateway
+-	Set the “URL” to that of your API gateway
 -	Set the “Constant initilization vector” to “00000000000000000000000000000000”
 
 ### 12. Configure the outputs “Outputs”. (Use the same one as above)
@@ -105,168 +149,10 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 
 ### 19. Load into a player to show the content working. (Use the same one as above)
 #### Widevine
--	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Google Chrome tab and select custom stream.
--	Press the “Edit” button next to the player key box and type “arconics-staging|9116e9b8-5bd2-4ab1-a282-085ce379f8a6”
--	Return to your S3 tab and copy the link from the bottom of the page and paste it into “Custom stream url” box, it should look something like “https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd”
--	Generate a VUDRM token in the admin for your client and paste it into the “Custom VUDRM Token” 
--	Press “Load player”
-
-#### Playready
--	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Microsoft Edge tab and select custom stream.
--	Return to your S3 tab and copy the link from the bottom of the page and paste it into “Custom stream url” box, it should look something like “https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd”
--	Generate a VUDRM token in the admin for the your client and paste it into the “Custom VUDRM Token” 
--	Press “Load player”
-
-## Use with AWS Media Packager (LIVE)
-### 1. Go to AWS Media Packager.
--	Log into the AWS console
--	Either type “Media Packager” into the search box and then select “MediaPackager” or open the “Services” drop down in the top left of the screen and select “MediaPackager” from under the “Media Services” header.
-
-### 2. Select or create a channel.
--   To create a channel press the "Create" button in the top right corner, enter an ID for the channel and press create.
-
-### 3. Add an endpoint to the channel.
--   Press the "Add/edit endpoints" button
--   Press the "Add" button to create a new endpoint
-
-### 4. Assign an ID to the endpoint.
--   You can also add a description of the endpoint if needed
-
-### 5. Set the "Manifest Name" to "manifest".
-
-### 6. Set the type of stream.
--   Use DASH-ISO if you want to use Playready or Widevine DRM
--   Use Apple HLS if you want to use Fairplay DRM
-
-### 7. Select the option to "Encrypt content".
-
-### 8. Add a Resource ID.
-
-### 9. Add appropriate System IDs.
--   If you wish to use Widevine DRM use "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed" as the System ID (only if output group is DASH ISO)
--   If you wish to use Playready DRM use "9a04f079-9840-4286-ab92-e65be0885f95" as the System ID (only if output group is DASH ISO)
--   If you wish to use Fairplay DRM use "94ce86fb-07ff-4f43-adb8-93d2fa968ca2" as the System ID (only if output group is APPLE HLS)
-
-### 10. Set the URL to that of your api gateway.
-
-### 11. Add an appropriate Role ARN.
-
-### 12. Press the "Save" button under the list of endpoint. 
-
-### 13. To test the content, copy the endpoints URL.
-
-### 14. Load into a player to show the content working.
-#### Widevine
--	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Google Chrome tab and select custom stream.
--	Press the “Edit” button next to the player key box and type “arconics-staging|9116e9b8-5bd2-4ab1-a282-085ce379f8a6”
--	Paste in the endpoints URL for the "Custom stream url"
--	Generate a VUDRM token in the admin for your client and paste it into the “Custom VUDRM Token” 
--	Press “Load player”
-
-#### Playready
--	Open “https://cdn.vuplay.co.uk/vuplay-smart-demo/_latest/index.html#/” in a new Microsoft Edge tab and select custom stream.
--	Paste in the endpoints URL for the "Custom stream url"
--	Generate a VUDRM token in the admin for your client and paste it into the “Custom VUDRM Token” 
--	Press “Load player”
-
-## Endpoints
-Production url: https://speke.vudrm.tech/
-Staging url: https://speke.staging.vudrm.tech/
-
-## SPEKE
-To retrieve drm information formatted to the AWS SPEKE standard send a POST request, formatting below, to **https://speke.vudrm.tech//client-name/speke**, where "client-name" is the name of the client. 
-
-### Examples  
-#### Requests
-#### Headers
-```
-Content-Type: application/xml 
-API-KEY: <api-key>
-```
-#### Widevine and Playready
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
-   <cpix:ContentKeyList>
-      <cpix:ContentKey kid="" explicitIV=""/>
-   </cpix:ContentKeyList>
-   <cpix:DRMSystemList>
-      <!-- playready -->
-      <cpix:DRMSystem kid="" systemId="9a04f079-9840-4286-ab92-e65be0885f95"> 
-      </cpix:DRMSystem>
-      <!-- widevine -->
-      <cpix:DRMSystem kid="" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
-      </cpix:DRMSystem>
-   </cpix:DRMSystemList>
-</cpix:CPIX>
-```
-#### Fairplay
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
-   <cpix:ContentKeyList>
-      <cpix:ContentKey kid="" explicitIV=""/>
-   </cpix:ContentKeyList>
-   <cpix:DRMSystemList>
-      <!-- fairplay -->
-      <cpix:DRMSystem kid="" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
-      </cpix:DRMSystem>
-   </cpix:DRMSystemList>
-</cpix:CPIX>
-```
-
-#### Responses
-#### Headers
-```
-Content-Type: application/xml
-```
-#### Widevine and Playready
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
-    <cpix:ContentKeyList>
-        <cpix:ContentKey explicitIV="" kid="someKid">
-            <cpix:Data>
-                <pskc:Secret>
-                    <pskc:PlainValue>playreadyContentKey</pskc:PlainValue>
-                </pskc:Secret>
-            </cpix:Data>
-        </cpix:ContentKey>
-    </cpix:ContentKeyList>
-    <cpix:DRMSystemList>
-        <cpix:DRMSystem kid="someKid" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
-            <speke:ProtectionHeader>playreadyProtectionHeader</speke:ProtectionHeader>
-            <cpix:PSSH>playreadyPSSHBox</cpix:PSSH>
-        </cpix:DRMSystem>
-        <cpix:DRMSystem kid="someKid" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
-            <PSSH>widevinePSSHBox</PSSH>
-        </cpix:DRMSystem>
-    </cpix:DRMSystemList>
-</cpix:CPIX>
-```
-
-#### Fairplay
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
-    <cpix:ContentKeyList>
-        <cpix:ContentKey explicitIV="fairplayIvHex-base64-encoded" kid="someKid">
-            <cpix:Data>
-                <pskc:Secret>
-                    <pskc:PlainValue>fairplayKeyHex-base64-encoded</pskc:PlainValue>
-                </pskc:Secret>
-            </cpix:Data>
-        </cpix:ContentKey>
-    </cpix:ContentKeyList>
-    <cpix:DRMSystemList>
-        <cpix:DRMSystem kid="someKid" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
-            <URIExtXKey>fairplayLaurl-base64-encoded</URIExtXKey>
-            <KeyFormat>fairplayKeyFormat-base64-encoded</KeyFormat>
-            <KeyFormatVersions>fairplayKeyFormatVersion-base64-encoded</KeyFormatVersions>
-        </cpix:DRMSystem>
-    </cpix:DRMSystemList>
-</cpix:CPIX>
-```
+- Open "https://admin.vudrm.tech/" in a new Google Chrome tab and log in, if you do not have a log in please contact support@vualto.com
+- Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
+-	Return to your S3 tab and copy the link from the bottom of the page and paste it into "DASH Stream URL" box, it should look something like "https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd"
+- Press "Load Player" 
 
 ## API Gateway
 
@@ -311,7 +197,7 @@ You can then paste the JSON below and click `Import`.
 }
 ```
 
-### API Gateway set up
+### API Gateway setup
 
 Once imported you will need to set up the post method by clicking `Set up now`.
 - Set `Integration Type` to be `HTTP`

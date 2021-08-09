@@ -1,5 +1,5 @@
-PLAYERS
-============
+PLAYER INTEGRATIONS
+===================
 
 .. toctree::
    :maxdepth: 2
