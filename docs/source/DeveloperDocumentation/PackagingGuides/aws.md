@@ -47,12 +47,6 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 - Paste the endpoints URL into the "DASH Stream URL" box
 - Press "Load Player" 
 
-#### Playready
-- Open "https://admin.vudrm.tech/" in a new Microsoft Edge tab and log in, if you do not have a log in please contact support@vualto.com
-- Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
-- Paste the endpoints URL into the "DASH Stream URL" box
-- Press "Load Player" 
-
 ## Media Convert
 ### 1. Go to AWS S3.
 -	Log into the AWS console
@@ -156,12 +150,6 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 ### 19. Load into a player to show the content working. (Use the same one as above)
 #### Widevine
 - Open "https://admin.vudrm.tech/" in a new Google Chrome tab and log in, if you do not have a log in please contact support@vualto.com
-- Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
--	Return to your S3 tab and copy the link from the bottom of the page and paste it into "DASH Stream URL" box, it should look something like "https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd"
-- Press "Load Player" 
-
-#### Playready
-- Open "https://admin.vudrm.tech/" in a new Microsoft Edge tab and log in, if you do not have a log in please contact support@vualto.com
 - Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
 -	Return to your S3 tab and copy the link from the bottom of the page and paste it into "DASH Stream URL" box, it should look something like "https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd"
 - Press "Load Player" 
