@@ -32,7 +32,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 -   If you wish to use Playready DRM use "9a04f079-9840-4286-ab92-e65be0885f95" as the System ID (only if output group is DASH ISO)
 -   If you wish to use Fairplay DRM use "94ce86fb-07ff-4f43-adb8-93d2fa968ca2" as the System ID (only if output group is APPLE HLS)
 
-### 10. Set the URL to that of your api gateway.
+### 10. Set the URL to that of your API gateway.
 
 ### 11. Add an appropriate Role ARN.
 
@@ -93,13 +93,13 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
 -	Add a “Resource ID”
 -	Set the “System ID” to “edef8ba9-79d6-4ace-a3c8-27dcd51d21ed”
--	Set the “URL” to that of your api gateway
+-	Set the “URL” to that of your API gateway
 
 #### Playready (only if output group is DASH ISO)
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
 -	Add a “Resource ID” 
 -	Set the “System ID” to “9a04f079-9840-4286-ab92-e65be0885f95”
--	Set the “URL” to that of your api gateway
+-	Set the “URL” to that of your API gateway
 
 #### Fairplay (only if output group is Apple HLS)
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
@@ -108,7 +108,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 -	Set “Initialization vector in manifest” to “Exclude”
 -	Add a “Resource ID”
 -	Set the “System ID” to “94ce86fb-07ff-4f43-adb8-93d2fa968ca2”
--	Set the “URL” to that of your api gateway
+-	Set the “URL” to that of your API gateway
 -	Set the “Constant initilization vector” to “00000000000000000000000000000000”
 
 ### 12. Configure the outputs “Outputs”. (Use the same one as above)
