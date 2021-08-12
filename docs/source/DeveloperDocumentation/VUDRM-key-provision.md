@@ -90,7 +90,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 #### Multikey
 
-Get a CPIX 2.1 document that uses separate keys for video and audio tracks; it is only supported by DASH with PlayReady or Widevine.
+Get a CPIX 2.1 document that uses separate keys for video and audio tracks.
 
 ##### Optional query params:
 
@@ -129,11 +129,21 @@ curl -XGET -H "API-KEY: <api-key>" \
     <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
     </cpix:DRMSystem>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+      <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+    </cpix:DRMSystem>
     <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
     </cpix:DRMSystem>
     <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+      <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
     </cpix:DRMSystem>
   </cpix:DRMSystemList>
   <cpix:ContentKeyUsageRuleList>
@@ -149,7 +159,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 #### Multikey with audio clear
 
-Get a CPIX 2.1 document that uses only 1 content key for video; audio tracks are left in the clear and is only supported by DASH with PlayReady or Widevine.
+Get a CPIX 2.1 document that uses only 1 content key for video; audio tracks are left in the clear.
 
 ##### Optional query params:
 
@@ -183,11 +193,21 @@ curl -XGET -H "API-KEY: <api-key>" \
     <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
     </cpix:DRMSystem>
+    <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+      <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+    </cpix:DRMSystem>
     <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
     </cpix:DRMSystem>
     <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
       <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+    </cpix:DRMSystem>
+    <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+      <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+      <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
     </cpix:DRMSystem>
   </cpix:DRMSystemList>
   <cpix:ContentKeyUsageRuleList>
@@ -198,6 +218,220 @@ curl -XGET -H "API-KEY: <api-key>" \
       <cpix:AudioFilter></cpix:AudioFilter>
     </cpix:ContentKeyUsageRule>
   </cpix:ContentKeyUsageRuleList>
+</cpix:CPIX>
+```
+
+#### Multikey with seperate bitrates based key
+
+Get a CPIX 2.1 document that uses different content keys per bitrate and one for audio.
+If provided with a single bitrate the document will use one key for all bitrates up to the given bitrate, and one key for the given bitrate up.
+If provided with two bitrates the document will use one key for all bitrates up to the lowest given bitrate, one key for all bitrates between the lowest and highest bitrates, and one key for the highest given bitrate up.
+
+##### Query params:
+
+* `bitrates` : a single bitrate, or two seperated by a comma.
+
+##### Optional query params:
+
+* `drm` : comma separated list of DRM systems to be included in the response.
+
+##### Request
+
+```
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>/multikey?bitrates=8"
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xmlns:speke="urn:aws:amazon:com:speke" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+    <cpix:ContentKeyList>
+        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="33333333-3333-3333-33333-33333333333" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+    </cpix:ContentKeyList>
+    <cpix:DRMSystemList>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+    </cpix:DRMSystemList>
+    <cpix:ContentKeyPeriodList></cpix:ContentKeyPeriodList>
+    <cpix:ContentKeyUsageRuleList>
+        <cpix:ContentKeyUsageRule kid="11111111-1111-1111-1111-111111111111">
+            <cpix:BitrateFilter maxBitrate="8"></cpix:BitrateFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="22222222-2222-2222-22222-22222222222">
+            <cpix:BitrateFilter minBitrate="8"></cpix:BitrateFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="33333333-3333-3333-33333-33333333333">
+            <cpix:AudioFilter></cpix:AudioFilter>
+        </cpix:ContentKeyUsageRule>
+    </cpix:ContentKeyUsageRuleList>
+</cpix:CPIX>
+```
+
+#### Multikey with seperate video quality based keys
+
+Get a CPIX 2.1 document that uses different content keys per video qualty and one for audio.
+If provided with multiple video qualities the response will contain a encryption key for each video quality and one encrypt key for everything else.
+
+##### Query params:
+
+* `videoTracks` : a list of video qualities seperated by a comma, can only contain `SD`, `HD`, or `UHD`.
+
+##### Optional query params:
+
+* `drm` : comma separated list of DRM systems to be included in the response.
+
+##### Request
+
+```
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>/multikey?videoTracks=SD,HD"
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xmlns:speke="urn:aws:amazon:com:speke" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
+    <cpix:ContentKeyList>
+        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="22222222-2222-2222-22222-22222222222" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="33333333-3333-3333-33333-33333333333" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+        <cpix:ContentKey kid="44444444-4444-4444-44444-44444444444" explicitIV="YmFzZTY0ZW5jb2RlZAo=">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>YmFzZTY0ZW5jb2RlZAo=</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+    </cpix:ContentKeyList>
+    <cpix:DRMSystemList>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="44444444-4444-4444-44444-44444444444" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="44444444-4444-4444-44444-44444444444" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <cpix:PSSH>YmFzZTY0ZW5jb2RlZAo=</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="44444444-4444-4444-44444-44444444444" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <cpix:URIExtXKey>YmFzZTY0ZW5jb2RlZAo=</cpix:URIExtXKey>
+            <cpix:HLSSignalingData playlist="master">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+            <cpix:HLSSignalingData playlist="media">YmFzZTY0ZW5jb2RlZAo=</cpix:HLSSignalingData>
+        </cpix:DRMSystem>
+    </cpix:DRMSystemList>
+    <cpix:ContentKeyPeriodList></cpix:ContentKeyPeriodList>
+    <cpix:ContentKeyUsageRuleList>
+        <cpix:ContentKeyUsageRule kid="11111111-1111-1111-1111-111111111111">
+            <cpix:BitrateFilter maxPixels="409920"></cpix:BitrateFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="22222222-2222-2222-22222-22222222222">
+            <cpix:BitrateFilter minPixels="409921" maxPixels="2073600"></cpix:BitrateFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="33333333-3333-3333-33333-33333333333">
+            <cpix:VideoFilter minPixels="2073601"></cpix:VideoFilter>
+        </cpix:ContentKeyUsageRule>
+        <cpix:ContentKeyUsageRule kid="44444444-4444-4444-44444-44444444444">
+            <cpix:AudioFilter></cpix:AudioFilter>
+        </cpix:ContentKeyUsageRule>
+    </cpix:ContentKeyUsageRuleList>
 </cpix:CPIX>
 ```
 
@@ -329,399 +563,102 @@ The values are:
 - `widevine_system_id`: The DASH protection system-specific identifier for Widevine.
 - `fairplay_system_id`: The DASH protection system-specific identifier for Fairplay.
 - `fairplay_laurl`: The Fairplay license url.
-  
-### Unified Streaming Integration
 
-The recommended approach to integrate with USP will depend on your exact use case. If you will be requesting CPIX documents regularly, e.g. for use with live content, it is recommended to use our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) to retrieve CPIX documents. If you will be making less frequent calls for CPIX documents, e.g. for one time packaging, you can use either our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) or request CPIX documents from our CPIX Key Provider API directly.
+## SPEKE Key Provider API
+These are the docs for the speke key provider, which has a speke endpoint for use with AWS. To learn how to use our SPEKE API with AWS' Media Services please read our [guide](/projects/vudrm/en/latest/DeveloperDocumentation/aws.html).
 
-If you would prefer to not use a CPIX document at all you can also use the [JSON formatted response](#json-keys).
+To retrieve drm information formatted to the AWS SPEKE standard send a POST request, formatting below, to **https://speke.vudrm.tech//client-name/speke**, where "client-name" is the name of the client. 
 
-#### mp4split
-
-##### With a CPIX document
-
-A CPIX document can be used in the below mp4split commands to encrypt content. For a full list CPIX mp4split options see Unified Streamings full [documentation](https://docs.unified-streaming.com/documentation/drm/cpix_cmdline_options.html).
-
-You can encrypt content with a CPIX document stored locally by doing the following commands.
-
-```bash
-curl -XGET -H "API-KEY: <api-key>" \
-  "https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>" \
-  > drm.cpix
-
-mp4split --license-key=$USP_LICENSE_KEY -o $ismName \
-  --cpix=drm.cpix \
-  video.ismv audio.isma
+### Examples  
+#### Requests
+#### Headers
+```
+Content-Type: application/xml 
+API-KEY: <api-key>
+```
+#### Widevine and Playready
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
+   <cpix:ContentKeyList>
+      <cpix:ContentKey kid="" explicitIV=""/>
+   </cpix:ContentKeyList>
+   <cpix:DRMSystemList>
+      <!-- playready -->
+      <cpix:DRMSystem kid="" systemId="9a04f079-9840-4286-ab92-e65be0885f95"> 
+      </cpix:DRMSystem>
+      <!-- widevine -->
+      <cpix:DRMSystem kid="" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+      </cpix:DRMSystem>
+   </cpix:DRMSystemList>
+</cpix:CPIX>
+```
+#### Fairplay
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
+   <cpix:ContentKeyList>
+      <cpix:ContentKey kid="" explicitIV=""/>
+   </cpix:ContentKeyList>
+   <cpix:DRMSystemList>
+      <!-- fairplay -->
+      <cpix:DRMSystem kid="" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+      </cpix:DRMSystem>
+   </cpix:DRMSystemList>
+</cpix:CPIX>
 ```
 
-Or you can reference our [CPIX Edge Reverse Proxy](https://hub.docker.com/r/vualto/cpix-proxy) directly in the mp4split command as follows.
-
-```bash
-mp4split --license-key=$USP_LICENSE_KEY -o $ismName \
-  --cpix="http://local-cpix-proxy/v1/cpix/<client-name>/<content-id>" \
-  video.ismv audio.isma
+#### Responses
+#### Headers
 ```
-
-##### With JSON keys
-
-Keys requested in JSON format can be used in the below mp4split to encrypt content. For more information about using mp4split you can vist Unified Streamings full [documentation](https://docs.unified-streaming.com/documentation/drm/index.html).
-
-```bash
-mp4split --license-key=$USP_LICENSE_KEY -o $ismName \
-     --iss.key=$key_id_hex:$content_key_hex \
-     --iss.license_server_url="https://playready-license.vudrm.tech/rightsmanager.asmx" \
-     --widevine.key=$key_id_hex:$content_key_hex \
-     --widevine.license_server_url="https://widevine-license.vudrm.tech/proxy" \
-     --widevine.drm_specific_data=$widevine_drm_specific_data \
-     --hls.client_manifest_version=4 \
-     --hls.key=:$content_key_hex \
-     --hls.key_iv=$iv_hex \
-     --hls.license_server_url=$fairplay_laurl \
-     --hls.playout=sample_aes_streamingkeydelivery \
-     video.ismv audio.isma
+Content-Type: application/xml
 ```
-
-### NGINX VOD Module
-
-Our CPIX Key Provider API has an endpoint that is dedicated to providing the key information needed to integrate with Kaltura's [NGINX VOD Module](https://github.com/kaltura/nginx-vod-module). 
-
-You can request encryption keys in the format required by the NGINX VOD Module by performing the following command.
-
-```bash
-  curl --location --request GET 'https://cpix.vudrm.tech/v1/keys/<client-name>/nginx/<content-id>' \
-    --header 'api-key: <api-key>'
+#### Widevine and Playready
 ```
-
-This will return the following response:
-```json
-[
-    {
-        "pssh": [
-            {
-                "data": "<base64 encoded PlayReady PSSH data>",
-                "uuid": "9a04f079-9840-4286-ab92-e65be0885f95"
-            },
-            {
-                "data": "<base64 encoded Widevine PSSH data>",
-                "uuid": "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed"
-            }
-        ],
-        "key": "<base64 encoded encryption key>",
-        "key_id": "<base64 encoded key id>",
-        "iv": "<base64 encoded iv>"
-    }
-]
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
+    <cpix:ContentKeyList>
+        <cpix:ContentKey explicitIV="" kid="someKid">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>playreadyContentKey</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+    </cpix:ContentKeyList>
+    <cpix:DRMSystemList>
+        <cpix:DRMSystem kid="someKid" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+            <speke:ProtectionHeader>playreadyProtectionHeader</speke:ProtectionHeader>
+            <cpix:PSSH>playreadyPSSHBox</cpix:PSSH>
+        </cpix:DRMSystem>
+        <cpix:DRMSystem kid="someKid" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+            <PSSH>widevinePSSHBox</PSSH>
+        </cpix:DRMSystem>
+    </cpix:DRMSystemList>
+</cpix:CPIX>
 ```
-
-Below you can find a full example of an NGINX config file that will integrate the VOD module with VUDRM. This example is a modified version of the example given by [The New York Times](https://github.com/nytimes/nginx-vod-module-docker) in their repo containing the Docker files necessary to run the VOD module as a Docker container. 
-
-This modifications to the example config are as follows:
-You will need the addition of this to activate just in time DRM on all endpoints.
+#### Fairplay
 ```
-vod_drm_enabled on;
-vod_drm_request_uri "/<client-name>/nginx/<content-id>";
-vod_drm_upstream_location /drm;
+<?xml version="1.0" encoding="UTF-8"?>
+<cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
+    <cpix:ContentKeyList>
+        <cpix:ContentKey explicitIV="fairplayIvHex-base64-encoded" kid="someKid">
+            <cpix:Data>
+                <pskc:Secret>
+                    <pskc:PlainValue>fairplayKeyHex-base64-encoded</pskc:PlainValue>
+                </pskc:Secret>
+            </cpix:Data>
+        </cpix:ContentKey>
+    </cpix:ContentKeyList>
+    <cpix:DRMSystemList>
+        <cpix:DRMSystem kid="someKid" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+            <URIExtXKey>fairplayLaurl-base64-encoded</URIExtXKey>
+            <KeyFormat>fairplayKeyFormat-base64-encoded</KeyFormat>
+            <KeyFormatVersions>fairplayKeyFormatVersion-base64-encoded</KeyFormatVersions>
+        </cpix:DRMSystem>
+    </cpix:DRMSystemList>
+</cpix:CPIX>
 ```
-
-The addition of this proxy pass inorder to add your api key to the request made to our CPIX Key Provider API.
-```
-location /drm {
-  internal;
-  proxy_pass "https://cpix.vudrm.tech/v1/keys";
-  proxy_set_header API-KEY <api-key>;
-} 
-```
-
-This will give you support for DASH with Widevine and PlayReady.
-To support HLS with Fairplay you will need to add the following to your hls endpoint.
-```
-vod_hls_encryption_method sample-aes;
-vod_hls_encryption_key_uri "skd://fairplay-license.vudrm.tech/v2/license/<content-id>";
-vod_hls_encryption_key_format "com.apple.streamingkeydelivery";
-vod_hls_encryption_key_format_versions "1";
-```
-
-#### NGINX Config - Full Example
-
-```
-worker_processes  auto;
-
-events {
-	use epoll;
-}
-
-http {
-	log_format  main  '$remote_addr $remote_user [$time_local] "$request" '
-		'$status "$http_referer" "$http_user_agent"';
-
-	access_log  /dev/stdout  main;
-	error_log   stderr debug;
-
-	default_type  application/octet-stream;
-	include       /usr/local/nginx/conf/mime.types;
-
-	sendfile    on;
-	tcp_nopush  on;
-	tcp_nodelay on;
-
-	vod_mode                           local;
-	vod_metadata_cache                 metadata_cache 16m;
-	vod_response_cache                 response_cache 512m;
-	vod_last_modified_types            *;
-	vod_segment_duration               9000;
-	vod_align_segments_to_key_frames   on;
-	vod_dash_fragment_file_name_prefix "segment";
-	vod_hls_segment_file_name_prefix   "segment";
-
-	vod_drm_enabled on;
-	vod_drm_request_uri "/vualto-demo/nginx/test-nginx";
-	vod_drm_upstream_location /drm;
-
-	vod_manifest_segment_durations_mode accurate;
-
-	open_file_cache          max=1000 inactive=5m;
-	open_file_cache_valid    2m;
-	open_file_cache_min_uses 1;
-	open_file_cache_errors   on;
-
-	aio on;
-
-	server {
-		listen 80;
-		server_name localhost;
-		root /opt/static;
-
-		location ~ ^/videos/.+$ {
-			autoindex on;
-		}
-
-		location /hls/ {
-			vod hls;
-			vod_hls_encryption_method sample-aes;
-			vod_hls_encryption_key_uri "skd://fairplay-license.vudrm.tech/v2/license/test-nginx";
-			vod_hls_encryption_key_format "com.apple.streamingkeydelivery";
-			vod_hls_encryption_key_format_versions "1";
-
-			alias /opt/static/videos/;
-			add_header Access-Control-Allow-Headers '*';
-			add_header Access-Control-Allow-Origin '*';
-			add_header Access-Control-Allow-Methods 'GET, HEAD, OPTIONS';
-		}
-
-		location /thumb/ {
-			vod thumb;
-			alias /opt/static/videos/;
-			add_header Access-Control-Allow-Headers '*';
-			add_header Access-Control-Allow-Origin '*';
-			add_header Access-Control-Allow-Methods 'GET, HEAD, OPTIONS';
-		}
-
-		location /dash/ {
-			vod dash;
-			alias /opt/static/videos/;
-			add_header Access-Control-Allow-Headers '*';
-			add_header Access-Control-Allow-Origin '*';
-			add_header Access-Control-Allow-Methods 'GET, HEAD, OPTIONS';
-		}
-
-		location /drm {
-			internal;
-			proxy_pass "https://cpix.vudrm.tech/v1/keys";
-			proxy_set_header API-KEY <api-key>;
-		} 
-	}
-}
-```
-
-## Wowza Integration
-
-The encryption keys provided by the Key Provider APIs are compatible with [Wowza](https://www.wowza.com/).
-
-The following steps detail how to configure Wowza to support VUDRM:
-
-### Configure Wowza Stream Settings
-
-1. Stop Wowza appending the session ID to the license server URL: 
-	- [how to control the streaming session id](https://www.wowza.com/docs/how-to-control-streaming-session-id-appended-to-encryption-urls-in-chunklist-responses-cupertinoappendqueryparamstoencurl)
-
-2. Change the `EXT-X-VERSION` for HLS streaming to `5` by setting the `cupertinoExtXVersion` value: 
-	- [how to change the ext x version](https://www.wowza.com/docs/how-to-change-the-ext-x-version-for-apple-http-live-streaming)
-
-### Manually Set VUDRM Settings
-
-This method of integrating VUDRM with Wowza uses key files:
-- [how to secure mpeg dash](https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc)
-- [how to secure apple hls streaming](https://www.wowza.com/docs/how-to-secure-apple-hls-streaming-using-drm-encryption#keyfiles)
-
-NB: Widevine, PlayReady, and Fairplay key values can be set in the same file.
-
-An example key file is:
-
-```bash
-mpegdashstreaming-cenc-key-id: MT8jItzhV+ay+3QEtoyIxQ==
-mpegdashstreaming-cenc-content-key: EcZ9tM1adkoleC1hwFlpQw==
-mpegdashstreaming-cenc-algorithm: AESCTR
-mpegdashstreaming-cenc-keyserver-widevine: true
-mpegdashstreaming-cenc-keyserver-widevine-system-id: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
-mpegdashstreaming-cenc-keyserver-widevine-pssh-data: Igp3b3d6YS1kZW1vSOPclZsG
-mpegdashstreaming-cenc-keyserver-playready: true
-mpegdashstreaming-cenc-keyserver-playready-system-id: 9a04f079-9840-4286-ab92-e65be0885f95
-mpegdashstreaming-cenc-keyserver-playready-license-url: https://playready-license.vudrm.tech/rightsmanager.asmx
-mpegdashstreaming-cenc-keyserver-playready-checksum: Mv5YB5EhHKw=
-cupertinostreaming-aes128-method: SAMPLE-AES
-cupertinostreaming-aes128-url: skd://fairplay-license.vudrm.tech/license/wowza-demo
-cupertinostreaming-aes128-key: 24F79075974B8E1BC8AF576925B8458F
-cupertinostreaming-aes128-iv: A140A11A450DBC04E67F39B850C13D41
-cupertinostreaming-aes128-iv-include-in-chunklist: false
-cupertinostreaming-aes128-key-format: com.apple.streamingkeydelivery
-cupertinostreaming-aes128-key-format-version: 1
-```
-
-The values are:
-- `mpegdashstreaming-cenc-key-id`: The `key_id_big` value from the [CENC response](#cenc).
-- `mpegdashstreaming-cenc-content-key`: The `content_key` value from the [CENC response](#cenc).
-- `mpegdashstreaming-cenc-algorithm`: Must be set to `AESCTR`.
-- `mpegdashstreaming-cenc-keyserver-widevine`: Must be set to `true`.
-- `mpegdashstreaming-cenc-keyserver-widevine-system-id`: Must be set to `edef8ba9-79d6-4ace-a3c8-27dcd51d21ed`
-- `mpegdashstreaming-cenc-keyserver-widevine-pssh-data`: The `widevine_drm_specific_data` value from the [CENC Response](#cenc).
-- `mpegdashstreaming-cenc-keyserver-playready`: Must be set to `true`.
-- `mpegdashstreaming-cenc-keyserver-playready-system-id`: Must be set to `9a04f079-9840-4286-ab92-e65be0885f95`
-- `mpegdashstreaming-cenc-keyserver-playready-license-url`: The `playready_laurl` value from the [CENC Response](#cenc).
-- `mpegdashstreaming-cenc-keyserver-playready-checksum`: The `checksum` value from the [CENC Response](#cenc)
-- `cupertinostreaming-aes128-method`: Must be set to `SAMPLE-AES`.
-- `cupertinostreaming-aes128-url`: The `laurl` value from the [Fairplay Response](#fairplay)
-- `cupertinostreaming-aes128-key`: The `key_hex` value from the [Fairplay Response](#fairplay)
-- `cupertinostreaming-aes128-iv`: The `iv_hex` value from the [Fairplay Response](#fairplay)
-- `cupertinostreaming-aes128-iv-include-in-chunklist`: Must be set to `false`.
-- `cupertinostreaming-aes128-key-format`: Must be set to `com.apple.streamingkeydelivery`.
-- `cupertinostreaming-aes128-key-format-version`: Must be set to `1`.
-
-### VUALTO Wowza DRM API
-
-The VUALTO Wowza DRM API is a small Docker web API application which runs on the Wowza server, allowing the provisioning of keyfiles through a simple REST interface.
-The VUALTO Wowza DRM API has been tested with [Wowza Streaming Engine version 4.7.7](https://www.wowza.com/docs/wowza-streaming-engine-4-7-7-release-notes).
-
-#### Running using Docker
-
-In this example, the API is exposed on port 9000 and the API key is set to some GUID:
-
-```
-docker run -d --restart always -p 9000:80 \
--e WOWZADRMAPI_APIKEY=93640045-31f1-45c0-aa0d-b5682d7c9ac8 \
--e WOWZADRMAPI_KEYFILESPATH=/mnt/keyfiles \
--e WOWZADRMAPI_GRANDCENTRALURL=https://config.vudrm.tech/v1/clients \
--e WOWZADRMAPI_KEYPROVIDERURL=https://keyprovider.vudrm.tech \
--v [wowza-install-dir]/keys:/mnt/keyfiles \
---name wowza-drm-api vualto/wowza-drm-api:1.0.0
-```
-
-#### Supported actions
-
-`<streamid>` must match the name of the Stream to protect. This will be the name of the .key file created on the server.
-Details about what name should be used for the key file can be found here: [https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc](https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc)
-
-All requests to the API must be authorised with a `x-api-key` header, whose value must match that set by the `WOWZADRMAPI_APIKEY` environment variable. A missing or mismatched `x-api-key` header will yield a `401 Unauthorized` status.
-
----
-
-`GET /api/keyfile/<streamid> `
-
-Returns the contents of the keyfile for that Wowza stream if it exists, otherwise a 404.
-
----
-
-`POST /api/keyfile/<streamid>`
-
-Create or overwrite the keyfile for the Wowza stream.
-
-Keys can be supplied either automatically using the Vualto DRM platform or manually.
-
-Example body for manual keys:
-
-```
-{
-    "cenc": {
-        "keyid": "RNpS70UjCY5oVHd+4yJoHQ==",
-        "contentkey": "lnA03mLuxnL3toiRMxV4Zw=="
-    },
-    "playready": {
-        "laurl": "https://playready-license.vudrm.tech/rightsmanager.asmx",
-        "checksum": "pcTs6CEp98A="
-    },
-    "widevine": {
-        "psshdata": "IiRkN2EyOTk1Ni0yOTgwLTQzMzgtYjYyNy04N2MxZjA3OWUwOTFI49yVmwY="
-    },
-    "fairplay": {
-        "key": "CBF76BB43B9A54254A5FC20074A3A53B",
-        "iv": "1A3F2AA76D84742DD123E3E50E7BC681",
-        "laurl": "skd://fairplay-license.vudrm.tech/license/d7a29956-2980-4338-b627-87c1f079e091"
-    }
-}
-```
-
-Example response of the created keyfile:
-```
-mpegdashstreaming-cenc-key-id: RNpS70UjCY5oVHd+4yJoHQ==
-mpegdashstreaming-cenc-content-key: lnA03mLuxnL3toiRMxV4Zw==
-mpegdashstreaming-cenc-algorithm: AESCTR
-mpegdashstreaming-cenc-keyserver-playready: true
-mpegdashstreaming-cenc-keyserver-playready-system-id: 9a04f079-9840-4286-ab92-e65be0885f95
-mpegdashstreaming-cenc-keyserver-playready-license-url: https://playready-license.vudrm.tech/rightsmanager.asmx
-mpegdashstreaming-cenc-keyserver-playready-checksum: pcTs6CEp98A=
-mpegdashstreaming-cenc-keyserver-widevine: true
-mpegdashstreaming-cenc-keyserver-widevine-system-id: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
-mpegdashstreaming-cenc-keyserver-widevine-pssh-data: IiRkN2EyOTk1Ni0yOTgwLTQzMzgtYjYyNy04N2MxZjA3OWUwOTFI49yVmwY=
-cupertinostreaming-aes128-method: SAMPLE-AES
-cupertinostreaming-aes128-url: skd://fairplay-license.vudrm.tech/license/d7a29956-2980-4338-b627-87c1f079e091
-cupertinostreaming-aes128-key: CBF76BB43B9A54254A5FC20074A3A53B
-cupertinostreaming-aes128-iv: 1A3F2AA76D84742DD123E3E50E7BC681
-cupertinostreaming-aes128-iv-include-in-chunklist: true
-cupertinostreaming-aes128-key-format: com.apple.streamingkeydelivery
-cupertinostreaming-aes128-key-format-version: 1
-
-```
-
-`cenc` is required with either `playready` or `widevine`.
-
-
-Example body using the VUALTO DRM key provider:
-
-```
-{
-    "contentId": "mycontentid",
-    "client": "my-client-name",
-    "clientApiKey": "8f30c7d2-a9b9-474e-907b-97a190abd6c4",
-    "drmJson": "{\"drm_provider\": \"VUALTO\"}"
-}
-```
-
-Example response:
-
-```
-mpegdashstreaming-cenc-key-id: jQGIareSAu0jZ5MYUQBQlw==
-mpegdashstreaming-cenc-content-key: kMvY/VcE9FnWe61SKUnKYw==
-mpegdashstreaming-cenc-algorithm: AESCTR
-mpegdashstreaming-cenc-keyserver-playready: true
-mpegdashstreaming-cenc-keyserver-playready-system-id: 9a04f079-9840-4286-ab92-e65be0885f95
-mpegdashstreaming-cenc-keyserver-playready-license-url: https://playready-license.vudrm.tech/rightsmanager.asmx
-mpegdashstreaming-cenc-keyserver-playready-checksum: qYKKs3wVDDk=
-mpegdashstreaming-cenc-keyserver-widevine: true
-mpegdashstreaming-cenc-keyserver-widevine-system-id: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
-mpegdashstreaming-cenc-keyserver-widevine-pssh-data: IgtteWNvbnRlbnRpZEjj3JWbBg==
-cupertinostreaming-aes128-method: SAMPLE-AES
-cupertinostreaming-aes128-url: skd://fairplay-license.vudrm.tech/license/mycontentid
-cupertinostreaming-aes128-key: 74FF8E038FB0F65AA5D01C52596B99A5
-cupertinostreaming-aes128-iv: 59E932087732AA68DF8BCAE63230479E
-cupertinostreaming-aes128-iv-include-in-chunklist: false
-cupertinostreaming-aes128-key-format: com.apple.streamingkeydelivery
-cupertinostreaming-aes128-key-format-version: 1
-```
-
----
-
-`DELETE /api/keyfile/<streamid>`
-
-Remove the keyfile for the specified Wowza stream, returning it's contents before deletion.
 
 ## Legacy
 

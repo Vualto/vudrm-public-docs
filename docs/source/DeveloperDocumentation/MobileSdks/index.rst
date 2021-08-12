@@ -1,4 +1,4 @@
-MOBILE
+MOBILE SDKS
 ============
 
 .. toctree::
