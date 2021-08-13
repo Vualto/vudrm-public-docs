@@ -4,11 +4,11 @@
 
 - First download and install Docker - https://www.docker.com/get-started
 
-- Pull the latest Shaka Packager Docker image by entering ```docker pull google/shaka-packager``` in your terminal
+- Pull the latest Shaka Packager Docker image by entering ```docker pull google/shaka-packager``` in your terminal.
 
 - Now run the Docker image by entering ```docker run -v /<file_path_to_content>/:/media -it --rm google/shaka-packager``` in your terminal. This will replicate your directory and create a ```media``` file path within the Docker container.
 
-- Test that setup is correct, by analyising a file within the filepath. You can do this by entering the command ```packager input=/media/<name_of_content>.mp4 --dump_stream_info```
+- Test that setup is correct, by analyising a file within the filepath. You can do this by entering the command ```packager input=/media/<name_of_content>.mp4 --dump_stream_info```.
 
 If successful you should then get a dump of the stream information which should look something like this:
 
@@ -36,21 +36,35 @@ Packaging completed successfully.
 
 - Log on to the VUDRM Admin site - https://admin.vudrm.tech
 
-- On the left hand side of the page select `Configuration`
+- On the left hand side of the page select `Configuration`.
 
-- Go to the `VUDRM Encryption Keys` section
+- Go to the `VUDRM Encryption Keys` section.
 
-- Select which `DRM Providers` are required
+- Select which `DRM Providers` are required.
 
-- Add a `Content ID`
+- Add a `Content ID`.
 
-- Click `Generate`
+- Click `Generate`.
 
-This will then generate a CPIX Document and CPIX keys as JSON - you can copy and paste these to your favourite text editor to refer to them for future use.
+This will then generate a CPIX Document and CPIX keys as JSON document - you can copy and paste these to your favourite text editor to refer to them for future use.
 
 ### Using CURL Requests
 
 Alternatively, you can also retrieve these documents with a CURL Request. 
+
+Below is the CURL request for the CPIX Document:
+
+```bash
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>"
+```
+
+Below is the CURL request for the CPIX keys as JSON document:
+
+```bash
+curl -XGET -H "API-KEY: <api-key>" \
+"https://cpix.vudrm.tech/v1/keys/<client-name>/<content-id>"
+```
 
 An in-depth guide is detailed in the following link: https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html
 
@@ -73,7 +87,7 @@ Below is an example of a CPIX Document with all `DRM Providers` selected.
 <?xml version="1.0" encoding="UTF-8"?>
 <cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
     <cpix:ContentKeyList>
-        <cpix:ContentKey kid="3e4a4bfb-a252-a4b4-c839-6c8954d986f5" explicitIV="MjlkMzNlYzVjYWIyZmRmZg==" commonEncryptionScheme="cenc">
+        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="MjlkMzNlYzVjYWIyZmRmZg==" commonEncryptionScheme="cenc">
             <cpix:Data>
                 <pskc:Secret>
                     <pskc:PlainValue>3wFFjPspsydY/t2uSPeE6w==</pskc:PlainValue>
@@ -82,13 +96,13 @@ Below is an example of a CPIX Document with all `DRM Providers` selected.
         </cpix:ContentKey>
     </cpix:ContentKeyList>
     <cpix:DRMSystemList>
-        <cpix:DRMSystem kid="3e4a4bfb-a252-a4b4-c839-6c8954d986f5" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
+        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
             <cpix:PSSH><PlayReady_PSSH></cpix:PSSH>
         </cpix:DRMSystem>
-        <cpix:DRMSystem kid="3e4a4bfb-a252-a4b4-c839-6c8954d986f5" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
             <cpix:PSSH><Widevine_PSSH></cpix:PSSH>
         </cpix:DRMSystem>
-        <cpix:DRMSystem kid="3e4a4bfb-a252-a4b4-c839-6c8954d986f5" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
+        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
             <cpix:URIExtXKey><FairPlay_URIExtXKey</cpix:URIExtXKey>
             <cpix:HLSSignalingData playlist="master"><master_playlist_value></cpix:HLSSignalingData>
             <cpix:HLSSignalingData playlist="media"><media_playlist_value></cpix:HLSSignalingData>
@@ -119,19 +133,19 @@ Below is an example of a CPIX keys as JSON document with all `DRM Providers` sel
 
 ## Packaging Content with Widevine and Playready DRM
 
-Now we have retrieved the relevant documentation, we can now package content.
+Now we have retrieved the relevant documentation, we can package content.
 
 Below is an example of how we can send a request to Shaka Packager to encrypt our content with Widevine and Playready DRM and package it:
 
 ```
   packager \
-  in=media/audio.mp4,stream=audio,output=media/encrypted-test-audio.mp4,drm_label=AUDIO \
-  in=media/source.mp4,stream=video,output=media/encrypted-test-video.mp4,drm_label=VIDEO \
-  --enable_raw_key_encryption \
-  --keys label=AUDIO:key_id=<key_id_hex_value>:key=<content_key_hex_value>,label=VIDEO:key_id=<key_id_hex_value>:key=<content_key_hex_value> \
-  --pssh <Widevine_PSSH(converted to Hex format)> \
-  --protection_systems Widevine,PlayReady \
-  --mpd_output media/encrypted-test.mpd
+   in=media/audio.mp4,stream=audio,output=media/encrypted-test-audio.mp4,drm_label=AUDIO \
+   in=media/source.mp4,stream=video,output=media/encrypted-test-video.mp4,drm_label=VIDEO \
+   --enable_raw_key_encryption \
+   --keys label=AUDIO:key_id=<key_id_hex_value>:key=<content_key_hex_value>,label=VIDEO:key_id=<key_id_hex_value>:key=<content_key_hex_value> \
+   --pssh <Widevine_PSSH(converted to Hex format)> \
+   --protection_systems Widevine,PlayReady \
+   --mpd_output media/encrypted-test.mpd
 ```
 
 ### Line 1
@@ -192,22 +206,22 @@ Below is an example of how we can send a request to Shaka Packager to encrypt ou
 
 ```
   packager \
-  in=media/audio.mp4,stream=audio,output=media/encrypted-test-hls-audio.mp4,drm_label=AUDIO \
-  in=media/test.mp4,stream=video,output=media/encrypted-test-hls-video.mp4,drm_label=VIDEO \
-  --protection_scheme cbcs \
-  --enable_raw_key_encryption \
-  --keys label=AUDIO:key_id=<key_id_hex_value>:key=<content_key_hex_value>,label=VIDEO:key_id=<key_id_hex_value>:key=<content_key_hex_value> \
-  --protection_systems Fairplay \
-  --iv <iv_hex_value> \
-  --hls_master_playlist_output media/encrypted-test-hls.m3u8 \
-  --hls_key_uri skd://fairplay-license.vudrm.tech/v2/license/<content_id>
+   in=media/audio.mp4,stream=audio,output=media/encrypted-test-hls-audio.mp4,drm_label=AUDIO \
+   in=media/test.mp4,stream=video,output=media/encrypted-test-hls-video.mp4,drm_label=VIDEO \
+   --protection_scheme cbcs \
+   --enable_raw_key_encryption \
+   --keys label=AUDIO:key_id=<key_id_hex_value>:key=<content_key_hex_value>,label=VIDEO:key_id=<key_id_hex_value>:key=<content_key_hex_value> \
+   --protection_systems Fairplay \
+   --iv <iv_hex_value> \
+   --hls_master_playlist_output media/encrypted-test-hls.m3u8 \
+   --hls_key_uri skd://fairplay-license.vudrm.tech/v2/license/<content_id>
 ```
 
 Packaging content with Fairplay DRM is much of the same as packaging with Widevine and PlayReady DRM. However, there are differences detailed below.
 
 ### Line 3
 
-`protection_scheme` must be set to `cbcs`
+`protection_scheme` must be set to `cbcs`.
 
 ### Line 6
 
@@ -233,94 +247,18 @@ You can now test your newly packaged content with our player on the VUDRM Admin 
 
 - Log on to the VUDRM Admin site - https://admin.vudrm.tech
 
-- On the left hand side of the page select `Configuration`
+- On the left hand side of the page select `Configuration`.
 
-- Click on `Test your Stream` 
+- Click on `Test your Stream`.
 
-- A token is automatically generated for use with your content
+- A token is automatically generated for use with your content.
  
-- If you are testing Widevine / PlayReady content, enter the URL for where your manifest has been uploaded in the `DASH Stream URL` text box
+- If you are testing Widevine / PlayReady content, enter the URL for where your manifest has been uploaded in the `DASH Stream URL` text box.
 
-- If you are testing Fairplay content, ensure you are using a Mac and using Safari as your browser, enter the URL for where your manifest has been uploaded in the `HLS Stream URL` text box
+- If you are testing Fairplay content, ensure you are using a Mac and using Safari as your browser, enter the URL for where your manifest has been uploaded in the `HLS Stream URL` text box.
 
-- Click `Load Player`
+- Click `Load Player`.
+ 
+- The player should now appear, click play to play the content.
 
-- The player should now appear, click play to play the content
-
-
-NOTE - TALK ABOUT HOW TO SEE IF LICENSES HAVE BEEN AQUIRED IN THE NETWORK TABS FOR EACH BROWSER???....
-
-
-
-
-
-
-
-THIS IS FOR MY REFERENCE ONLY - THIS WILL NOT BE IN THE FINAL PRODUCT...
-
-
-The below works for Widevine encryption only:
-
-  packager \
-  in=media/source.mp4,stream=video,output=media/encrypted-test-video.mp4,drm_label=VIDEO \
-  --enable_raw_key_encryption \
-  --keys label=VIDEO:key_id=3E4A4BFBA252A4B4C8396C8954D986F5:key=DF01458CFB29B32758FEDDAE48F784EB \
-  --pssh 000000427073736801000000edef8ba979d64acea3c827dcd51d21ed000000013e4a4bfba252a4b4c8396c8954d986f50000000e2206736f6d65496448e3dc959b06 \
-  --protection_systems Widevine \
-  --mpd_output media/encrypted-test.mpd
-
-Below is for Widevine / PlayReady encryption
-
-  packager \
-  in=media/tomorrowland/test.mp4,stream=video,output=media/tomorrowland/encrypted-test4-video.mp4,drm_label=VIDEO \
-  --enable_raw_key_encryption \
-  --keys label=VIDEO:key_id=3E4A4BFBA252A4B4C8396C8954D986F5:key=DF01458CFB29B32758FEDDAE48F784EB \
-  --pssh 000000427073736801000000edef8ba979d64acea3c827dcd51d21ed000000013e4a4bfba252a4b4c8396c8954d986f50000000e2206736f6d65496448e3dc959b06  \
-  --protection_systems Widevine,PlayReady \
-  --mpd_output media/tomorrowland/encrypted-test4.mpd
-
-Below is for Widevine / PlayReady encryption with sound...
-
-  packager \
-  in=media/tomorrowland/audio.mp4,stream=audio,output=media/tomorrowland/encrypted-test5-audio.mp4,drm_label=AUDIO \
-  in=media/tomorrowland/test.mp4,stream=video,output=media/tomorrowland/encrypted-test5-video.mp4,drm_label=VIDEO \
-  --enable_raw_key_encryption \
-  --keys label=AUDIO:key_id=3E4A4BFBA252A4B4C8396C8954D986F5:key=DF01458CFB29B32758FEDDAE48F784EB,label=VIDEO:key_id=3E4A4BFBA252A4B4C8396C8954D986F5:key=DF01458CFB29B32758FEDDAE48F784EB \
-  --pssh 000000427073736801000000edef8ba979d64acea3c827dcd51d21ed000000013e4a4bfba252a4b4c8396c8954d986f50000000e2206736f6d65496448e3dc959b06  \
-  --protection_systems Widevine,PlayReady \
-  --mpd_output media/tomorrowland/encrypted-test5.mpd
-
-  https://shaka-packager-test.s3.eu-west-1.amazonaws.com/encrypted-test5.mpd
-
-Below is for Fairplay encryption with sound
-
-  packager \
-  in=media/tomorrowland/audio.mp4,stream=audio,output=media/tomorrowland/encrypted-test-hls-audio.mp4,drm_label=AUDIO \
-  in=media/tomorrowland/test.mp4,stream=video,output=media/tomorrowland/encrypted-test-hls-video.mp4,drm_label=VIDEO \
-  --protection_scheme cbcs \
-  --enable_raw_key_encryption \
-  --keys label=AUDIO:key_id=3E4A4BFBA252A4B4C8396C8954D986F5:key=DF01458CFB29B32758FEDDAE48F784EB,label=VIDEO:key_id=3E4A4BFBA252A4B4C8396C8954D986F5:key=DF01458CFB29B32758FEDDAE48F784EB \
-  --protection_systems Fairplay \
-  --iv 32396433336563356361623266646666 \
-  --hls_master_playlist_output media/tomorrowland/encrypted-test-hls.m3u8 \
-  --hls_key_uri skd://fairplay-license.vudrm.tech/v2/license/someId
-
-  
-  https://shaka-packager-test.s3.eu-west-1.amazonaws.com/encrypted-test-hls.m3u8
-
-
-Below are the system IDs for their respective encryption service:
-
-```
-System IDs:
-Widevine: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
-PlayReady: 9a04f079-9840-4286-ab92-e65be0885f95
-FairPlay: 94ce86fb-07ff-4f43-adb8-93d2fa968ca2
-```
-
-
-
-./usr/bin/pssh-box.py
-
-./usr/bin/pssh-box.py --human --from-base64 <pssh-box details>
-
+You can confirm a relevant license request has been made by checking the network tab of the browsers dev tools.
