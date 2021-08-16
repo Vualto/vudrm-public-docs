@@ -10,3 +10,4 @@ PLAYER INTEGRATIONS
    jwplayer.md
    shaka.md
    theo-player.md
+   videojs.md
