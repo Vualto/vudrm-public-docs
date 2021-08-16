@@ -34,7 +34,7 @@ const widevineLicenseServerURL =
 
 // fairplay
 const fairplayCertificateUri =
-    "https://fairplay-license.vudrm.tech/certificate/vualto-demo";
+    "https://fairplay-license.vudrm.tech/certificate/<your-client-name>";
 
 const fairplayLicenseUri =
     "https://fairplay-license.vudrm.tech/license/" +
