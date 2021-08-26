@@ -80,6 +80,7 @@ The values that can be specified in the Fairplay section are as follows:
 | `license_duration_seconds` | int                     | Seconds           | How long the license is valid for after it's initial use.
 | `firstplayback_seconds`    | int                     | Seconds           | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback` when `liccache` is set to `no`.**
 
+
 The values that can be specified in the PlayReady section are as follows:
 | Key                        | Type                    | Format                    | Description
 |----------------------------|-------------------------|---------------------------|-------------
@@ -94,7 +95,6 @@ The values that can be specified in the Widevine section are as follows:
 | `rental_duration_seconds`  | int                     | Seconds           | How long the license is valid for before it's used.
 | `license_duration_seconds` | int                     | Seconds           | How long the license is valid for after it's initial use.
 | `firstplayback_seconds`    | int                     | Seconds           | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback` when `liccache` is set to `no`.**
-| `security_level`           | int                     | `1` - `5`         | See below
 
 ### Online renewable licenses in Widevine
 
