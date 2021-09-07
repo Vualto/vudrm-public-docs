@@ -32,108 +32,31 @@ Packaging completed successfully.
 
 ## Get CPIX Documents
 
+CPIX Documents are required to give Shaka Packager the necessary information in order to encrypt your media.
+
 ### Using VUDRM Admin site
 
-- Log on to the VUDRM Admin site - https://admin.vudrm.tech
+You can retrieve these documents from the VUDRM Admin site. 
 
-- On the left hand side of the page select `Configuration`.
-
-- Go to the `VUDRM Encryption Keys` section.
-
-- Select which `DRM Providers` are required.
-
-- Add a `Content ID`.
-
-- Click `Generate`.
-
-This will then generate a CPIX Document and CPIX keys as JSON document - you can copy and paste these to your favourite text editor to refer to them for future use.
+A guide can be found at the following link - [VUDRM Admin - CPIX Document Request](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#vudrm-encryption-keys)
 
 ### Using CURL Requests
 
 Alternatively, you can also retrieve these documents with a CURL Request. 
 
-Below is the CURL request for the CPIX Document:
+Guides can be found at the following links:
 
-```bash
-curl -XGET -H "API-KEY: <api-key>" \
-"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>"
-```
+* [VUDRM Key Provision - CPIX Document Request](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#request)
 
-Below is the CURL request for the CPIX keys as JSON document:
+* [VUDRM Key Provision - JSON Keys Request](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#id16)
 
-```bash
-curl -XGET -H "API-KEY: <api-key>" \
-"https://cpix.vudrm.tech/v1/keys/<client-name>/<content-id>"
-```
+## Package your content
 
-An in-depth guide is detailed in the following link: https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html
+Now you have retrieved the relevant documentation, you can now package content with Shaka Packager.
 
-### Examples of Each Document
+For more information on the examples below, please refer to the Shaka Packager Documentation which can be found at the following link - [Shaka Packager Documentation](https://google.github.io/shaka-packager/html/)
 
-#### CPIX Document
-
-Each DRM Provider has a unique `systemId`. This helps to distinguish which values belong to which DRM Provider in a CPIX Document. 
-
-```
-System IDs:
-Widevine: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
-PlayReady: 9a04f079-9840-4286-ab92-e65be0885f95
-FairPlay: 94ce86fb-07ff-4f43-adb8-93d2fa968ca2
-```
-
-Below is an example of a CPIX Document with all `DRM Providers` selected. 
-
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<cpix:CPIX xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:xsi="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:cpix="urn:dashif:org:cpix" xsi:schemaLocation="urn:dashif:org:cpix cpix.xsd">
-    <cpix:ContentKeyList>
-        <cpix:ContentKey kid="11111111-1111-1111-1111-111111111111" explicitIV="MjlkMzNlYzVjYWIyZmRmZg==" commonEncryptionScheme="cenc">
-            <cpix:Data>
-                <pskc:Secret>
-                    <pskc:PlainValue>3wFFjPspsydY/t2uSPeE6w==</pskc:PlainValue>
-                </pskc:Secret>
-            </cpix:Data>
-        </cpix:ContentKey>
-    </cpix:ContentKeyList>
-    <cpix:DRMSystemList>
-        <cpix:DRMSystem kid="11111111-1111-1111-1111-111111111111" systemId="9a04f079-9840-4286-ab92-e65be0885f95">
-            <cpix:PSSH><PlayReady_PSSH></cpix:PSSH>
-        </cpix:DRMSystem>
-        <cpix:DRMSystem kid="22222222-2222-2222-22222-22222222222" systemId="edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
-            <cpix:PSSH><Widevine_PSSH></cpix:PSSH>
-        </cpix:DRMSystem>
-        <cpix:DRMSystem kid="33333333-3333-3333-33333-33333333333" systemId="94ce86fb-07ff-4f43-adb8-93d2fa968ca2">
-            <cpix:URIExtXKey><FairPlay_URIExtXKey</cpix:URIExtXKey>
-            <cpix:HLSSignalingData playlist="master"><master_playlist_value></cpix:HLSSignalingData>
-            <cpix:HLSSignalingData playlist="media"><media_playlist_value></cpix:HLSSignalingData>
-        </cpix:DRMSystem>
-    </cpix:DRMSystemList>
-    <cpix:ContentKeyUsageRuleList></cpix:ContentKeyUsageRuleList>
-</cpix:CPIX>
-```
-
-#### CPIX keys as JSON
-
-Below is an example of a CPIX keys as JSON document with all `DRM Providers` selected. 
-
-```
-{
-    "key_id_hex": <key_id_hex_value>,
-    "content_key_hex": <content_key_hex_value>,
-    "iv_hex": <iv_hex_value>,
-    "playready_pssh_data": <playready_pssh_data_value>,
-    "playready_system_id": "9a04f079-9840-4286-ab92-e65be0885f95",
-    "widevine_drm_specific_data": <widevine_drm_specific_data_value>,
-    "widevine_drm_specific_data_with_key_id": <widevine_drm_specific_data_with_key_id_value>,
-    "widevine_system_id": "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed",
-    "fairplay_system_id": "94ce86fb-07ff-4f43-adb8-93d2fa968ca2",
-    "fairplay_laurl": "skd://fairplay-license.vudrm.tech/v2/license/<content_id>"
-}
-```
-
-## Packaging Content with Widevine and Playready DRM
-
-Now we have retrieved the relevant documentation, we can package content.
+### Packaging Content with Widevine and Playready DRM
 
 Below is an example of how we can send a request to Shaka Packager to encrypt our content with Widevine and Playready DRM and package it:
 
@@ -143,62 +66,12 @@ Below is an example of how we can send a request to Shaka Packager to encrypt ou
    in=media/source.mp4,stream=video,output=media/encrypted-test-video.mp4,drm_label=VIDEO \
    --enable_raw_key_encryption \
    --keys label=AUDIO:key_id=<key_id_hex_value>:key=<content_key_hex_value>,label=VIDEO:key_id=<key_id_hex_value>:key=<content_key_hex_value> \
-   --pssh <Widevine_PSSH(converted to Hex format)> \
+   --pssh <Widevine_PSSH(this needs to be converted from Base64 to Hex format)> \
    --protection_systems Widevine,PlayReady \
    --mpd_output media/encrypted-test.mpd
 ```
 
-### Line 1
-
-`packager` is used to start our request.
-
-### Line 2
-
-We map which media we would like to be packaged. Notice the prefix of `media/` before the mp4 file. This is because Docker has mapped the file path you gave it when running the image to `media`. 
-
-In this instance, we have selected an audio file, therefore `stream=audio` is entered.
-
-The output is what you would like the packaged mp4 file to be named. In this case, `output=media/encrypted-test-audio.mp4`.
-
-Finally, we give a label to the content - this is used for issuing keys later. We have entered `drm_label=AUDIO`.
-
-### Line 3
-
-Same as line 2, but this time we are selecting a video file, therefore `stream=video` is entered.
-
-The output is `output=media/encrypted-test-video.mp4`. 
-
-The label will be `drm_label=VIDEO`.
-
-### Line 3
-
-`enable_raw_key_encryption` as we are encrypting our content using the keys generated by the CPIX keys as JSON document.
-
-### Line 4
-
-The data needed for this line comes from the CPIX keys as JSON document, specifically the `key_id_hex_value` and `content_key_hex_value`. 
-
-We assign the key values to the same label we labelled our media in line 2 and 3. In this instance, `label=AUDIO` and `label=VIDEO`.
-
-The same key values are used for both AUDIO and VIDEO labels.
-
-### Line 5
-
-For the line where we input the `pssh` data, the value `Widevine_PSSH` comes from the CPIX Document.
-
-Please be aware that the `pssh` data from the CPIX Document is in Base64 format. Shaka Packager requires the `pssh` value to be in Hex format. You can use any converter, such as https://base64.guru/converter/decode/hex
-
-PlayReady does not require a `pssh` value in order for it to be encrypted. This is handled by the key values set in Line 4.
-
-### Line 6 
-
-`protection_systems` is where you input which DRM you would like to encrypt. In this case, `Widevine, PlayReady` is entered.
-
-### Line 7
-
-`mpd_output` is where you name the manifest and where it is saved once packaged. In this case, `media/encrypted-test.mpd` is entered.
-
-## Packaging Content with Fairplay DRM
+### Packaging Content with Fairplay DRM
 
 Below is an example of how we can send a request to Shaka Packager to encrypt our content with Fairplay DRM and package it: 
 
@@ -215,48 +88,10 @@ Below is an example of how we can send a request to Shaka Packager to encrypt ou
    --hls_key_uri skd://fairplay-license.vudrm.tech/v2/license/<content_id>
 ```
 
-Packaging content with Fairplay DRM is much of the same as packaging with Widevine and PlayReady DRM. However, there are differences detailed below.
-
-### Line 3
-
-`protection_scheme` must be set to `cbcs`.
-
-### Line 6
-
-`protection_systems` is now set to Fairplay.
-
-### Line 7
-
-The `iv_hex_value` from the CPIX keys as JSON document is needed.
-
-### Line 8
-
-`hls_master_playlist_output` acts similar to the `mpd_output`. The file name must have the suffix `.m3u8`.
-
-### Line 9
-
-`hls_key_uri` is set to the value of the `fairplay_laurl` in the CPIX keys as JSON document.
-
 ## Testing packaged content
 
-Upload your packaged files and manifest to AWS S3 or an equivalent hosting service.
+Upload your packaged files and manifest to AWS S3 or an equivalent hosting service. You can now test your newly packaged content with our player on the VUDRM Admin site.
 
-You can now test your newly packaged content with our player on the VUDRM Admin site.
-
-- Log on to the VUDRM Admin site - https://admin.vudrm.tech
-
-- On the left hand side of the page select `Configuration`.
-
-- Click on `Test your Stream`.
-
-- A token is automatically generated for use with your content.
- 
-- If you are testing Widevine / PlayReady content, enter the URL for where your manifest has been uploaded in the `DASH Stream URL` text box.
-
-- If you are testing Fairplay content, ensure you are using a Mac and using Safari as your browser, enter the URL for where your manifest has been uploaded in the `HLS Stream URL` text box.
-
-- Click `Load Player`.
- 
-- The player should now appear, click play to play the content.
+A guide can be found at the following link - [Test Your Stream](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#test-your-stream)
 
 You can confirm a relevant license request has been made by checking the network tab of the browsers dev tools.
