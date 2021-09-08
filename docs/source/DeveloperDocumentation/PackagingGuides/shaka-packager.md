@@ -60,7 +60,7 @@ For more information on the examples below, please refer to the Shaka Packager D
 
 Below is an example of how we can send a request to Shaka Packager to encrypt our content with Widevine and Playready DRM and package it:
 
-```
+```bash
   packager \
    in=media/<name-of-content>.mp4,stream=audio,output=media/<name-of-output-content>.mp4,drm_label=AUDIO \
    in=media/<name-of-content>.mp4,stream=video,output=media/<name-of-output-content>.mp4,drm_label=VIDEO \
@@ -75,7 +75,7 @@ Below is an example of how we can send a request to Shaka Packager to encrypt ou
 
 Below is an example of how we can send a request to Shaka Packager to encrypt our content with Fairplay DRM and package it: 
 
-```
+```bash
   packager \
    in=media/<name-of-content>.mp4,stream=audio,output=media/<name-of-output-content>.mp4,drm_label=AUDIO \
    in=media/<name-of-content>.mp4,stream=video,output=media/<name-of-output-content>.mp4,drm_label=VIDEO \
