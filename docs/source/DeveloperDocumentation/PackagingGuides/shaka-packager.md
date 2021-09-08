@@ -62,13 +62,13 @@ Below is an example of how we can send a request to Shaka Packager to encrypt ou
 
 ```
   packager \
-   in=media/audio.mp4,stream=audio,output=media/encrypted-test-audio.mp4,drm_label=AUDIO \
-   in=media/source.mp4,stream=video,output=media/encrypted-test-video.mp4,drm_label=VIDEO \
+   in=media/<name-of-content>.mp4,stream=audio,output=media/<name-of-output-content>.mp4,drm_label=AUDIO \
+   in=media/<name-of-content>.mp4,stream=video,output=media/<name-of-output-content>.mp4,drm_label=VIDEO \
    --enable_raw_key_encryption \
    --keys label=AUDIO:key_id=<key_id_hex_value>:key=<content_key_hex_value>,label=VIDEO:key_id=<key_id_hex_value>:key=<content_key_hex_value> \
    --pssh <Widevine_PSSH(this needs to be converted from Base64 to Hex format)> \
    --protection_systems Widevine,PlayReady \
-   --mpd_output media/encrypted-test.mpd
+   --mpd_output media/<name-of-manifest>.mpd
 ```
 
 ### Packaging Content with Fairplay DRM
@@ -77,14 +77,14 @@ Below is an example of how we can send a request to Shaka Packager to encrypt ou
 
 ```
   packager \
-   in=media/audio.mp4,stream=audio,output=media/encrypted-test-hls-audio.mp4,drm_label=AUDIO \
-   in=media/test.mp4,stream=video,output=media/encrypted-test-hls-video.mp4,drm_label=VIDEO \
+   in=media/<name-of-content>.mp4,stream=audio,output=media/<name-of-output-content>.mp4,drm_label=AUDIO \
+   in=media/<name-of-content>.mp4,stream=video,output=media/<name-of-output-content>.mp4,drm_label=VIDEO \
    --protection_scheme cbcs \
    --enable_raw_key_encryption \
    --keys label=AUDIO:key_id=<key_id_hex_value>:key=<content_key_hex_value>,label=VIDEO:key_id=<key_id_hex_value>:key=<content_key_hex_value> \
    --protection_systems Fairplay \
    --iv <iv_hex_value> \
-   --hls_master_playlist_output media/encrypted-test-hls.m3u8 \
+   --hls_master_playlist_output media/<name-of-manifest>.m3u8 \
    --hls_key_uri skd://fairplay-license.vudrm.tech/v2/license/<content_id>
 ```
 
