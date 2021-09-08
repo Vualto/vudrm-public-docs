@@ -52,7 +52,7 @@ Guides can be found at the following links:
 
 ## Package your content
 
-Now you have retrieved the relevant documentation, you can now package content with Shaka Packager.
+Now you have retrieved the relevant documentation, you can package content with Shaka Packager.
 
 For more information on the examples below, please refer to the Shaka Packager Documentation which can be found at the following link - [Shaka Packager Documentation](https://google.github.io/shaka-packager/html/)
 
