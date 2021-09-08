@@ -2,8 +2,10 @@
 
 ## Setup using Docker
 
+Setup Shaka Packager using the commands below:
+
 ```bash
-# pull and run shaka packager 
+# Pull and run shaka packager 
 docker pull google/shaka-packager
 docker run -v /<file_path_to_content>/:/media -it --rm google/shaka-packager
 
@@ -87,7 +89,7 @@ Below is an example of a CPIX Document with all `DRM Providers` selected.
 
 Below is an example of a CPIX keys as JSON document with all `DRM Providers` selected. 
 
-```
+```json
 {
     "key_id_hex": <key_id_hex_value>,
     "content_key_hex": <content_key_hex_value>,
@@ -98,7 +100,7 @@ Below is an example of a CPIX keys as JSON document with all `DRM Providers` sel
     "widevine_drm_specific_data_with_key_id": <widevine_drm_specific_data_with_key_id_value>,
     "widevine_system_id": "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed",
     "fairplay_system_id": "94ce86fb-07ff-4f43-adb8-93d2fa968ca2",
-    "fairplay_laurl": "<fairplay_laurl_value>"
+    "fairplay_laurl": <fairplay_laurl_value>
 }
 ```
 
@@ -106,7 +108,7 @@ Below is an example of a CPIX keys as JSON document with all `DRM Providers` sel
 
 Now you have retrieved the relevant documentation, you can package content with Shaka Packager.
 
-The values from the two CPIX documents retrieved will need to be copied and pasted to the corresponding section in the examples below.
+The values from the CPIX documents will need to be copied and pasted to the corresponding section in the examples below.
 
 For more information, please refer to the Shaka Packager Documentation which can be found at the following link - [Shaka Packager Documentation](https://google.github.io/shaka-packager/html/)
 
