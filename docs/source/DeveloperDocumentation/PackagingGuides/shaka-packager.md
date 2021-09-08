@@ -2,8 +2,6 @@
 
 ## Setup using Docker
 
-- First download and install Docker - https://www.docker.com/get-started
-
 - Pull the latest Shaka Packager Docker image by entering ```docker pull google/shaka-packager``` in your terminal.
 
 - Now run the Docker image by entering ```docker run -v /<file_path_to_content>/:/media -it --rm google/shaka-packager``` in your terminal. This will replicate your directory and create a ```media``` file path within the Docker container.
