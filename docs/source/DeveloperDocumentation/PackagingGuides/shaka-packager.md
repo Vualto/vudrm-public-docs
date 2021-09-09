@@ -89,7 +89,7 @@ Below is an example of a CPIX Document with all `DRM Providers` selected.
 
 Below is an example of a CPIX keys as JSON document with all `DRM Providers` selected. 
 
-```json
+```text
 {
     "key_id_hex": <key_id_hex_value>,
     "content_key_hex": <content_key_hex_value>,
