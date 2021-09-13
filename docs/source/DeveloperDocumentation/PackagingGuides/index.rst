@@ -8,4 +8,5 @@ PACKAGING GUIDES
    nginx-vod-module.md
    usp.md
    wowza.md
+   bento4.md
 
