@@ -2,8 +2,8 @@
 
 VUDRMFairPlaySDK is available for iOS and tvOS. This documentation describes the steps to integrate and use VUDRMFairPlaySDK on these platforms, and how to configure our demo applications.
 
-Current release:	iOS v1.0 (22)
-					tvOS v1.0 (23)
+Current release:	iOS v1.0 (37)
+					tvOS v1.0 (38)
 					
 - [Overview](#overview)
 - [Requirements](#requirements)
@@ -104,6 +104,7 @@ To provide complete configuration for each `Stream` object you will require:
  - A `content_id` for the content, being the same content ID that the content was prepared with. This value will always be the last path component of the stream `content_key_id_list` or `skd://` URI entry. Our demo application shows how to retrieve and parse the `content_key_id_list`, however, the `content_id` always needs to be provided for use with offline assets.
  - An `is_protected` boolean value which indicates that the `Stream` object is protected with DRM. This setting would not be needed in scenarios where all content is protected, as all assets can be set as protected by default in the source code. 
  - A `vudrm-token` which must be correctly generated for the type of instance you wish to create. Please see the [Tokens and Licensing](#tokens-and-licensing) section for further information.
+ - An optional `renew_interval` value which represents lease renewal interval in seconds. This value is only used where token policy uses `duration_lease`.
 
 For added convenience, VUDRMFairPlaySDK also bubbles up notifications of errors and progress during the licensing request. Errors can be intercepted as follows:
 
@@ -135,7 +136,7 @@ And, progress can be monitored using the following:
 
 We strongly recommend referring to our example iOS / tvOS multiple asset demo application.
 
-Using either of Apples recommended implentations, being AssetResourceLoaderDelegate or ContentKeyDelegate, VUDRMFairPlaySDK performs the two required licensing network tasks, being acquisition of an application certificate, followed by a FairPlay license either for online or offline use.
+Using either of Apples recommended implementations, being AssetResourceLoaderDelegate (AVAssetResourceLoader API) or ContentKeyDelegate (Contentkey API), VUDRMFairPlaySDK performs the two required licensing network tasks, being acquisition of an application certificate, followed by a FairPlay license either for online or offline use.
 
 An application certificate is always required to initialise a request for a FairPlay license. 
 
@@ -170,7 +171,7 @@ You should always set the contentType before calling finishLoading() on the reso
 	
 	let spcData = try resourceLoadingRequest.streamingContentKeyRequestData(forApp: applicationCertificate!, contentIdentifier: assetIDData, options: [AVAssetResourceLoadingRequestStreamingContentKeyRequestRequiresPersistentKey: true])
 
-	let ckcData = try self.drm!.requestContentKeyFromKeySecurityModule(spcData: spcData, token: self.vuToken, assetID: self.contentID, licenseURL: self.licenseUrl)
+	let ckcData = try self.drm!.requestContentKeyFromKeySecurityModule(spcData: spcData, token: self.vuToken, assetID: self.contentID, licenseURL: self.licenseUrl, renewal: self.renewalInterval)
             
 	let persistentKey = try resourceLoadingRequest.persistentContentKey(fromKeyVendorResponse: ckcData!, options: nil)
 	
@@ -198,7 +199,7 @@ The call for an offline license should be made upon download of the asset.
 			} 
 		guard let spcData = spcData else { return }      
 		do {
-			guard let ckcData = try strongSelf.drm!.requestContentKeyFromKeySecurityModule(spcData: spcData, token: vuToken, assetID: self!.contentID, licenseURL: licenseUrl) else { return }	
+			guard let ckcData = try strongSelf.drm!.requestContentKeyFromKeySecurityModule(spcData: spcData, token: vuToken, assetID: self!.contentID, licenseURL: licenseUrl, renewal: self.renewalInterval) else { return }	
 			let keyResponse = AVContentKeyResponse(fairPlayStreamingKeyResponseData: ckcData)
 			keyRequest.processContentKeyResponse(keyResponse)
 				} catch {
@@ -209,7 +210,7 @@ The call for an offline license should be made upon download of the asset.
                     
 ##### Download and Offline Playback:
 	
-	let ckcData = try self!.drm!.requestContentKeyFromKeySecurityModule(spcData: spcData, token: self!.vuToken, assetID: self!.contentID, licenseURL: self!.licenseUrl)
+	let ckcData = try self!.drm!.requestContentKeyFromKeySecurityModule(spcData: spcData, token: self!.vuToken, assetID: self!.contentID, licenseURL: self!.licenseUrl, renewal: self.renewalInterval)
 	
 	let persistentKey = try keyRequest.persistableContentKey(fromKeyVendorResponse: ckcData!, options: nil)
 	
@@ -224,18 +225,28 @@ Finally, provide the content key response to make protected content available fo
 
 ##### Tokens and Licensing:
 
-Requests for playback or download will result in a license request for the content from the license server, based on the type of token presented for each VUDRMFairPlaySDK request. The tokens may be FairPlay Rental or FairPlay Persist. FairPlay Rental token license requests will be provided a streaming content key, which may be used for online streaming only. FairPlay Persist token license requests will be provided a persistent content key, which may be written to device and subsequently used for both online streaming, and offline playback of downloaded content.
+Requests for playback or download will result in a license request for the content from the license server, based on the type of token presented for each VUDRMFairPlaySDK request. The tokens may be FairPlay Rental, FairPlay Lease, or FairPlay Persist. 
+
+ - FairPlay Rental token license requests will be provided a streaming content key, which may be used for online streaming only. 
+
+ - FairPlay Lease token license requests will be provided a streaming content key, which may be used for online streaming only, and may be renewed periodically. 
+
+ - FairPlay Persist token license requests will be provided a persistent content key, which may be written to device and subsequently used for both online streaming, and offline playback of downloaded content.
 
 In iOS, when a download of an asset has been completed with a persist token policy, further playback requests will use the downloaded asset and associated license (or content key), even when online.
 
 Example VUDRM token type templates available are:
 
 - Fairplay Rental `{"type": "r","duration_rental": 3600}`
-	- Fairplay Rental tokens may only be used to stream online content.
+	- Fairplay Rental tokens may only be used to stream online content. 
+
+- Fairplay Lease `{"type": "l","duration_lease": 3600}`
+	- Fairplay Lease tokens may only be used to stream online content. The token duration should always be greater than `360` seconds and should also exceed the streams `renew_interval` period. The streams `renew_interval` should always exceed `300` seconds. We recommend a difference of at least `60` seconds between the token duration and `renew_interval` to allow adequate time for the license to be retrieved and processed by the OS. In all other circumstances the `renew_interval` period should be set to `0` or not included in the stream configuration. Lease renewals will fail if the `renew_interval` is set to any value below `300` seconds, except for `0`. This is to prevent license server overload and unexpected overheads. Please refer to our demo application for an example, and do not hesitate to contact us to discuss the use of Fairplay Lease.
+
 - Fairplay Persist `{"type": "p","duration_persist": 3600}`
  - Fairplay Persist tokens may be used to stream online content and play offline (downloaded) content.
 
-For further information about VUDRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
+For further information about VUDRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-token.html).
 
 ##### Note:
 
@@ -251,7 +262,7 @@ We have developed demo applications based on Apples Fairplay SDK examples, using
 
 The demo applications target both iOS and tvOS platforms using shared source code. Each target platform references its own version of the framework. The lowest version of iOS supported in the demo applications is iOS 11.2, however it is possible to add the required support for iOS 10 and above.
 
-With the VUDRMFairPlaySDK framework installed, both the example demo applications read entries in the `Streams.plist` file to configure the content and DRM. You can edit the `Streams.plist` file values, and/or add your own valid values, which should include a `content_id`, `playlist_url`, and `vudrm_token`(see [Preparation](#preparation) above).
+With the VUDRMFairPlaySDK framework installed, both the example demo applications read entries in the `Streams.plist` file to configure the content and DRM. You can edit the `Streams.plist` file values, and/or add your own valid values, which should include a `content_id`, `playlist_url`, `renew_interval`, and `vudrm_token`(see [Preparation](#preparation) above).
 
 - The `content_key_id_list` entry in the `Streams.plist` is retrieved in the demo by parsing the manifest using the `getContentKeyIDList` function in the `AssetListTableViewController`.
 
@@ -259,6 +270,7 @@ With the VUDRMFairPlaySDK framework installed, both the example demo application
 
 - The `is_protected` boolean value indicates whether the content is protected with DRM or not. This value can be overridden in source if all content is protected.
 
+- The optional `renew_interval` value represents the lease renewal interval in seconds. This value is only used where token policy uses `duration_lease` and in all other cases `renew_interval` should either be set to `0` or not used in the configuration. Where `renew_interval` is used, it must always be a value above `300` seconds to prevent license server overload and/or unexpected overheads. Requests will fail for a renewed license where the value used is below `300`, except for `0`. There should be a difference of at least `60` seconds between the token duration and `renew_interval` to allow adequate time for the license to be retrieved and processed by the OS.
 
 In both target platforms, the `AssetResourceLoaderDelegate` or `ContentKeyDelegate` class handles license requests for online streaming.
 
@@ -291,11 +303,15 @@ In iOS, a call is made upon launch by the `AppDelegate` class to the `AssetPersi
 - Errors may also arise because the `Stream` configuration is not correct. 
 	- Content ID - Please ensure that the `content_id` corresponds to that which was used when preparing your content. The `content_id` should always be unique for each `Stream` instance.
 	
-	- Tokens - You can easily eliminate token issues by beginning with a default FairPlay token policy. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our token [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
+	- Tokens - You can easily eliminate token issues by beginning with a default FairPlay token policy. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our token [documentation](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-token.html).
 	
 If you are not able to play your content after checking it in our demo application please contact [support@vualto.com](support@vualto.com) with the demo application logs and the stream configuration used.
 
 ## Release notes (iOS / tvOS)
+
+### v1.0 (build 37/38) on 20/09/2021
+
+- Added short renewal prevention limiting license renewals to periods exceeding 300 seconds, and added SDK license renewal initialiser.
 
 ### v1.0 (build 22/23) on 19/03/2021
 
