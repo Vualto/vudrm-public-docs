@@ -20,7 +20,7 @@ VUDRM tokens should be generated using the [VUDRM token API](#vudrm-token-api). 
 The VUDRM token is comprised of five components each separated by the pipe character (ASCII code 124):
 - The client name.
 - The time the token was generated in an ISO8601 format (yyyy-MM-ddThh:mm:ssZ).
-- `v2` to denote the version of the token.
+- `v2` to denote the version of the token. (NB this component will not be present in v1 tokens)
 - The encrypted DRM policy.
 - A signed hash.
 
