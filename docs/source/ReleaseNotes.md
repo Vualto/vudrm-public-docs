@@ -20,6 +20,8 @@
 
 * Improvements to our FairPlay, Widevine and KP API systems to be compatible with Token v2.
 
+* Improvements to VUDRM Admin. HLS JS can now be enabled in the public player.
+
 * Internal improvements to our Stats API.
 
 * Internal improvements to our KP API.
@@ -42,6 +44,8 @@
 
 * Multikey support for all DRM providers added to CPIX API. Our documentation has been updated to reflect this.
 
+* VUDRM Admin user guide has now been added to our public documentation.
+
 * Various improvements to VUDRM Admin, including a new public demo page.
 
 * Internal improvements for our Stats API logging.
@@ -53,6 +57,8 @@
 * New VUDRM cluster based in Milan has been released and is serving traffic for the duration of the Euro 2020 Championship.
 
 * Various improvements to VUDRM Admin, including the ability for the client to edit default VUDRM Token policy values.
+
+* Various internal improvements to KP-API, Legacy KeyProvider API, Token API, FairPlay license server, GeoLocation API, Widevine license server and CPIX API. Updated builds and services used.   
 
 ## May 2021
 
