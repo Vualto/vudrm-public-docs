@@ -1,5 +1,7 @@
 # RELEASE NOTES 
 
+* [October 2021](#october-2021)
+* [September 2021](#september-2021)
 * [August 2021](#august-2021)
 * [July 2021](#july-2021)
 * [June 2021](#june-2021)
@@ -13,6 +15,20 @@
 * [September 2020](#september-2020)
 * [July 2020](#july-2020)
 * [May 2020](#may-2020)
+
+## October 2021
+
+* Improvements to our FairPlay, Widevine and KP API systems to be compatible with Token v2
+
+* Internal improvements to our Stats API.
+
+* Internal improvements to our KP API.
+
+## September 2021
+
+* Bug fixes on our CPIX API. Now returns the correct encryption schemes.
+
+* Fixed issues with our PlayReady CircleCI tests.
 
 ## August 2021
 
