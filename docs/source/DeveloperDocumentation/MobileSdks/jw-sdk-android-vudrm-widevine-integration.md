@@ -111,7 +111,9 @@ Ensure playback can be achieved with unprotected content either using your own a
     	}
 		}
 
-- In the player view class, create a playlist, and a PlaylistItem containing the video URL for your DRM-protected content along with your VUDRM token. Then create a new instance of your MediaDrmCallback implementation and set it to the PlaylistItem. This class requires that a content URL and a valid VUDRM token are provided.
+- In the player view class, create a `PlaylistItem` and set the video URL (`file`) of the DRM-protected content.
+
+ -  Create a new instance of your `MediaDrmCallback` implementation and set it to the PlaylistItem. Be sure to replace `{INSERT_TOKEN}` with a valid VUDRM token.
 
 
 		// Create a list to contain the PlaylistItems
