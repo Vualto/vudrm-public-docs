@@ -14,6 +14,8 @@ Ensure playback can be achieved with unprotected content either using your own a
 
 ## Implementation
 
+If you require any assistance or further information with regard to the following implementation, please contact [support@vualto.com](support@vualto.com). If you are unable to play your content, please include any application logs and the stream configuration used.
+
 - Add a **Util.java** to your project. This utility is used by the `MediaDrmCallback` class to download data.
 
 		public class Util {
@@ -135,6 +137,3 @@ Ensure playback can be achieved with unprotected content either using your own a
 
 		mPlayer.setup(config);
 
-## Support and Information
-
-If you require any assistance or further information please contact [support@vualto.com](support@vualto.com). If you are unable to play your content, please include any application logs and the stream configuration used.
