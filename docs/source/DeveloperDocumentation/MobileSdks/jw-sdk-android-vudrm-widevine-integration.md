@@ -14,7 +14,7 @@ Ensure playback can be achieved with unprotected content either using your own a
 
 ## Implementation
 
-- Add a Util.java class to your project. This utility is used by the MediaDrmCallback class to download data.
+- Add a **Util.java** to your project. This utility is used by the `MediaDrmCallback` class to download data.
 
 		public class Util {
     	public static byte[] executePost(String url, byte[] data, Map<String, String> requestProperties)
