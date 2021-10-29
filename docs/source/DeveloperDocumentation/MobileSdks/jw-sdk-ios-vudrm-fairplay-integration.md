@@ -25,7 +25,9 @@ The following table explains each requested item.
 - iOS 10+
 - JW Player SDK iOS v3+
 - DRM license server URL
-- VUDRM FairPlay protected content
+- VUDRM FairPlay protected content URL
+- VUDRM token
+- Application capable of unprotected content playback
 
 ## Preparation
 Ensure playback can be achieved with unprotected content either using your own application, or the updated [JW Player SDK iOS demo application](https://github.com/jwplayer/jwplayer-sdk-ios-demo) which contains all the following source code that will be needed to use VUDRM FairPlay.
