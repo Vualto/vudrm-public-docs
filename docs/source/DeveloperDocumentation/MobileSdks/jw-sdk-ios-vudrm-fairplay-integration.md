@@ -32,21 +32,9 @@ Ensure playback can be achieved with unprotected content either using your own a
 
 ## Implementation
 
-In order to play FairPlay encrypted HLS, the class in your app which communicates with your FairPlay Key Server must adhere to the JWDrmDataSource protocol and be set to the JWPlayerController's drmDataSource property, as in: `self.player.drmDataSource = self`. Our Swift example below demonstrates how a view controller conforms to the JWDrmDataSource protocol.
+The following example Swift class contains all the modifications required to extend and enable the [iOS JW Player SDK demo application](https://github.com/jwplayer/jwplayer-sdk-ios-demo) to play content protected with VUDRM FairPlay.
 
-When an FPS-specific tag is included in the playlist of a media stream that the Apple device is asked to play, the JW Player SDK will ask your application for the necessary information to prepare an encrypted key request:
-
- - the `fetchContentIdentifierForRequest` delegate method gets called, requesting that the content identifier (also known as Asset ID) be passed in through its completion block. Our Swift example below contains a helper method to retrieve this from the playlist/manifest.
-
- - the `fetchAppIdentifierForRequest` delegate method is called, prompting for an Application Certificate which must get passed via the completion block. The Application Certificate must be encoded with the X.509 standard with distinguished encoding rules (DER). It is obtained when registering an FPS playback app with Apple, by supplying an X.509 Certificate Signing Request linked to your private key. Our Swift example below contains a helper method to retrieve the Application Certificate from the server.
-
-When the key request is ready:
-
- - the `fetchContentKeyWithRequest` delegate method is called, providing you with the key request data (also known as SPC - Server Playback Context message) which you need to retrieve the CKC (Content Key Context) message from your key server. The CKC message must be returned via the completion block, under the response parameter. When your app sends the request to the server, the FPS code on the server wraps the required key in an encrypted message and sends it to the app. Your app then provides the JW Player SDK with the encrypted message, which is used to unwrap the message and decrypt the stream, so the iOS device can play the media.
-For resources that may expire, you can specify a renewal date in the completion block.
-We suggest also specifying the content type (the UTI indicating the type of data contained by the response) when a renewal date is set. Our Swift example below contains helper methods to retrieve the license Certificate from the server.
-
-The following example Swift class contains all the modifications required to extend and enable the iOS JW Player SDK demo application to play content protected with VUDRM FairPlay. A content URL, valid VUDRM token, and certificate server URL should be provided:
+_**NOTE**: If you require any assistance or further information regarding the following implementation, please contact [support@vualto.com](support@vualto.com).  If you are unable to play your content, please include any application logs and the stream configuration used._
 
 
 	class SwiftViewController: UIViewController, JWDrmDataSource {
