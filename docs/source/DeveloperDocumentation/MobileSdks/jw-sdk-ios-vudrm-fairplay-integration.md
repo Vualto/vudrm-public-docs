@@ -345,6 +345,3 @@ _**NOTE**: If you require any assistance or further information regarding the fo
     }
 	}
 
-## Support and Information
-
-If you require any assistance or further information please contact [support@vualto.com](support@vualto.com). If you are unable to play your content, please include any application logs and the stream configuration used.
