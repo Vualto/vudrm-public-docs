@@ -1,6 +1,24 @@
 # JW Player SDK iOS VUDRM FairPlay Integration
 
-Learn how to enable digital rights management (DRM) protected playback for an iOS app using VUDRM FairPlay. This document is an extension of the JW Player SDK iOS [Play DRM-protected content](https://developer.jwplayer.com/jwplayer/docs/ios-play-drm-protected-content-v3) documentation.
+_Learn how to enable digital rights management (DRM) protected playback for an iOS app using VUDRM FairPlay._ 
+
+In order to play a FairPlay encrypted HLS stream, the class in your app that communicates with your FairPlay Key Server must satisfy the following points:
+
+* Adhere to the `JWDrmDataSource` protocol
+* Be set to the `drmDataSource` property of the `JWPlayerController`, for example, `self.player.drmDataSource = self`
+
+When an Apple device needs to play a stream that includes an FPS-specific tag, the JW Player SDK requests the content identifier and Application Certificate from your application for the information to prepare an encrypted key request.
+
+The following table explains each requested item.
+
+| Item | Notes |
+| --- | --- |
+| **Content Identifier** | The `fetchContentIdentifierForRequest` delegate requests that the content identifier be passed in through its completion block.<br /><br />The content identifier is also known as Asset ID and the `skd://` value. The content `contentID` and specific `licenseUrl` may be reliably obtained from this. |
+| **Application Certificate** |  The `fetchAppIdentifierForRequest` delegate method prompts for an Application Certificate which must get passed via the completion block.<br /><br />When registering your FPS playback app with Apple, be sure to supply an X.509 Certificate Signing Request linked to your private key. This ensures that the Application Certificate is encoded with the X.509 standard with distinguished encoding rules (DER). |
+| **Server Playback Context (SPC)** | The `fetchContentKeyWithRequest` delegate method provides the key request data (SPC) needed to retrieve the Content Key Context (CKC) message.<br /><br />The CKC message must be returned via the completion block under the response parameter. When your app sends the request to the server, the following actions take place:<br /><br />&bull; The FPS code on the server wraps the required key in an encrypted message and sends it to your app.<br />&bull; Your app provides the JW Player SDK with an encrypted message. The encrypted message enables unwrapping the message and decrypting the stream. This allows the Apple device to play the media. |
+
+
+
 
 ## Requirements
 
