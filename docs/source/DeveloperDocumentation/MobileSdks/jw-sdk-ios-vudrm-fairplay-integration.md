@@ -30,11 +30,11 @@ The following table explains each requested item.
 - Application capable of unprotected content playback
 
 ## Preparation
-Ensure playback can be achieved with unprotected content either using your own application, or the updated [JW Player SDK iOS demo application](https://github.com/jwplayer/jwplayer-sdk-ios-demo) which contains all the following source code that will be needed to use VUDRM FairPlay.
+Ensure playback can be achieved with unprotected content either using your own application, or the updated [JW Player SDK iOS demo application](https://github.com/Vualto/vudrm-jw-sdk-ios) which contains all the following source code that will be needed to use VUDRM FairPlay.
 
 ## Implementation
 
-The following example Swift class contains all the modifications required to extend and enable the [iOS JW Player SDK demo application](https://github.com/Vualto/vudrm-jw-sdk-ios) to play content protected with VUDRM FairPlay.
+The following example Swift class contains all the modifications required to extend and enable the [iOS JW Player SDK demo application](https://github.com/jwplayer/jwplayer-sdk-ios-demo) to play content protected with VUDRM FairPlay.
 
 _**NOTE**: If you require any assistance or further information regarding the following implementation, please contact [support@vualto.com](support@vualto.com).  If you are unable to play your content, please include any application logs and the stream configuration used._
 
