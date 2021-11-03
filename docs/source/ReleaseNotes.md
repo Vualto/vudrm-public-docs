@@ -1,5 +1,6 @@
 # RELEASE NOTES 
 
+* [August 2021](#august-2021)
 * [July 2021](#july-2021)
 * [June 2021](#june-2021)
 * [May 2021](#may-2021)
@@ -12,6 +13,12 @@
 * [September 2020](#september-2020)
 * [July 2020](#july-2020)
 * [May 2020](#may-2020)
+
+## August 2021
+
+* Internal improvements to the Widevine license server. Added license renewal support.
+
+* Internal improvements for our CPIX logging.
 
 ## July 2021
 
