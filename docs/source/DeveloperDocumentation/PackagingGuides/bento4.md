@@ -18,15 +18,6 @@ A guide can be found at the following link - [VUDRM Admin - CPIX Document Reques
 
 #### CPIX Document
 
-Each DRM Provider has a unique `systemId`. This helps to distinguish which values belong to which DRM Provider in a CPIX Document. 
-
-```
-System IDs:
-Widevine: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
-PlayReady: 9a04f079-9840-4286-ab92-e65be0885f95
-FairPlay: 94ce86fb-07ff-4f43-adb8-93d2fa968ca2
-```
-
 Below is an example of a CPIX Document with all `DRM Providers` selected. 
 
 ```
@@ -56,25 +47,6 @@ Below is an example of a CPIX Document with all `DRM Providers` selected.
     </cpix:DRMSystemList>
     <cpix:ContentKeyUsageRuleList></cpix:ContentKeyUsageRuleList>
 </cpix:CPIX>
-```
-
-#### CPIX keys as JSON
-
-Below is an example of a CPIX keys as JSON document with all `DRM Providers` selected. 
-
-```text
-{
-    "key_id_hex": <key_id_hex_value>,
-    "content_key_hex": <content_key_hex_value>,
-    "iv_hex": <iv_hex_value>,
-    "playready_pssh_data": <playready_pssh_data_value>,
-    "playready_system_id": "9a04f079-9840-4286-ab92-e65be0885f95",
-    "widevine_drm_specific_data": <widevine_drm_specific_data_value>,
-    "widevine_drm_specific_data_with_key_id": <widevine_drm_specific_data_with_key_id_value>,
-    "widevine_system_id": "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed",
-    "fairplay_system_id": "94ce86fb-07ff-4f43-adb8-93d2fa968ca2",
-    "fairplay_laurl": <fairplay_laurl_value>
-}
 ```
 
 ## Package your content
