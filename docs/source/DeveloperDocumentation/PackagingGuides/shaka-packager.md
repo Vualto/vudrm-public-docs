@@ -13,7 +13,7 @@ docker run -v /<file_path_to_content>/:/media -it --rm google/shaka-packager
 packager input=/media/<name_of_content>.mp4 --dump_stream_info
 ```
 
-If successful, the exepcted output of the stream dump should look like this:
+If successful, the expected output of the stream dump should look like this:
 
 ```text
 File "/media/test.mp4":
@@ -41,18 +41,11 @@ You can retrieve these documents from the VUDRM Admin site.
 
 A guide can be found at the following link - [VUDRM Admin - CPIX Document Request](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#vudrm-encryption-keys)
 
+More information on our CPIX Key Provider API can be found at the following link - [CPIX Key Provider API](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cpix-key-provider-api)
+
 ### Examples of Each Document
 
 #### CPIX Document
-
-Each DRM Provider has a unique `systemId`. This helps to distinguish which values belong to which DRM Provider in a CPIX Document. 
-
-```
-System IDs:
-Widevine: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed
-PlayReady: 9a04f079-9840-4286-ab92-e65be0885f95
-FairPlay: 94ce86fb-07ff-4f43-adb8-93d2fa968ca2
-```
 
 Below is an example of a CPIX Document with all `DRM Providers` selected. 
 
@@ -85,25 +78,6 @@ Below is an example of a CPIX Document with all `DRM Providers` selected.
 </cpix:CPIX>
 ```
 
-#### CPIX keys as JSON
-
-Below is an example of a CPIX keys as JSON document with all `DRM Providers` selected. 
-
-```text
-{
-    "key_id_hex": <key_id_hex_value>,
-    "content_key_hex": <content_key_hex_value>,
-    "iv_hex": <iv_hex_value>,
-    "playready_pssh_data": <playready_pssh_data_value>,
-    "playready_system_id": "9a04f079-9840-4286-ab92-e65be0885f95",
-    "widevine_drm_specific_data": <widevine_drm_specific_data_value>,
-    "widevine_drm_specific_data_with_key_id": <widevine_drm_specific_data_with_key_id_value>,
-    "widevine_system_id": "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed",
-    "fairplay_system_id": "94ce86fb-07ff-4f43-adb8-93d2fa968ca2",
-    "fairplay_laurl": <fairplay_laurl_value>
-}
-```
-
 ## Package your content
 
 Now you have retrieved the relevant documentation, you can package content with Shaka Packager.
@@ -116,7 +90,7 @@ For more information, please refer to the Shaka Packager Documentation which can
 
 Below is an example of how we can send a request to Shaka Packager to encrypt our content with Widevine and Playready DRM and package it.
 
-Please note, the `Widevine_PSSH` from the CPIX Document is in Base64 format. Shaka Packager requires this to be in Hex format:
+Please note, the `Widevine_PSSH` from the CPIX Document is in Base64 format. Shaka Packager requires this to be in Hex format which can be achieved by running the following command `echo '<Widevine_PSSH>' | od -A n -t x1 | sed 's/ *//g'`:
 
 ```text
   packager \
@@ -124,7 +98,7 @@ Please note, the `Widevine_PSSH` from the CPIX Document is in Base64 format. Sha
    in=/media/<name-of-content>.mp4,stream=video,output=/media/<name-of-output-content>.mp4,drm_label=VIDEO \
    --enable_raw_key_encryption \
    --keys label=AUDIO:key_id=<key_id_hex_value>:key=<content_key_hex_value>,label=VIDEO:key_id=<key_id_hex_value>:key=<content_key_hex_value> \
-   --pssh <Widevine_PSSH(this needs to be converted from Base64 to Hex format)> \
+   --pssh <Widevine_PSSH> (This needs to be converted from Base64 to Hex format using the command above) \
    --protection_systems Widevine,PlayReady \
    --mpd_output /media/<name-of-manifest>.mpd
 ```
