@@ -6,7 +6,7 @@ The [agnoplay](https://github.com/Vualto/agnoplay) repository demonstrates at a 
 
 ## Example of Agnoplay Integration
 
-This files below can be found in the repo mentioned above here: 
+The files below can be found at the following links: 
 
 * [https://github.com/Vualto/agnoplay/blob/master/index.html](https://github.com/Vualto/agnoplay/blob/master/index.html)
 * [https://github.com/Vualto/agnoplay/blob/master/agnoplay_vudrm.js](https://github.com/Vualto/agnoplay/blob/master/agnoplay_vudrm.js)
