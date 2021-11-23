@@ -14,6 +14,8 @@ You can retrieve these documents from the VUDRM Admin site.
 
 A guide can be found at the following link - [VUDRM Admin - CPIX Document Request](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#vudrm-encryption-keys)
 
+More information on our CPIX Key Provider API can be found at the following link - [CPIX Key Provider API](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cpix-key-provider-api)
+
 ### Examples of Each Document
 
 #### CPIX Document
