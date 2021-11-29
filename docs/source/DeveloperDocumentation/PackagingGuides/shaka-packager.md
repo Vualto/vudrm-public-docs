@@ -98,7 +98,7 @@ Please note, the `Widevine_PSSH` from the CPIX Document is in Base64 format. Sha
    in=/media/<name-of-content>.mp4,stream=video,output=/media/<name-of-output-content>.mp4,drm_label=VIDEO \
    --enable_raw_key_encryption \
    --keys label=AUDIO:key_id=<key_id_hex_value>:key=<content_key_hex_value>,label=VIDEO:key_id=<key_id_hex_value>:key=<content_key_hex_value> \
-   --pssh <Widevine_PSSH> (This needs to be converted from Base64 to Hex format using the command above) \
+   --pssh <Widevine_PSSH> \
    --protection_systems Widevine,PlayReady \
    --mpd_output /media/<name-of-manifest>.mpd
 ```
