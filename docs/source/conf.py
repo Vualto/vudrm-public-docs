@@ -31,8 +31,8 @@ def setup(app):
 # -- Project information -----------------------------------------------------
 
 project = u'vualto-vudrm-public-docs'
-copyright = u'2018, VUALTO'
-author = u'VUALTO'
+copyright = u'2018, JW Player'
+author = u'JW Player'
 
 html_context = {
     'home_link': 'https://docs.vualto.com',
