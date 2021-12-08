@@ -7,7 +7,7 @@ pre {
 }
 
 .wy-side-nav-search, .wy-nav-top {
-    background-color: #003c69 !important;
+    background-color: #0F1A3D !important;
 }
 
 .version {
@@ -15,7 +15,7 @@ pre {
 }
 
 .wy-menu-vertical .toctree-l1:not(.current):active {
-    background-color:  #003c69 !important;
+    background-color:  #0F1A3D !important;
 } 
 
 .wy-menu-vertical a:active {
@@ -27,7 +27,7 @@ body, p, h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6, a, .wy-nav-content-wrap .caption {
-    color: #003c69;    
+    color: #0F1A3D;    
 }
 
 .wy-nav-content-wrap a:hover {
