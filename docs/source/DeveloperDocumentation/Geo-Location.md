@@ -14,7 +14,7 @@ Replace `<client>` with your client name and `<ip_address>` with the IPv4 or IPv
 
 The `X_AUTH_KEY` header should be set and the value should be the Geo Location API Key.
 
-*This is not the same as your VUDRM token API key.*
+*This is not the same as your Studio DRM token API key.*
 
 ## 2. The Response
 

@@ -1,4 +1,4 @@
-# VUDRM SUPPORT MATRIX
+# STUDIO DRM SUPPORT MATRIX
 
 **See bottom of page for caveats.**
 
@@ -38,7 +38,7 @@
 
 - Widevine mandates all browser CDM implementations to stay current with Chrome stable releases to ensure that the latest updates are applied. Older versions of Chrome, Firefox, and Opera may not be able to use DRM. See [Widevine's deprecation schedule](https://www.widevine.com/news).
 
-- VUDRM uses Widevine Modular by default (Widevine Classic is not supported).
+- Studio DRM uses Widevine Modular by default (Widevine Classic is not supported).
 
 - Some Smart TV Alliance models may not support Widevine.
 

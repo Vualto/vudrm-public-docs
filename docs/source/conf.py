@@ -36,7 +36,7 @@ author = u'JW Player'
 
 html_context = {
     'home_link': 'https://docs.vualto.com',
-    'product_logo': '_static/vudrmLogo.png',
+    'product_logo': '_static/studioDrmLogo.png',
     'base_breadcrumb_label': 'VUDRM'
 }
 

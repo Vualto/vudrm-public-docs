@@ -1,10 +1,10 @@
 # ENCRYPTION KEY PROVISION
 
-The VUDRM key provision service exposes the generation of DRM encryption. It provides two secure REST APIs allowing you to retrieve encryption keys for all DRM types in order to encrypt your content.
+The Studio DRM, formerly VUDRM, key provision service exposes the generation of DRM encryption. It provides two secure REST APIs allowing you to retrieve encryption keys for all DRM types in order to encrypt your content.
 
 ## CPIX Key Provider API
 
-We recommend using our CPIX API to fetch VUDRM encryption keys in CPIX XML document format. Compatible with Unified Streaming (version 1.9.3 and above).
+We recommend using our CPIX API to fetch Studio DRM encryption keys in CPIX XML document format. Compatible with Unified Streaming (version 1.9.3 and above).
 This API can also be used to return the keys from the CPIX document in JSON format; for more information on this please see the [JSON keys](#json-keys) section.
 All requests made to this API will require your API key set as the header `API-KEY`. If you do not know or have not been given your API key please contact support@vualto.com.
 
@@ -461,7 +461,7 @@ sed -i -E 's/ explicitIV=.*"//' keys.cpix
 
 ```bash
 curl -XGET -H "API-KEY: <api-key>" \
-"https://cpix-beta.eu-central-1.vudrm.tech/v1/cpix/<client-name>/<content-id>/rotate?start=<start-time>&end=<end-time>&interval=<interval>"
+"https://cpix.vudrm.tech/v1/cpix/<client-name>/<content-id>/rotate?start=<start-time>&end=<end-time>&interval=<interval>"
 ```
 
 ```xml
