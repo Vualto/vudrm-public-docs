@@ -923,7 +923,7 @@ This section uses the Legacy JSON Key Provider API but the JSON keys retrieved f
 
 ##### CENC
 
-CENC is the Common Encryption Scheme and it standardises encryption keys between different DRM systems. This allows a single set of encryption keys to be use to encrypt a single file using different DRM systems. VUDRM supports Widevine and PlayReady when generating CENC encryption keys.
+CENC is the Common Encryption Scheme and it standardises encryption keys between different DRM systems. This allows a single set of encryption keys to be use to encrypt a single file using different DRM systems. Studio DRM supports Widevine and PlayReady when generating CENC encryption keys.
 
 Make the following request to the Legacy JSON Key Provider API in order to retrieve `cenc` Keys.
 
@@ -1046,8 +1046,8 @@ The values are:
 - `content_key`: 128bit encryption key in base64.
 - `content_key_hex`: 128bit encryption key in base16. This one should be used with `mp4split`.
 - `laurl`: The PlayReady license server URL.
-- `service_id`: Unique VUDRM service ID for Vualto in Base64.
-- `service_id_guid`: Unique VUDRM service ID for Vualto as a GUID.
+- `service_id`: Unique Studio DRM service ID for JW Player in Base64.
+- `service_id_guid`: Unique Studio DRM service ID for JW Player as a GUID.
 - `key_iv`: Additional random value to strengthen the PlayReady encryption.
 - `checksum`: Extra security value required by some older PlayReady solutions.
 
