@@ -2,7 +2,7 @@
 
 # Android Widevine SDK
 
-VUDRMWidevine is an Android Archive (AAR) which can be used during the media rendering pipeline to provide a DRM plugin to ExoPlayer 2.12.2 which will work with Vualto DRM workflow. VUDRMWidevine has been developed to specifically manage the session DRM, allowing complete asset and player management.
+VUDRMWidevine is an Android Archive (AAR) which can be used during the media rendering pipeline to provide a DRM plugin to ExoPlayer 2.12.2 which will work with Studio DRM workflow. VUDRMWidevine has been developed to specifically manage the session DRM, allowing complete asset and player management.
 
 Current release: v0.3.5 (277)
 
@@ -58,18 +58,18 @@ following to the repositories closure of your apps top level build.gradle file:
 	
 ## Example Usage
 
-Instances of VUDRMWidevine are associated with specific assets. Offline assets can be tracked using Exoplayers OfflineLicenseHelper, DownloadService, and DownloadTracker classes. Two types of session are available, determined by the current session's VUDRM token policy, and the asset configuration.
+Instances of VUDRMWidevine are associated with specific assets. Offline assets can be tracked using Exoplayers OfflineLicenseHelper, DownloadService, and DownloadTracker classes. Two types of session are available, determined by the current session's Studio DRM token policy, and the asset configuration.
 
-For further information about VUDRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
+For further information about Studio DRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 
 ### Online and Offline Streaming Sessions
 
-Exoplayer 12 introduces more 'under the hood' management of DRM assets, which simplifies the flow for online and offline streaming sessions. For an example of implementation we recommend referring to our multiple asset VUDRM Widevine demo application, which is directly adapted from Exoplayers demo application. To manage the required modification of license calls we have added a simple `VudrmHelper` class to the demo application.
+Exoplayer 12 introduces more 'under the hood' management of DRM assets, which simplifies the flow for online and offline streaming sessions. For an example of implementation we recommend referring to our multiple asset Studio DRM Widevine demo application, which is directly adapted from Exoplayers demo application. To manage the required modification of license calls we have added a simple `VudrmHelper` class to the demo application.
 	
 Asset configurations should contain at least a stream `name`,`uri`,`drm_scheme`("widevine"), and a `drm_license_url`. Tokens may be presented using either Exoplayers license header `drm_key_request_properties`, or a URL encoded token may instead be added to the license server URI, eg: `"drm_license_uri": "https://widevine-license.staging.vudrm.tech/proxy?token=vualto-token-value"`.
 
 
-1.	To implement VUDRM Widevine, instantiate an AssetConfiguration using the fluent interface for both online and offline sessions. Minimally you need to provide the contents KID, DRM token, and license server URI.
+1.	To implement Studio DRM Widevine, instantiate an AssetConfiguration using the fluent interface for both online and offline sessions. Minimally you need to provide the contents KID, DRM token, and license server URI.
 
 	```java
 	assetConfiguration = new AssetConfiguration.Builder()
@@ -116,7 +116,7 @@ Internally
 
 - Exoplayer 12 for AndroidX introduced a requirement that the PSSH box be present in the main manifest. If the PSSH box is not present in the main manifest then Exoplayers `DefaultDrmSessionManager` will throw this error `MissingSchemeDataException: Media does not support uuid: edef8ba9-79d6-4ace-a3c8-27dcd51d21ed`.
 
-- 32-bit devices displayed issues where a license expiry time (secs) is too large to be handled, it therefore returns 0 seconds remaining and considers the license expired. To work around this, always set the license expiry time in your VUDRM token policy. For further information about VUDRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
+- 32-bit devices displayed issues where a license expiry time (secs) is too large to be handled, it therefore returns 0 seconds remaining and considers the license expired. To work around this, always set the license expiry time in your Studio DRM token policy. For further information about Studio DRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 
 If you believe you have found any other issue, please contact us at support@vualto.com
 
@@ -125,7 +125,7 @@ If you believe you have found any other issue, please contact us at support@vual
 - Most issues are content related. You can use our demo application to test your own content by updating the `media.exolist.json` with your configurations.
 
 - Errors may also arise because the stream or asset configuration is not correct. 
-	- Tokens - You can easily eliminate token issues by beginning with an empty policy in the VUDRM token. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
+	- Tokens - You can easily eliminate token issues by beginning with an empty policy in the Studio DRM token. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 
 	
 If you are not able to play your content after checking it in our demo application please contact support@vualto.com with the demo application logs and the stream configuration used.

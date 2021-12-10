@@ -20,7 +20,7 @@ Current release:	iOS v1.0 (254)
 
 ### Overview
 
-VUDRMFairPlay SDK enables Apple’s AVPlayer from AVFoundation to securely request licenses from Vualto’s VUDRM cloud based DRM platform using an extended instance of AssetResourceLoaderDelegate.
+VUDRMFairPlay SDK enables Apple’s AVPlayer from AVFoundation to securely request licenses from JW Player's Studio DRM cloud based DRM platform using an extended instance of AssetResourceLoaderDelegate.
 
 The deployment scenario will allow Online Playback / Download and Offline Playback using an associated rental or persist token.
 
@@ -100,13 +100,13 @@ To provide complete configuration for each `Stream` object in the `Streams.plist
  - A `name` for the content. This will be the readable display name and is not used by the SDK. This may differ from the `content_id`.
  - A `content_id` for the content, being the same content ID that the content was prpeared with. This value will always be the last path component of the stream `content_key_id_list` or `skd://` URI entry. Our demo application shows how to retrieve and parse the `content_key_id_list`, however, the `content_id` always needs to be provided for use with offline assets.
  - An `is_protected` boolean value which indicates that the `Stream` object is protected with DRM. This setting would not be needed in scenarios where all content is protected, as all assets can be set as protected by default in the source code. 
- - A `vudrm-token` which must be correctly generated for the type of instance you wish to create. Example VUDRM token type templates available are:
+ - A `vudrm-token` which must be correctly generated for the type of instance you wish to create. Example Studio DRM token type templates available are:
 	- Fairplay Rental `{"type": "r","duration_rental": 3600}`
 		- Fairplay Rental tokens may only be used to stream online content to devices running iOS 12 or higher.
 	- Fairplay Persist `{"type": "p","duration_persist": 3600}`
  		- Fairplay Persist tokens may be used to stream online content and play offline (downloaded) content to devices running iOS 12 or higher.
 
-For further information about VUDRM please contact us, or refer to our documentation:
+For further information about Studio DRM please contact us, or refer to our documentation:
 [https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html)
 
 For added convenience, VUDRMFairPlay also bubbles up notifications of errors and progress during the licensing request.

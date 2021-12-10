@@ -2,9 +2,9 @@
 
 ####vudrmFairPlaySDK - Current release:	iOS v1.0 (22) tvOS v1.0 (23)
 
-Vualto are pleased to announce the release of the new `vudrmFairPlaySDK` for iOS and tvOS.
+JW Player are pleased to announce the release of the new `vudrmFairPlaySDK` for iOS and tvOS.
 
-Our earlier `vudrmFairPlay` iOS and tvOS SDK was originally based on Apple's 2015 example of FairPlay implementation using the AVAssetResourceLoader API and `AssetResourceLoaderDelegate` class. Apple later announced the AVContentKeySession API using the `ContentKeyDelegate` class, which introduced new features. Vualto has developed our new `vudrmFairPlaySDK` for iOS and tvOS to allow a single SDK to be used with both AVAssetResourceLoader  - `AssetResourceLoaderDelegate` and AVContentKeySession  - `ContentKeyDelegate` based projects, and to fully expose all the classes and methods that may be required to take advantage of the latest features.
+Our earlier `vudrmFairPlay` iOS and tvOS SDK was originally based on Apple's 2015 example of FairPlay implementation using the AVAssetResourceLoader API and `AssetResourceLoaderDelegate` class. Apple later announced the AVContentKeySession API using the `ContentKeyDelegate` class, which introduced new features. JW Player has developed our new `vudrmFairPlaySDK` for iOS and tvOS to allow a single SDK to be used with both AVAssetResourceLoader  - `AssetResourceLoaderDelegate` and AVContentKeySession  - `ContentKeyDelegate` based projects, and to fully expose all the classes and methods that may be required to take advantage of the latest features.
 
 All projects developed using our original `vudrmFairPlay` framework will have been based on the AVAssetResourceLoader API and `AssetResourceLoaderDelegate` class. Only these projects would need to be migrated.
 
