@@ -1,7 +1,7 @@
-VUDRM DOCUMENTATION
+Studio DRM DOCUMENTATION
 ===================
 
-The VUDRM platform provides a variety of services that allow you to protect your OTT video content; 
+The Studio DRM, formerly VUDRM, platform provides a variety of services that allow you to protect your OTT video content; 
 It has device agnostic support for Microsoft PlayReady, Google Widevine, and FairPlay Streaming and is supported by all major players.
 
 If you have any questions or need assistance in using this platform, please contact info@vualto.com.
@@ -11,7 +11,7 @@ If you have any questions or need assistance in using this platform, please cont
    :hidden:
    
    ALL DOCUMENTATION <https://docs.vualto.com>
-   VUDRM <https://docs.vualto.com/projects/vudrm/en/latest/index.html>
+   Studio DRM <https://docs.vualto.com/projects/vudrm/en/latest/index.html>
 
 Contents:
 ---------
