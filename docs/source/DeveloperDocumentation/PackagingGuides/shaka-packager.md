@@ -37,9 +37,9 @@ Packaging completed successfully.
 
 CPIX Documents are required to give Shaka Packager the necessary information in order to encrypt your media.
 
-You can retrieve these documents from the VUDRM Admin site. 
+You can retrieve these documents from the Studio DRM Admin site. 
 
-A guide can be found at the following link - [VUDRM Admin - CPIX Document Request](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#vudrm-encryption-keys)
+A guide can be found at the following link - [Studio DRM Admin - CPIX Document Request](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#vudrm-encryption-keys)
 
 More information on our CPIX Key Provider API can be found at the following link - [CPIX Key Provider API](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cpix-key-provider-api)
 
@@ -122,7 +122,7 @@ Below is an example of how we can send a request to Shaka Packager to encrypt ou
 
 ## Testing packaged content
 
-Upload your packaged files and manifest to AWS S3 or an equivalent hosting service. You can now test your newly packaged content with our player on the VUDRM Admin site.
+Upload your packaged files and manifest to AWS S3 or an equivalent hosting service. You can now test your newly packaged content with our player on the Studio DRM Admin site.
 
 A guide can be found at the following link - [Test Your Stream](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#test-your-stream)
 
