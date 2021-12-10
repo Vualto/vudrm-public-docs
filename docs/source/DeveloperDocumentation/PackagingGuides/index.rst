@@ -6,6 +6,7 @@ PACKAGING GUIDES
 
    aws.md
    nginx-vod-module.md
+   shaka-packager.md
    usp.md
    wowza.md
 
