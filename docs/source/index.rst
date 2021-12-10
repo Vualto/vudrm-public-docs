@@ -1,4 +1,4 @@
-Studio DRM DOCUMENTATION
+STUDIO DRM DOCUMENTATION
 ===================
 
 The Studio DRM, formerly VUDRM, platform provides a variety of services that allow you to protect your OTT video content; 
@@ -11,7 +11,7 @@ If you have any questions or need assistance in using this platform, please cont
    :hidden:
    
    ALL DOCUMENTATION <https://docs.vualto.com>
-   Studio DRM <https://docs.vualto.com/projects/vudrm/en/latest/index.html>
+   STUDIO DRM <https://docs.vualto.com/projects/vudrm/en/latest/index.html>
 
 Contents:
 ---------
