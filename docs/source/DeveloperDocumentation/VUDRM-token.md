@@ -98,7 +98,7 @@ The values that can be specified in the Widevine section are as follows:
 
 ### Online renewable licenses in Widevine
 
-In order to have online licenses automatically renew when using Widevine you must first ensure the policy your VUDRM token is using contains `can_renew` set to `true`. With this value set Widevine will try to renew the license. This renewal will happen every 1800 seconds, although we can configure value so that license requests are more/less frequent based on your business needs. Although new licenses will be fetched at regular intervals, this interval is not based on when a license will expire and as such it is required that the license is valid for longer than the length of the interval between renewals. Below is an example policy for a rewnable license that is only valid for 45 minutes but will renew ever 30 minues.
+In order to have online licenses automatically renew when using Widevine you must first ensure the policy your VUDRM token is using contains `can_renew` set to `true`. With this value set Widevine will try to renew the license. This renewal will happen every 1800 seconds, although we can configure value so that license requests are more/less frequent based on your business needs. Although new licenses will be fetched at regular intervals, this interval is not based on when a license will expire and as such it is required that the license is valid for longer than the length of the interval between renewals. Below is an example policy for a renewable license that is only valid for 45 minutes but will renew ever 30 minutes.
 
 ```JSON
 {
@@ -108,7 +108,7 @@ In order to have online licenses automatically renew when using Widevine you mus
 ```
 
 ### Match content ID
-If `content_id` has been set and `match_content_id` has been set to `true`, when a license request is made the content ID in the license request and the content ID in the VUDRM token will be compared. If they **are** the same a license will be served as normal; if they are **not** the same the license request will be denied. If `match_content_id` has been set to `false` **or** `content_id` has not been specified then this comparision will not occur. 
+If `content_id` has been set and `match_content_id` has been set to `true`, when a license request is made the content ID in the license request and the content ID in the VUDRM token will be compared. If they **are** the same a license will be served as normal; if they are **not** the same the license request will be denied. If `match_content_id` has been set to `false` **or** `content_id` has not been specified then this comparison will not occur. 
 
 ### GEO whitelisting
 If `geo_whitelist` has been added to the DRM policy, when a license is requested the GEO location of the client's ip will be checked. If the country is in the whitelist the license request will be successful. If the country is not in the whitelist the request will be denied. E.g. if the DRM policy is `{ "geo_whitelist":[ "gbr", "deu" ] }` only users from the UK and Germany will be able to make successful license requests.
@@ -257,7 +257,7 @@ The `polbegin` and `polend` settings use the timezone set at the account level. 
 There are also limitations depending on environments that are not explained in the table. Please refer to the following sections for more detail:
 
 #### Match content ID
-If `content_id` has been set and `match_content_id` has been set to `true`, when a license request is made the content id in the license request and the content ID in the VUDRM token will be compared. If they **are** the same a license will be served as normal; if they are **not** the same the license request will be denied. If `match_content_id` has been set to `false` **or** `content_id` has not been specified then this comparision will not occur. 
+If `content_id` has been set and `match_content_id` has been set to `true`, when a license request is made the content id in the license request and the content ID in the VUDRM token will be compared. If they **are** the same a license will be served as normal; if they are **not** the same the license request will be denied. If `match_content_id` has been set to `false` **or** `content_id` has not been specified then this comparison will not occur. 
 
 #### GEO whitelisting
 If `geo_whitelist` has been added to the DRM policy, when a license is requested the GEO location of the client's ip will be checked. If the country is in the whitelist the license request will be successful. If the country is not in the whitelist the request will be denied. E.g. if the DRM policy is `{ "geo_whitelist":[ "gbr", "deu" ] }` only users from the UK and Germany will be able to make successful license requests.
