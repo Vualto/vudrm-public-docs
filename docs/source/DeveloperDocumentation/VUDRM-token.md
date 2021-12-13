@@ -64,7 +64,7 @@ The values that can be specified in the general section are as follows:
 |---------------------------|-------------------------|-------------------|-------------
 | `content_id`              | string                  | Any               | The content identifier. This is used in conjunction with `match_content_id` and for tracking content in the stats; it is not required.
 | `rental_duration_seconds` | int                     | Seconds           | How long the license is valid for before it is used.
-| `firstplayback_seconds`   | int                     | Seconds           | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback` when `liccache` is set to `no`.**
+| `firstplayback_seconds`   | int                     | Seconds           | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback_seconds` when `offline` is set to `false`.**
 | `offline`                 | bool                    | `true` or `false` | Should the license be cached for offline playback.
 | `can_renew`               | bool                    | `true` or `false` | Should the license be renewable.
 | `match_content_id`        | bool                    | `true` or `false` | Boolean for if the `content_id` in the token should be compared with the content id used in the license request; the content id in the license request will be the same as the content id used to generate the keys that encrypted a given piece of content.
