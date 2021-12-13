@@ -86,15 +86,15 @@ The values that can be specified in the PlayReady section are as follows:
 |----------------------------|-------------------------|---------------------------|-------------
 | `begin_datetime`           | datetime                | ISO 8601                  | The start date for the license.
 | `end_datetime`             | datetime                | ISO 8601                  | The end date for the license.
-| `firstplayback_seconds`    | int                     | Seconds                   | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback` when `liccache` is set to `no`.**
+| `firstplayback_seconds`    | int                     | Seconds                   | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback_seconds` when `offline` is set to `false`.**
 | `security_level`           | int                     | `150` OR `2000` OR `3000` | https://docs.microsoft.com/en-us/playready/overview/
 
 The values that can be specified in the Widevine section are as follows:
 | Key                        | Type                    | Format            | Description
 |----------------------------|-------------------------|-------------------|-------------
-| `rental_duration_seconds`  | int                     | Seconds           | How long the license is valid for before it's used. 
-| `license_duration_seconds` | int                     | Seconds           | How long the license is valid for after it's initial use.
-| `firstplayback_seconds`    | int                     | Seconds           | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback` when `liccache` is set to `no`.**
+| `rental_duration_seconds`  | int                     | Seconds           | How long the license is valid for before it's used, once playback has started this value is no longer enforced. **You can not use `firstplayback_seconds` when `offline` is set to `false`.**
+| `license_duration_seconds` | int                     | Seconds           | How long the license is valid for, once this time runs out the license will expire.
+| `firstplayback_seconds`    | int                     | Seconds           | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback_seconds` when `offline` is set to `false`.**
 
 ### Online renewable licenses in Widevine
 
