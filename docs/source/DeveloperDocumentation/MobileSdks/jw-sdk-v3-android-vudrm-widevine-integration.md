@@ -54,7 +54,7 @@ Ensure playback can be achieved with unprotected content either using your own a
         }
         }
         
-- Add a VUDRMCallback.java class to your project. This is the VUDRM MediaDrmCallback class, it prepares and handles the VUDRM Widevine license request. This class requires that a certificate server URL is provided.
+2. Add a VUDRMCallback.java class to your project. This is the VUDRM MediaDrmCallback class, it prepares and handles the VUDRM Widevine license request. This class requires that a certificate server URL is provided.
 
 		@TargetApi(18)
 		public class VUDRMCallback implements MediaDrmCallback {
