@@ -57,20 +57,33 @@ The values from the CPIX documents will need to be copied and pasted to the corr
 
 For more information, please refer to the documentation from [Bento4](https://www.bento4.com/documentation/mp4dash/).
 
-### Packaging Content with Widevine and Playready DRM
+### Packaging Content with Widevine and PlayReady DRM
 
 Below is an example of how we can send a request to Bento4 to encrypt our content with Widevine and PlayReady DRM and package it:
 
 ```text
-mp4dash --encryption-key=<key_id_hex_value>:<content_key_hex_value> --playready --widevine-header=#<Widevine_PSSH> --mpd-name=<name_of_manifest> <name_of_video_file>.mp4 <name_of_audio_file>.mp4
+mp4dash \
+--encryption-key=<key_id_hex_value>:<content_key_hex_value> \
+--playready \
+--widevine-header=#<Widevine_PSSH> \
+--mpd-name=<name_of_manifest>.mpd \
+<name_of_video_file>.mp4 \
+<name_of_audio_file>.mp4
 ```
 
-### Packaging Content with Fairplay DRM
+### Packaging Content with FairPlay DRM
 
-Below is an example of how we can send a request to Bento4 to encrypt our content with Fairplay DRM and package it:
+Below is an example of how we can send a request to Bento4 to encrypt our content with FairPlay DRM and package it:
 
 ```text
-mp4dash --hls --encryption-key=<key_id_hex>:<content_key_hex_value>:<iv_hex_value> --encryption-cenc-scheme=cbcs --fairplay-key-uri=<fairplay_laurl_value> --hls-master-playlist-name=<name_of_manifest> <name_of_video_file>.mp4 <name_of_audio_file>.mp4
+mp4dash \
+--hls \
+--encryption-key=<key_id_hex>:<content_key_hex_value>:<iv_hex_value> \
+--encryption-cenc-scheme=cbcs \
+--fairplay-key-uri=<fairplay_laurl_value> \
+--hls-master-playlist-name=<name_of_manifest>.m3u8 \
+<name_of_video_file>.mp4 \
+<name_of_audio_file>.mp4
 ```
 
 ## Testing packaged content
