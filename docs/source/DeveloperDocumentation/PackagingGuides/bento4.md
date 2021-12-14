@@ -2,7 +2,7 @@
 
 ## Installing Bento4
 
-You can download the binaries for your preferred OS from [Bento4](https://www.bento4.com/downloads/)
+You can download the binaries for your preferred OS from [Bento4](https://www.bento4.com/downloads/).
 
 Add the filepath for the binaries to the Bento4 `bin` folder as a value to your `Path` environemnt variables on your computer.
 
