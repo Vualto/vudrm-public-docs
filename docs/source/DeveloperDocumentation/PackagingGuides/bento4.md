@@ -2,7 +2,7 @@
 
 ## Installing Bento4
 
-You can download the binaries for Bento4 for your preferred OS at the following link - [Bento4 binaries](https://www.bento4.com/downloads/)
+You can download the binaries for your preferred OS from [Bento4](https://www.bento4.com/downloads/)
 
 Add the filepath for the binaries to the Bento4 `bin` folder as a value to your `Path` environemnt variables on your computer.
 
@@ -12,9 +12,7 @@ CPIX Documents are required to give Bento4 the necessary information in order to
 
 You can retrieve these documents from the VUDRM Admin site. 
 
-A guide can be found at the following link - [VUDRM Admin - CPIX Document Request](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#vudrm-encryption-keys)
-
-More information on our CPIX Key Provider API can be found at the following link - [CPIX Key Provider API](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cpix-key-provider-api)
+For more information, please view our documentation on [CPIX Document Requests](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#vudrm-encryption-keys) and our [CPIX Key Provider API](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cpix-key-provider-api).
 
 ### Examples of Each Document
 
@@ -57,11 +55,11 @@ Now you have retrieved the relevant documentation, you can package content with 
 
 The values from the CPIX documents will need to be copied and pasted to the corresponding section in the examples below.
 
-For more information, please refer to the Bento4 Documentation which can be found at the following link - [Bento4 Documentation](https://www.bento4.com/documentation/mp4dash/)
+For more information, please refer to the documentation from [Bento4](https://www.bento4.com/documentation/mp4dash/).
 
 ### Packaging Content with Widevine and Playready DRM
 
-Below is an example of how we can send a request to Bento4 to encrypt our content with Widevine and Playready DRM and package it:
+Below is an example of how we can send a request to Bento4 to encrypt our content with Widevine and PlayReady DRM and package it:
 
 ```text
 mp4dash --encryption-key=<key_id_hex_value>:<content_key_hex_value> --playready --widevine-header=#<Widevine_PSSH> --mpd-name=<name_of_manifest> <name_of_video_file>.mp4 <name_of_audio_file>.mp4
@@ -79,6 +77,6 @@ mp4dash --hls --encryption-key=<key_id_hex>:<content_key_hex_value>:<iv_hex_valu
 
 Upload your packaged files and manifest to AWS S3 or an equivalent hosting service. You can now test your newly packaged content with our player on the VUDRM Admin site.
 
-A guide can be found at the following link - [Test Your Stream](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#test-your-stream)
+For more information, please view our documentation on how to [Test Your Stream](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#test-your-stream).
 
 You can confirm a relevant license request has been made by checking the network tab of the browsers dev tools.
