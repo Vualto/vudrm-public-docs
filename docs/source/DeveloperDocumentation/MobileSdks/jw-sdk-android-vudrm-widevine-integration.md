@@ -56,7 +56,7 @@ If you require any assistance or further information with regard to the followin
     	}
 		}
 
-- Add **VUDRMCallback.java** to your project. This is the VUDRM `MediaDrmCallback` class that prepares and handles the VUDRM Widevine license request. Be sure to replace `INSERT_CERTIFICATE_URL` with a certificate server URL.
+2. Add **VUDRMCallback.java** to your project. This is the VUDRM `MediaDrmCallback` class that prepares and handles the VUDRM Widevine license request. Be sure to replace `INSERT_CERTIFICATE_URL` with a certificate server URL.
 
 		@TargetApi(18)
 		public class VUDRMCallback implements MediaDrmCallback {
