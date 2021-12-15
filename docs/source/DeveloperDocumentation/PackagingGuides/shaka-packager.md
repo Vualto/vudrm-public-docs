@@ -82,11 +82,11 @@ Now you have retrieved the relevant documentation, you can package content with 
 
 The values from the CPIX documents will need to be copied and pasted to the corresponding section in the examples below.
 
-For more information, please refer to the documentation from [Shaka Packager](https://google.github.io/shaka-packager/html/).
+For more information, please refer to the documentation from Google on [Shaka Packager](https://google.github.io/shaka-packager/html/).
 
 ### Packaging Content with Widevine and PlayReady DRM
 
-Below is an example of how we can send a request to Shaka Packager to encrypt our content with Widevine and PlayReady DRM and package it.
+Below is an example of how we can send a request to Shaka Packager to encrypt and package our content with Widevine and PlayReady DRM.
 
 Please note, the `Widevine_PSSH` from the CPIX Document is in Base64 format. Shaka Packager requires this to be in Hex format which can be achieved by running the following command `echo '<Widevine_PSSH>' | od -A n -t x1 | sed 's/ *//g'`:
 
@@ -103,7 +103,7 @@ Please note, the `Widevine_PSSH` from the CPIX Document is in Base64 format. Sha
 
 ### Packaging Content with FairPlay DRM
 
-Below is an example of how we can send a request to Shaka Packager to encrypt our content with FairPlay DRM and package it: 
+Below is an example of how we can send a request to Shaka Packager to encrypt and package our content with FairPlay DRM. 
 
 ```text
   packager \
