@@ -17,30 +17,30 @@ You will need to load the following libraries:
 The following code snippet can be found in the repo mentioned above here: [https://github.com/Vualto/vuplay-videojs/blob/master/src/vuplay.js](https://github.com/Vualto/vuplay-videojs/blob/master/src/vuplay.js)
 
 ```javascript
-const streamURL = "<your-stream-url>"
-const contentId = "<content-id>";
+const streamURL = "<your-stream-url>";
 
-const token = encodeURIComponent(
-    "<your-vudrm-token>"
-);
+const token = "<your-vudrm-token>";
 
 // playready
 const playReadyLicenseServerURL =
-    "https://playready-license.vudrm.tech/rightsmanager.asmx?token=" + token;
+    "https://playready-license.vudrm.tech/rightsmanager.asmx?token=" + encodeURIComponent(token);
 
 // widevine
 const widevineLicenseServerURL =
-    "https://widevine-license.vudrm.tech/proxy?token=" + token;
+    "https://widevine-license.vudrm.tech/proxy?token=" + encodeURIComponent(token);
 
 // fairplay
 const fairplayCertificateUri =
     "https://fairplay-license.vudrm.tech/certificate/<your-client-name>";
 
-const fairplayLicenseUri =
-    "https://fairplay-license.vudrm.tech/license/" +
-    contentId +
-    "?token=" +
-    token;
+var fairplayLicenseUri;
+
+var Utils = {
+    uint16ArrayToString: function(array) {
+        var uint16Array = new Uint16Array(array.buffer);
+        return String.fromCharCode.apply(String, uint16Array);
+    }
+};
 
 (function () {
     var player = videojs("my-video", {
@@ -56,7 +56,29 @@ const fairplayLicenseUri =
         keySystems: {
             "com.apple.fps.1_0": {
                 certificateUri: fairplayCertificateUri,
-                licenseUri: fairplayLicenseUri,
+                getContentId: function (emeOptions, initData, eme) {
+                    fairplayLicenseUri = "https://" + Utils.uint16ArrayToString(initData).split("skd://").pop();
+                    var contentId = fairplayLicenseUri.split("/").pop();
+                    return contentId;
+                },
+                getLicense: function (emeOptions, contentId, keyMessage, callback) {
+                    videojs.xhr({
+                        url: fairplayLicenseUri,
+                        method: 'POST',
+                        responseType: 'arraybuffer',
+                        body: keyMessage,
+                        headers: {
+                            'Content-type': 'application/octet-stream',
+                            'x-vudrm-token': token
+                        }
+                    }, (err, response, responseBody) => {
+                        if (err) {
+                            callback(err)
+                            return
+                        }
+                        callback(null, responseBody)
+                    })
+                },
             },
             "com.microsoft.playready": playReadyLicenseServerURL,
             "com.widevine.alpha": widevineLicenseServerURL,
