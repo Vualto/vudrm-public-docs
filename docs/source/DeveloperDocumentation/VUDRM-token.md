@@ -1,23 +1,23 @@
-# VUDRM TOKEN 
+# STUDIO DRM TOKEN 
 
-The VUDRM token has two purposes: authentication and the delivery of the DRM policy to the license server. It also represents a signed authorisation on the client's behalf for Vualto to issue a DRM license to the holder of the token, issuing a VUDRM token to a player will grant that player access to the DRM-protected content.
+The Studio DRM token has two purposes: authentication and the delivery of the DRM policy to the license server. It also represents a signed authorisation on the client's behalf for Vualto to issue a DRM license to the holder of the token, issuing a Studio DRM token to a player will grant that player access to the DRM-protected content.
 
-Due to the first purpose VUDRM tokens have a limited lifetime and are designed to be single use. Please contact support@vualto.com if you do not know what the VUDRM token's TTL is for your account.
+Due to the first purpose Studio DRM tokens have a limited lifetime and are designed to be single use. Please contact support@JW Player.com if you do not know what the Studio DRM token's TTL is for your account.
 
 The second purpose allows the user's playback rights for individual pieces of content to be set dynamically. A single user may be granted different rights on a single piece of content depending on business requirements.
 
-VUDRM tokens should be generated using the [VUDRM token API](#vudrm-token-api). The request to the [VUDRM token API](#vudrm-token-api) should be made from a server side application and the VUDRM token should then be delivered to the client side for use by a player in a license request.
+Studio DRM tokens should be generated using the [Studio DRM token API](#vudrm-token-api). The request to the [Studio DRM token API](#vudrm-token-api) should be made from a server side application and the Studio DRM token should then be delivered to the client side for use by a player in a license request.
 
 <div class="admonition warning">
     <p class="first admonition-title">Warning</p>
-    <p class="last">VUDRM tokens must not be generated on the client side.</p>
+    <p class="last">Studio DRM tokens must not be generated on the client side.</p>
 </div>
 
-## VUDRM token structure
+## Studio DRM token structure
 
 ```test-client|2018-26-11T11:01:04Z|cO9H1B2VKw0WyyNTOfoHEw==|05aff2dd06f4c52291b7a032c815ce8f599cf409```
 
-The VUDRM token is comprised of four components each separated by the pipe character (ASCII code 124):
+The Studio DRM token is comprised of four components each separated by the pipe character (ASCII code 124):
 - The client name.
 - The time the token was generated in an ISO8601 format (yyyy-MM-ddThh:mm:ssZ).
 - The encrypted DRM policy.
@@ -25,12 +25,12 @@ The VUDRM token is comprised of four components each separated by the pipe chara
 
 <div class="admonition danger">
     <p class="first admonition-title">Danger</p>
-    <p class="last">VUDRM tokens are designed to be single use and have a one to one relationship with the license request. Each license request must use a new VUDRM token. VUDRM tokens will expire, the TTL is set at an account level and in production will be set to around 30 seconds. The time a token will expire is calculated by the time the token is generated plus the TTL; The time a token was generated is displayed in the token. This is a separate time to the DRM policy times set in the encrypted DRM policy.</p>
+    <p class="last">Studio DRM tokens are designed to be single use and have a one to one relationship with the license request. Each license request must use a new Studio DRM token. Studio DRM tokens will expire, the TTL is set at an account level and in production will be set to around 30 seconds. The time a token will expire is calculated by the time the token is generated plus the TTL; The time a token was generated is displayed in the token. This is a separate time to the DRM policy times set in the encrypted DRM policy.</p>
 </div>
 
 ## DRM policy
 
-The DRM policy is included in the VUDRM token as the encrypted third component. When using multiple DRM providers the parameters that are applicable to `ALL` will work across all DRM technologies. Parameters specific to one DRM provider can be used but will be ignored if not relevant. For example, a VUDRM token can be created that pertains to both Widevine and PlayReady. Any PlayReady specific parameters will only be applied when a PlayReady licence is required and will be ignored for Widevine.
+The DRM policy is included in the Studio DRM token as the encrypted third component. When using multiple DRM providers the parameters that are applicable to `ALL` will work across all DRM technologies. Parameters specific to one DRM provider can be used but will be ignored if not relevant. For example, a Studio DRM token can be created that pertains to both Widevine and PlayReady. Any PlayReady specific parameters will only be applied when a PlayReady licence is required and will be ignored for Widevine.
 
 | Key                | Type     | Format                    | Applicable DRM | Description                                                                                                                     |
 |--------------------|----------|---------------------------|----------------|---------------------------------------------------------------------------------------------------------------------------------|
@@ -76,14 +76,14 @@ The `polbegin` and `polend` settings use the timezone set at the account level. 
 There are also limitations depending on environments that are not explained in the table. Please refer to the following sections for more detail:
 
 ### Match content id
-If `content_id` has been set and `match_content_id` has been set to `true`, when a license request is made the content id in the license request and the content id in the VUDRM token will be compared. If they **are** the same a license will be served as normal; if they are **not** the same the license request will be denied. If `match_content_id` has been set to `false` **or** `content_id` has not been specified then this comparision will not occur. 
+If `content_id` has been set and `match_content_id` has been set to `true`, when a license request is made the content id in the license request and the content id in the Studio DRM token will be compared. If they **are** the same a license will be served as normal; if they are **not** the same the license request will be denied. If `match_content_id` has been set to `false` **or** `content_id` has not been specified then this comparision will not occur. 
 
 ### GEO whitelisting
 If `geo_whitelist` has been added to the DRM policy, when a license is requested the GEO location of the client's ip will be checked. If the country is in the whitelist the license request will be successful. If the country is not in the whitelist the request will be denied. E.g. if the DRM policy is `{ "geo_whitelist":[ "gbr", "deu" ] }` only users from the UK and Germany will be able to make successful license requests.
 
 ### DRM Session in policy
 
-It is possible to set in the policy used by VUDRM token information about the current DRM session. With this information we will make a request to make to an API of your choosing with an ID and any needed headers. You can set the request to be either a GET request or a POST request. In the case of a GET request we would make a GET request to the URL you specify with a query string parameter called `sessionId` set to ID the passed in the policy. E.g. a GET request to `https://some-url.com/valid?sessionId=abc123`. In the case of a POST request we would make a POST request to the URL you specify with the body of the request being the `sessionId` in JSON. E.g. a POST request to `https://some-url.com/valid` with the body being `{"sessionId":"abc123"}`. The result of the request we make will dictate whether or not a license is returned. If the result **is** a `200` we will serve a valid license back. If the result is **not** a `200` we will not return a valid license. 
+It is possible to set in the policy used by Studio DRM token information about the current DRM session. With this information we will make a request to make to an API of your choosing with an ID and any needed headers. You can set the request to be either a GET request or a POST request. In the case of a GET request we would make a GET request to the URL you specify with a query string parameter called `sessionId` set to ID the passed in the policy. E.g. a GET request to `https://some-url.com/valid?sessionId=abc123`. In the case of a POST request we would make a POST request to the URL you specify with the body of the request being the `sessionId` in JSON. E.g. a POST request to `https://some-url.com/valid` with the body being `{"sessionId":"abc123"}`. The result of the request we make will dictate whether or not a license is returned. If the result **is** a `200` we will serve a valid license back. If the result is **not** a `200` we will not return a valid license. 
 
 There are four parts to the session information: 
 
@@ -123,13 +123,13 @@ The structure of the session information in a policy should be as follows:
 ```
 
 ### Default DRM policy
-It is possible to specify a default DRM policy that will be used when we receive a VUDRM token. For example if you wish for all licenses requested to default to caching the license, the default DRM policy would be `{ "liccache":"yes" }`, meaning a VUDRM token with the policy `{ "polend":"DD-MM-YYYY HH:mm:ss" }` would be the same as `{ "liccache":"yes", "polend":"DD-MM-YYYY HH:mm:ss" }`. The values in the default policy can be overridden by simply putting them in the policy you pass in the VUDRM token. For example if the default DRM policy was `{ "liccache":"yes" }` but you wanted a license to not be cached, the policy in the VUDRM token would be `{ "liccache":"no" }`. Any of the values listed above can be be set in the default DRM policy.
+It is possible to specify a default DRM policy that will be used when we receive a Studio DRM token. For example if you wish for all licenses requested to default to caching the license, the default DRM policy would be `{ "liccache":"yes" }`, meaning a Studio DRM token with the policy `{ "polend":"DD-MM-YYYY HH:mm:ss" }` would be the same as `{ "liccache":"yes", "polend":"DD-MM-YYYY HH:mm:ss" }`. The values in the default policy can be overridden by simply putting them in the policy you pass in the Studio DRM token. For example if the default DRM policy was `{ "liccache":"yes" }` but you wanted a license to not be cached, the policy in the Studio DRM token would be `{ "liccache":"no" }`. Any of the values listed above can be be set in the default DRM policy.
 
 If you wish to utilise this feature please contact support@vualto.com.
 
 ### PlayReady DRM policy
 
-PlayReady has an extensive list of policy options described [here](https://docs.microsoft.com/en-us/playready/overview/license-and-policies). The majority of these options are supported via the VUDRM token's policy. Please contact support@vualto.com for more details.
+PlayReady has an extensive list of policy options described [here](https://docs.microsoft.com/en-us/playready/overview/license-and-policies). The majority of these options are supported via the Studio DRM token's policy. Please contact support@vualto.com for more details.
 
 ### Fairplay DRM policy
 
@@ -153,7 +153,7 @@ You can specify a `lease` license by setting the `type` key to `l` in the DRM po
 
 You can set the expiry of the license using the `duration_lease` key or the `polend` key. If both `duration_lease` and `polend` are set in a policy then `duration_lease` will be used.
 
-Using the `type` of `lease` will cause playback to stop at the license expiry. Normally a player will make a new license request at this point, please ensure the VUDRM token is updated before further license requests are made. Using an expired VUDRM token will cause the license request to fail.
+Using the `type` of `lease` will cause playback to stop at the license expiry. Normally a player will make a new license request at this point, please ensure the Studio DRM token is updated before further license requests are made. Using an expired Studio DRM token will cause the license request to fail.
 
 #### Fairplay persist DRM policy
 
@@ -212,11 +212,11 @@ This policy is designed for an offline playback scenario. The license generated 
 }
 ```
 
-## VUDRM token API
+## Studio DRM token API
 
-VUDRM tokens can be generated by making a request to the VUDRM token api: https://token.vudrm.tech/generate
+Studio DRM tokens can be generated by making a request to the Studio DRM token api: https://token.vudrm.tech/generate
 
-The request to the VUDRM token API needs to be a POST and requires an `API_KEY` header with your account API key as the value. Please contact support@vualto.com if you do not have this.
+The request to the Studio DRM token API needs to be a POST and requires an `API_KEY` header with your account API key as the value. Please contact support@vualto.com if you do not have this.
 
 The body of the POST request comprises of the account name and the DRM policy.
 
@@ -232,7 +232,7 @@ For example:
 }   
 ``` 
 
-An example request to the VUDRM token API in curl is:
+An example request to the Studio DRM token API in curl is:
 
 ```bash
 curl -X POST \
