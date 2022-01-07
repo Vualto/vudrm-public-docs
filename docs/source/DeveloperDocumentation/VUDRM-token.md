@@ -74,6 +74,7 @@ The values that can be specified in the general section are as follows:
 | `client_data`             | list of key value pairs | JSON              | A list for extra information you wish to provide. Can be used to filter license stats.
 
 The values that can be specified in the Fairplay section are as follows:
+
 | Key                        | Type                    | Format            | Description |
 |----------------------------|-------------------------|-------------------|-------------|
 | `rental_duration_seconds`  | int                     | Seconds           | When using the `license_type` of `r` this value will be used. Playback will continue after license expiry until the encryption keys change.
@@ -82,16 +83,16 @@ The values that can be specified in the Fairplay section are as follows:
 | `license_type`             | string                  | `r` OR `l` OR `p` | The type of license, rental (`r`), lease (`l`), or persistant (`p`). Setting `offine` to `true` will override this setting, forcing `license_type` to be `p`.
 
 The values that can be specified in the PlayReady section are as follows:
-| Key                        | Type                    | Format                    | Description
-|----------------------------|-------------------------|---------------------------|-------------
+| Key                        | Type                    | Format                    | Description |
+|----------------------------|-------------------------|---------------------------|-------------|
 | `begin_datetime`           | datetime                | ISO 8601                  | The start date for the license.
 | `end_datetime`             | datetime                | ISO 8601                  | The end date for the license.
 | `firstplayback_seconds`    | int                     | Seconds                   | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback_seconds` when `offline` is set to `false`.**
 | `security_level`           | int                     | `150` OR `2000` OR `3000` | https://docs.microsoft.com/en-us/playready/overview/
 
 The values that can be specified in the Widevine section are as follows:
-| Key                        | Type                    | Format            | Description
-|----------------------------|-------------------------|-------------------|-------------
+| Key                        | Type                    | Format            | Description |
+|----------------------------|-------------------------|-------------------|-------------|
 | `rental_duration_seconds`  | int                     | Seconds           | How long the license is valid for before it's used, once playback has started this value is no longer enforced. **You can not use `firstplayback_seconds` when `offline` is set to `false`.**
 | `license_duration_seconds` | int                     | Seconds           | How long the license is valid for, once this time runs out the license will expire.
 | `firstplayback_seconds`    | int                     | Seconds           | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback_seconds` when `offline` is set to `false`.**
