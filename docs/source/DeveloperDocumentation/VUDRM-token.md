@@ -74,8 +74,8 @@ The values that can be specified in the general section are as follows:
 | `client_data`             | list of key value pairs | JSON              | A list for extra information you wish to provide. Can be used to filter license stats.
 
 The values that can be specified in the Fairplay section are as follows:
-| Key                        | Type                    | Format            | Description
-|----------------------------|-------------------------|-------------------|-------------
+| Key                        | Type                    | Format            | Description |
+|----------------------------|-------------------------|-------------------|-------------|
 | `rental_duration_seconds`  | int                     | Seconds           | When using the `license_type` of `r` this value will be used. Playback will continue after license expiry until the encryption keys change.
 | `license_duration_seconds` | int                     | Seconds           | When using the `license_type` of `l` this value will be used. The will cause playback to stop at the license expiry. Normally a player will make a new license request at this point, please ensure the VUDRM token is updated before further license requests are made. Using an expired VUDRM token will cause the license request to fail.
 | `firstplayback_seconds`    | int                     | Seconds           | When using the `license_type` of `p` this value will be used. Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback_seconds` when `offline` is set to `false`.**
