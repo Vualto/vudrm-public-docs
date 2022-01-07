@@ -83,6 +83,7 @@ The values that can be specified in the Fairplay section are as follows:
 | `license_type`             | string                  | `r` OR `l` OR `p` | The type of license, rental (`r`), lease (`l`), or persistant (`p`). Setting `offine` to `true` will override this setting, forcing `license_type` to be `p`.
 
 The values that can be specified in the PlayReady section are as follows:
+
 | Key                        | Type                    | Format                    | Description |
 |----------------------------|-------------------------|---------------------------|-------------|
 | `begin_datetime`           | datetime                | ISO 8601                  | The start date for the license.
@@ -91,6 +92,7 @@ The values that can be specified in the PlayReady section are as follows:
 | `security_level`           | int                     | `150` OR `2000` OR `3000` | https://docs.microsoft.com/en-us/playready/overview/
 
 The values that can be specified in the Widevine section are as follows:
+
 | Key                        | Type                    | Format            | Description |
 |----------------------------|-------------------------|-------------------|-------------|
 | `rental_duration_seconds`  | int                     | Seconds           | How long the license is valid for before it's used, once playback has started this value is no longer enforced. **You can not use `firstplayback_seconds` when `offline` is set to `false`.**
