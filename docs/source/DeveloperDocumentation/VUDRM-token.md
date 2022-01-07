@@ -60,8 +60,8 @@ Values specified in a DRM specifc section will override values in the general se
 
 The values that can be specified in the general section are as follows:
 
-| Key                       | Type                    | Format            | Description
-|---------------------------|-------------------------|-------------------|-------------
+| Key                       | Type                    | Format            | Description |
+|---------------------------|-------------------------|-------------------|-------------|
 | `content_id`              | string                  | Any               | The content identifier. This is used in conjunction with `match_content_id` and for tracking content in the stats; it is not required.
 | `rental_duration_seconds` | int                     | Seconds           | How long the license is valid for before it is used.
 | `firstplayback_seconds`   | int                     | Seconds           | Once playback is initiated the user will have this window to complete playback. Once the window completes the license will expire. **You can not use `firstplayback_seconds` when `offline` is set to `false`.**
