@@ -14,7 +14,7 @@ You will need to load the following libraries:
     <script src="https://unpkg.com/videojs-contrib-eme@3.7.0/dist/videojs-contrib-eme.js"></script>
 ```
 
-The following code snippet can be found in the repo mentioned above here: [https://github.com/Vualto/vuplay-videojs/blob/master/src/vuplay.js](https://github.com/Vualto/vuplay-videojs/blob/master/src/vuplay.js)
+The following code snippet can be found in our [vuplay videojs repo](https://github.com/Vualto/vuplay-videojs/blob/master/src/vuplay.js).
 
 ```javascript
 const streamURL = "<your-stream-url>";
