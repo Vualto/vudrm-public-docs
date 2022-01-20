@@ -20,7 +20,7 @@
 
 ## December 2021
 
-* Internal improvements to our Config API - added functionality to integrate with JW Player systems.
+* Internal improvements to our Config API. Added functionality to integrate with JW Player systems.
 
 * Internal improvements to our CPIX API.
 
