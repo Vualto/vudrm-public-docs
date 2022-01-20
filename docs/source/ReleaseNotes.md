@@ -40,7 +40,7 @@
 
 ## October 2021
 
-* Improvements to our FairPlay, Widevine and KP API systems to be compatible with Token v2.
+* Improvements to our FairPlay, Widevine, and KP API systems to be compatible with Token v2.
 
 * Improvements to VUDRM Admin. HLS JS can now be enabled in the public player.
 
