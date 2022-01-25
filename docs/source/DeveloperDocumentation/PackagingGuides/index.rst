@@ -9,4 +9,5 @@ PACKAGING GUIDES
    shaka-packager.md
    usp.md
    wowza.md
+   bento4.md
 
