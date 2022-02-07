@@ -39,9 +39,7 @@ CPIX Documents are required to give Shaka Packager the necessary information in 
 
 You can retrieve these documents from the Studio DRM Admin site. 
 
-A guide can be found at the following link - [Studio DRM Admin - CPIX Document Request](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#vudrm-encryption-keys)
-
-More information on our CPIX Key Provider API can be found at the following link - [CPIX Key Provider API](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cpix-key-provider-api)
+For more information, please view our documentation on [CPIX Document Requests](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#vudrm-encryption-keys) and our [CPIX Key Provider API](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cpix-key-provider-api).
 
 ### Examples of Each Document
 
@@ -84,11 +82,11 @@ Now you have retrieved the relevant documentation, you can package content with 
 
 The values from the CPIX documents will need to be copied and pasted to the corresponding section in the examples below.
 
-For more information, please refer to the Shaka Packager Documentation which can be found at the following link - [Shaka Packager Documentation](https://google.github.io/shaka-packager/html/)
+For more information, please refer to the documentation from Google on [Shaka Packager](https://google.github.io/shaka-packager/html/).
 
-### Packaging Content with Widevine and Playready DRM
+### Packaging Content with Widevine and PlayReady DRM
 
-Below is an example of how we can send a request to Shaka Packager to encrypt our content with Widevine and Playready DRM and package it.
+Below is an example of how we can send a request to Shaka Packager to encrypt and package our content with Widevine and PlayReady DRM.
 
 Please note, the `Widevine_PSSH` from the CPIX Document is in Base64 format. Shaka Packager requires this to be in Hex format which can be achieved by running the following command `echo '<Widevine_PSSH>' | od -A n -t x1 | sed 's/ *//g'`:
 
@@ -103,9 +101,9 @@ Please note, the `Widevine_PSSH` from the CPIX Document is in Base64 format. Sha
    --mpd_output /media/<name-of-manifest>.mpd
 ```
 
-### Packaging Content with Fairplay DRM
+### Packaging Content with FairPlay DRM
 
-Below is an example of how we can send a request to Shaka Packager to encrypt our content with Fairplay DRM and package it: 
+Below is an example of how we can send a request to Shaka Packager to encrypt and package our content with FairPlay DRM. 
 
 ```text
   packager \
@@ -114,7 +112,7 @@ Below is an example of how we can send a request to Shaka Packager to encrypt ou
    --protection_scheme cbcs \
    --enable_raw_key_encryption \
    --keys label=AUDIO:key_id=<key_id_hex_value>:key=<content_key_hex_value>,label=VIDEO:key_id=<key_id_hex_value>:key=<content_key_hex_value> \
-   --protection_systems Fairplay \
+   --protection_systems FairPlay \
    --iv <iv_hex_value> \
    --hls_master_playlist_output media/<name-of-manifest>.m3u8 \
    --hls_key_uri <fairplay_laurl_value>
@@ -124,6 +122,6 @@ Below is an example of how we can send a request to Shaka Packager to encrypt ou
 
 Upload your packaged files and manifest to AWS S3 or an equivalent hosting service. You can now test your newly packaged content with our player on the Studio DRM Admin site.
 
-A guide can be found at the following link - [Test Your Stream](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#test-your-stream)
+For more information, please view our documentation on how to [Test Your Stream](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#test-your-stream).
 
 You can confirm a relevant license request has been made by checking the network tab of the browsers dev tools.

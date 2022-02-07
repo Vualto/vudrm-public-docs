@@ -1,5 +1,7 @@
 # RELEASE NOTES 
 
+* [December 2021](#december-2021)
+* [November 2021](#november-2021)
 * [October 2021](#october-2021)
 * [September 2021](#september-2021)
 * [August 2021](#august-2021)
@@ -16,9 +18,29 @@
 * [July 2020](#july-2020)
 * [May 2020](#may-2020)
 
+## December 2021
+
+* Internal improvements to our Config API. Added functionality to integrate with JW Player systems.
+
+* Internal improvements to our CPIX API.
+
+## November 2021
+
+* Improvements to VUDRM Admin. Video.js and Dash.js added as an option for the public player.
+
+* Improvements to our PlayReady license server. Added support for Token v2.
+
+* Bug fixes on our FairPlay license server. Fixed an iOS issue when downloading content.
+
+* Internal improvements to our Stats API.
+
+* Internal improvements to our CPIX API.
+
+* Internal improvements to our KP API.
+
 ## October 2021
 
-* Improvements to our FairPlay, Widevine and KP API systems to be compatible with Token v2.
+* Improvements to our FairPlay, Widevine, and KP API systems to be compatible with Token v2.
 
 * Improvements to VUDRM Admin. HLS JS can now be enabled in the public player.
 
@@ -106,7 +128,7 @@
 
 ## November 2020
 
-* Fairplay license server now accepts a more standard request.
+* FairPlay license server now accepts a more standard request.
 
 * Improved internal logging.
 
