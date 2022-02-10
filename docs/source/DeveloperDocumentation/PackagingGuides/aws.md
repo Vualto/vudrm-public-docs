@@ -21,7 +21,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 
 ### 6. Set the type of stream.
 -   Use DASH-ISO if you want to use Playready or Widevine DRM
--   Use Apple HLS if you want to use Fairplay DRM
+-   Use Apple HLS if you want to use FairPlay DRM
 
 ### 7. Select the option to "Encrypt content".
 
@@ -30,7 +30,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 ### 9. Add appropriate System IDs.
 -   If you wish to use Widevine DRM use "edef8ba9-79d6-4ace-a3c8-27dcd51d21ed" as the System ID (only if output group is DASH ISO)
 -   If you wish to use Playready DRM use "9a04f079-9840-4286-ab92-e65be0885f95" as the System ID (only if output group is DASH ISO)
--   If you wish to use Fairplay DRM use "94ce86fb-07ff-4f43-adb8-93d2fa968ca2" as the System ID (only if output group is APPLE HLS)
+-   If you wish to use FairPlay DRM use "94ce86fb-07ff-4f43-adb8-93d2fa968ca2" as the System ID (only if output group is APPLE HLS)
 
 ### 10. Set the URL to that of your API gateway.
 
@@ -42,7 +42,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 
 ### 14. Load into a player to show the content working.
 #### Widevine
-- Open "https://admin.vudrm.tech/" in a new Google Chrome tab and log in, if you do not have a log in please contact support@vualto.com
+- Open "https://admin.vudrm.tech/" in a new Google Chrome tab and log in, if you do not have a log in please contact support@jwplayer.com
 - Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
 - Paste the endpoints URL into the "DASH Stream URL" box
 - Press "Load Player" 
@@ -70,7 +70,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 
 ### 7. Add an output group by clicking the “Add” button on the left of the screen next to “Output groups”.
 -	If you are using **Widevine** or **Playready** select “DASH ISO”
--	If you are using **Fairplay** select “Apple HLS”
+-	If you are using **FairPlay** select “Apple HLS”
 
 ### 8. Set the destination S3 bucket by pressing the “Browse” button.
 -	Select your bucket from the “S3 bucket” drop down
@@ -94,7 +94,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 -	Set the “System ID” to “9a04f079-9840-4286-ab92-e65be0885f95”
 -	Set the “URL” to that of your API gateway
 
-#### Fairplay (only if output group is Apple HLS)
+#### FairPlay (only if output group is Apple HLS)
 -	Press the toggle next to “DRM Encryption” to add the DRM information.
 -	Set “Encryption-method” to “SAMPLE-AES”
 -	Set “Key provider type” to “SPEKE”
@@ -125,7 +125,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 -	Select “Output 2” from the “Output groups” section on the left of the screen
 -	Select “Video” if not already selected and click the “Remove video” button
 
-#### Fairplay
+#### FairPlay
 -	Set the “Name modifier” for “Output 1” to “video-audio”
 -	Select “Output 1” from the “Output groups” section on the left of the screen
 -	Select “Video” if not already selected and set the “Bitrate (bits/s)” to “5000000”
@@ -149,7 +149,7 @@ In order to use our SPEKE API you will need to set up an API gateway that adds t
 
 ### 19. Load into a player to show the content working. (Use the same one as above)
 #### Widevine
-- Open "https://admin.vudrm.tech/" in a new Google Chrome tab and log in, if you do not have a log in please contact support@vualto.com
+- Open "https://admin.vudrm.tech/" in a new Google Chrome tab and log in, if you do not have a log in please contact support@jwplayer.com
 - Select "Configuration" from the left hand navigation menu and then select the "Test Your Stream" tab
 -	Return to your S3 tab and copy the link from the bottom of the page and paste it into "DASH Stream URL" box, it should look something like "https://s3-eu-west-1.amazonaws.com/YOUR-BUCKET/YOUR-FOLDER-NAME/manifest.mpd"
 - Press "Load Player" 

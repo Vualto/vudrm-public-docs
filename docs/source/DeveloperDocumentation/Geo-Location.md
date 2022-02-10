@@ -2,7 +2,7 @@
 
 This API can be used to retrieve geographical location information about IPv4 or IPv6 addresses.
 
-This service requires an API Key and client name. Please contact support@vualto.com if you do not have this information. 
+This service requires an API Key and client name. Please contact support@jwplayer.com if you do not have this information. 
 
 ## 1. Make a Request
 

@@ -2,7 +2,7 @@
 
 [Bitmovin](https://bitmovin.com) is an industry leading HTML5 video player.
 
-The [vuplay-bitmovin](https://github.com/Vualto/vuplay-bitmovin) repository demonstrates at a lower level how to integrate [VUDRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with Bitmovin.
+The [vuplay-bitmovin](https://github.com/Vualto/vuplay-bitmovin) repository demonstrates at a lower level how to integrate [Studio DRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with Bitmovin.
 
 ## Basic setup
 

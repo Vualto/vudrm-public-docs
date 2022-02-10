@@ -118,7 +118,7 @@ Internally
 
 - 32-bit devices displayed issues where a license expiry time (secs) is too large to be handled, it therefore returns 0 seconds remaining and considers the license expired. To work around this, always set the license expiry time in your Studio DRM token policy. For further information about Studio DRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 
-If you believe you have found any other issue, please contact us at support@vualto.com
+If you believe you have found any other issue, please contact us at support@jwplayer.com
 
 ## Troubleshooting
 
@@ -128,7 +128,7 @@ If you believe you have found any other issue, please contact us at support@vual
 	- Tokens - You can easily eliminate token issues by beginning with an empty policy in the Studio DRM token. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 
 	
-If you are not able to play your content after checking it in our demo application please contact support@vualto.com with the demo application logs and the stream configuration used.
+If you are not able to play your content after checking it in our demo application please contact support@jwplayer.com with the demo application logs and the stream configuration used.
 
 ## Release Notes
 

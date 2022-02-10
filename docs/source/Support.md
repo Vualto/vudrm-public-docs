@@ -2,7 +2,7 @@
 
 ## How to contact us 
 
-For all non-critical support requests please email support@vualto.com. If you are a registered user you can contact support via the [help centre](https://vualto.zendesk.com). 
+For all non-critical support requests please email support@jwplayer.com. 
 
 For all critical issues please contact support via one of the numbers below.
 
@@ -20,9 +20,9 @@ All requests made to and from VUDRM services will have a header called `x-reques
 
 On some requests you may find a header called `vualto-transaction-id`; this header was originally used for the same purpose as `x-request-id` header. In order to be more in line with industry standards, we are currently in the process of removing the `vualto-transaction-id` and replacing it with `x-request-id`. Please ensure that you use `x-request-id` contact support when contacting support and in any internal logging you perform.
 
-### Fairplay onboarding support
+### FairPlay onboarding support
 
-In order to configure Fairplay for use with VUDRM we need the following:
+In order to configure FairPlay for use with VUDRM we need the following:
 
 - Private key: This is normally named ‘privatekey.pem’ and is encrypted with a password.
 - Password for private key, so that the private key can be decrypted.

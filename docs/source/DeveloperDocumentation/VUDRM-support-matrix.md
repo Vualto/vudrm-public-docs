@@ -2,7 +2,7 @@
 
 **See bottom of page for caveats.**
 
-| Browsers | PlayReady | Widevine | Fairplay |
+| Browsers | PlayReady | Widevine | FairPlay |
 |-|-|-|-|
 | **Chrome** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
 | **Edge** _Windows 10^_ | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
@@ -11,7 +11,7 @@
 | **Safari** | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
 | **Opera** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
 
-| Mobile | PlayReady | Widevine | Fairplay |
+| Mobile | PlayReady | Widevine | FairPlay |
 |-|-|-|-|
 | **Android 4.4^** _VUDRMWidevine SDK: offline playback available_ | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
 | **Chrome mobile (Android)** | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
@@ -19,12 +19,12 @@
 | **Safari mobile (iOS)** _iOS 11.2^_ | <p>&#10008;</p> | <p>&#10008;</p> | <p>&#10004;</p> |
 | **Windows phone** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
 
-| Consoles | PlayReady | Widevine | Fairplay |
+| Consoles | PlayReady | Widevine | FairPlay |
 |-|-|-|-|
 | **PlayStation** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
 | **Xbox** | <p>&#10004;</p> | <p>&#10008;</p> | <p>&#10008;</p> |
 
-| Smart TVs | PlayReady | Widevine | Fairplay |
+| Smart TVs | PlayReady | Widevine | FairPlay |
 |-|-|-|-|
 | **Amazon Fire** | <p>&#10004;</p> | <p>&#10004;</p> | <p>&#10008;</p> |
 | **Android TV** _VUDRMWidevine SDK_ | <p>&#10008;</p> | <p>&#10004;</p> | <p>&#10008;</p> |

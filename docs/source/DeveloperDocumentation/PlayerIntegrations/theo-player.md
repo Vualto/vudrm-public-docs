@@ -2,7 +2,7 @@
 
 [THEOplayer](https://www.theoplayer.com) is an industry leading HTML5 video player.
 
-The [vuplay-theoplayer](https://github.com/vualto/vuplay-theoplayer) repository demonstrates at a lower level how to integrate [VUDRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with THEOplayer.
+The [vuplay-theoplayer](https://github.com/vualto/vuplay-theoplayer) repository demonstrates at a lower level how to integrate [Studio DRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with THEOplayer.
 
 ## Basic setup
 

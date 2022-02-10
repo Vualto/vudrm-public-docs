@@ -34,7 +34,7 @@ This SDK has a number of key benefits:
 
 The SDK is fully supported in both Objective-C and Swift applications. 
 
-A multiple asset demo application written in Swift, and based on Apple's FairPlay SDK example application, is available on request. Please contact [support@vualto.com](support@vualto.com) to request access.
+A multiple asset demo application written in Swift, and based on Apple's FairPlay SDK example application, is available on request. Please contact [support@jwplayer.com](support@jwplayer.com) to request access.
 
 ### Requirements
 
@@ -70,7 +70,7 @@ The project should now be ready to open and run in Xcode.
 
 Please see below for more information on using the demo application.
 
-If you are unable to use Cocoapods in your project, please contact [support@vualto.com](support@vualto.com) to discuss other options.
+If you are unable to use Cocoapods in your project, please contact [support@jwplayer.com](support@jwplayer.com) to discuss other options.
 
 ### Information about application transport security (ATS)
 
@@ -101,10 +101,10 @@ To provide complete configuration for each `Stream` object in the `Streams.plist
  - A `content_id` for the content, being the same content ID that the content was prpeared with. This value will always be the last path component of the stream `content_key_id_list` or `skd://` URI entry. Our demo application shows how to retrieve and parse the `content_key_id_list`, however, the `content_id` always needs to be provided for use with offline assets.
  - An `is_protected` boolean value which indicates that the `Stream` object is protected with DRM. This setting would not be needed in scenarios where all content is protected, as all assets can be set as protected by default in the source code. 
  - A `vudrm-token` which must be correctly generated for the type of instance you wish to create. Example Studio DRM token type templates available are:
-	- Fairplay Rental `{"type": "r","duration_rental": 3600}`
-		- Fairplay Rental tokens may only be used to stream online content to devices running iOS 12 or higher.
-	- Fairplay Persist `{"type": "p","duration_persist": 3600}`
- 		- Fairplay Persist tokens may be used to stream online content and play offline (downloaded) content to devices running iOS 12 or higher.
+	- FairPlay Rental `{"type": "r","duration_rental": 3600}`
+		- FairPlay Rental tokens may only be used to stream online content to devices running iOS 12 or higher.
+	- FairPlay Persist `{"type": "p","duration_persist": 3600}`
+ 		- FairPlay Persist tokens may be used to stream online content and play offline (downloaded) content to devices running iOS 12 or higher.
 
 For further information about Studio DRM please contact us, or refer to our documentation:
 [https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html)
@@ -231,7 +231,7 @@ and is in the: `override func tableView(_ tableView: UITableView, accessoryButto
 
 ### Known Issues
 
-- If you believe you have found any issues, please contact us at support@vualto.com
+- If you believe you have found any issues, please contact us at support@jwplayer.com
 
 ### Troubleshooting
 
@@ -242,7 +242,7 @@ and is in the: `override func tableView(_ tableView: UITableView, accessoryButto
 	
 	- Tokens - You can easily eliminate token issues by beginning with a default FairPlay token policy. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our token [documentation](https://docs.vualto.com/projects/vudrm/en/latest/VUDRM-token.html).
 	
-If you are not able to play your content after checking it in our demo application please contact support@vualto.com with the demo application logs and the stream configuration used.
+If you are not able to play your content after checking it in our demo application please contact support@jwplayer.com with the demo application logs and the stream configuration used.
 
 ### Release notes (iOS / tvOS)
 

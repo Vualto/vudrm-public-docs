@@ -48,7 +48,7 @@ Each DRM service has limitations to how their policy can be altered. Please read
 
 * [DRM Policy](../DeveloperDocumentation/VUDRM-token.html#drm-policy)
 * [PlayReady DRM Policy](../DeveloperDocumentation/VUDRM-token.html#playready-drm-policy)
-* [Fairplay DRM Policy](../DeveloperDocumentation/VUDRM-token.html#fairplay-drm-policy)
+* [FairPlay DRM Policy](../DeveloperDocumentation/VUDRM-token.html#fairplay-drm-policy)
 * [Widevine DRM Policy](../DeveloperDocumentation/VUDRM-token.html#widevine-drm-policy)
 
 ### Studio DRM Token

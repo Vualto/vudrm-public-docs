@@ -50,7 +50,7 @@ location /drm {
 ```
 
 This will give you support for DASH with Widevine and PlayReady.
-To support HLS with Fairplay you will need to add the following to your hls endpoint.
+To support HLS with FairPlay you will need to add the following to your hls endpoint.
 ```
 vod_hls_encryption_method sample-aes;
 vod_hls_encryption_key_uri "skd://fairplay-license.vudrm.tech/v2/license/<content-id>";

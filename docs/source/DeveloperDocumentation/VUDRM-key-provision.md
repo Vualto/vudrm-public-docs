@@ -6,7 +6,7 @@ The Studio DRM, formerly VUDRM, key provision service exposes the generation of 
 
 We recommend using our CPIX API to fetch Studio DRM encryption keys in CPIX XML document format. Compatible with Unified Streaming (version 1.9.3 and above).
 This API can also be used to return the keys from the CPIX document in JSON format; for more information on this please see the [JSON keys](#json-keys) section.
-All requests made to this API will require your API key set as the header `API-KEY`. If you do not know or have not been given your API key please contact support@vualto.com.
+All requests made to this API will require your API key set as the header `API-KEY`. If you do not know or have not been given your API key please contact support@jwplayer.com.
 
 > Replace `<api-key>`, `<client-name>`, and `<content-id>` with appropiate values.
 
@@ -437,7 +437,7 @@ curl -XGET -H "API-KEY: <api-key>" \
 
 #### Key Rotation
 
-Get a CPIX 2.1 document with Fairplay keys at every given interval between two given times; key rotation is only supported by HLS with Fairplay or AES.
+Get a CPIX 2.1 document with FairPlay keys at every given interval between two given times; key rotation is only supported by HLS with FairPlay or AES.
 
 ###### USP support 
 
@@ -555,14 +555,14 @@ curl -XGET -H "API-KEY: <api-key>" \
 The values are:
 
 - `key_id_hex`: Unique ID for the encryption. Base16 in Little Endian. Used by PlayReady and Widevine.
-- `content_key_hex`: 128bit encryption key in base16 in Little Endian. Used by Fairplay, PlayReady, and Widevine.
-- `iv_hex`: The encryption key. Used by Fairplay.
+- `content_key_hex`: 128bit encryption key in base16 in Little Endian. Used by FairPlay, PlayReady, and Widevine.
+- `iv_hex`: The encryption key. Used by FairPlay.
 - `playready_pssh_data`: Base 64 encoded pssh box containing the PlayReady header.
 - `playready_system_id`: The DASH protection system-specific identifier for PlayReady.
 - `widevine_drm_specific_data`: Base 64 encoded pssh box containing the content id.
 - `widevine_system_id`: The DASH protection system-specific identifier for Widevine.
-- `fairplay_system_id`: The DASH protection system-specific identifier for Fairplay.
-- `fairplay_laurl`: The Fairplay license url.
+- `fairplay_system_id`: The DASH protection system-specific identifier for FairPlay.
+- `fairplay_laurl`: The FairPlay license url.
 
 ## SPEKE Key Provider API
 These are the docs for the speke key provider, which has a speke endpoint for use with AWS. To learn how to use our SPEKE API with AWS' Media Services please read our [guide](/projects/vudrm/en/latest/DeveloperDocumentation/aws.html).
@@ -593,7 +593,7 @@ API-KEY: <api-key>
    </cpix:DRMSystemList>
 </cpix:CPIX>
 ```
-#### Fairplay
+#### FairPlay
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
@@ -637,7 +637,7 @@ Content-Type: application/xml
     </cpix:DRMSystemList>
 </cpix:CPIX>
 ```
-#### Fairplay
+#### FairPlay
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <cpix:CPIX id="someContentId" xmlns:cpix="urn:dashif:org:cpix" xmlns:pskc="urn:ietf:params:xml:ns:keyprov:pskc" xmlns:speke="urn:aws:amazon:com:speke">
@@ -666,7 +666,7 @@ Content-Type: application/xml
 
 The Legacy JSON Key Provider API will provide all the information required in order to encrypt various types of content. In order to be as flexible as possible it will return encryption keys in Base16 and Base64 as some systems require different values. 
 
-The following sections describe the requests and responses in order to retrieve the keys. The most common scenario is to request CENC and Fairplay encryption keys. 
+The following sections describe the requests and responses in order to retrieve the keys. The most common scenario is to request CENC and FairPlay encryption keys. 
 
 #### Request
 
@@ -678,10 +678,10 @@ https://keyprovider.vudrm.tech/<DRM_TYPE>/<CLIENT_NAME>/<CONTENT_ID>
 
 The breakdown of this URL is:
 - `DRM_TYPE`: The type of encryption keys being requested. Possible values are `cenc`, `fairplay`, `widevine`, `playready`, and `aes`. See [Using the encryption keys](#using-the-encryption-keys) for more information.
-- `CLIENT_NAME`: The account name. Plese contact support@vualto.com if you do not have an account name.
+- `CLIENT_NAME`: The account name. Plese contact support@jwplayer.com if you do not have an account name.
 - `CONTENT_ID`: A unique content identifier. This value will always generate the same encryption keys. May only contain alphanumeric characters, underscores, and hyphens.
 
-In order to provide the keys securely, an API key is required in the header of the request. Please contact support@vualto.com if you do not have an API key.
+In order to provide the keys securely, an API key is required in the header of the request. Please contact support@jwplayer.com if you do not have an API key.
 
 Below is an example curl request for `cenc` encryption keys using the client `vualto` and with the `CONTENT_ID` of `test`.
 
@@ -917,7 +917,7 @@ else:
 
 ### Using the encryption keys
 
-The next section explains the various encryption keys provided by the Legacy JSON Key Provider API. Each set has a different use case. For use with USP products [CENC](#cenc) and [Fairplay](#fairplay) encryption keys are recommended. See the Unified Streaming Integration section below for more details on how to use `mp4split` with the Legacy JSON Key Provider API.
+The next section explains the various encryption keys provided by the Legacy JSON Key Provider API. Each set has a different use case. For use with USP products [CENC](#cenc) and [FairPlay](#fairplay) encryption keys are recommended. See the Unified Streaming Integration section below for more details on how to use `mp4split` with the Legacy JSON Key Provider API.
 
 This section uses the Legacy JSON Key Provider API but the JSON keys retrieved from the CPIX key provider can be used in the same way.
 
@@ -961,9 +961,9 @@ The values are:
 - `widevine_drm_specific_data`: The Widevine PSSH box.
 - `widevine_laurl`: The Widevine license server URL.
 
-##### Fairplay
+##### FairPlay
 
-[Fairplay](https://developer.apple.com/streaming/fps/) is Apple's DRM system and is commonly used in conjunction with CENC encryption to provide support to the widest amount of devices possible.
+[FairPlay](https://developer.apple.com/streaming/fps/) is Apple's DRM system and is commonly used in conjunction with CENC encryption to provide support to the widest amount of devices possible.
 
 Make the following request to retrieve `fairplay` keys from the Legacy JSON Key Provider API:
 
@@ -984,7 +984,7 @@ An example decrypted response would be:
 The values are:
 - `key_hex`: Unique ID for the encryption.
 - `iv_hex`: The encryption key.
-- `laurl`: The Fairplay license server URL. At the point of the request to the license server the `skd` protocol should be replaced with `https`. 
+- `laurl`: The FairPlay license server URL. At the point of the request to the license server the `skd` protocol should be replaced with `https`. 
 
 ##### HLS AES encryption
 
@@ -1086,7 +1086,7 @@ The values are:
 
 The encryption keys provided by the Legacy JSON Key Provider APIs are compatible with [Unified Streaming Platform's](https://www.unified-streaming.com/) mp4split product.
 
-The recommended approach is to call the CPIX Key Provider API to retrieve CENC and Fairplay Keys. Once the encryption keys have been retrieved they can be used with mp4split to generate an ism:
+The recommended approach is to call the CPIX Key Provider API to retrieve CENC and FairPlay Keys. Once the encryption keys have been retrieved they can be used with mp4split to generate an ism:
 
 ```bash
 mp4split --license-key=$LICENSE_KEY -o $ISM \
@@ -1103,4 +1103,4 @@ mp4split --license-key=$LICENSE_KEY -o $ISM \
  --hls.playout=sample_aes_streamingkeydelivery
 ```
 
-The HLS values come from the Fairplay encryption keys, all other values are from the CENC keys.
+The HLS values come from the FairPlay encryption keys, all other values are from the CENC keys.
