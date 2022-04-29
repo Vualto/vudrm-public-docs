@@ -68,8 +68,7 @@ The values that can be specified in the general section are as follows:
 | `offline`                 | bool                    | `true` or `false` | Should the license be cached for offline playback.
 | `can_renew`               | bool                    | `true` or `false` | Should the license be renewable.
 | `match_content_id`        | bool                    | `true` or `false` | Boolean for if the `content_id` in the token should be compared with the content id used in the license request; the content id in the license request will be the same as the content id used to generate the keys that encrypted a given piece of content.
-| `block_vpn_and_tor`       | bool                    | `true` or `false` | Boolean for if ips coming from known vpn or tor networks should be blocked.
-| `geo_whitelist`           | string array            | Array of 3 letter country codes (ISO 3166-1 alpha-3) | ALL | A list of 3 letter country codes, ISO 3166-1 alpha-3, for all countries that are allowed access. 
+| `geo_restrictions`        | JSON object             | [See below](#geo-restrictions)
 | `session`                 | JSON object             | See below         | A JSON object containing information about a DRM session that can be used to allow/deny a user's license requests.
 | `client_data`             | list of key value pairs | JSON              | A list for extra information you wish to provide. Can be used to filter license stats.
 
@@ -113,8 +112,26 @@ In order to have online licenses automatically renew when using Widevine you mus
 ### Match content ID
 If `content_id` has been set and `match_content_id` has been set to `true`, when a license request is made the content ID in the license request and the content ID in the Studio DRM token will be compared. If they **are** the same a license will be served as normal; if they are **not** the same the license request will be denied. If `match_content_id` has been set to `false` **or** `content_id` has not been specified then this comparison will not occur. 
 
-### GEO whitelisting
-If `geo_whitelist` has been added to the DRM policy, when a license is requested the GEO location of the client's ip will be checked. If the country is in the whitelist the license request will be successful. If the country is not in the whitelist the request will be denied. E.g. if the DRM policy is `{ "geo_whitelist":[ "gbr", "deu" ] }` only users from the UK and Germany will be able to make successful license requests.
+### GEO restrictions
+The GRO restriction object is used to define GEO bloking rules. If either has been added to the DRM policy, when a license is requested the GEO location of the client's ip will be checked. If the country/metro code is in the whitelist the license request will be successful. If the country/metro code is not in the whitelist the request will be denied. E.g. if the DRM policy is `{ "geo_restrictions":{ "country_code_whitelist":[ "gbr", "deu" ] } }` only users from the UK and Germany will be able to make successful license requests.
+
+| Key                       | Type                    | Format            | Description |
+| `block_vpn_and_tor`       | bool                    | `true` or `false` | Boolean for if ips coming from known vpn or tor networks should be blocked.
+| `country_code_whitelist`  | string array            | Array of 3 letter country codes (ISO 3166-1 alpha-3) | ALL | A list of 3 letter country codes, ISO 3166-1 alpha-3, for all countries that are allowed access. 
+| `metro_code_whitelist`    | int array               | Array of metro code ints | See GEO location metro codes docs
+
+
+Full Exmaple
+```JSON
+{
+    "rental_duration_seconds": 2700,
+    "geo_restrictions": {
+        "metro_code_whitelist":[501],
+        "country_code_whitelist":["usa"],
+        "block_vpn_and_tor":true
+    }
+}
+```
 
 ### DRM session in policy
 
