@@ -2,9 +2,9 @@
 
 [Shaka](https://shaka-player-demo.appspot.com/docs/api/tutorial-welcome.html) Player is a JavaScript library for adaptive video streaming. It plays DASH content without browser plugins using MediaSource Extensions and Encrypted Media Extensions.
 
-The [vuplay-shaka](https://github.com/Vualto/vuplay-shaka) repository demonstrates at a lower level how to integrate [VUDRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with Google's Shaka player.
+The [vuplay-shaka](https://github.com/Vualto/vuplay-shaka) repository demonstrates at a lower level how to integrate [Studio DRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with Google's Shaka player.
 
-Google's Shaka player can be used to playback MPEG-dash streams with Widevine and PlayReady encryption, or HLS with Fairplay.
+Google's Shaka player can be used to playback MPEG-dash streams with Widevine and PlayReady encryption, or HLS with FairPlay.
 
 ## Example of Shaka Integration
 

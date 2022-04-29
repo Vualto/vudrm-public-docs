@@ -1,7 +1,7 @@
 DEVELOPER DOCUMENTATION
 ===================
 
-The purpose of this documentation is to explain the usage and functionality of the various VUDRM services. 
+The purpose of this documentation is to explain the usage and functionality of the various Studio DRM, formerly VUDRM, services. 
 If you have any questions or need assistance in using this platform, please contact info@vualto.com.
 
 .. toctree::

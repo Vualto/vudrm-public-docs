@@ -18,7 +18,7 @@ This method of integrating VUDRM with Wowza uses key files:
 - [how to secure mpeg dash](https://www.wowza.com/docs/how-to-secure-mpeg-dash-streaming-using-common-encryption-cenc#dash_cenc)
 - [how to secure apple hls streaming](https://www.wowza.com/docs/how-to-secure-apple-hls-streaming-using-drm-encryption#keyfiles)
 
-NB: Widevine, PlayReady, and Fairplay key values can be set in the same file.
+NB: Widevine, PlayReady, and FairPlay key values can be set in the same file.
 
 An example key file is:
 
@@ -54,9 +54,9 @@ The values are:
 - `mpegdashstreaming-cenc-keyserver-playready-license-url`: The `playready_laurl` value from the [CENC Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cenc).
 - `mpegdashstreaming-cenc-keyserver-playready-checksum`: The `checksum` value from the [CENC Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#cenc)
 - `cupertinostreaming-aes128-method`: Must be set to `SAMPLE-AES`.
-- `cupertinostreaming-aes128-url`: The `laurl` value from the [Fairplay Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#fairplay)
-- `cupertinostreaming-aes128-key`: The `key_hex` value from the [Fairplay Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#fairplay)
-- `cupertinostreaming-aes128-iv`: The `iv_hex` value from the [Fairplay Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#fairplay)
+- `cupertinostreaming-aes128-url`: The `laurl` value from the [FairPlay Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#fairplay)
+- `cupertinostreaming-aes128-key`: The `key_hex` value from the [FairPlay Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#fairplay)
+- `cupertinostreaming-aes128-iv`: The `iv_hex` value from the [FairPlay Response](/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-key-provision.html#fairplay)
 - `cupertinostreaming-aes128-iv-include-in-chunklist`: Must be set to `false`.
 - `cupertinostreaming-aes128-key-format`: Must be set to `com.apple.streamingkeydelivery`.
 - `cupertinostreaming-aes128-key-format-version`: Must be set to `1`.

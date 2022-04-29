@@ -2,7 +2,7 @@
 
 [Video JS](https://videojs.com) is an industry leading HTML5 video player.
 
-The [vuplay-videojs](https://github.com/vualto/vuplay-videojs) repository demonstrates at a lower level how to integrate [VUDRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with Video JS.
+The [vuplay-videojs](https://github.com/vualto/vuplay-videojs) repository demonstrates at a lower level how to integrate [Studio DRM](https://docs.vualto.com/projects/vudrm/en/latest/index.html) with Video JS.
 
 ## Example of Video JS Integration
 

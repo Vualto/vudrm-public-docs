@@ -1,24 +1,24 @@
 # USER GUIDE
 
-Our VUDRM Admin page gives you the tools you will need to test our DRM services with your content. If you need assistance or clarification in relation to anything in this guide, please contact <support@vualto.com>.
+Our Studio DRM Admin page gives you the tools you will need to test our DRM services with your content. If you need assistance or clarification in relation to anything in this guide, please contact <support@vualto.com>.
 
 ## Login
 
-To access the VUDRM Admin site, please go to the [Admin Login page](https://admin.vudrm.tech/Account/Login) - login using the credentials on your onboarding documentation.
+To access the Studio DRM Admin site, please go to the [Admin Login page](https://admin.vudrm.tech/Account/Login) - login using the credentials on your onboarding documentation.
 
-<img src="../_static/user-guide-images/1login.png" class="image" width="500" alt="VUALTO Admin - Login Page"/>
+<img src="../_static/user-guide-images/1login.png" class="image" width="500" alt="Studio DRM Admin - Login Page"/>
 
 ## Dashboard
 
 Once you have successfully logged in, you will be redirected to the `Dashboard` page.
 
-<img src="../_static/user-guide-images/2dashboardpage.png" class="image" width="750" alt="VUALTO Admin - Dashboard Page"/>
+<img src="../_static/user-guide-images/2dashboardpage.png" class="image" width="750" alt="Studio DRM Admin - Dashboard Page"/>
 
 The dashboard will show you an overview of all DRM licenses served with your content.
 
 By clicking on the `Range` dropdown field, you can set custom time frames to get an overview for that time period.
 
-<img src="../_static/user-guide-images/3rangedropdown.png" class="image" width="750" alt="VUALTO Admin - Range Dropdown"/>
+<img src="../_static/user-guide-images/3rangedropdown.png" class="image" width="750" alt="Studio DRM Admin - Range Dropdown"/>
 
 ## Configuration
 
@@ -26,7 +26,7 @@ By clicking on the `Range` dropdown field, you can set custom time frames to get
 
 The `Client Info` section contains the details of how your account is configured, such as which DRM providers are enabled and which URLs have been set to retrieve each service's DRM licenses.
 
-<img src="../_static/user-guide-images/4blurredinfopage.png" class="image" width="750" alt="VUALTO Admin - Client Info Page"/>
+<img src="../_static/user-guide-images/4blurredinfopage.png" class="image" width="750" alt="Studio DRM Admin - Client Info Page"/>
 
 If you require amendments to your account, please contact <support@vualto.com>.
 
@@ -34,11 +34,11 @@ If you require amendments to your account, please contact <support@vualto.com>.
 
 At the bottom of the `Client Info` page, you can view each DRM service’s default token policy. This can be edited to give more control over how a service will act by default.
 
-<img src="../_static/user-guide-images/5edittokenpolicies.png" class="image" width="750" alt="VUALTO Admin - Edit Token Policies"/>
+<img src="../_static/user-guide-images/5edittokenpolicies.png" class="image" width="750" alt="Studio DRM Admin - Edit Token Policies"/>
 
 Clicking `Edit Token Policy` will load the JSON editor. 
 
-<img src="../_static/user-guide-images/5.1jsoneditor.png" class="image" width="750" alt="VUALTO Admin - Edit Token Policies - JSON Editor"/>
+<img src="../_static/user-guide-images/5.1jsoneditor.png" class="image" width="750" alt="Studio DRM Admin - Edit Token Policies - JSON Editor"/>
 
 Please ensure that the JSON has been entered correctly, otherwise you will be informed of an error and will not be able to save the amended policy.
 
@@ -48,14 +48,14 @@ Each DRM service has limitations to how their policy can be altered. Please read
 
 * [DRM Policy](../DeveloperDocumentation/VUDRM-token.html#drm-policy)
 * [PlayReady DRM Policy](../DeveloperDocumentation/VUDRM-token.html#playready-drm-policy)
-* [Fairplay DRM Policy](../DeveloperDocumentation/VUDRM-token.html#fairplay-drm-policy)
+* [FairPlay DRM Policy](../DeveloperDocumentation/VUDRM-token.html#fairplay-drm-policy)
 * [Widevine DRM Policy](../DeveloperDocumentation/VUDRM-token.html#widevine-drm-policy)
 
-### VUDRM Token
+### Studio DRM Token
 
-In this section, you can create, validate, decrypt, encode, and decode VUDRM Tokens.
+In this section, you can create, validate, decrypt, encode, and decode Studio DRM Tokens.
 
-<img src="../_static/user-guide-images/6vudrmtoken.png" class="image" width="1000" alt="VUALTO Admin - VUDRM Token Page"/>
+<img src="../_static/user-guide-images/6vudrmtoken.png" class="image" width="1000" alt="Studio DRM Admin - Studio DRM Token Page"/>
 
 There are a variety of templates to choose from which will automatically populate the `Policy` text box, please ensure that you replace all default values (such as `{"polend":"DD-MM-YYYY HH:MM:SS"}` to `{"polend":"09-05-2021 12:30:00"}`). When the default values have been changed, you can then generate a token with those parameters. 
 
@@ -70,17 +70,17 @@ The buttons on the page do the following:
 
 Once a token has been generated, a new button will appear - `Use Token To Test Your Stream`. 
 
-<img src="../_static/user-guide-images/6-1vudrmtoken.png" class="image" width="1000" alt="VUALTO Admin - VUDRM Token Page - Use Token in Demo"/>
+<img src="../_static/user-guide-images/6-1vudrmtoken.png" class="image" width="1000" alt="Studio DRM Admin - Studio DRM Token Page - Use Token in Demo"/>
 
 Clicking `Use Token To Test Your Stream` will load the `Test Your Stream` player with the generated token in the `VUDRM Token` text box.
 
-For an in depth guide of how our tokens work - please refer to the [VUDRM Token documentation](../DeveloperDocumentation/VUDRM-token.html#). 
+For an in depth guide of how our tokens work - please refer to the [Studio DRM Token documentation](../DeveloperDocumentation/VUDRM-token.html#). 
 
-### VUDRM Encryption Keys
+### Studio DRM Encryption Keys
 
-Within this section, you can call the `CPIX Key Provider` to fetch VUDRM Encryption Keys in CPIX XML document format as well as the CPIX keys as JSON which is generated at the same time, both of which are available to copy. 
+Within this section, you can call the `CPIX Key Provider` to fetch Studio DRM Encryption Keys in CPIX XML document format as well as the CPIX keys as JSON which is generated at the same time, both of which are available to copy. 
 
-<img src="../_static/user-guide-images/7encryptkeys.png" class="image" width="1000" alt="VUALTO Admin - Encrypt Keys Page"/>
+<img src="../_static/user-guide-images/7encryptkeys.png" class="image" width="1000" alt="Studio DRM Admin - Encrypt Keys Page"/>
 
 To create an Encryption key, do the following:
 
@@ -96,11 +96,11 @@ For more information - please refer to our [Encryption Key Provision documentati
 
 ### Test Your Stream
 
-Integrated into the VUDRM Admin site is our internal demo player which can be used for testing your streams. 
+Integrated into the Studio DRM Admin site is our internal demo player which can be used for testing your streams. 
 
-<img src="../_static/user-guide-images/8jw-player.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration"/>
+<img src="../_static/user-guide-images/8jw-player.png" class="image" width="1000" alt="Studio DRM Admin - JW Player Integration"/>
 
-A VUDRM Token with an open policy is loaded into the `VUDRM Token` field used by the player. You can copy and paste a token you created in the `VUDRM Token` section of the `Info` page. This can be used to test content with your variation of the token. Alternatively, clicking the `Use Token To Test Your Stream` button within the `VUDRM Token` page will automatically enter that token into the Token field used by the player.
+A Studio DRM Token with an open policy is loaded into the `VUDRM Token` field used by the player. You can copy and paste a token you created in the `VUDRM Token` section of the `Info` page. This can be used to test content with your variation of the token. Alternatively, clicking the `Use Token To Test Your Stream` button within the `VUDRM Token` page will automatically enter that token into the Token field used by the player.
 
 The fields are as follows: 
 
@@ -108,7 +108,7 @@ The fields are as follows:
 * `DASH Stream URL` - DASH stream to test
 * `HLS Stream URL`  - HLS stream to test
 
-<img src="../_static/user-guide-images/8-1jw-player-custom-url.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration2"/>
+<img src="../_static/user-guide-images/8-1jw-player-custom-url.png" class="image" width="1000" alt="Studio DRM Admin - JW Player Integration2"/>
 
 If you select the `Use Custom License Server URLs?` button, you will be presented with three fields available to edit:
 
@@ -120,19 +120,19 @@ If these custom fields have values, they will override the default License Serve
 
 Clicking `Load Player` will then load the content with the conditions of the filled in fields.
 
-<img src="../_static/user-guide-images/8-2jw-player-loaded.png" class="image" width="1000" alt="VUALTO Admin - JW Player Integration3"/>
+<img src="../_static/user-guide-images/8-2jw-player-loaded.png" class="image" width="1000" alt="Studio DRM Admin - JW Player Integration3"/>
 
 ## User
 
-On the `User` section of the VUDRM Admin site, you have the option of changing your password.
+On the `User` section of the Studio DRM Admin site, you have the option of changing your password.
 
-<img src="../_static/user-guide-images/9userpage.png" class="image" width="1000" alt="VUALTO Admin - User Page"/>
+<img src="../_static/user-guide-images/9userpage.png" class="image" width="1000" alt="Studio DRM Admin - User Page"/>
 
 ## Health
 
 The `Health` page gives an overview of the general health for each DRM or DRM related service we provide. If one of these services are down, it will be down throughout all regions.
 
-<img src="../_static/user-guide-images/10healthpage.png" class="image" width="1000" alt="VUALTO Admin - Health Page"/>
+<img src="../_static/user-guide-images/10healthpage.png" class="image" width="1000" alt="Studio DRM Admin - Health Page"/>
 
 By default, the page is set to auto-refresh every 60 seconds, but you can toggle this to `No` if not required.
 

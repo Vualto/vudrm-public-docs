@@ -88,7 +88,7 @@ mp4dash \
 
 ## Testing packaged content
 
-Upload your packaged files and manifest to AWS S3 or an equivalent hosting service. You can now test your newly packaged content with our player on the VUDRM Admin site.
+Upload your packaged files and manifest to AWS S3 or an equivalent hosting service. You can now test your newly packaged content with our player on the Studio DRM Admin site.
 
 For more information, please view our documentation on how to [Test Your Stream](https://docs.vualto.com/projects/vudrm/en/latest/UserGuide/VUDRM-Admin.html#test-your-stream).
 

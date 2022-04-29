@@ -32,7 +32,7 @@ This SDK has a number of key benefits:
 
 The SDK is fully supported in both Objective-C and Swift applications. 
 
-Multiple asset demo applications written in Swift, and based on Apple's FairPlay SDK example applications, are available on request. Please contact [support@vualto.com](support@vualto.com) to request access.
+Multiple asset demo applications written in Swift, and based on Apple's FairPlay SDK example applications, are available on request. Please contact [support@jwplayer.com](support@jwplayer.com) to request access.
 
 ## Requirements
 
@@ -74,7 +74,7 @@ The project should now be ready to open and run in Xcode.
 
 Please see below for more information on using the demo application.
 
-If you are unable to use Cocoapods in your project, please contact [support@vualto.com](support@vualto.com) to discuss other options.
+If you are unable to use Cocoapods in your project, please contact [support@jwplayer.com](support@jwplayer.com) to discuss other options.
 
 ## Information about application transport security (ATS)
 
@@ -237,14 +237,14 @@ In iOS, when a download of an asset has been completed with a persist token poli
 
 Example VUDRM token type templates available are:
 
-- Fairplay Rental `{"type": "r","duration_rental": 3600}`
-	- Fairplay Rental tokens may only be used to stream online content. 
+- FairPlay Rental `{"type": "r","duration_rental": 3600}`
+	- FairPlay Rental tokens may only be used to stream online content. 
 
-- Fairplay Lease `{"type": "l","duration_lease": 3600}`
-	- Fairplay Lease tokens may only be used to stream online content. The token duration should always be greater than `360` seconds and should also exceed the streams `renew_interval` period. The streams `renew_interval` should always exceed `300` seconds. We recommend a difference of at least `60` seconds between the token duration and `renew_interval` to allow adequate time for the license to be retrieved and processed by the OS. In all other circumstances the `renew_interval` period should be set to `0` or not included in the stream configuration. Lease renewals will fail if the `renew_interval` is set to any value below `300` seconds, except for `0`. This is to prevent license server overload and unexpected overheads. Please refer to our demo application for an example, and do not hesitate to contact us to discuss the use of Fairplay Lease.
+- FairPlay Lease `{"type": "l","duration_lease": 3600}`
+	- FairPlay Lease tokens may only be used to stream online content. The token duration should always be greater than `360` seconds and should also exceed the streams `renew_interval` period. The streams `renew_interval` should always exceed `300` seconds. We recommend a difference of at least `60` seconds between the token duration and `renew_interval` to allow adequate time for the license to be retrieved and processed by the OS. In all other circumstances the `renew_interval` period should be set to `0` or not included in the stream configuration. Lease renewals will fail if the `renew_interval` is set to any value below `300` seconds, except for `0`. This is to prevent license server overload and unexpected overheads. Please refer to our demo application for an example, and do not hesitate to contact us to discuss the use of FairPlay Lease.
 
-- Fairplay Persist `{"type": "p","duration_persist": 3600}`
- - Fairplay Persist tokens may be used to stream online content and play offline (downloaded) content.
+- FairPlay Persist `{"type": "p","duration_persist": 3600}`
+ - FairPlay Persist tokens may be used to stream online content and play offline (downloaded) content.
 
 For further information about VUDRM please contact us, or refer to our [documentation](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-token.html).
 
@@ -258,7 +258,7 @@ There are significant limitations using AirPlay to stream any content to an Appl
 
 ##### Demo Applications
 
-We have developed demo applications based on Apples Fairplay SDK examples, using `AssetResourceLoaderDelegate` for iOS 10 and above, and the newer `ContentKeyDelegate` for iOS 11.2 and above.
+We have developed demo applications based on Apples FairPlay SDK examples, using `AssetResourceLoaderDelegate` for iOS 10 and above, and the newer `ContentKeyDelegate` for iOS 11.2 and above.
 
 The demo applications target both iOS and tvOS platforms using shared source code. Each target platform references its own version of the framework. The lowest version of iOS supported in the demo applications is iOS 11.2, however it is possible to add the required support for iOS 10 and above.
 
@@ -294,7 +294,7 @@ In iOS, a call is made upon launch by the `AppDelegate` class to the `AssetPersi
 
 ## Known Issues
 
-- If you believe you have found any issues, please contact us at [support@vualto.com](support@vualto.com).
+- If you believe you have found any issues, please contact us at [support@jwplayer.com](support@jwplayer.com).
 
 ## Troubleshooting
 
@@ -305,7 +305,7 @@ In iOS, a call is made upon launch by the `AppDelegate` class to the `AssetPersi
 	
 	- Tokens - You can easily eliminate token issues by beginning with a default FairPlay token policy. Please ensure your token is formatted correctly and validates. For the avoidance of doubt, where tokens use dates, the dates should always be in the future. For further information about tokens please refer to our token [documentation](https://docs.vualto.com/projects/vudrm/en/latest/DeveloperDocumentation/VUDRM-token.html).
 	
-If you are not able to play your content after checking it in our demo application please contact [support@vualto.com](support@vualto.com) with the demo application logs and the stream configuration used.
+If you are not able to play your content after checking it in our demo application please contact [support@jwplayer.com](support@jwplayer.com) with the demo application logs and the stream configuration used.
 
 ## Release notes (iOS / tvOS)
 
