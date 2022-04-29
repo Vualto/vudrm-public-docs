@@ -116,10 +116,10 @@ If `content_id` has been set and `match_content_id` has been set to `true`, when
 The GRO restriction object is used to define GEO bloking rules. If either has been added to the DRM policy, when a license is requested the GEO location of the client's ip will be checked. If the country/metro code is in the whitelist the license request will be successful. If the country/metro code is not in the whitelist the request will be denied. E.g. if the DRM policy is `{ "geo_restrictions":{ "country_code_whitelist":[ "gbr", "deu" ] } }` only users from the UK and Germany will be able to make successful license requests.
 
 | Key                       | Type                    | Format            | Description |
-| `block_vpn_and_tor`       | bool                    | `true` or `false` | Boolean for if ips coming from known vpn or tor networks should be blocked.
-| `country_code_whitelist`  | string array            | Array of 3 letter country codes (ISO 3166-1 alpha-3) | ALL | A list of 3 letter country codes, ISO 3166-1 alpha-3, for all countries that are allowed access. 
-| `metro_code_whitelist`    | int array               | Array of metro code ints | See GEO location metro codes docs
-
+|---------------------------|-------------------------|-------------------|-------------|
+| `block_vpn_and_tor`       | bool                    | `true` or `false` | Boolean for if ips coming from known vpn or tor networks should be blocked. 
+| `country_code_whitelist`  | string array            | Array of 3 letter country codes (ISO 3166-1 alpha-3) | A list of 3 letter country codes, ISO 3166-1 alpha-3, for all countries that are allowed access. 
+| `metro_code_whitelist`    | int array               | Array of metro code ints | See GEO location metro codes docs 
 
 Full Exmaple
 ```JSON
